@@ -1,0 +1,9 @@
+.sortable-link a {
+  color: #00891C;
+}
+.sortable-link i {
+  color: #999999;
+}
+.sortable-link a:hover {
+  text-decoration: underline;
+}
