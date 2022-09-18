@@ -1,0 +1,14 @@
+staging:
+    stage: staging
+    hostname: stagingserver.sakura.ne.jp
+    user: stagingserver
+    port: 22
+    deploy_path: /home/stagingserver/deploy/staging/cms
+    branch: master
+production:
+    stage: production
+    hostname: xxx.sakura.ne.jp
+    user: xxx
+    port: 22
+    deploy_path: /home/xxx/deploy/production/cms
+    branch: release
