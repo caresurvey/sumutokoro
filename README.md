@@ -9,6 +9,7 @@
 * PHP8.0以上
 * Laravel9.x系（Webフレームワーク）
 *  MySQL or MariaDB（開発環境はMariaDB）
+*  docker-compose（開発環境・CI環境作成ツール）
 * GitHub（バージョン管理サイト）
 * Git（バージョン管理ツール）
 * PHPUnit9.x以上（PHPの単体テスト）
