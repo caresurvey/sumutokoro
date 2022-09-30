@@ -16,12 +16,11 @@ return new class extends Migration
         Schema::create('document_orders', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id', 10);
-            $table->boolean('display')->default(0)->comment('表示');
             $table->string('name', 255)->comment('名前');
             $table->string('kana', 255)->comment('ふりがな');
             $table->string('zip', 20)->comment('郵便番号');
             $table->string('address', 255)->comment('住所');
-            $table->string('phone', 255)->comment('電話番号');
+            $table->string('tel', 255)->comment('電話番号');
             $table->string('email', 255)->comment('メールアドレス');
             $table->text('msg')->comment('お問い合わせ内容');
             $table->string('ip', 20)->comment('IPアドレス');

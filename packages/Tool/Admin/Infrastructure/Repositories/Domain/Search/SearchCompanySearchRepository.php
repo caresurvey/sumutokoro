@@ -13,7 +13,7 @@ class SearchCompanySearchRepository implements CompanySearchRepository
         $data = ['query' => $query];
 
         // 受け取ったパラメーターがあれば格納
-        if($query !== '') {
+        if(!empty($request['search'])) {
             foreach($request['search'] as $key => $value) {
                 $data[$key] = $value;
             }

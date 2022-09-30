@@ -59,6 +59,7 @@
               </li>
             </ul>
           </div>
+          @if(!empty($search['cities']))
           <div class="form-control">
             <form action="{{asset('/')}}spot" method="get">
               <div class="flex">
@@ -91,6 +92,7 @@
               <input type="hidden" name="search[simple]" value="1">
             </form>
           </div>
+          @endif
           <div class="px-2 text-sm">
             @if(Auth::guard('user')->check())
               <div class="navbar">

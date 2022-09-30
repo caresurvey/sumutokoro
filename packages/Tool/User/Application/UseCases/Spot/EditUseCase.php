@@ -4,6 +4,7 @@ namespace Tool\User\Application\UseCases\Spot;
 
 use Tool\User\Domain\Models\Icon\IconRepository;
 use Tool\User\Domain\Models\Spot\SpotRepository;
+use Tool\User\Infrastructure\Eloquents\EloquentAreaCenter;
 use Tool\User\Infrastructure\Eloquents\EloquentCategory;
 use Tool\User\Infrastructure\Eloquents\EloquentCity;
 use Tool\User\Infrastructure\Eloquents\EloquentPrefecture;
@@ -13,6 +14,7 @@ use Tool\User\Infrastructure\Eloquents\EloquentSpace;
 
 class EditUseCase
 {
+    private EloquentAreaCenter $eloquentAreaCenter;
     private EloquentCategory $eloquentCategory;
     private EloquentCity $eloquentCity;
     private EloquentPrefecture $eloquentPrefecture;
@@ -23,6 +25,7 @@ class EditUseCase
     private SpotRepository $spotRepo;
 
     public function __construct(
+        EloquentAreaCenter $eloquentAreaCenter,
         EloquentCategory $eloquentCategory,
         EloquentCity $eloquentCity,
         EloquentPrefecture $eloquentPrefecture,
@@ -33,6 +36,7 @@ class EditUseCase
         SpotRepository $spotRepo
     )
     {
+        $this->eloquentAreaCenter = $eloquentAreaCenter;
         $this->eloquentCategory = $eloquentCategory;
         $this->eloquentCity = $eloquentCity;
         $this->eloquentPrefecture = $eloquentPrefecture;
@@ -55,6 +59,7 @@ class EditUseCase
         $data['spot_icon_types'] = $this->eloquentSpotIconType->get()->toArray();
         $data['icons'] = $this->iconRepo->makeEditData($id, $data['spot']['spot_icon_genre_comments']);
         $data['associatedCompany'] = ['id' => $data['spot']['company']['id'], 'name' => $data['spot']['company']['name']];
+        $data['area_centers'] = $this->eloquentAreaCenter->where('city_id', $data['spot']['city_id'])->pluck('label', 'id')->toArray();
         (!empty($data['spot']['spot_main_image'])) ? $data['spotMainImage'] = $data['spot']['spot_main_image'] : $data['spotMainImage'] = [];
         $data['isSpotEdit'] = true;
 

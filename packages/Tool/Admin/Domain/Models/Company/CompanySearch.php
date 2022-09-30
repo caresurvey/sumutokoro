@@ -76,7 +76,7 @@ class CompanySearch
         if(empty($this->data['query'])) return '';
 
         // 値があればそれを返す
-        return (int)$this->data['query'];
+        return $this->data['query'];
     }
 
     /**

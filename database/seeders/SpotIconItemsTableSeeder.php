@@ -387,7 +387,7 @@ class SpotIconItemsTableSeeder extends Seeder
         ]);
         DB::table('spot_icon_items')->insert([
             'id' => 38,
-            'display' => 1,
+            'display' => 0,
             'name' => 'ベッド',
             'serial' => 'privatespace_bed',
             'description' => '',
@@ -397,7 +397,7 @@ class SpotIconItemsTableSeeder extends Seeder
         ]);
         DB::table('spot_icon_items')->insert([
             'id' => 39,
-            'display' => 1,
+            'display' => 0,
             'name' => 'インターネット',
             'serial' => 'privatespace_internet',
             'description' => '',

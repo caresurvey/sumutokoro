@@ -60,11 +60,11 @@
     <hr class="space">
 
     <div class="ps">
-      {!! nl2br($data['fax']['body']) !!}
+      {!! nl2br(e($data['fax']['body'])) !!}
     </div>
     <ul class="spotlist">
       <li class="spotlists">
-        {!! nl2br($data['fax']['spot']) !!}
+        {!! nl2br(e($data['fax']['spot'])) !!}
       </li>
     </ul>
 

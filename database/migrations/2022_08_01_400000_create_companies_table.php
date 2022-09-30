@@ -38,7 +38,6 @@ return new class extends Migration
             $table->text('history')->comment('やりとり履歴');
             $table->string('capital', 255)->comment('親会社');
             $table->string('staff', 255)->comment('スタッフ情報');
-            $table->unsignedInteger('area_branch_id')->default(1)->comment('振興局ID');
             $table->unsignedInteger('city_id')->default(1)->comment('市町村ID');
             $table->unsignedInteger('prefecture_id')->default(1)->comment('都道府県ID');
             $table->unsignedInteger('trade_area_id')->default(1)->comment('商圏ID');
@@ -47,9 +46,6 @@ return new class extends Migration
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
 
             // 外部キーを追加
-            $table->foreign('area_branch_id')
-              ->references('id')
-              ->on('area_branches');
             $table->foreign('city_id')
               ->references('id')
               ->on('cities');
@@ -73,7 +69,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table('companies', function (Blueprint $table) {
-            $table->dropForeign('companies_area_branch_id_foreign');
             $table->dropForeign('companies_city_id_foreign');
             $table->dropForeign('companies_prefecture_id_foreign');
             $table->dropForeign('companies_trade_area_id_foreign');

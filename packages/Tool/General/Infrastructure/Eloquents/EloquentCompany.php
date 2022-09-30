@@ -17,11 +17,6 @@ class EloquentCompany extends AppEloquent
         'updated_at',
     ];
 
-    public function area_branch()
-    {
-        return $this->belongsTo(EloquentAreaBranch::class);
-    }
-
     public function categories()
     {
         return $this->belongsToMany(EloquentCategory::class, 'category_company', 'category_id', 'company_id');

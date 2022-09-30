@@ -25,6 +25,16 @@ class AdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
+            Domain\Models\Spot\PublishSpotRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentPublishSpotRepository::class
+        );
+
+        $this->app->bind(
+            Domain\Models\BookSpot\BookSpotRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentBookSpotRepository::class
+        );
+
+        $this->app->bind(
             Domain\Models\Company\CompanyRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentCompanyRepository::class
         );
@@ -102,6 +112,11 @@ class AdminServiceProvider extends ServiceProvider
         $this->app->bind(
             Domain\Models\Spot\SpotSearchRepository::class,
             Infrastructure\Repositories\Domain\Search\SearchSpotSearchRepository::class
+        );
+
+        $this->app->bind(
+            Domain\Models\Book\BookRepository::class,
+            Infrastructure\Repositories\Domain\Publish\PublishBookRepository::class
         );
     }
 }

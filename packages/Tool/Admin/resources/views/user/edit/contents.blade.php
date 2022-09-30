@@ -85,8 +85,12 @@
             事業所との関連付け
           </th>
           <td class="py-4 px-4 w-4/5">
-            <div id="UserAssociateSpots"></div>
-                <user-associate-spots data='@json($data["associatedSpots"])' :user_id='{{$data["user"]["id"]}}'></user-associate-spots>
+            @if($data['user']['role_id'] < 4)
+              <user-associate-spots data='@json($data["associatedSpots"])'
+                                    :user_id='{{$data["user"]["id"]}}'></user-associate-spots>
+            @else
+              この権限では関連付けができません
+            @endif
           </td>
         </tr>
         <tr class="bg-white border-b">
@@ -94,7 +98,12 @@
             法人との関連付け
           </th>
           <td class="py-4 px-4 w-4/5">
-            <user-associate-companies data='@json($data["associatedCompanies"])' :user_id='{{$data["user"]["id"]}}'></user-associate-companies>
+            @if($data['user']['role_id'] < 4)
+            <user-associate-companies data='@json($data["associatedCompanies"])'
+                                      :user_id='{{$data["user"]["id"]}}'></user-associate-companies>
+            @else
+              この権限では関連付けができません
+            @endif
           </td>
         </tr>
         <tr class="bg-white border-b">
@@ -289,7 +298,7 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             <div class="relative">
-              <select name="spot[job_type_id]" id="SpotCategory"
+              <select name="user[job_type_id]" id="SpotCategory"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['job_types'] as $key => $job_type)
                   <option value="{{$key}}"

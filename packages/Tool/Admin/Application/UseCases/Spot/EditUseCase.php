@@ -4,7 +4,8 @@ namespace Tool\Admin\Application\UseCases\Spot;
 
 use Tool\Admin\Domain\Models\Icon\IconRepository;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
-use Tool\Admin\Infrastructure\Eloquents\EloquentAreaBranch;
+use Tool\Admin\Infrastructure\Eloquents\EloquentAreaCenter;
+use Tool\Admin\Infrastructure\Eloquents\EloquentBook;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCategory;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCity;
 use Tool\Admin\Infrastructure\Eloquents\EloquentPrefecture;
@@ -16,7 +17,8 @@ use Tool\Admin\Infrastructure\Eloquents\EloquentTradeArea;
 
 class EditUseCase
 {
-    private EloquentAreaBranch $eloquentAreaBranch;
+    private EloquentAreaCenter $eloquentAreaCenter;
+    private EloquentBook $eloquentBook;
     private EloquentCategory $eloquentCategory;
     private EloquentCity $eloquentCity;
     private EloquentPrefecture $eloquentPrefecture;
@@ -29,7 +31,8 @@ class EditUseCase
     private SpotRepository $spotRepo;
 
     public function __construct(
-        EloquentAreaBranch $eloquentAreaBranch,
+        EloquentAreaCenter $eloquentAreaCenter,
+        EloquentBook $eloquentBook,
         EloquentCategory $eloquentCategory,
         EloquentCity $eloquentCity,
         EloquentPrefecture $eloquentPrefecture,
@@ -42,7 +45,8 @@ class EditUseCase
         SpotRepository $spotRepo
     )
     {
-        $this->eloquentAreaBranch = $eloquentAreaBranch;
+        $this->eloquentAreaCenter = $eloquentAreaCenter;
+        $this->eloquentBook = $eloquentBook;
         $this->eloquentCategory = $eloquentCategory;
         $this->eloquentCity = $eloquentCity;
         $this->eloquentPrefecture = $eloquentPrefecture;
@@ -58,7 +62,7 @@ class EditUseCase
     public function __invoke(int $id, array $auth): array
     {
         // データを取得する
-        $data['area_branches'] = $this->eloquentAreaBranch->pluck('name', 'id')->toArray();
+        $data['books'] = $this->eloquentBook->where('display', 1)->pluck('name', 'id')->toArray();
         $data['categories'] = $this->eloquentCategory->pluck('name', 'id')->toArray();
         $data['cities'] = $this->eloquentCity->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['prefectures'] = $this->eloquentPrefecture->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
@@ -70,6 +74,7 @@ class EditUseCase
         $data['trade_areas'] = $this->eloquentTradeArea->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['icons'] = $this->iconRepo->makeEditData($id, $data['spot']['spot_icon_genre_comments']);
         $data['associatedCompany'] = ['id' => $data['spot']['company']['id'], 'name' => $data['spot']['company']['name']];
+        $data['area_centers'] = $this->eloquentAreaCenter->where('city_id', $data['spot']['city_id'])->pluck('label', 'id')->toArray();
         (!empty($data['spot']['spot_main_image'])) ? $data['spotMainImage'] = $data['spot']['spot_main_image'] : $data['spotMainImage'] = [];
         $data['isSpotEdit'] = true;
 

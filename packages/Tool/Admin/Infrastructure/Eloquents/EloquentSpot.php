@@ -47,7 +47,6 @@ class EloquentSpot extends AppEloquent
         'lat',
         'lng',
         'search_words',
-        'area_branch_id',
         'category_id',
         'city_id',
         'company_id',
@@ -59,9 +58,14 @@ class EloquentSpot extends AppEloquent
         'user_id',
     ];
 
-    public function area_branch()
+    public function area_center()
     {
-        return $this->belongsTo(EloquentAreaBranch::class);
+        return $this->belongsTo(EloquentAreaCenter::class);
+    }
+
+    public function book_spot()
+    {
+        return $this->belongsToMany(EloquentBook::class, 'book_spot', 'spot_id', 'book_id');
     }
 
     public function category()

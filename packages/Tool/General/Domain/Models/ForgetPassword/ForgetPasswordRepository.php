@@ -6,5 +6,9 @@ use Tool\General\Domain\Models\Common\LogicResponse;
 
 interface ForgetPasswordRepository
 {
+    public function makeToken(string $email): string;
+
     public function store(string $email, string $token): LogicResponse;
+
+    public function getUser(string $token): array;
 }

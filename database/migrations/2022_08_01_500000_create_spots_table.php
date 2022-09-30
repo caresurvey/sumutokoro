@@ -44,7 +44,7 @@ return new class extends Migration
             $table->decimal('lat', 17,14)->default('43.76281006321748')->comment('LAT');
             $table->decimal('lng', 17,14)->default('142.35817790725756')->comment('LNG');
             $table->text('search_words')->comment('検索用テキスト（保存時に自動作成）');
-            $table->unsignedInteger('area_branch_id')->default(1)->comment('振興局ID');
+            $table->unsignedInteger('area_center_id')->default(1)->comment('地域包括支援センターID');
             $table->unsignedInteger('category_id')->default(1)->comment('種別ID');
             $table->unsignedInteger('city_id')->default(1)->comment('市町村ID');
             $table->unsignedInteger('company_id')->default(1)->comment('法人ID');
@@ -58,9 +58,9 @@ return new class extends Migration
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
 
             // 外部キーを追加
-            $table->foreign('area_branch_id')
+            $table->foreign('area_center_id')
               ->references('id')
-              ->on('area_branches');
+              ->on('area_centers');
             $table->foreign('category_id')
               ->references('id')
               ->on('categories');
@@ -99,7 +99,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table('spots', function (Blueprint $table) {
-            $table->dropForeign('spots_area_branch_id_foreign');
             $table->dropForeign('spots_city_id_foreign');
             $table->dropForeign('spots_company_id_foreign');
             $table->dropForeign('spots_prefecture_id_foreign');

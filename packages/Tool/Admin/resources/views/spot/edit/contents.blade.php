@@ -11,6 +11,11 @@
       <p>
         {{$data['spot']['name']}}の編集ができます
       </p>
+      <p>
+        <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/book/preview/{{$data['spot']['id']}}/@include('common::spot.make_token', ['id' =>$data['spot']['id'], 'name' => $data['spot']['name']])"
+           class="text-accent hover:text-accent_light mr-1 hover:underline" target="_blank"><i
+                  class="fa-solid fa-book"></i> 冊子確認をする</a>
+      </p>
     </div>
   </div>
 
@@ -26,21 +31,18 @@
         <tbody>
         <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
-            担当包括エリア
+            地域包括支援エリア
           </th>
           <td class="py-4 px-4 w-4/5">
-            @include('common::form.text', [
-              'name' => 'spot[spot_detail][proarea]',
-              'id' => 'SpotName',
-              'value' => old('spot.spot_detail.proarea', $data['spot']['spot_detail']['proarea']),
-              'placeholder' => '担当包括エリアを入れてください',
-              'ps' => '例：中央区第１、白石第１、豊岡、新旭川・永山、美瑛町、深川市、名寄市など',
-              'hasError' => $errors->has('spot.spot_detail.proarea'),
-              'errors' => $errors->get('spot.spot_detail.proarea'),
-              ])
-            <span class="inline-block leading-6 text-gray-300 text-sm">
-              ※「地域包括支援センター」という文字は入れないでください。<br>
-            </span>
+            <div class="relative">
+              <select name="spot[area_center_id]" id="SpotAreaCenter"
+                      class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
+                @foreach($data['area_centers'] as $key => $area_center)
+                  <option value="{{$key}}"
+                          @if($key === (int)old('spot.category_id', $data['spot']['area_center_id'])) selected @endif>{{$area_center}}</option>
+                @endforeach
+              </select>
+            </div>
           </td>
         </tr>
         <tr class="bg-white border-b">
@@ -621,6 +623,41 @@
         </tbody>
       </table>
     </div>
+    <div class="bg-white shadow-sm rounded mb-5 p-4">
+      <table class="w-full text-sm text-left text-gray-600">
+        <tbody>
+        <tr class="border-b">
+          <th class="py-4 px-4 w-1/5">
+            冊子掲載
+          </th>
+          <td class="py-4 px-4 w-4/5">
+            <div class="flex justify-start">
+              <input type="hidden" name="spot[is_book]" value="0">
+              <label class="label cursor-pointer">
+                <input type="checkbox" name="spot[is_book]" value="1" class="toggle toggle-primary mr-2"
+                        {{ (int)old('spot.is_book', $data['spot']['is_book']) === 1 ? 'checked' : '' }} />
+                <span class="ml-1 text-sm text-gray-600">冊子に掲載する</span>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white">
+          <th class="py-4 px-4 w-1/5">
+            冊子との関連付け
+          </th>
+          <td class="py-4 px-4 w-4/5">
+            @include('common::form.checkboxes', [
+              'name' => 'spot[books]',
+              'id' => 'SpotBook',
+              'list' => $data['books'],
+              'values' => old('spot.book_spot', $data['spot']['book_spot']),
+              'ps' => '※',
+              ])
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="bg-white shadow-sm rounded mb-5 p-4 lg:p-8">
       <table class="w-full text-sm text-left text-gray-600">
@@ -645,14 +682,6 @@
                   <input type="checkbox" name="spot[preview]" value="1" class="toggle toggle-primary mr-2"
                           {{ (int)old('spot.preview', $data['spot']['preview']) === 1 ? 'checked' : '' }} />
                   <span class="ml-1 text-sm text-gray-600">プレビュー</span>
-                </label>
-              </div>
-              <div>
-                <input type="hidden" name="spot[is_book]" value="0">
-                <label class="label cursor-pointer">
-                  <input type="checkbox" name="spot[is_book]" value="1" class="toggle toggle-primary mr-2"
-                          {{ (int)old('spot.is_book', $data['spot']['is_book']) === 1 ? 'checked' : '' }} />
-                  <span class="ml-1 text-sm text-gray-600">冊子に掲載する</span>
                 </label>
               </div>
             </div>
@@ -785,22 +814,6 @@
     <div class="bg-white shadow-sm rounded mb-5 p-4 lg:p-8">
       <table class="w-full text-sm text-left text-gray-600">
         <tbody>
-        <tr class="bg-white border-b">
-          <th class="py-4 px-4 w-1/5">
-            エリア設定
-          </th>
-          <td class="py-4 px-4 w-4/5">
-            <div class="relative">
-              <select name="spot[area_branch_id]" id="SpotAreaBranch"
-                      class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
-                @foreach($data['area_branches'] as $key => $area_branch)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('spot.area_branch_id', $data['spot']['area_branch_id'])) selected @endif>{{$area_branch}}</option>
-                @endforeach
-              </select>
-            </div>
-          </td>
-        </tr>
         <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
             商圏設定

@@ -26,6 +26,11 @@ class EloquentBook extends AppEloquent
         'user_id',
     ];
 
+    public function spots()
+    {
+        return $this->belongsToMany(EloquentSpot::class, 'book_spot', 'book_id', 'spot_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(EloquentUser::class);

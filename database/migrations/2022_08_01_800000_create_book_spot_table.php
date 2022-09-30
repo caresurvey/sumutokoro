@@ -25,7 +25,7 @@ return new class extends Migration
             //外部キー制約
             $table->foreign('book_id')
                 ->references('id')
-                ->on('categories')
+                ->on('books')
                 ->cascadeOnDelete();
             $table->foreign('spot_id')
                 ->references('id')

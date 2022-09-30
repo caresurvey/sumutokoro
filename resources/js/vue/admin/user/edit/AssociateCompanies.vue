@@ -135,7 +135,7 @@ export default {
 
     // データをAPIから取得
     const getSearchData = async () => {
-      const url = '/admin/company/keyword_user/?keyword=' + keyword.value + '&user_id=' + userId + '&selected=' + querySelectedIds.value
+      const url = '/admin/company/keyword_selected/?keyword=' + keyword.value + '&selected=' + querySelectedIds.value
       console.log(url)
       const result = await axios.get(url)
 

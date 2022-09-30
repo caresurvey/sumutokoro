@@ -24,6 +24,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '指定なし',
             'label' => '',
             'reorder' => 1,
+            'book_reorder' => 1,
+            'area_branch_id' => 1,
         ]);
         DB::table('cities')->insert([
             'id' => 2,
@@ -34,6 +36,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '札幌市',
             'label' => '札幌市',
             'reorder' => 2,
+            'book_reorder' => 1,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 3,
@@ -44,6 +48,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '函館市',
             'label' => '函館市',
             'reorder' => 3,
+            'book_reorder' => 60,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 4,
@@ -54,6 +60,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '小樽市',
             'label' => '小樽市',
             'reorder' => 4,
+            'book_reorder' => 30,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 5,
@@ -64,6 +72,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '旭川市',
             'label' => '旭川市',
             'reorder' => 5,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 6,
@@ -74,6 +84,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '室蘭市',
             'label' => '室蘭市',
             'reorder' => 6,
+            'book_reorder' => 2,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 7,
@@ -83,6 +95,7 @@ class CitiesTableSeeder extends Seeder
             'code' => '206', 
             'name' => '釧路市',
             'label' => '釧路市',
+            'book_reorder' => 21,
             'reorder' => 7,
         ]);
         DB::table('cities')->insert([
@@ -94,6 +107,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '帯広市',
             'label' => '帯広市',
             'reorder' => 8,
+            'book_reorder' => 30,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 9,
@@ -104,6 +119,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '北見市',
             'label' => '北見市',
             'reorder' => 9,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 10,
@@ -114,6 +131,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '夕張市',
             'label' => '夕張市',
             'reorder' => 10,
+            'book_reorder' => 11,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 11,
@@ -124,6 +143,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '岩見沢市',
             'label' => '岩見沢市',
             'reorder' => 11,
+            'book_reorder' => 8,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 12,
@@ -134,6 +155,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '網走市',
             'label' => '網走市',
             'reorder' => 12,
+            'book_reorder' => 2,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 13,
@@ -144,6 +167,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '留萌市',
             'label' => '留萌市',
             'reorder' => 13,
+            'book_reorder' => 16,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 14,
@@ -154,6 +179,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '苫小牧市',
             'label' => '苫小牧市',
             'reorder' => 14,
+            'book_reorder' => 1,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 15,
@@ -163,7 +190,9 @@ class CitiesTableSeeder extends Seeder
             'code' => '214', 
             'name' => '稚内市',
             'label' => '稚内市',
-            'reorder' => 15,
+            'reorder' => 1,
+            'book_reorder' => 2,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 16,
@@ -174,6 +203,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '美唄市',
             'label' => '美唄市',
             'reorder' => 16,
+            'book_reorder' => 16,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 17,
@@ -184,6 +215,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '芦別市',
             'label' => '芦別市',
             'reorder' => 17,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 18,
@@ -194,6 +227,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '江別市',
             'label' => '江別市',
             'reorder' => 18,
+            'book_reorder' => 2,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 19,
@@ -204,6 +239,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '赤平市',
             'label' => '赤平市',
             'reorder' => 19,
+            'book_reorder' => 19,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 20,
@@ -214,6 +251,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別市',
             'label' => '紋別市',
             'reorder' => 20,
+            'book_reorder' => 3,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 21,
@@ -224,6 +263,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '士別市',
             'label' => '士別市',
             'reorder' => 21,
+            'book_reorder' => 10,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 22,
@@ -234,6 +275,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '名寄市',
             'label' => '名寄市',
             'reorder' => 22,
+            'book_reorder' => 9,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 23,
@@ -244,6 +287,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '三笠市',
             'label' => '三笠市',
             'reorder' => 23,
+            'book_reorder' => 15,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 24,
@@ -254,6 +299,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '根室市',
             'label' => '根室市',
             'reorder' => 24,
+            'book_reorder' => 22,
+            'area_branch_id' => 15,
         ]);
         DB::table('cities')->insert([
             'id' => 25,
@@ -264,6 +311,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '千歳市',
             'label' => '千歳市',
             'reorder' => 25,
+            'book_reorder' => 3,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 26,
@@ -274,6 +323,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '滝川市',
             'label' => '滝川市',
             'reorder' => 26,
+            'book_reorder' => 20,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 27,
@@ -284,6 +335,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '砂川市',
             'label' => '砂川市',
             'reorder' => 27,
+            'book_reorder' => 17,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 28,
@@ -294,6 +347,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '歌志内市',
             'label' => '歌志内市',
             'reorder' => 28,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 29,
@@ -304,6 +359,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '深川市',
             'label' => '深川市',
             'reorder' => 29,
+            'book_reorder' => 24,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 30,
@@ -314,6 +371,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '富良野市',
             'label' => '富良野市',
             'reorder' => 30,
+            'book_reorder' => 25,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 31,
@@ -324,6 +383,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '登別市',
             'label' => '登別市',
             'reorder' => 31,
+            'book_reorder' => 3,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 32,
@@ -334,6 +395,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '恵庭市',
             'label' => '恵庭市',
             'reorder' => 32,
+            'book_reorder' => 4,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 33,
@@ -344,6 +407,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '伊達市',
             'label' => '伊達市',
             'reorder' => 33,
+            'book_reorder' => 4,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 34,
@@ -354,6 +419,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '北広島市',
             'label' => '北広島市',
             'reorder' => 34,
+            'book_reorder' => 5,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 35,
@@ -364,6 +431,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '石狩市',
             'label' => '石狩市',
             'reorder' => 35,
+            'book_reorder' => 6,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 36,
@@ -374,6 +443,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '北斗市',
             'label' => '北斗市',
             'reorder' => 36,
+            'book_reorder' => 61,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 37,
@@ -384,6 +455,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '石狩郡当別町',
             'label' => '当別町',
             'reorder' => 37,
+            'book_reorder' => 7,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 38,
@@ -394,6 +467,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '石狩郡新篠津村',
             'label' => '新篠津村',
             'reorder' => 38,
+            'book_reorder' => 1,
+            'area_branch_id' => 2,
         ]);
         DB::table('cities')->insert([
             'id' => 39,
@@ -404,6 +479,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '松前郡松前町',
             'label' => '松前町',
             'reorder' => 39,
+            'book_reorder' => 64,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 40,
@@ -414,6 +491,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '松前郡福島町',
             'label' => '福島町',
             'reorder' => 40,
+            'book_reorder' => 1,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 41,
@@ -424,6 +503,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上磯郡知内町',
             'label' => '知内町',
             'reorder' => 41,
+            'book_reorder' => 1,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 42,
@@ -434,6 +515,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上磯郡木古内町',
             'label' => '木古内町',
             'reorder' => 42,
+            'book_reorder' => 1,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 43,
@@ -444,6 +527,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '亀田郡七飯町',
             'label' => '七飯町',
             'reorder' => 43,
+            'book_reorder' => 62,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 44,
@@ -454,6 +539,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '茅部郡鹿部町',
             'label' => '鹿部町',
             'reorder' => 44,
+            'book_reorder' => 1,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 45,
@@ -464,6 +551,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '茅部郡森町',
             'label' => '森町',
             'reorder' => 45,
+            'book_reorder' => 63,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 46,
@@ -474,6 +563,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '二海郡八雲町',
             'label' => '八雲町',
             'reorder' => 46,
+            'book_reorder' => 1,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 47,
@@ -484,6 +575,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '山越郡長万部町',
             'label' => '長万部町',
             'reorder' => 47,
+            'book_reorder' => 1,
+            'area_branch_id' => 3,
         ]);
         DB::table('cities')->insert([
             'id' => 48,
@@ -494,6 +587,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '檜山郡江差町',
             'label' => '江差町',
             'reorder' => 48,
+            'book_reorder' => 65,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 49,
@@ -504,6 +599,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '檜山郡上ノ国町',
             'label' => '上ノ国町',
             'reorder' => 49,
+            'book_reorder' => 1,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 50,
@@ -514,6 +611,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '檜山郡厚沢部町',
             'label' => '厚沢部町',
             'reorder' => 50,
+            'book_reorder' => 1,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 51,
@@ -524,6 +623,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '爾志郡乙部町',
             'label' => '乙部町',
             'reorder' => 51,
+            'book_reorder' => 1,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 52,
@@ -534,6 +635,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '奥尻郡奥尻町',
             'label' => '奥尻町',
             'reorder' => 52,
+            'book_reorder' => 1,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 53,
@@ -544,6 +647,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '瀬棚郡今金町',
             'label' => '今金町',
             'reorder' => 53,
+            'book_reorder' => 1,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 54,
@@ -554,6 +659,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '久遠郡せたな町',
             'label' => 'せたな町',
             'reorder' => 54,
+            'book_reorder' => 1,
+            'area_branch_id' => 4,
         ]);
         DB::table('cities')->insert([
             'id' => 55,
@@ -564,6 +671,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '島牧郡島牧村',
             'label' => '島牧村',
             'reorder' => 55,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 56,
@@ -574,6 +683,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '寿都郡寿都町',
             'label' => '寿都町',
             'reorder' => 56,
+            'book_reorder' => 45,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 57,
@@ -584,6 +695,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '寿都郡黒松内町',
             'label' => '黒松内町',
             'reorder' => 57,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 58,
@@ -594,6 +707,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '磯谷郡蘭越町',
             'label' => '蘭越町',
             'reorder' => 58,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 59,
@@ -604,6 +719,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡ニセコ町',
             'label' => 'ニセコ町',
             'reorder' => 59,
+            'book_reorder' => 46,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 60,
@@ -614,6 +731,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡真狩村',
             'label' => '真狩村',
             'reorder' => 60,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 61,
@@ -624,6 +743,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡留寿都村',
             'label' => '留寿都村',
             'reorder' => 61,
+            'book_reorder' => 47,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 62,
@@ -634,6 +755,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡喜茂別町',
             'label' => '喜茂別町',
             'reorder' => 62,
+            'book_reorder' => 48,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 63,
@@ -644,6 +767,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡京極町',
             'label' => '京極町',
             'reorder' => 63,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 64,
@@ -654,6 +779,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡倶知安町',
             'label' => '倶知安町',
             'reorder' => 64,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 65,
@@ -664,6 +791,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '岩内郡共和町',
             'label' => '共和町',
             'reorder' => 65,
+            'book_reorder' => 43,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 66,
@@ -674,6 +803,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '岩内郡岩内町',
             'label' => '岩内町',
             'reorder' => 66,
+            'book_reorder' => 44,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 67,
@@ -684,6 +815,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '古宇郡泊村',
             'label' => '泊村',
             'reorder' => 67,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 68,
@@ -694,6 +827,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '古宇郡神恵内村',
             'label' => '神恵内村',
             'reorder' => 68,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 69,
@@ -704,6 +839,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '積丹郡積丹町',
             'label' => '積丹町',
             'reorder' => 69,
+            'book_reorder' => 42,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 70,
@@ -714,6 +851,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '古平郡古平町',
             'label' => '古平町',
             'reorder' => 70,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 71,
@@ -724,6 +863,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '余市郡仁木町',
             'label' => '仁木町',
             'reorder' => 71,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 72,
@@ -734,6 +875,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '余市郡余市町',
             'label' => '余市町',
             'reorder' => 72,
+            'book_reorder' => 31,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 73,
@@ -744,6 +887,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '余市郡赤井川村',
             'label' => '赤井川村',
             'reorder' => 73,
+            'book_reorder' => 1,
+            'area_branch_id' => 5,
         ]);
         DB::table('cities')->insert([
             'id' => 74,
@@ -754,6 +899,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '空知郡南幌町',
             'label' => '南幌町',
             'reorder' => 74,
+            'book_reorder' => 9,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 75,
@@ -764,6 +911,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '空知郡奈井江町',
             'label' => '奈井江町',
             'reorder' => 75,
+            'book_reorder' => 10,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 76,
@@ -774,6 +923,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '空知郡上砂川町',
             'label' => '空知郡上砂川町',
             'reorder' => 76,
+            'book_reorder' => 18,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 77,
@@ -784,6 +935,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '夕張郡由仁町',
             'label' => '由仁町',
             'reorder' => 77,
+            'book_reorder' => 12,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 78,
@@ -794,6 +947,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '夕張郡長沼町',
             'label' => '長沼町',
             'reorder' => 78,
+            'book_reorder' => 14,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 79,
@@ -804,6 +959,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '夕張郡栗山町',
             'label' => '栗山町',
             'reorder' => 79,
+            'book_reorder' => 13,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 80,
@@ -814,6 +971,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '樺戸郡月形町',
             'label' => '月形町',
             'reorder' => 80,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 81,
@@ -824,6 +983,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '樺戸郡浦臼町',
             'label' => '浦臼町',
             'reorder' => 81,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 82,
@@ -834,6 +995,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '樺戸郡新十津川町',
             'label' => '新十津川町',
             'reorder' => 82,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 83,
@@ -844,6 +1007,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '雨竜郡妹背牛町',
             'label' => '妹背牛町',
             'reorder' => 83,
+            'book_reorder' => 21,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 84,
@@ -854,6 +1019,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '雨竜郡秩父別町',
             'label' => '秩父別町',
             'reorder' => 84,
+            'book_reorder' => 23,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 85,
@@ -864,6 +1031,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '雨竜郡雨竜町',
             'label' => '雨竜郡雨竜町',
             'reorder' => 85,
+            'book_reorder' => 22,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 86,
@@ -874,6 +1043,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '雨竜郡沼田町',
             'label' => '雨竜郡沼田町',
             'reorder' => 86,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 87,
@@ -884,6 +1055,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡鷹栖町',
             'label' => '鷹栖町',
             'reorder' => 87,
+            'book_reorder' => 20,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 88,
@@ -894,6 +1067,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡東神楽町',
             'label' => '東神楽町',
             'reorder' => 88,
+            'book_reorder' => 23,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 89,
@@ -904,6 +1079,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡当麻町',
             'label' => '当麻町',
             'reorder' => 89,
+            'book_reorder' => 21,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 90,
@@ -914,6 +1091,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡比布町',
             'label' => '比布町',
             'reorder' => 90,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 91,
@@ -924,6 +1103,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡愛別町',
             'label' => '愛別町',
             'reorder' => 91,
+            'book_reorder' => 18,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 92,
@@ -934,6 +1115,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡上川町',
             'label' => '上川町',
             'reorder' => 92,
+            'book_reorder' => 19,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 93,
@@ -944,6 +1127,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡東川町',
             'label' => '東川町',
             'reorder' => 93,
+            'book_reorder' => 22,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 94,
@@ -954,6 +1139,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡美瑛町',
             'label' => '美瑛町',
             'reorder' => 94,
+            'book_reorder' => 24,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 95,
@@ -964,6 +1151,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '空知郡上富良野町',
             'label' => '上富良野町',
             'reorder' => 95,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 96,
@@ -974,6 +1163,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '空知郡中富良野町',
             'label' => '中富良野町',
             'reorder' => 96,
+            'book_reorder' => 26,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 97,
@@ -984,6 +1175,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '空知郡南富良野町',
             'label' => '南富良野町',
             'reorder' => 97,
+            'book_reorder' => 27,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 98,
@@ -994,6 +1187,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '勇払郡占冠村', 
             'label' => '占冠村',
             'reorder' => 98,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 99,
@@ -1004,6 +1199,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡和寒町',
             'label' => '和寒町',
             'reorder' => 99,
+            'book_reorder' => 12,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 100,
@@ -1014,6 +1211,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡剣淵町',
             'label' => '剣淵町',
             'reorder' => 100,
+            'book_reorder' => 11,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 101,
@@ -1024,6 +1223,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡下川町',
             'label' => '下川町',
             'reorder' => 101,
+            'book_reorder' => 13,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 102,
@@ -1034,6 +1235,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡美深町',
             'label' => '美深町',
             'reorder' => 102,
+            'book_reorder' => 6,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 103,
@@ -1044,6 +1247,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡音威子府村',
             'label' => '音威子府村',
             'reorder' => 103,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 104,
@@ -1054,6 +1259,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡中川町',
             'label' => '中川町',
             'reorder' => 104,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 105,
@@ -1064,6 +1271,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '雨竜郡幌加内町',
             'label' => '幌加内町',
             'reorder' => 105,
+            'book_reorder' => 8,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 106,
@@ -1074,6 +1283,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '増毛郡増毛町',
             'label' => '増毛町',
             'reorder' => 106,
+            'book_reorder' => 17,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 107,
@@ -1084,6 +1295,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '留萌郡小平町',
             'label' => '小平町',
             'reorder' => 107,
+            'book_reorder' => 14,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 108,
@@ -1094,6 +1307,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '苫前郡苫前町',
             'label' => '苫前町',
             'reorder' => 108,
+            'book_reorder' => 1,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 109,
@@ -1104,6 +1319,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '苫前郡羽幌町',
             'label' => '羽幌町',
             'reorder' => 109,
+            'book_reorder' => 15,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 110,
@@ -1114,6 +1331,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '苫前郡初山別村',
             'label' => '初山別村',
             'reorder' => 110,
+            'book_reorder' => 2,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 111,
@@ -1124,6 +1343,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '天塩郡遠別町',
             'label' => '遠別町',
             'reorder' => 111,
+            'book_reorder' => 7,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 112,
@@ -1134,6 +1355,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '天塩郡天塩町',
             'label' => '天塩町',
             'reorder' => 112,
+            'book_reorder' => 1,
+            'area_branch_id' => 8,
         ]);
         DB::table('cities')->insert([
             'id' => 113,
@@ -1144,6 +1367,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '宗谷郡猿払村',
             'label' => '猿払村',
             'reorder' => 113,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 114,
@@ -1154,6 +1379,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '枝幸郡浜頓別町',
             'label' => '浜頓別町',
             'reorder' => 114,
+            'book_reorder' => 3,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 115,
@@ -1164,6 +1391,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '枝幸郡中頓別町',
             'label' => '中頓別町',
             'reorder' => 115,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 116,
@@ -1174,6 +1403,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '枝幸郡枝幸町',
             'label' => '枝幸町',
             'reorder' => 116,
+            'book_reorder' => 4,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 117,
@@ -1184,6 +1415,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '天塩郡豊富町',
             'label' => '豊富町',
             'reorder' => 117,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 118,
@@ -1194,6 +1427,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '礼文郡礼文町',
             'label' => '礼文町',
             'reorder' => 118,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 119,
@@ -1204,6 +1439,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '利尻郡利尻町',
             'label' => '利尻町',
             'reorder' => 119,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 120,
@@ -1214,6 +1451,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '利尻郡利尻富士町',
             'label' => '利尻富士町',
             'reorder' => 120,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 121,
@@ -1224,6 +1463,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '天塩郡幌延町',
             'label' => '幌延町',
             'reorder' => 121,
+            'book_reorder' => 1,
+            'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([
             'id' => 122,
@@ -1234,6 +1475,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '網走郡美幌町',
             'label' => '美幌町',
             'reorder' => 122,
+            'book_reorder' => 6,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 123,
@@ -1244,6 +1487,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '網走郡津別町',
             'label' => '津別町',
             'reorder' => 123,
+            'book_reorder' => 7,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 124,
@@ -1254,6 +1499,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '斜里郡斜里町',
             'label' => '斜里町',
             'reorder' => 124,
+            'book_reorder' => 10,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 125,
@@ -1264,6 +1511,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '斜里郡清里町',
             'label' => '清里町',
             'reorder' => 125,
+            'book_reorder' => 11,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 126,
@@ -1274,6 +1523,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '斜里郡小清水町',
             'label' => '小清水町',
             'reorder' => 126,
+            'book_reorder' => 9,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 127,
@@ -1284,6 +1535,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '常呂郡訓子府町',
             'label' => '訓子府町',
             'reorder' => 127,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 128,
@@ -1294,6 +1547,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '常呂郡置戸町',
             'label' => '置戸町',
             'reorder' => 128,
+            'book_reorder' => 8,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 129,
@@ -1304,6 +1559,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '常呂郡佐呂間町',
             'label' => '佐呂間町',
             'reorder' => 129,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 130,
@@ -1314,6 +1571,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別郡遠軽町',
             'label' => '遠軽町',
             'reorder' => 130,
+            'book_reorder' => 4,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 131,
@@ -1324,6 +1583,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別郡湧別町',
             'label' => '湧別町',
             'reorder' => 131,
+            'book_reorder' => 5,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 132,
@@ -1334,6 +1595,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別郡滝上町',
             'label' => '滝上町',
             'reorder' => 132,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 133,
@@ -1344,6 +1607,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別郡興部町',
             'label' => '興部町',
             'reorder' => 133,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 134,
@@ -1354,6 +1619,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別郡西興部村',
             'label' => '西興部村', 
             'reorder' => 134,
+            'book_reorder' => 12,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 135,
@@ -1364,6 +1631,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '紋別郡雄武町',
             'label' => '雄武町',
             'reorder' => 135,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 136,
@@ -1374,6 +1643,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '網走郡大空町',
             'label' => '大空町',
             'reorder' => 136,
+            'book_reorder' => 1,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 137,
@@ -1384,6 +1655,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '虻田郡豊浦町',
             'label' => '豊浦町',
             'reorder' => 137,
+            'book_reorder' => 1,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 138,
@@ -1394,6 +1667,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '有珠郡壮瞥町',
             'label' => '壮瞥町',
             'reorder' => 138,
+            'book_reorder' => 1,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 139,
@@ -1404,6 +1679,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '白老郡白老町',
             'label' => '白老町',
             'reorder' => 139,
+            'book_reorder' => 5,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 140,
@@ -1414,16 +1691,20 @@ class CitiesTableSeeder extends Seeder
             'name' => '勇払郡厚真町',
             'label' => '厚真町',
             'reorder' => 140,
+            'book_reorder' => 6,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 141,
             'display' => 1,
             'public' => 1,
             'serial' => 'touyako', 
-            'code' => '584', 
+            'code' => '584',
             'name' => '虻田郡洞爺湖町',
             'label' => '洞爺湖町',
             'reorder' => 141,
+            'book_reorder' => 7,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 142,
@@ -1434,6 +1715,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '勇払郡安平町',
             'label' => '安平町',
             'reorder' => 142,
+            'book_reorder' => 1,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 143,
@@ -1444,6 +1727,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '勇払郡むかわ町',
             'label' => 'むかわ町',
             'reorder' => 143,
+            'book_reorder' => 8,
+            'area_branch_id' => 11,
         ]);
         DB::table('cities')->insert([
             'id' => 144,
@@ -1454,6 +1739,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '沙流郡日高町',
             'label' => '日高町',
             'reorder' => 144,
+            'book_reorder' => 1,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 145,
@@ -1464,6 +1751,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '沙流郡平取町',
             'label' => '平取町',
             'reorder' => 145,
+            'book_reorder' => 1,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 146,
@@ -1474,6 +1763,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '新冠郡新冠町',
             'label' => '新冠町',
             'reorder' => 146,
+            'book_reorder' => 1,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 147,
@@ -1484,6 +1775,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '浦河郡浦河町',
             'label' => '浦河町',
             'reorder' => 147,
+            'book_reorder' => 49,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 148,
@@ -1494,6 +1787,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '様似郡様似町',
             'label' => '様似町',
             'reorder' => 148,
+            'book_reorder' => 50,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 149,
@@ -1504,6 +1799,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '幌泉郡えりも町',
             'label' => 'えりも町',
             'reorder' => 149,
+            'book_reorder' => 1,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 150,
@@ -1514,6 +1811,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '日高郡新ひだか町',
             'label' => '新ひだか町',
             'reorder' => 150,
+            'book_reorder' => 51,
+            'area_branch_id' => 12,
         ]);
         DB::table('cities')->insert([
             'id' => 151,
@@ -1524,6 +1823,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '河東郡音更町',
             'label' => '音更町',
             'reorder' => 151,
+            'book_reorder' => 43,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 152,
@@ -1533,7 +1834,9 @@ class CitiesTableSeeder extends Seeder
             'code' => '632', 
             'name' => '河東郡士幌町',
             'label' => '士幌町',
-            'reorder' => 151,
+            'reorder' => 152,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 153,
@@ -1543,7 +1846,9 @@ class CitiesTableSeeder extends Seeder
             'code' => '633', 
             'name' => '河東郡上士幌町',
             'label' => '上士幌町',
-            'reorder' => 152,
+            'reorder' => 153,
+            'book_reorder' => 45,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 154,
@@ -1554,6 +1859,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '河東郡鹿追町',
             'label' => '鹿追町',
             'reorder' => 154,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 155,
@@ -1564,6 +1871,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡新得町',
             'label' => '新得町',
             'reorder' => 155,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 156,
@@ -1574,6 +1883,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '上川郡清水町',
             'label' => '清水町',
             'reorder' => 156,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 157,
@@ -1584,6 +1895,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '河西郡芽室町',
             'label' => '芽室町',
             'reorder' => 157,
+            'book_reorder' => 42,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 158,
@@ -1594,6 +1907,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '河西郡中札内村',
             'label' => '中札内村',
             'reorder' => 158,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 159,
@@ -1604,6 +1919,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '河西郡更別村',
             'label' => '更別村',
             'reorder' => 159,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 160,
@@ -1614,16 +1931,20 @@ class CitiesTableSeeder extends Seeder
             'name' => '広尾郡大樹町',
             'label' => '大樹町',
             'reorder' => 160,
+            'book_reorder' => 46,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 161,
             'display' => 1,
             'public' => 1,
-            'serial' => 'hioo', 
+            'serial' => 'hiroo', 
             'code' => '642', 
             'name' => '広尾郡広尾町',
             'label' => '広尾町',
             'reorder' => 161,
+            'book_reorder' => 48,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 162,
@@ -1634,6 +1955,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡幕別町',
             'label' => '幕別町',
             'reorder' => 162,
+            'book_reorder' => 41,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 163,
@@ -1644,6 +1967,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡池田町',
             'label' => '池田町',
             'reorder' => 163,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 164,
@@ -1654,6 +1979,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡豊頃町',
             'label' => '豊頃町',
             'reorder' => 164,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 165,
@@ -1664,6 +1991,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡本別町',
             'label' => '本別町',
             'reorder' => 165,
+            'book_reorder' => 44,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 166,
@@ -1674,6 +2003,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '足寄郡足寄町',
             'label' => '足寄町',
             'reorder' => 166,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 167,
@@ -1684,6 +2015,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '足寄郡陸別町',
             'label' => '陸別町',
             'reorder' => 167,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 168,
@@ -1694,6 +2027,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '十勝郡浦幌町',
             'label' => '浦幌町',
             'reorder' => 168,
+            'book_reorder' => 1,
+            'area_branch_id' => 13,
         ]);
         DB::table('cities')->insert([
             'id' => 169,
@@ -1704,6 +2039,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '釧路郡釧路町',
             'label' => '釧路町',
             'reorder' => 174,
+            'book_reorder' => 23,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 170,
@@ -1714,6 +2051,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '厚岸郡厚岸町',
             'label' => '厚岸町',
             'reorder' => 170,
+            'book_reorder' => 1,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 171,
@@ -1724,6 +2063,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '厚岸郡浜中町',
             'label' => '浜中町',
             'reorder' => 171,
+            'book_reorder' => 28,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 172,
@@ -1734,6 +2075,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '川上郡標茶町',
             'label' => '標茶町',
             'reorder' => 172,
+            'book_reorder' => 1,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 173,
@@ -1744,6 +2087,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '川上郡弟子屈町',
             'label' => '弟子屈町',
             'reorder' => 173,
+            'book_reorder' => 25,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 174,
@@ -1754,6 +2099,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '阿寒郡鶴居村',
             'label' => '鶴居村',
             'reorder' => 174,
+            'book_reorder' => 1,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 175,
@@ -1764,6 +2111,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '雨竜郡北竜町',
             'label' => '雨竜郡北竜町',
             'reorder' => 175,
+            'book_reorder' => 1,
+            'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
             'id' => 176,
@@ -1774,6 +2123,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '白糠郡白糠町',
             'label' => '白糠町',
             'reorder' => 176,
+            'book_reorder' => 1,
+            'area_branch_id' => 14,
         ]);
         DB::table('cities')->insert([
             'id' => 177,
@@ -1784,6 +2135,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '野付郡別海町',
             'label' => '別海町',
             'reorder' => 177,
+            'book_reorder' => 29,
+            'area_branch_id' => 15,
         ]);
         DB::table('cities')->insert([
             'id' => 178,
@@ -1794,6 +2147,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '標津郡中標津町',
             'label' => '中標津町',
             'reorder' => 178,
+            'book_reorder' => 24,
+            'area_branch_id' => 15,
         ]);
         DB::table('cities')->insert([
             'id' => 179,
@@ -1804,6 +2159,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '標津郡標津町',
             'label' => '標津町',
             'reorder' => 179,
+            'book_reorder' => 26,
+            'area_branch_id' => 15,
         ]);
         DB::table('cities')->insert([
             'id' => 180,
@@ -1814,6 +2171,8 @@ class CitiesTableSeeder extends Seeder
             'name' => '目梨郡羅臼町',
             'label' => '羅臼町',
             'reorder' => 180,
+            'book_reorder' => 27,
+            'area_branch_id' => 15,
         ]);
     }
 }

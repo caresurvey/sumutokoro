@@ -15,4 +15,17 @@ class CommonServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom( __DIR__ . '/resources/views', 'common');
     }
+
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind(
+            Domain\Models\Book\BookRepository::class,
+            Infrastructure\Repositories\Domain\Publish\PublishBookRepository::class
+        );
+    }
 }

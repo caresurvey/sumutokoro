@@ -15,17 +15,5 @@ class NewsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
-            DB::table('news')->insert([
-              'id' => $i,
-              'display' => 1,
-              'preview' => 1,
-              'name' => '見出し' . $i,
-              'body' => '本文' . $i,
-              'more' => '続き' . $i,
-              'url' => 'url' . $i,
-              'user_id' => 1,
-            ]);
-        }
     }
 }

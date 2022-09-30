@@ -5,7 +5,7 @@ namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 use Illuminate\Support\Facades\Hash;
 use Tool\General\Domain\Models\Common\LogicResponse;
 use Tool\General\Domain\Models\Common\ResponseRepository;
-use Tool\General\Domain\Models\ResetPassword\ForgetPasswordRepository;
+use Tool\General\Domain\Models\ForgetPassword\ForgetPasswordRepository;
 use Tool\General\Exceptions\GeneralLogicException;
 use Tool\General\Exceptions\GeneralNotFoundException;
 use Tool\General\Infrastructure\Eloquents\EloquentResetPassword;

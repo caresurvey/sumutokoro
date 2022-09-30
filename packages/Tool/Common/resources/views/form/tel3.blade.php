@@ -65,4 +65,4 @@
     </div>
   @endforeach
 @endif
-@if($ps !== '')<span class="inline-block leading-6 text-gray-400 text-xs">{!! nl2br($ps) !!}</span>@endif
+@if($ps !== '')<span class="inline-block leading-6 text-gray-400 text-xs">{!! nl2br(e($ps)) !!}</span>@endif

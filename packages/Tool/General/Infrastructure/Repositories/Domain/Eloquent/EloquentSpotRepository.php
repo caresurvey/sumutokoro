@@ -103,7 +103,7 @@ class EloquentSpotRepository implements SpotRepository
             'totalCount' => $totalCount,
             'fullPage' => (int)ceil($totalCount / $this->limit),
             'limit' => $this->limit,
-            'linkTag' => $data->links('vendor.pagination.default')->toHtml()
+            'linkTag' => $data->onEachSide(1)->links('vendor.pagination.default')->toHtml()
         ];
     }
 

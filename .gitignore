@@ -10,12 +10,15 @@
 /storage/test/datas/images
 /storage/datas/images
 /storage/fonts
+/storage/photos
+/storage/output
 /bootstrap/cache
 /packages/Tool/Admin/tests/reports/*
 /packages/Tool/Common/tests/reports/*
 /packages/Tool/General/tests/reports/*
 /tmp
 /public/photos
+/import
 .DS_Store
 Thumb.db
 composer.lock

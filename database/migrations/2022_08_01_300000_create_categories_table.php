@@ -19,8 +19,10 @@ return new class extends Migration
             $table->boolean('display')->default(0)->comment('表示');
             $table->boolean('public')->default(0)->comment('一般画面で公開');
             $table->string('name', 255)->comment('名前');
+            $table->string('book_label', 50)->comment('冊子の表示用に使う');
             $table->string('serial', 255)->comment('シリアル');
             $table->unsignedInteger('reorder')->default(1)->comment('並び順');
+            $table->unsignedInteger('book_reorder')->default(1)->comment('冊子での並び順');
             $table->unsignedInteger('user_id')->default(1)->comment('ユーザーID');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP'));

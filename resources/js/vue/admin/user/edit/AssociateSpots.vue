@@ -124,7 +124,7 @@ export default {
 
     // データをAPIから取得
     const getSearchData = async () => {
-      const url = '/admin/spot/keyword_user/?keyword=' + keyword.value + '&user_id=' + userId + '&selected=' + querySelectedIds.value
+      const url = '/admin/spot/keyword_selected/?keyword=' + keyword.value + '&selected=' + querySelectedIds.value
       const result = await axios.get(url)
 
       // 残っている検索結果をリセットする

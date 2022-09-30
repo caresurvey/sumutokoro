@@ -14,7 +14,7 @@
     <div class="shadow bg-white rounded-xl px-12 py-8 mb-8 sm:py-12 sm:mb-8 md:px-14 md:py-14 md:mb-14">
       <div class="mb-10 leading-7 tracking-wider text-sm md:text-base md:leading-8 text-center">
         <p>
-          {!! nl2br(session('message')) !!}
+          {!! nl2br(e(session('message'))) !!}
         </p>
       </div>
       <p class="text-center">

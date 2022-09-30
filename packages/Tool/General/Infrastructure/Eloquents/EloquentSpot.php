@@ -22,11 +22,6 @@ class EloquentSpot extends AppEloquent
         'updated_at',
     ];
 
-    public function area_branch()
-    {
-        return $this->belongsTo(EloquentAreaBranch::class);
-    }
-
     public function category()
     {
         return $this->belongsTo(EloquentCategory::class);

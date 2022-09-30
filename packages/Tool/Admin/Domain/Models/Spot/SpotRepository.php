@@ -23,4 +23,6 @@ interface SpotRepository
     public function count(): int;
 
     public function keyword_selected(array $request): array;
+
+    public function download();
 }

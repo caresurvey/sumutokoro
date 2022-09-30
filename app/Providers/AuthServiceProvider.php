@@ -50,5 +50,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('guest', function ($user) {
             return ($user->role_id === 5);
         });
+
+        // 登録ユーザー以上の権限のみ許可
+        Gate::define('isOverUser', function ($user) {
+            return ($user->role_id < 4);
+        });
     }
 }

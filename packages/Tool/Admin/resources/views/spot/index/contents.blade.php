@@ -117,16 +117,18 @@
               <span class="text-xs">{{$data['data_prefectures'][$value['prefecture_id']]}}{{$data['data_cities'][$value['city_id']]}}{{$value['address']}}</span>
             </td>
             <td class="py-2 px-2">
-              @include('user::common.list.is_image', ['value' => $value['spot_main_image_count']])
+              @if(!empty($value['spot_main_image']['name']))
+                @include('admin::common.list.image', ['spot_id' => $value['id'], 'name' => $value['spot_main_image']['name']])
+              @endif
             </td>
             <td class="py-2 px-2">
               <div class="tooltip" data-tip="冊子確認">
-                <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/spot/{{$value['id']}}/edit"
-                   class="text-accent hover:text-accent_light mr-1"><i
+                <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/book/preview/{{$value['id']}}/@include('common::spot.make_token', ['id' =>$value['id'], 'name' => $value['name']])"
+                   class="text-accent hover:text-accent_light mr-1" target="_blank"><i
                           class="fa-solid fa-book"></i></a>
               </div>
               <div class="tooltip" data-tip="公開ページへ">
-                <a href="{{asset('/')}}spot/detail/{{$value['id']}}" class="text-accent hover:text-accent_light"
+                <a href="{{asset('/')}}spot/{{$value['id']}}" class="text-accent hover:text-accent_light"
                    target="_blank"><i
                           class="fa-solid fa-window-maximize"></i></a>
               </div>

@@ -20,21 +20,19 @@
         <tbody>
         <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
-            担当包括エリア
+            地域包括支援エリア
           </th>
           <td class="py-4 px-4 w-4/5">
-            @include('common::form.text', [
-              'name' => 'spot[spot_detail][proarea]',
-              'id' => 'SpotName',
-              'value' => old('spot.spot_detail.proarea', $data['spot']['spot_detail']['proarea']),
-              'placeholder' => '担当包括エリアを入れてください',
-              'ps' => '例：中央区第１、白石第１、豊岡、新旭川・永山、美瑛町、深川市、名寄市など',
-              'hasError' => $errors->has('spot.spot_detail.proarea'),
-              'errors' => $errors->get('spot.spot_detail.proarea'),
-              ])
-            <span class="inline-block leading-6 text-gray-300 text-sm">
-              ※「地域包括支援センター」という文字は入れないでください。<br>
-            </span>
+            <div class="relative">
+              <select name="spot[area_center_id]" id="SpotAreaCenter"
+                      class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
+                @foreach($data['area_centers'] as $key => $area_center)
+                  <option value="{{$key}}"
+                          @if($key === (int)old('spot.category_id', $data['spot']['area_center_id'])) selected @endif>{{$area_center}}</option>
+                @endforeach
+              </select>
+            </div>
+
           </td>
         </tr>
         <tr class="bg-white border-b">

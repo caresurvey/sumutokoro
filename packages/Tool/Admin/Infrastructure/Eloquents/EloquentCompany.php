@@ -41,7 +41,6 @@ class EloquentCompany extends AppEloquent
         'history',
         'capital',
         'staff',
-        'area_branch_id',
         'city_id',
         'prefecture_id',
         'trade_area_id',
@@ -55,11 +54,6 @@ class EloquentCompany extends AppEloquent
         'created_at',
         'name',
     ];
-
-    public function area_branch()
-    {
-        return $this->belongsTo(EloquentAreaBranch::class);
-    }
 
     public function categories()
     {

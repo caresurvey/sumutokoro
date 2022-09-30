@@ -205,7 +205,7 @@ return [
          * 追加プラグイン
          */
         Brian2694\Toastr\ToastrServiceProvider::class,
-
+        Barryvdh\Snappy\ServiceProvider::class,
     ],
 
     /*
@@ -230,4 +230,6 @@ return [
 
 
     'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
+    'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+    'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 ];

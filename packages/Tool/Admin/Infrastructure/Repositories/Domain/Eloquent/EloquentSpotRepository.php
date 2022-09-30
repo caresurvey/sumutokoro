@@ -66,8 +66,8 @@ class EloquentSpotRepository implements SpotRepository
         $query->orderBy('id', 'DESC');
 
         // リレーション
-        $query->with('user');
-        $query->withCount('category','spot_main_image');
+        $query->with('spot_main_image', 'user');
+        $query->withCount('category', 'spot_main_image');
 
         // 現在のページを取得
         $current = Paginator::resolveCurrentPage();
@@ -91,7 +91,7 @@ class EloquentSpotRepository implements SpotRepository
             'totalCount' => $totalCount,
             'fullPage' => (int)ceil($totalCount / $this->limit),
             'limit' => $this->limit,
-            'linkTag' => $data->links('vendor.pagination.default')->toHtml()
+            'linkTag' => $data->onEachSide(1)->links('vendor.pagination.default')->toHtml()
         ];
     }
 
@@ -135,6 +135,7 @@ class EloquentSpotRepository implements SpotRepository
                 return $this->responseRepo->makeModel(true, '', $spot->name . 'を登録しました。さらに詳しい情報を入力しましょう。', ['id' => $spot->id, 'name' => $spot->name, 'backlink' => 'spot/' . $spot->id . '/edit/']);
             });
         } catch (AdminLogicException $e) {
+            Logger($e->getMessage());
             // レスポンスモデルを作成して返す
             return $this->responseRepo->makeModel(false, '', '登録できませんでした', ['backlink' => 'spot']);
         }
@@ -145,6 +146,8 @@ class EloquentSpotRepository implements SpotRepository
         // 必要データの取得
         $data = $this->eloquentSpot->where('id', $id)
             ->with(
+                'area_center',
+                'book_spot',
                 'category',
                 'city',
                 'company',
@@ -202,6 +205,10 @@ class EloquentSpotRepository implements SpotRepository
                     if (!$spotPriceData->save()) throw new AdminLogicException();
                 }
 
+                // spot_book更新
+                if(empty($post['spot']['books'])) $post['spot']['books'] = []; // 未選択なら空配列を渡す
+                if (!$data->book_spot()->sync($post['spot']['books'])) throw new AdminLogicException();
+
                 // 画像をアップロード
                 if (!$this->spotImageRepo->save($data->id, $post, $auth)) throw new AdminLogicException();
 
@@ -209,7 +216,7 @@ class EloquentSpotRepository implements SpotRepository
                 if (!$this->spotImageRepo->remove($data->id, $post, $auth)) throw new AdminLogicException();
 
                 // ログの保存
-                if(!empty($post['photo']['upload'])) $post['photo']['upload'] = '';
+                if (!empty($post['photo']['upload'])) $post['photo']['upload'] = '';
                 $log = LogHelper::makeLogData($post, 'admin', 'spot', 'update', $data->id, $data->name . 'を変更しました', $auth);
                 if (!$this->eloquentLog->fill($log)->save()) throw new AdminLogicException();
 
@@ -311,5 +318,41 @@ class EloquentSpotRepository implements SpotRepository
 
         // 配列の重複削除をして返す
         return $data->toArray();
+    }
+
+    public function download()
+    {
+        // ページネートオブジェクトを作成
+        $query = $this->eloquentSpot::query();
+
+        // 並び
+        $query->orderBy('id', 'DESC');
+
+        // リレーション
+        $query->with('category', 'city', 'prefecture', 'spot_detail');
+
+        $spots = $query->get()->toArray();
+
+        $results = [];
+
+        foreach($spots as $spot) {
+            $result['id'] = $spot['id'];
+            $result['display'] = $spot['display'];
+            $result['name'] = $spot['name'];
+            $result['email'] = $spot['spot_detail']['email'];
+            $result['zip'] = $spot['zip1'] . '-' . $spot['zip2'];
+            $result['address'] = $spot['prefecture']['name'] . $spot['city']['name'] . $spot['address'];
+            $result['tel'] = $spot['tel1'] . '-' . $spot['tel2'] . '-' . $spot['tel3'];
+            $result['fax'] = $spot['spot_detail']['fax'];
+            $result['staff'] = $spot['spot_detail']['staff'];
+            $result['company_name'] = $spot['spot_detail']['company_name'];
+            $result['company_staff'] = $spot['spot_detail']['company_staff'];
+            $result['comment'] = $spot['spot_detail']['comment'];
+            $result['comment2'] = $spot['spot_detail']['comment2'];
+            $result['category'] = $spot['category']['name'];
+            $results[] = $result;
+        }
+
+        return $results;
     }
 }

@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
 
         $this->call(PrefecturesTableSeeder::class);
-        $this->call(CitiesTableSeeder::class);
         $this->call(AreaBranchesTableSeeder::class);
+        $this->call(CitiesTableSeeder::class);
         $this->call(TradeAreasTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(BooksTableSeeder::class);
@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SpotIconTypesTableSeeder::class);
         $this->call(SpotIconGenresTableSeeder::class);
         $this->call(SpotIconItemsTableSeeder::class);
+        $this->call(AreaSectionsTableSeeder::class);
+
+        $this->call(AreasTableSeeder::class);
+        $this->call(AreaCentersTableSeeder::class);
 
         $this->call(CompaniesTableSeeder::class);
         $this->call(SpotsTableSeeder::class);
@@ -45,7 +49,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SpotIconStatusesTableSeeder::class);
 
         $this->call(BookSpotTableSeeder::class);
-        $this->call(CategoryCompanyTableSeeder::class);
 
         $this->call(CompanyUserTableSeeder::class);
         $this->call(SpotUserTableSeeder::class);
