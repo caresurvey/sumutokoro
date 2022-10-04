@@ -3,12 +3,12 @@ staging:
     hostname: stagingserver.sakura.ne.jp
     user: stagingserver
     port: 22
-    deploy_path: /home/stagingserver/deploy/staging/cms
+    deploy_path: /home/stagingserver/deploy/staging/sumutokoro_2022
     branch: master
 production:
     stage: production
-    hostname: xxx.sakura.ne.jp
-    user: xxx
+    hostname: sumutokoro3.sakura.ne.jp
+    user: sumutokoro3
     port: 22
-    deploy_path: /home/xxx/deploy/production/cms
+    deploy_path: /home/sumutokoro3/deploy/production/sumutokoro_2022
     branch: release
