@@ -24,6 +24,3 @@ Thumb.db
 composer.lock
 .idea/*
 .editorconfig
-.env
-.env.dusk
-.env.testing
