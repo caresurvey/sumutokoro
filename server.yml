@@ -2,6 +2,7 @@ staging:
     stage: staging
     hostname: stagingserver.sakura.ne.jp
     user: stagingserver
+    identityFile: ~/.ssh/secretkey
     port: 22
     deploy_path: /home/stagingserver/deploy/staging/sumutokoro_2022
     branch: master
@@ -9,6 +10,7 @@ production:
     stage: production
     hostname: sumutokoro3.sakura.ne.jp
     user: sumutokoro3
+    identityFile: ~/.ssh/secretkey
     port: 22
     deploy_path: /home/sumutokoro3/deploy/production/sumutokoro_2022
     branch: release

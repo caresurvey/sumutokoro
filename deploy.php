@@ -6,6 +6,7 @@ require 'recipe/laravel.php';
 
 // Config
 set('ssh_multiplexing', true);
+set('git_tty', false); 
 
 // リポジトリ指定
 set('repository', 'git@github.com:caresurvey/sumutokoro.git');
@@ -25,9 +26,15 @@ host('production')
     ->setHostname('sumutokoro3.sakura.ne.jp')
     ->setRemoteUser('sumutokoro3')
     ->setPort(22)
-    ->set('branch', 'release')
+    ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/production/sumutokoro_2022');
 
+task('build', function () {
+    run('cd {{release_path}}');
+});
+
+after('deploy:failed', 'deploy:unlock');
+before('deploy:symlink', 'artisan:migrate');
 
 /**
  * 実行Task設定
