@@ -28,6 +28,8 @@ host('production')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/production/sumutokoro_2022')
+    ->set('branch', 'release')
+    ->set('keep_releases', 5)
     ->set('rsync_dest','{{release_path}}')
     ->set('rsync',[
         'exclude' => [
@@ -76,15 +78,3 @@ task('build', function () {
 
 after('deploy:failed', 'deploy:unlock');
 before('deploy:symlink', 'artisan:migrate');
-
-/**
- * 実行Task設定
- */
-/*
-task('production', [
-    'deploy:prepare',
-    'deploy:update_code',
-    'deploy:vendors',
-    'deploy:symlink',
-]);
-*/
