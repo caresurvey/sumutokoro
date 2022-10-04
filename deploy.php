@@ -24,6 +24,8 @@ add('writable_dirs', ['bootstrap/cache', 'storage']);
 host('production')
     ->setHostname('sumutokoro3.sakura.ne.jp')
     ->setRemoteUser('sumutokoro3')
+    ->setPort(22)
+    ->set('branch', 'release')
     ->setDeployPath('~/deploy/production/sumutokoro_2022');
 
 
