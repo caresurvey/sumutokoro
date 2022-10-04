@@ -39,10 +39,10 @@ jobs:
           cp system/production/.htaccess ./.htaccess
           cp system/production/php.ini ./php.ini
 
-      - name: デプロイファイル準備
-        run: |
-          cp system/deployer/deploy.php ./
-          cp system/deployer/servers.yml ./
+      #- name: デプロイファイル準備
+      #  run: |
+      #    cp system/deployer/deploy.php ./
+      #    cp system/deployer/servers.yml ./
 
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
