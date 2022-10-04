@@ -36,16 +36,3 @@ task('build', function () {
     run('rm -R system');
 });
 
-after('deploy:failed', 'deploy:unlock');
-before('deploy:symlink');
-
-
-/*
-task('build', function () {
-    cd('{{release_path}}');
-    run('npm install');
-    run('npm run prod');
-});
-
-after('deploy:update_code', 'build');
-*/
