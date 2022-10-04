@@ -47,19 +47,13 @@ jobs:
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
 
-      - name: Deploy
-        uses: deployphp/action@v1
-        with:
-          private-key: ${{ secrets.SSH_KEY_PRODUCTION }}
-          dep: deploy
-
-      #- name: "Prepare SSH key and known hosts"
-      #  run: |
-      #    echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
-      #    chmod 600 ~/.ssh/secretkey
-      #    echo "${{ secrets.SSH_KNOWN_HOSTS_PRODUCTION }}" >> ~/.ssh/known_hosts
-      #  env:
-      #    SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
+      - name: "Prepare SSH key and known hosts"
+        run: |
+          echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
+          chmod 600 ~/.ssh/secretkey
+          echo "${{ secrets.SSH_KNOWN_HOSTS_PRODUCTION }}" >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
       #- name: Setup tmate session -y
       #  uses: mxschmitt/action-tmate@v1
@@ -78,6 +72,6 @@ jobs:
       #  run: |
       #    docker-compose exec -T php sh -c "composer update --no-dev"
 
-      #- name: デプロイを行う（deployer）
-      #  run: ./vendor/bin/dep deploy:production production -vvvv
+      - name: デプロイを行う（deployer）
+        run: ./vendor/bin/dep deploy:production production -vvvv
 
