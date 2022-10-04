@@ -18,15 +18,12 @@ add('shared_dirs', ['vendor']);
 add('writable_dirs', ['bootstrap/cache', 'storage']);
 
 
-
-
 /**
  * Host設定
  */
 host('production')
     ->setHostname('sumutokoro3.sakura.ne.jp')
     ->setRemoteUser('sumutokoro3')
-    ->setIdentityFile('sumutokoro3')
     ->setDeployPath('~/deploy/production/sumutokoro_2022');
 
 
