@@ -49,9 +49,9 @@ jobs:
 
       - name: "Prepare SSH key and known hosts"
         run: |
-          echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
-          chmod 600 ~/.ssh/secretkey
-          echo "${{ secrets.SSH_KNOWN_HOSTS_PRODUCTION }}" >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.SSH_HOST_PRODUCTION }} >> ~/.ssh/known_hosts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
