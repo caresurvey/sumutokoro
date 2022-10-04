@@ -34,7 +34,7 @@ host('staging')
     ->setRemoteUser('stagingserver')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
-    ->setDeployPath('~/deploy/production/sumutokoro_2022')
+    ->setDeployPath('~/deploy/staging/sumutokoro_2022')
     ->set('keep_releases', 5);
 
 // Deploy後の処理
