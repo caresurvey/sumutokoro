@@ -27,7 +27,47 @@ host('production')
     ->setRemoteUser('sumutokoro3')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
-    ->setDeployPath('~/deploy/production/sumutokoro_2022');
+    ->setDeployPath('~/deploy/production/sumutokoro_2022')
+    ->set('rsync',[
+        'exclude' => [
+            '.git',
+            '.github',
+            '.gitignore',
+            '.idea',
+            '.env',
+            '.env.dusk',
+            '.gitattributes',
+            '.styleci.yml',
+            '.editorconfig',
+            'artisan',
+            'deploy.php',
+            'package.json',
+            'phpunit.dusk.xml',
+            'phpunit.xml',
+            'server.php',
+            'servers.yml',
+            'assets',
+            'composer.lock',
+            'README.md',
+            'RoboFile.php',
+            'tests',
+            'system',
+            'docker-compose.yml',
+            'README.md'
+        ],
+        'exclude-file' => false,
+        'include'      => [],
+        'include-file' => false,
+        'filter'       => [],
+        'filter-file'  => false,
+        'filter-perdir'=> false,
+        'flags'        => 'rz', // Recursive, with compress
+        'options'      => ['delete'],
+        'timeout'      => 300,
+    ]
+);
+
+
 
 task('build', function () {
     run('cd {{release_path}}');
