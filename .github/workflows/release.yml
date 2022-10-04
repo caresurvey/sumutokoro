@@ -73,5 +73,5 @@ jobs:
       #    docker-compose exec -T php sh -c "composer update --no-dev"
 
       - name: デプロイを行う（deployer）
-        run: ./vendor/bin/dep deploy:production production -vvvv
+        run: ./vendor/bin/dep deploy production -vvvv
 
