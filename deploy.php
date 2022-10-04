@@ -28,6 +28,7 @@ host('production')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/production/sumutokoro_2022')
+    ->set('rsync_dest','{{release_path}}');
     ->set('rsync',[
         'exclude' => [
             '.git',
