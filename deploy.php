@@ -29,6 +29,14 @@ host('production')
     ->setDeployPath('~/deploy/production/sumutokoro_2022')
     ->set('keep_releases', 5);
 
+host('staging')
+    ->setHostname('stagingserver.sakura.ne.jp')
+    ->setRemoteUser('stagingserver')
+    ->setPort(22)
+    ->setIdentityFile('~/.ssh/secretkey')
+    ->setDeployPath('~/deploy/production/sumutokoro_2022')
+    ->set('keep_releases', 5);
+
 // Deploy後の処理
 after('deploy', 'deploy:done');
 task('deploy:done', function () {
@@ -44,7 +52,7 @@ task('deploy:done', function () {
     run('rm -R system');
 
     // シンボリックリンク追加
-    run('ln -s storage/app/photos public/photos');
+    run('ln -s ../storage/app/photos public/photos');
 
     // シンボリックリンク削除
     run('unlink public/storage');

@@ -29,10 +29,10 @@ jobs:
           chmod -R 707 bootstrap/cache
           chmod -R 707 storage
 
-      - name: envファイル設定
-        run: |
-          cp system/ci/env ./.env
-          cp system/ci/env.dusk ./.env.dusk
+      #- name: envファイル設定
+      #  run: |
+      #    cp system/ci/env ./.env
+      #    cp system/ci/env.dusk ./.env.dusk
 
       - name: 本番環境で使うファイルを移動
         run: |

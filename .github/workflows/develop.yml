@@ -29,34 +29,34 @@ jobs:
           chmod -R 707 bootstrap/cache
           chmod -R 707 storage
 
-      - name: envファイル設定
-        run: |
-          cp system/ci/env ./.env
-          cp system/ci/env.dusk ./.env.dusk
+      #- name: envファイル設定
+      #  run: |
+      #    cp system/ci/env ./.env
+      #    cp system/ci/env.dusk ./.env.dusk
 
       - name: 本番環境で使うファイルを移動
         run: |
           cp system/production/.htaccess ./.htaccess
           cp system/production/php.ini ./php.ini
 
-      - name: デプロイファイル準備
-        run: |
-          cp system/deployer/deploy.php ./
-          cp system/deployer/servers.yml ./
+      #- name: デプロイファイル準備
+      #  run: |
+      #    cp system/deployer/deploy.php ./
+      #    cp system/deployer/servers.yml ./
 
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
 
       - name: "Prepare SSH key and known hosts"
         run: |
-          echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
+          echo "${{ secrets.SSH_KEY_STAGING }}" > ~/.ssh/secretkey
           chmod 600 ~/.ssh/secretkey
-          echo "${{ secrets.SSH_KNOWN_HOSTS_PRODUCTION }}" >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.SSH_HOST_STAGING }} >> ~/.ssh/known_hosts
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING }}
 
-      #- name: Setup tmate session -y
-      #  uses: mxschmitt/action-tmate@v1
+      - name: Setup tmate session -y
+        uses: mxschmitt/action-tmate@v1
 
       # WEBアプリのユニットテストを行う
       #- name: apps Unit testing (PHPUnit)
@@ -73,5 +73,5 @@ jobs:
       #    docker-compose exec -T php sh -c "composer update --no-dev"
 
       - name: デプロイを行う（deployer）
-        run: ./vendor/bin/dep deploy:production production -vvvv
+        run: ./vendor/bin/dep deploy staging -vvvv
 
