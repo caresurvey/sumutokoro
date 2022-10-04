@@ -7,31 +7,63 @@ namespace Tool\Common\Domain\Models\Book\Publish\Format\Html;
  */
 class FormatConditions
 {
-    private int $book_id;
-    private int $page;
-    private int $start;
-    private int $end;
-    private int $manualPage;
+    private int $area_section_id; // 取得するエリアセクションID（旭川市内・道北エリアなど）
+    private int $start; // 取得したデータ切り出しの開始データ数（扉含む）
+    private int $end; // 取得したデータ切り出しの終了データ数（扉含む）
+    private int $page; // ループ内で現在処理中のデータカウント
+    private int $manualPage; // ページ横の説明バー内に記載しているマニュアルページのページ数
+    private int $inPageNum; // 1ページ内のフォーマットの数（扉含む）
 
     public function __construct(array $data)
     {
         // 初期値設定
-        $this->book_id = 3;
-        $this->page = 1;
+        $this->area_section_id = 1;
         $this->start= 1;
         $this->end = 1;
+        $this->page = 1;
+        $this->startPage = 16;
         $this->manualPage = 1;
+        $this->inPageNum = 4;
+
 
         // データが有ればセット
-        if(!empty($data['book_id'])) $this->book_id = $data['book_id'];
-        if(!empty($data['page'])) $this->page = $data['page'];
+        if(!empty($data['area_section_id'])) $this->area_section_id = $data['area_section_id'];
         if(!empty($data['start'])) $this->start = $data['start'];
         if(!empty($data['end'])) $this->end = $data['end'];
+        if(!empty($data['startPage'])) $this->startPage = $data['startPage'];
         if(!empty($data['manualPage'])) $this->manualPage = $data['manualPage'];
     }
 
+
+
     /**
-     * 開始ページを取得
+     * 有効なデータ数
+     * @return int
+     */
+    public function targetPageNum(): int
+    {
+        // 必要なページ数を割り出す
+        $num = ($this->getEnd() - $this->getStart()) + 1;
+
+        // 0以下なら1にする
+        if($num <= 0) return 1;
+
+        // それ以外なら結果を返す
+        return $num;
+    }
+
+    /**
+     * 有効なデータ数（扉を含む）
+     * @return int
+     */
+    public function targetDataNum(): int
+    {
+        // 必要なデータ数を割り出す（扉を含む）
+        return $this->targetPageNum() *4;
+    }
+
+    /**
+     * GETで指定された開始ページを取得
      * @return int
      */
     public function getStart(): int
@@ -40,7 +72,16 @@ class FormatConditions
     }
 
     /**
-     * 終了ページを取得
+     * GETで指定された開始ページを取得
+     * @return int
+     */
+    public function getStartPage(): int
+    {
+        return $this->startPage;
+    }
+
+    /**
+     * GETで指定された終了ページを取得
      * @return int
      */
     public function getEnd(): int
@@ -49,25 +90,16 @@ class FormatConditions
     }
 
     /**
-     * ページ数を取得
+     * GETで指定されたエリアセクションを取得
      * @return int
      */
-    public function getPage(): int
+    public function getAreaSectionId(): int
     {
-        return $this->page;
+        return $this->area_section_id;
     }
 
     /**
-     * ページ数を取得
-     * @return int
-     */
-    public function getBookId(): int
-    {
-        return $this->book_id;
-    }
-
-    /**
-     * ページ数を取得
+     * GETで指定されたマニュアルのページ数を取得
      * @return int
      */
     public function getManualPage(): int
@@ -81,7 +113,16 @@ class FormatConditions
      */
     public function countUpPage(): void
     {
-        $this->page++;
+        $this->page += 1;
+    }
+
+    /**
+     * ページ数を取得
+     * @return int
+     */
+    public function getPage(): int
+    {
+        return $this->page;
     }
 
     /**
@@ -94,6 +135,31 @@ class FormatConditions
         if($this->page % 2 === 0) return true;
 
         // 奇数ならfalse
+        return false;
+    }
+
+    /**
+     * 有効データの最後の数を取得
+     * @return int
+     */
+    public function endSpotNum(): int
+    {
+        return $this->end * $this->inPageNum;
+    }
+
+    /**
+     * 出力範囲内かどうか
+     * @param int $count
+     * @return bool
+     */
+    public function isInRange(int $count): bool
+    {
+        // 範囲内ならtrueを返す
+        if($this->start <= $count && $count < $this->endSpotNum()) {
+            return true;
+        }
+
+        // 範囲外ならfalseを返す
         return false;
     }
 }

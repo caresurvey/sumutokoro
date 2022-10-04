@@ -2,65 +2,65 @@
 
 namespace Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels;
 
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Atsubetsu;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Chuo;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Douo;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Higashi;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Kita;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Kiyota;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Minami;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Nishi;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Shiroishi;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Teine;
-use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\Toyohira;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\AreaLabelData;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\AtsubetsuDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\ChuoDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\DouoArea;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\HigashiDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\KitaDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\KiyotaDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\MinamiDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\NishiDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\ShiroishiDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\TeineDistrict;
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Image\AreaLabels\Douo\ToyohiraDistrict;
 
 /**
  * ラベル
  */
 class DouoAreaLabels
 {
-    public Chuo $chuo;
-    public Kita $kita;
-    public Higashi $higashi;
-    public Shiroishi $shiroishi;
-    public Atsubetsu $atsubetsu;
-    public Toyohira $toyohira;
-    public Kiyota $kiyota;
-    public Minami $minami;
-    public Nishi $nishi;
-    public Teine $teine;
-    public Douo $douo;
+    public ChuoDistrict $chuoDistrict;
+    public KitaDistrict $kitaDistrict;
+    public HigashiDistrict $higashiDistrict;
+    public ShiroishiDistrict $shiroishiDistrict;
+    public AtsubetsuDistrict $atsubetsuDistrict;
+    public ToyohiraDistrict $toyohiraDistrict;
+    public KiyotaDistrict $kiyotaDistrict;
+    public MinamiDistrict $minamiDistrict;
+    public NishiDistrict $nishiDistrict;
+    public TeineDistrict $teineDistrict;
+    public DouoArea $douoArea;
 
     public function __construct()
     {
-        $this->chuo = new Chuo();
-        $this->kita = new Kita();
-        $this->higashi = new Higashi();
-        $this->shiroishi = new Shiroishi();
-        $this->atsubetsu = new Atsubetsu();
-        $this->toyohira = new Toyohira();
-        $this->kiyota = new Kiyota();
-        $this->minami = new Minami();
-        $this->nishi = new Nishi();
-        $this->teine = new Teine();
-        $this->douo = new Douo();
+        $this->chuoDistrict = new ChuoDistrict();
+        $this->kitaDistrict = new KitaDistrict();
+        $this->higashiDistrict = new HigashiDistrict();
+        $this->shiroishiDistrict = new ShiroishiDistrict();
+        $this->atsubetsuDistrict = new AtsubetsuDistrict();
+        $this->toyohiraDistrict = new ToyohiraDistrict();
+        $this->kiyotaDistrict = new KiyotaDistrict();
+        $this->minamiDistrict = new MinamiDistrict();
+        $this->nishiDistrict = new NishiDistrict();
+        $this->teineDistrict = new TeineDistrict();
+        $this->douoArea = new DouoArea();
     }
 
-    public function makeTag(bool $isLeftPosition): string
+    public function makeTag(bool $isLeftPosition, AreaLabelData $areaLabelData): string
     {
-
         $result = '<div class="b-areaLabels ' . $this->getPositionTag($isLeftPosition) . '">' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->chuo->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->kita->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->higashi->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->shiroishi->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->atsubetsu->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->toyohira->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->kiyota->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->minami->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->nishi->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->teine->getTag() . '</div>' . "\n";
-        $result .= '<div class="b-areaLabel">' . $this->douo->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(14)) $result .= '<div class="b-areaLabel">' . $this->chuoDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(15)) $result .= '<div class="b-areaLabel">' . $this->kitaDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(16)) $result .= '<div class="b-areaLabel">' . $this->higashiDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(17)) $result .= '<div class="b-areaLabel">' . $this->shiroishiDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(18)) $result .= '<div class="b-areaLabel">' . $this->atsubetsuDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(19)) $result .= '<div class="b-areaLabel">' . $this->toyohiraDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(20)) $result .= '<div class="b-areaLabel">' . $this->kiyotaDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(21)) $result .= '<div class="b-areaLabel">' . $this->minamiDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(22)) $result .= '<div class="b-areaLabel">' . $this->nishiDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(23)) $result .= '<div class="b-areaLabel">' . $this->teineDistrict->getTag() . '</div>' . "\n";
+        if ($areaLabelData->isExistsLabel(24)) $result .= '<div class="b-areaLabel">' . $this->douoArea->getTag() . '</div>' . "\n";
 
         return $result;
     }

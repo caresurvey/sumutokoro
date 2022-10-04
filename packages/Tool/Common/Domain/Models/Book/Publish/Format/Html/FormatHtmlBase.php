@@ -11,8 +11,10 @@ use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Page;
 class FormatHtmlBase
 {
     public Block $block;
+    public Cover $cover;
     public DataInjector $dataInjector;
     public DataProcessor $dataProcessor;
+    public CheckType $checkType;
     public Page $page;
 
     public function __construct()
@@ -21,6 +23,7 @@ class FormatHtmlBase
         $this->cover = new Cover();
         $this->dataInjector = new DataInjector();
         $this->dataProcessor = new DataProcessor();
+        $this->checkType = new CheckType();
         $this->page = new Page();
     }
 }

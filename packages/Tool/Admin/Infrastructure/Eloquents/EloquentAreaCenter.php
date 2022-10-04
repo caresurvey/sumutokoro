@@ -2,8 +2,6 @@
 
 namespace Tool\Admin\Infrastructure\Eloquents;
 
-use Kyslik\ColumnSortable\Sortable;
-
 class EloquentAreaCenter extends AppEloquent
 {
     // DBのテーブル指定
@@ -12,6 +10,11 @@ class EloquentAreaCenter extends AppEloquent
     public function area()
     {
         return $this->belongsTo(EloquentArea::class);
+    }
+
+    public function area_section()
+    {
+        return $this->belongsTo(EloquentAreaSection::class);
     }
 
     public function spots()

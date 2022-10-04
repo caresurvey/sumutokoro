@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SpotIconGenresTableSeeder::class);
         $this->call(SpotIconItemsTableSeeder::class);
         $this->call(AreaSectionsTableSeeder::class);
+        $this->call(AreaLabelsTableSeeder::class);
 
         $this->call(AreasTableSeeder::class);
         $this->call(AreaCentersTableSeeder::class);

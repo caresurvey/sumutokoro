@@ -25,14 +25,21 @@ class AdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
+            Domain\Models\AreaCenter\AreaCenterRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentAreaCenterRepository::class
+        );
+
+        $this->app->bind(
             Domain\Models\Spot\PublishSpotRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentPublishSpotRepository::class
         );
 
+        /*
         $this->app->bind(
             Domain\Models\BookSpot\BookSpotRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentBookSpotRepository::class
         );
+        */
 
         $this->app->bind(
             Domain\Models\Company\CompanyRepository::class,

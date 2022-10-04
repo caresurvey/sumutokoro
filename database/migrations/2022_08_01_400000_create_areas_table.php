@@ -20,8 +20,10 @@ return new class extends Migration
             $table->string('name', 255)->comment('名前');
             $table->string('label', 255)->comment('表示名');
             $table->string('book_label', 255)->comment('冊子での表示名');
+            $table->string('serial', 255)->comment('シリアル名');
             $table->unsignedInteger('reorder')->default(1)->comment('並び順');
             $table->unsignedInteger('book_reorder')->default(1)->comment('冊子での並び順');
+            $table->unsignedInteger('area_label_id')->default(1)->comment('エリアラベルID');
             $table->unsignedInteger('area_section_id')->default(1)->comment('エリアセクションID');
             $table->unsignedInteger('city_id')->default(1)->comment('市町村ID');
             $table->unsignedInteger('prefecture_id')->default(1)->comment('都道府県ID');
@@ -31,6 +33,9 @@ return new class extends Migration
             $table->unique(['city_id', 'name']);
 
             // 外部キーを追加
+            $table->foreign('area_label_id')
+              ->references('id')
+              ->on('area_labels'); // 元のテーブル
             $table->foreign('area_section_id')
               ->references('id')
               ->on('area_sections'); // 元のテーブル
@@ -54,6 +59,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('areas', function (Blueprint $table) {
+            $table->dropForeign('areas_area_label_id_foreign');
             $table->dropForeign('areas_area_section_id_foreign');
             $table->dropForeign('areas_city_id_foreign');
             $table->dropForeign('areas_prefecture_id_foreign');

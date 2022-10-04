@@ -60,6 +60,8 @@ Route::prefix('admin')
         Route::get('book/preview/{id}/{token}', 'BookController@preview')->middleware(['auth:admin', 'auth_admin']);
         Route::get('book/publish', 'BookController@input')->middleware(['auth:admin', 'auth_admin']);
         Route::get('book/publish/output', 'BookController@publish')->middleware(['auth:admin', 'auth_admin']);
+        Route::get('book/queues/none', 'BookController@queuesNone')->middleware(['auth:admin', 'auth_admin']);
+        Route::get('book/queues/database', 'BookController@queuesDatabase')->middleware(['auth:admin', 'auth_admin']);
 
         /**
          * ダウンロード

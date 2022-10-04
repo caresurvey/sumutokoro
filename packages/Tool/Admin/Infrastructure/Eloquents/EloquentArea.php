@@ -2,15 +2,13 @@
 
 namespace Tool\Admin\Infrastructure\Eloquents;
 
-use Kyslik\ColumnSortable\Sortable;
-
 class EloquentArea extends AppEloquent
 {
     // DBのテーブル指定
     protected $table = 'areas';
 
-    public function area()
+    public function area_label()
     {
-        return $this->belongsTo(EloquentArea::class);
+        return $this->belongsTo(EloquentAreaLabel::class);
     }
 }

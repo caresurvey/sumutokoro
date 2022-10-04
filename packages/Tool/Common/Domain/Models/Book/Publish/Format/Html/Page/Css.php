@@ -428,10 +428,52 @@ class Css
         width: 100%;
         z-index: 10;
       }
-      .b-frame .svg {
+      .b-frame .image {
+        height: 100%;
+        width: 100%;
+      }
+      .b-coverTitle {
+        position: absolute;
+        text-align: center;
+        line-height: 1.6em;
+        font-size: 3em;
+        top: 130px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        width; 100%;
+        z-index: 20;
+      }
+
+      .b-coverNumber {
+        color: #fff;
+        font-size: 1.5em;
+        position: absolute;
+        text-align: center;
+        bottom: 80px;
+        left: 0;
+        right: 0;
+        margin 0 auto;
+        width; 100%;
+        z-index: 20;
+      }
+      .b-coverNumberLarge {
+        font-size: 1.7em;
+        padding: 0 15px;
+      }
+      .b-coverFrame{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+      }
+      .b-coverFrame .image {
         height: 100%;
         width: 100%;
       }';
+
 
       return $tag;
     }

@@ -19,8 +19,6 @@ class PublishFormat extends PublishFormatBase
     private string $formatHtmlTag;
     // 出力パス
     private string $outputPath;
-    // 出力ディレクトリ
-    private string $outputFileDir;
     // 処理したデータ数初期化
     private int $processedCount = 1;
     // 処理する事業所データ数をセット
@@ -31,6 +29,14 @@ class PublishFormat extends PublishFormatBase
     private array $spots;
     // 冊子データ
     private array $book;
+    // 出力Dir名の日付
+    private string $dirNameDate;
+    // キューの区切り数
+    private int $queuesSeparateNum = 20;
+    // 現在のキュー位置
+    public int $currentQueue;
+    // ページ内に配置するフォーマットの数
+    private int $inPageNum = 4;
 
     // ページごとのパーツの左右の位置が左かどうか
     private bool $isLeftPosition = true;
@@ -40,7 +46,7 @@ class PublishFormat extends PublishFormatBase
      * @param array $book 冊子情報
      * @param FormatConditions $conditions 出力条件モデル
      */
-    public function __construct(array $spots, array $book, FormatConditions $conditions)
+    public function __construct(array $spots, array $book, FormatConditions $conditions, int $currentQueue, string $dirNameDate)
     {
         // 親コンストラクタ呼び出し
         parent::__construct();
@@ -54,14 +60,17 @@ class PublishFormat extends PublishFormatBase
         // ページの数字をセット
         $this->conditions = $conditions;
 
+        // 現在のキュー位置
+        $this->currentQueue = $currentQueue;
+
+        // 出力Dirの名前用日付
+        $this->dirNameDate = $dirNameDate;
+
         // ページ内のフォーマットHTML初期化
         $this->formatHtmlTag = '';
 
         // 出力先のディレクトリパスを指定
         $this->outputPath = storage_path('output');
-
-        // 出力先のディレクトリ名を指定
-        $this->outputFileDir = $this->outputPath . '/' . $this->book['serial'] . '_' . date("ymdhi");
 
         // データ数をセット
         $this->spotCount = count($this->spots);
@@ -76,11 +85,11 @@ class PublishFormat extends PublishFormatBase
         // データがなければ何もしない
         if (count($this->spots) <= 0) return false;
 
-        // 保存先にディレクトリがあれば処理を止めてfalseを返す
-        if (file_exists($this->outputFileDir)) return false;
-
-        // 保存ディレクトリを作成
-        mkdir($this->outputFileDir);
+        // 保存先にディレクトリがなければ作成
+        if (!file_exists($this->outputFileDir())) {
+            // 保存ディレクトリを作成
+            mkdir($this->outputFileDir());
+        }
 
         return true;
     }
@@ -100,6 +109,12 @@ class PublishFormat extends PublishFormatBase
         try {
             // データの分だけ処理する
             foreach ($this->spots as $spot) {
+
+                // データが配列じゃなかったら、配列にする
+                if(!is_array($spot)) $spot = $spot->toArray();
+
+                // エリアラベルデータセット
+                $this->areaLabelData->setData($spot);
 
                 // フォーマットHTMLタグを作成
                 $formatHtmlTag = $this->formatHtml->makeFormatTag($spot);
@@ -151,7 +166,7 @@ class PublishFormat extends PublishFormatBase
     public function isCreatePageRequirement(): bool
     {
         // フォーマットの数がMAXに達していなければfalseを返す
-        if ($this->formatCount < $this->formatCountOfInPage()) return false;
+        if ($this->formatCount <= $this->getInPageNum()) return false;
 
         // 達していればtrueを返す
         return true;
@@ -178,7 +193,7 @@ class PublishFormat extends PublishFormatBase
     {
         try {
             // ページのHTMLタグをフォーマットのHTMLタグと結合する
-            $formatPageTag = $this->pageHtml->makeTag($this->formatHtmlTag, $this->isLeftPosition);
+            $formatPageTag = $this->pageHtml->makeTag($this->formatHtmlTag, $this->isLeftPosition, $this->areaLabelData);
 
             // PDFファイルを出力、エラーが出れば例外を投げる
             if (!$this->outputFile($formatPageTag)) throw new CommonLogicException();
@@ -194,6 +209,9 @@ class PublishFormat extends PublishFormatBase
 
             // ページごとのパーツの左右の位置を書き換える
             $this->changeLeftPosition();
+
+            // エリアラベルをリセットする
+            $this->areaLabelData->reset();
 
             // trueを返す
             return true;
@@ -229,10 +247,8 @@ class PublishFormat extends PublishFormatBase
         try {
             // PDFファイルのデータを作成
             $pdf = $this->makePdf($html);
-
             // PDFデータをファイルに出力
             File::put($this->makeFilePath(), $pdf->output());
-
             // trueを返す
             return true;
 
@@ -273,7 +289,16 @@ class PublishFormat extends PublishFormatBase
      */
     public function makeFileName(): string
     {
-        return $this->conditions->getPage() . '.pdf';
+        return $this->getOutputPage() . '.pdf';
+    }
+
+    /**
+     * 出力先ディレクトリ名
+     * @return string
+     */
+    public function outputFileDir(): string
+    {
+        return $this->outputPath . '/' . $this->book['serial'] . '_' . $this->dirNameDate;
     }
 
     /**
@@ -282,16 +307,16 @@ class PublishFormat extends PublishFormatBase
      */
     public function makeFilePath(): string
     {
-        return $this->outputFileDir . '/' . $this->makeFileName();
+        return $this->outputFileDir() . '/' . $this->makeFileName();
     }
 
     /**
-     * 1ページ内での掲載フォーマットの数
+     * 現在のキューを取得
      * @return int
      */
-    public function formatCountOfInPage(): int
+    public function getCurrentQueue(): int
     {
-        return 4;
+        return $this->currentQueue;
     }
 
     /**
@@ -313,5 +338,94 @@ class PublishFormat extends PublishFormatBase
         return $this->isLeftPosition;
     }
 
+    /**
+     * 開始スポット数
+     * ページに1ページのフォーマット数4を掛ける
+     * @return int
+     */
+    public function getFromSpotNumber(): int
+    {
+        return ($this->conditions->getStart() * $this->getInPageNum()) + $this->getAppendQueueCount();
+    }
 
+    /**
+     * 終了スポット数
+     * ページに1ページのフォーマット数4を掛ける
+     * @return int
+     */
+    public function getToSpotNumber(): int
+    {
+        return ($this->conditions->getEnd() * $this->getInPageNum()) + $this->getAppendQueueCount();
+    }
+
+    /**
+     * キューの分だけ追加する数（キューが２つ以降ある場合に影響）
+     * @return int
+     */
+    public function getAppendQueueCount(): int
+    {
+        return $this->currentQueue * $this->queuesSeparateNum;
+    }
+
+    /**
+     * キューの区切り数を取得
+     * @return int
+     */
+    public function getQueuesSeparateNum(): int
+    {
+        return $this->queuesSeparateNum;
+    }
+
+    /**
+     * 出力範囲内かどうか
+     * @param int $count
+     * @return bool
+     */
+    public function isInRange(int $count): bool
+    {
+        // 範囲内ならtrueを返す
+        if($this->getFromSpotNumber() <= $count && $count < $this->getToSpotNumber()) {
+            return true;
+        }
+
+        // 範囲外ならfalseを返す
+        return false;
+    }
+
+    /**
+     * 実際に出力を開始するページ数を取得
+     * 開始指定ページ数やデータ開始位置などを加味する
+     * @return int
+     */
+    public function getStartPageNum(): int
+    {
+        return $this->conditions->getStartPage() + $this->getComputedPageNum();
+    }
+
+    /**
+     * 計算追加用のページ数を取得
+     * @return int
+     */
+    public function getComputedPageNum(): int
+    {
+        return $this->conditions->getPage() - 1;
+    }
+
+    /**
+     * ページ内に配置するフォーマットの数を取得
+     * @return int
+     */
+    public function getInPageNum(): int
+    {
+        return $this->inPageNum;
+    }
+
+    /**
+     * 出力するファイル名を取得
+     * @return int
+     */
+    public function getOutputPage(): int
+    {
+        return $this->getStartPageNum() + $this->getAppendQueueCount();
+    }
 }

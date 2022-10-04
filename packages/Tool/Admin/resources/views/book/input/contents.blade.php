@@ -17,50 +17,64 @@
     <form action="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/book/publish/output"
           onsubmit="return confirm('冊子データを出力してもよろしいですか？')" method="get" accept-charset="UTF-8" id="PublishForm">
 
-        <div class="pb-4 mb-10 w-full flex">
-          <div class="pr-4">
-            <div class="label">出力する冊子</div>
-            <div class="relative">
-              <select name="book_id" id="BookId"
-                      class="-mr-1 select select-bordered border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
-                @foreach($data['books'] as $key => $book)
-                  <option value="{{$key}}">{{$book}}</option>
-                @endforeach
-              </select>
-            </div>
+      <div class="pb-4 w-full flex">
+        <div class="pr-4">
+          <div class="label">出力対象</div>
+          <div class="relative">
+            <select name="area_section_id" id="AreaSectionId"
+                    class="-mr-1 select select-bordered border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
+              @foreach($data['area_sections'] as $key => $book)
+                <option value="{{$key}}">{{$book}}</option>
+              @endforeach
+            </select>
           </div>
-          <div>
-            <div class="label">開始ページ</div>
-            <input id="InputStart"
-             name="start"
-             type="number"
-             value="1"
-             min="1"
-             max="400"
-             placeholder="開始"
-             class="mb-2 w-[100px] appearance-none border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
-          </div>
-          <div class="flex items-end justify-center pb-5 px-3">
-            〜
-          </div>
-          <div>
-            <div class="label">終了ページ</div>
-            <input id="InputEnd"
-             name="end"
-             type="number"
-             value="1"
-             min="1"
-             max="400"
-             placeholder="終了"
-             class="mb-2 w-[100px] appearance-none border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
-           </div>
         </div>
+        <div>
+          <div class="label">開始ページ</div>
+          <input id="InputStart"
+                 name="start"
+                 type="number"
+                 value="1"
+                 min="1"
+                 max="400"
+                 placeholder="開始"
+                 class="mb-2 w-[100px] appearance-none border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
+        </div>
+        <div class="flex items-end justify-center pb-5 px-3">
+          〜
+        </div>
+        <div>
+          <div class="label">終了ページ</div>
+          <input id="InputEnd"
+                 name="end"
+                 type="number"
+                 value="1"
+                 min="1"
+                 max="400"
+                 placeholder="終了"
+                 class="mb-2 w-[100px] appearance-none border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
+        </div>
+      </div>
+      <div class=" w-full flex">
+        <div class="pr-4">
+          <div class="label">表示する開始ページ数</div>
+          <div class="relative">
+            <input type="number" min="1" name="startPage" value="16" placeholder="数字を入力" class="input bg-gray-50 border-gray-200">
+          </div>
+        </div>
+        <div class="pr-4">
+          <div class="label">横説明バーのページ数</div>
+          <div class="relative">
+            <input type="number" min="1" name="descriptionPage" value="12" placeholder="数字を入力" class="input bg-gray-50 border-gray-200">
+          </div>
+        </div>
+      </div>
 
-        <div class="pb-4 mb-4">
-          <div class="pr-4 flex justify-center">
-            <button class="btn rounded-full">冊子書き出しをする</button>
-          </div>
+      <div class="pb-4 mb-4 pt-20">
+        <div class="pr-4 flex justify-center">
+          <button class="btn rounded-full">冊子書き出しをする</button>
         </div>
+      </div>
 
 
     </form>

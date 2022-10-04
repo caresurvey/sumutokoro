@@ -2,31 +2,31 @@
 
 namespace Tool\Admin\Application\UseCases\Book;
 
-use Tool\Admin\Exceptions\AdminNotFoundException;
-use Tool\Admin\Infrastructure\Eloquents\EloquentBook;
+use Tool\Admin\Infrastructure\Eloquents\EloquentAreaSection;
 
 class InputUseCase
 {
-    private EloquentBook $eloquentBook;
+    private EloquentAreaSection $eloquentAreaSection;
 
     public function __construct(
-        EloquentBook $eloquentBook
+        EloquentAreaSection $eloquentAreaSection,
     )
     {
-        $this->eloquentBook = $eloquentBook;
+        $this->eloquentAreaSection = $eloquentAreaSection;
     }
 
     public function __invoke(): array
     {
         // 必要なデータを取得
-        $books = $this->eloquentBook->where('display', 1)->orderBy('reorder', 'asc')->pluck('name', 'id');
-
-        // データが無ければ例外を投げる
-        if ($books->count() <= 0) throw new AdminNotFoundException();
+        $area_sections = [];
+        $pre_area_sections = $this->eloquentAreaSection->where('display', 1)->with('book')->orderBy('reorder', 'asc')->get();
+        foreach($pre_area_sections as $pre_area_section) {
+            $area_sections[$pre_area_section['id']] = $pre_area_section['name'] . '（' . $pre_area_section['book']['name'] .'）';
+        }
 
         // データを配列にして返す
         return [
-            'books' => $books->toArray()
+            'area_sections' => $area_sections
         ];
     }
 }

@@ -10,7 +10,7 @@ class Frame
 {
     public function getTag(): string
     {
-        return '<img class="svg" src="data:image/png;base64,' . $this->getData() . '">';
+        return '<img class="image" src="data:image/png;base64,' . $this->getData() . '">';
     }
 
     public function getData(): string

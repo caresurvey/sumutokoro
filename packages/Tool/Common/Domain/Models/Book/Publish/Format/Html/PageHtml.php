@@ -2,6 +2,7 @@
 
 namespace Tool\Common\Domain\Models\Book\Publish\Format\Html;
 
+use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\AreaLabelData;
 use Tool\Common\Domain\Models\Book\Publish\Format\Html\Page\Page;
 
 /**
@@ -20,13 +21,13 @@ class PageHtml extends Page
      * @param string $formatTag
      * @return string
      */
-    public function makeTag(string $formatTag, bool $isLeftPosition): string
+    public function makeTag(string $formatTag, bool $isLeftPosition, AreaLabelData $areaLabelData): string
     {
         // 反映するHTMLを作成
         $formatPageTag = $this->formatPage->getTag();
 
         // フォーマットHTMLタグに変数を反映
-        return $this->dataInjector->makeTag($formatPageTag, $this->makeData($formatTag,$isLeftPosition));
+        return $this->dataInjector->makeTag($formatPageTag, $this->makeData($formatTag,$isLeftPosition, $areaLabelData));
     }
 
     /**
@@ -34,12 +35,12 @@ class PageHtml extends Page
      * @param string $formatTag 事業所データ1件分
      * @return array 配列
      */
-    public function makeData(string $formatTag, bool $isLeftPosition): array
+    public function makeData(string $formatTag, bool $isLeftPosition, AreaLabelData $areaLabelData): array
     {
         return [
             "css" => $this->css->getTag(),
             "descriptionBar" => $this->descriptionBar->getTag($isLeftPosition),
-            "areaLabel" => $this->areaLabel->makeTag($isLeftPosition),
+            "areaLabel" => $this->areaLabel->makeTag($isLeftPosition, $areaLabelData),
             "format" => $formatTag,
         ];
     }

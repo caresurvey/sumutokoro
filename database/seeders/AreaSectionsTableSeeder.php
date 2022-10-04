@@ -22,6 +22,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '',
             'reorder' => 1,
             'book_reorder' => 1,
+            'book_id' => 1,
             'user_id' => 1,
           ]
         );
@@ -32,6 +33,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '旭川市内エリア',
             'reorder' => 2,
             'book_reorder' => 1,
+            'book_id' => 3,
             'user_id' => 1,
           ]
         );
@@ -42,6 +44,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '旭川市外道北エリア',
             'reorder' => 3,
             'book_reorder' => 2,
+            'book_id' => 3,
             'user_id' => 1,
           ]
         );
@@ -52,6 +55,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '札幌市エリア',
             'reorder' => 4,
             'book_reorder' => 1,
+            'book_id' => 4,
             'user_id' => 1,
           ]
         );
@@ -62,6 +66,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '道央エリア',
             'reorder' => 5,
             'book_reorder' => 2,
+            'book_id' => 4,
             'user_id' => 1,
           ]
         );
@@ -72,6 +77,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '道東エリア',
             'reorder' => 6,
             'book_reorder' => 1,
+            'book_id' => 6,
             'user_id' => 1,
           ]
         );
@@ -82,6 +88,7 @@ class AreaSectionsTableSeeder extends Seeder
             'book_label' => '道南エリア',
             'reorder' => 7,
             'book_reorder' => 1,
+            'book_id' => 7,
             'user_id' => 1,
           ]
         );

@@ -21,21 +21,40 @@ class FormatHtml extends FormatHtmlBase
      */
     public function makeFormatTag(array $spot): string
     {
-        $isCover = false;
-
         // 扉データかどうかをチェック
-        if($isCover === true) {
-            // 扉用なら、扉用のデータを作成
-            $data = $this->block->makeCover($spot);
+        if($this->checkType->isCover($spot) === true) {
+            // 扉なら扉タグを返す
+            return $this->makeCoverTag($spot);
         } else {
-            // 扉用じゃないなら、フォーマット用のデータを作成
-            $data = $this->block->makeBlocks($spot);
+            //扉用じゃないなら、フォーマットを返す
+            return $this->makeSpotTag($spot);
         }
+    }
+
+    public function makeCoverTag($data): string
+    {
+        // 扉用のデータを作成
+        $data = $this->cover->makeCover($data);
+
+        // HTMLのベースとなるコンテナCoverタグを取得
+        $html = $this->cover->containerCover->getTag();
+
+        // フォーマットHTMLタグに変数を反映
+        return $this->dataInjector->makeTag($html, $data);
+
+    }
+
+    public function makeSpotTag($data): string
+    {
+        // フォーマット用のデータを作成
+        $data = $this->block->makeBlocks($data);
 
         // HTMLのベースとなるコンテナブロックタグを取得
         $html = $this->block->containerBlock->getTag();
 
         // フォーマットHTMLタグに変数を反映
         return $this->dataInjector->makeTag($html, $data);
+
     }
+
 }

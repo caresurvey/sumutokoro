@@ -26,11 +26,11 @@ return new class extends Migration
             $table->string('tel1', 5)->comment('電話番号1');
             $table->string('tel2', 5)->comment('電話番号2');
             $table->string('tel3', 5)->comment('電話番号3');
-            $table->unsignedInteger('vacancy')->default(1)->comment('空室の状態 [1:指定なし|2:空きあり|3:空きなし|4:要問合せ]');
+            $table->unsignedInteger('vacancy')->index()->default(1)->comment('空室の状態 [1:指定なし|2:空きあり|3:空きなし|4:要問合せ]');
             $table->unsignedInteger('document')->default(1)->comment('資料の状態 [1:指定なし|2:資料あり|3:資料なし|4:要問合せ]');
             $table->unsignedInteger('viewing')->default(1)->comment('見学予約の状態 [1:指定なし|2:見学予約可能|3:見学予約不可|4:要問合せ]');
-            $table->unsignedInteger('is_book')->default(1)->comment('掲載する／掲載しない]');
-            $table->boolean('is_meeting')->default(0)->comment('やり取り中');
+            $table->unsignedInteger('is_book')->index()->default(1)->comment('掲載する／掲載しない]');
+            $table->boolean('is_meeting')->index()->default(0)->comment('やり取り中');
             $table->text('heading')->comment('見出し');
             $table->text('message')->comment('メッセージ');
             $table->unsignedInteger('monthly_price_min')->default(1)->comment('月額最低金額');

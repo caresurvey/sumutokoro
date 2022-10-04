@@ -29,7 +29,7 @@ class PublishBookRepository implements BookRepository
         $spot = $this->eloquentSpot->where('id', $id)
             ->where('preview', 1)
             ->with(
-                'area_center.area',
+                'area_center.area.area_label',
                 'book_spot',
                 'category',
                 'city',
