@@ -25,14 +25,10 @@ host('production')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/production/sumutokoro_2022')
-    ->set('keep_releases', 5);
+    ->set('keep_releases', 5)
+    ->set('clear_paths', ['README.md']);
 
-// Clone後の処理
-task('build', function () {
-    run('cd {{release_path}}');
-    run('rm .gitignore');
-    run('rm docker-compose.yml');
-    run('rm phpunit.xml');
-    run('rm -R system');
+// Deploy後の処理
+after('deploy', 'deploy:done');
+task('deploy:done', function () {
 });
-
