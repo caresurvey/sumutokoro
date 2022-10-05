@@ -14,11 +14,5 @@ class BookSpotTableSeeder extends Seeder
    */
   public function run()
   {
-    for ($i = 1; $i <= 10; $i++) {
-      DB::table('book_spot')->insert([
-          'book_id' => $i,
-          'spot_id' => $i,
-      ]);
-    }
   }
 }

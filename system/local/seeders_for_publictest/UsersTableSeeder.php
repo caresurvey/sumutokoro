@@ -158,38 +158,6 @@ class UsersTableSeeder extends Seeder
           'user_type_id' => 1,
           'user_id' => 1,
         ]);
-
-
-        for ($i = 6; $i <= 100; $i++) {
-          DB::table('users')->insert([
-            'id' => $i,
-            'enabled' => 1,
-            'name' => 'ゲスト' . $i,
-            'kana' => 'げすと' . $i,
-            'zip1' => '070',
-            'zip2' => '0000',
-            'tel1' => '090',
-            'tel2' => '000',
-            'tel3' => '0000',
-            'address' => '中央区1条1丁目1-1',
-            'fax' => '000-000-0000',
-            'email' => 'guest' . $i . '@hoge.co.jp',
-            'password' => '$2y$10$AMBsCklr6fImez8AUN3vzeT5llPe3yfjH0lwcDOW3qMOWgFYWDLLW',
-            'is_authenticated' => 0,
-            'authenticated_msg' => '承認済みメッセージ',
-            'company' => '所属している事業所や法人',
-            'lat' => 43.00000,
-            'lng' => 143.00000,
-            'msg' => '備考',
-            'reorder' => 1,
-            'prefecture_id' => 2,
-            'city_id' => 2,
-            'role_id' => 5,
-            'trade_area_id' => 1,
-            'user_type_id' => 1,
-            'user_id' => 1,
-          ]);
-        }
     }
 
 }

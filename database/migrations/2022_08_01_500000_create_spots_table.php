@@ -48,10 +48,10 @@ return new class extends Migration
             $table->unsignedInteger('category_id')->default(1)->comment('種別ID');
             $table->unsignedInteger('city_id')->default(1)->comment('市町村ID');
             $table->unsignedInteger('company_id')->default(1)->comment('法人ID');
-            $table->unsignedInteger('spot_plan_id')->default(1)->comment('プランID');
             $table->unsignedInteger('prefecture_id')->default(1)->comment('都道府県ID');
             $table->unsignedInteger('price_range_id')->default(1)->comment('金額幅ID');
             $table->unsignedInteger('space_id')->default(1)->comment('部屋の広さID');
+            $table->unsignedInteger('spot_plan_id')->default(1)->comment('プランID');
             $table->unsignedInteger('trade_area_id')->default(1)->comment('商圏ID');
             $table->unsignedInteger('user_id')->default(1)->comment('ユーザーID');
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
