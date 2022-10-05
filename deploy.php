@@ -6,7 +6,7 @@ require 'recipe/laravel.php';
 
 // Config
 set('ssh_multiplexing', true);
-set('git_tty', false); 
+set('git_tty', true); 
 
 // リポジトリ指定
 set('repository', 'git@github:caresurvey/sumutokoro.git');
