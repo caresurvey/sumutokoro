@@ -55,8 +55,8 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING }}
 
-      #- name: Setup tmate session -y
-      #  uses: mxschmitt/action-tmate@v1
+      - name: Setup tmate session -y
+        uses: mxschmitt/action-tmate@v1
 
       # WEBアプリのユニットテストを行う
       #- name: apps Unit testing (PHPUnit)
