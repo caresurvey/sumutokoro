@@ -44,7 +44,7 @@ jobs:
       #    cp system/deployer/deploy.php ./
       #    cp system/deployer/servers.yml ./
 
-      - name: composerインストール 
+      - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
 
       - name: "Prepare SSH key and known hosts"
