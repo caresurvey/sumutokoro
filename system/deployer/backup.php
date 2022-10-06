@@ -16,16 +16,32 @@ set('git_tty', true);
 set('repository', '');
 
 // Host設定（バックアップ）
-host('backup')
+host('production')
     ->setHostname('sumutokoro3.sakura.ne.jp')
     ->setRemoteUser('sumutokoro3')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
-    ->setDeployPath('~/deploy/backup/sumutokoro_backup')
+    ->setDeployPath('~/deploy/backup/sumutokoro2022')
+    ->set('rsync_src', './backup/')
+    ->set('rsync_dest','{{release_path}}');
     ->set('keep_releases', 5);
 
 // タスク
-task('deploy', ['done']);
+task('deploy', ['deploy:prepare', 'rsync']);
+
+// ファイル転送タスク
+set('rsync',[
+    'exclude'       => [''],
+    'exclude-file'  => '/tmp/localdeploys/excludes_file', //Use absolute path to avoid possible rsync problems
+    'include'       => ['deploy.php'],
+    'include-file'  => false,
+    'filter'        => [],
+    'filter-file'   => false,
+    'filter-perdir' => false,
+    'flags'         => 'rzcE', // Recursive, with compress, check based on checksum rather than time/size, preserve Executable flag
+    'options'       => ['delete', 'delete-after', 'force'], //Delete after successful transfer, delete even if deleted dir is not empty
+    'timeout'       => 3600, //for those huge repos or crappy connection
+]);
 
 // ビルドタスク
 task('build', function () {
@@ -35,6 +51,7 @@ task('build', function () {
 
     // MySQLのダンプ
     touch('backup!');
+
 
     // 画像ファイルをzip化
 

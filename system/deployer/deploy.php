@@ -1,7 +1,6 @@
 <?php
 namespace Deployer;
 
-require 'contrib/rsync.php';
 require 'recipe/laravel.php';
 
 /**
