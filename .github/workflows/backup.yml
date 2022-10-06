@@ -27,8 +27,11 @@ jobs:
           cp system/docker/backup/x86/docker-compose.yml ./
           docker-compose up -d
 
-      - name: composerインストール
-        run: docker-compose exec -T php sh -c "composer install"
+      - name: composerインストール（backup用のcomposer.jsonに切り替えて実行）
+        run: |
+          rm composer.json
+          cp system/docker/backup/composer.json ./
+          docker-compose exec -T php sh -c "composer install"
 
       - name: "Prepare SSH key and known hosts"
         run: |
