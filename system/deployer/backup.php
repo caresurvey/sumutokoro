@@ -21,23 +21,17 @@ host('backup')
     ->setRemoteUser('sumutokoro3')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
-    ->setDeployPath('~/deploy/production/sumutokoro_backup')
+    ->setDeployPath('~/deploy/backup/sumutokoro_backup')
     ->set('keep_releases', 5);
 
-// デプロイ前のタスク
-task('deploy:before', function() {
-    // プロジェクトディレクトリに移動
-    cd("{{release_path}}");
+// タスク
+task('deploy', ['done']);
 
-    // composer.jsonを削除
-    run("rm composer.json");
-});
-
-// バックアップタスク
-task('backup', function(){
+// ビルドタスク
+task('build', function () {
     
     // プロジェクトディレクトリに移動
-    cd("{{release_path}}");
+    cd("~/deploy/backup/sumutokoro2022");
 
     // MySQLのダンプ
     touch('backup!');
