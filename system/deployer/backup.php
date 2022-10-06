@@ -13,7 +13,7 @@ set('ssh_multiplexing', true);
 set('git_tty', true); 
 
 // リポジトリ指定（空を指定）
-set('repository', '');
+set('repository', 'git@github:caresurvey/sumutokoro.git');
 
 // Host設定（バックアップ）
 host('production')
@@ -23,11 +23,11 @@ host('production')
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/backup/sumutokoro2022')
     ->set('rsync_src', './backup/')
-    ->set('rsync_dest','{{release_path}}');
+    ->set('rsync_dest','{{release_path}}')
     ->set('keep_releases', 5);
 
 // タスク
-task('deploy', ['deploy:prepare', 'rsync']);
+task('deploy', ['deploy:prepare', 'deploy:release', 'rsync']);
 
 // ファイル転送タスク
 set('rsync',[
@@ -46,8 +46,6 @@ set('rsync',[
 // ビルドタスク
 task('build', function () {
     
-    // プロジェクトディレクトリに移動
-    cd("~/deploy/backup/sumutokoro2022");
 
     // MySQLのダンプ
     touch('backup!');

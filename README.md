@@ -131,8 +131,14 @@ GitHubのSecrets -> Actionsにデプロイに使うシークレット変数を�
 
 ## トラブルシューティング
 ### サーバー接続に関するトラブル
-* GitHubとSSHが繋がらなくなった場合は、対象のサーバーにSSHで入って「ssh -vT git@github.com」にて確認。
-* 
+* GitHubとSSHが繋がらなくなった場合は、対象のサーバーにSSHで入って「ssh -vT git@github」にて確認。
+
+### 本番サーバーが全部消えた場合
+
+### ステージングサーバーが全部消えた場合
+
+
+
 
 
 ## GoogleApiKey
