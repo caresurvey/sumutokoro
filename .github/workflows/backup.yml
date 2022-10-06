@@ -41,8 +41,8 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
-      #- name: Setup tmate session -y
-      #  uses: mxschmitt/action-tmate@v1
+      - name: Setup tmate session -y
+        uses: mxschmitt/action-tmate@v1
 
       - name: deployerのファイルを配置
         run: |
