@@ -21,12 +21,12 @@
         "mikehaertl/phpwkhtmltopdf": "^2.5"
     },
     "require-dev": {
+        "deployer/deployer": "^7.0",
+        "deployer/recipes": "^6.2",
         "fakerphp/faker": "^1.9.1",
         "laravel/dusk": "^6.25",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
-        "deployer/deployer": "^7.0",
-        "deployer/recipes": "^6.2",
         "mnabialek/laravel-sql-logger": "^2.2",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
