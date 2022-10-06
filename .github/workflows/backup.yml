@@ -49,5 +49,5 @@ jobs:
           cp system/deployer/backup.php ./deploy.php
 
       - name: バックアップを行う（deployer7系／deploy.php）
-        run: ./vendor/bin/dep deploy backup -vvvv
+        run: ./vendor/bin/dep backup -vvvv
 
