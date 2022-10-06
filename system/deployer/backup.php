@@ -24,6 +24,15 @@ host('backup')
     ->setDeployPath('~/deploy/production/sumutokoro_backup')
     ->set('keep_releases', 5);
 
+// デプロイ前のタスク
+task('deploy:before', function() {
+    // プロジェクトディレクトリに移動
+    cd("{{release_path}}");
+
+    // composer.jsonを削除
+    run("rm composer.json");
+});
+
 // バックアップタスク
 task('backup', function(){
     
