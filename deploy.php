@@ -19,7 +19,7 @@ add('shared_dirs', ['vendor']);
 add('writable_dirs', ['bootstrap/cache', 'storage']);
 
 /**
- * Host設定
+ * Host設定（本番）
  */
 host('production')
     ->setHostname('sumutokoro3.sakura.ne.jp')
@@ -29,6 +29,9 @@ host('production')
     ->setDeployPath('~/deploy/production/sumutokoro_2022')
     ->set('keep_releases', 5);
 
+/**
+ * Host設定（ステージング）
+ */
 host('staging')
     ->setHostname('stagingserver.sakura.ne.jp')
     ->setRemoteUser('stagingserver')

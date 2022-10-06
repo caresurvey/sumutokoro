@@ -46,7 +46,7 @@
 * GitHubActionsで自動テストを回します。
 * GitHubActionsでビルドが通ったら、「develop」か「release」だった場合は各デプロイ先に自動でデプロイします。
 * docker-composeを使って開発をしますので、開発マシンに入れておいてください。
-* docker-compose.ymlはAppleのM1マシンを想定していますが、Intelベースの場合は、「system/loacl/docker/for_ci/x86」に入っているdocker-compose.ymlを使用してください。ちなみに、GitHubActionsでも同じこのファイルを使います。
+* docker-compose.ymlはAppleのM1マシンを想定していますが、Intelベースの場合は、「system/loacl/docker/ci/x86」に入っているdocker-compose.ymlを使用してください。ちなみに、GitHubActionsでも同じこのファイルを使います。
 * PHPStormをインストールしてください
   
 ## 開発の流れ
@@ -93,11 +93,11 @@ $ docker-compose exec php php artisan migrate:refresh --seed
 ブランチによって自動でデプロイされます。developブランチならステージング環境へ、releaseブランチなら本番環境へそれぞれGitHubActionsによって自動でデプロイされます。デプロイツールはPHP製の「Deployer 7系」が使われます。
 
 ## バックアップ体制
-GitHubActionsのスケジュールにて基本・全自動で行われます。実際にはLaravelのConsoleを叩くことで実行されます。フックはGitHubActionsの「schedule」にて行います。バックアップ対象はDBと画像です。それ以外のファイルはGitHubにあるので保存しません。処理は「system/loacl/docker/for_backup/x86/docker-compose.yml」に記載してあります。バックアップファイルの保存先は「xxx」です。
+GitHubActionsのスケジュールにて基本・全自動で行われます。実際にはLaravelのConsoleを叩くことで実行されます。フックはGitHubActionsの「schedule」にて行います。バックアップ対象はDBと画像です。それ以外のファイルはGitHubにあるので保存しません。処理は「.github/workflows/backup.yml」と「system/loacl/docker/backup/x86/docker-compose.yml」「deploy.php」に記載してあります。バックアップファイルの保存先は「xxx」です。
 
 
 ## 開発時のチェック
-composer dump-autoloadをして、不要ファイルがないか、PSRから逸脱しているファイルが無いかをチェック
+composer dump-autoloadをして、不要ファイルがないか、PSRから逸脱しているファイルが無いかをチェックします。
 
 ## 本番環境・ステージング環境でのチェック
 composerのバージョン

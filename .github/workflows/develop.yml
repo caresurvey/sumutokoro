@@ -20,7 +20,7 @@ jobs:
       - name: docker-compose準備・起動
         run: |
           rm docker-compose.yml
-          cp system/docker/x86/docker-compose.yml ./
+          cp system/docker/ci/x86/docker-compose.yml ./
           docker-compose up -d
 
       - name: キャッシュディレクトリ設定
@@ -29,25 +29,16 @@ jobs:
           chmod -R 707 bootstrap/cache
           chmod -R 707 storage
 
-      #- name: envファイル設定
-      #  run: |
-      #    cp system/ci/env ./.env
-      #    cp system/ci/env.dusk ./.env.dusk
-
-      - name: 本番環境で使うファイルを移動
+      - name: CI実行用のenvファイル設定
         run: |
-          cp system/production/.htaccess ./.htaccess
-          cp system/production/php.ini ./php.ini
-
-      #- name: デプロイファイル準備
-      #  run: |
-      #    cp system/deployer/deploy.php ./
-      #    cp system/deployer/servers.yml ./
+          cp system/ci/env ./.env
+          cp system/ci/env.dusk ./.env.dusk
+          cp system/ci/env.testing ./.env.testing
 
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
 
-      - name: "Prepare SSH key and known hosts"
+      - name: ステージングサーバーにSSH接続するためのkeyとknown_hostsの設定
         run: |
           echo "${{ secrets.SSH_KEY_STAGING }}" > ~/.ssh/secretkey
           chmod 600 ~/.ssh/secretkey
@@ -55,7 +46,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING }}
 
-      #- name: Setup tmate session -y
+      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
       #  uses: mxschmitt/action-tmate@v1
 
       # WEBアプリのユニットテストを行う
@@ -72,6 +63,10 @@ jobs:
       #  run: |
       #    docker-compose exec -T php sh -c "composer update --no-dev"
 
-      - name: デプロイを行う（deployer）
+      - name: deployerのファイルを配置
+        run: |
+          cp system/deployer/deploy.php ./deploy.php
+
+      - name: デプロイを行う（deployer7系／deploy.php）
         run: ./vendor/bin/dep deploy staging -vvvv
 

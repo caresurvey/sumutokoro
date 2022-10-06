@@ -20,7 +20,7 @@ jobs:
       - name: docker-compose準備・起動
         run: |
           rm docker-compose.yml
-          cp system/docker/x86/docker-compose.yml ./
+          cp system/docker/ci/x86/docker-compose.yml ./
           docker-compose up -d
 
       - name: キャッシュディレクトリ設定
@@ -29,10 +29,11 @@ jobs:
           chmod -R 707 bootstrap/cache
           chmod -R 707 storage
 
-      - name: envファイル設定
+      - name: CI実行用のenvファイル設定
         run: |
           cp system/ci/env ./.env
           cp system/ci/env.dusk ./.env.dusk
+          cp system/ci/env.testing ./.env.testing
 
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"

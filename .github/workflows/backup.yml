@@ -5,6 +5,10 @@ on:
     branches:
       - backup
 
+  #schedule:
+    # 定期実行する時間
+  #  - cron: '0 22 * * *'      
+
 jobs:
 
   deploy:
@@ -23,27 +27,6 @@ jobs:
           cp system/docker/x86/docker-compose.yml ./
           docker-compose up -d
 
-      - name: キャッシュディレクトリ設定
-        run: |
-          mkdir bootstrap/cache
-          chmod -R 707 bootstrap/cache
-          chmod -R 707 storage
-
-      #- name: envファイル設定
-      #  run: |
-      #    cp system/ci/env ./.env
-      #    cp system/ci/env.dusk ./.env.dusk
-
-      - name: 本番環境で使うファイルを移動
-        run: |
-          cp system/production/.htaccess ./.htaccess
-          cp system/production/php.ini ./php.ini
-
-      #- name: デプロイファイル準備
-      #  run: |
-      #    cp system/deployer/deploy.php ./
-      #    cp system/deployer/servers.yml ./
-
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
 
@@ -58,20 +41,10 @@ jobs:
       #- name: Setup tmate session -y
       #  uses: mxschmitt/action-tmate@v1
 
-      # WEBアプリのユニットテストを行う
-      #- name: apps Unit testing (PHPUnit)
-      #  run: |
-      #    docker-compose exec -T php ./vendor/bin/phpunit
+      - name: deployerのファイルを配置
+        run: |
+          cp system/deployer/backup.php ./deploy.php
 
-      # WEBアプリのE2Eテストを行う
-      #- name: apps E2E testing (Laravel Dusk)
-      #  run: |
-      #     docker-compose exec -T php php artisan dusk
-
-      #- name: デプロイ用のcomposerに切り替えて、composerをセットし直す（#環境をproductionにする必要があるので、.envを差し替え）
-      #  run: |
-      #    docker-compose exec -T php sh -c "composer update --no-dev"
-
-      - name: デプロイを行う（deployer）
-        run: ./vendor/bin/dep deploy production -vvvv
+      - name: バックアップを行う（deployer7系／deploy.php）
+        run: ./vendor/bin/dep deploy backup -vvvv
 
