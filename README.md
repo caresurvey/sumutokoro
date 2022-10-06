@@ -23,6 +23,11 @@
 * Deployer 7.x系（デプロイツール）
 * Selenium、LaravelDusk（browserテストツール一式）
 
+## 推奨開発環境
+* M1以上のmac
+* PHPStorm
+* docker（必須）
+* コマンドラインツール（必須）
 
 ## インストール方法
 * GithubからClone
@@ -40,6 +45,9 @@
 * master、develop、releaseの3ブランチで運用
 * GitHubActionsで自動テストを回します。
 * GitHubActionsでビルドが通ったら、「develop」か「release」だった場合は各デプロイ先に自動でデプロイします。
+* docker-composeを使って開発をしますので、開発マシンに入れておいてください。
+* docker-compose.ymlはAppleのM1マシンを想定していますが、Intelベースの場合は、「system/loacl/docker/for_ci/x86」に入っているdocker-compose.ymlを使用してください。ちなみに、GitHubActionsでも同じこのファイルを使います。
+* PHPStormをインストールしてください
   
 ## 開発の流れ
 1. Pullする
@@ -82,11 +90,11 @@ $ docker-compose exec php php artisan migrate:refresh --seed
 実データを開発環境などでテストしたい場合は、変動データを空にしているseedersを使ってください。「system/seeders_for_publictest」にデータが入っていますので、「database/seeders」と置き換えてmigrateし直してください。
 
 ## デプロイ方法
-ブランチによって自動でデプロイされます。developブランチならステージング環境へ、releaseブランチなら本番環境へそれぞれGitHubActionsによって自動でデプロイされます。ツールはPHP製の「Deployer7系」を使います。
+ブランチによって自動でデプロイされます。developブランチならステージング環境へ、releaseブランチなら本番環境へそれぞれGitHubActionsによって自動でデプロイされます。デプロイツールはPHP製の「Deployer 7系」が使われます。
 
 ## バックアップ体制
-GitHubActionsのスケジュールにてLaravelのConsoleを叩くことで実行されます。フックはサーバーのcronにて行います。
-バックアップ対象はDBと画像です。
+GitHubActionsのスケジュールにて基本・全自動で行われます。実際にはLaravelのConsoleを叩くことで実行されます。フックはGitHubActionsの「schedule」にて行います。バックアップ対象はDBと画像です。それ以外のファイルはGitHubにあるので保存しません。処理は「system/loacl/docker/for_backup/x86/docker-compose.yml」に記載してあります。バックアップファイルの保存先は「xxx」です。
+
 
 ## 開発時のチェック
 composer dump-autoloadをして、不要ファイルがないか、PSRから逸脱しているファイルが無いかをチェック
@@ -97,8 +105,6 @@ PHPのバージョン
 データベースのバージョン
 容量チェック
 
-## 環境について
-
 ## 注意事項
 ### .envファイルについて
 .envファイルはGitリポジトリに含めないでください。ただし、「system/ci/」内にあるものについてはローカル環境でのみ有効なCI用の.envファイルですので、Gitリポジトリに含めて構いません。また、その際はDBサーバー、メールサーバーなど実際に稼働しているサーバーに関する情報は絶対に入れないでください。docker-compose内でのみ動く開発環境用のデータを記載してください。
@@ -108,20 +114,29 @@ PHPのバージョン
 基本的にはコード以外はリポジトリに追加しません。使う場合はサイト内で使う軽い画像などに限ります。また、可能な限りSVGの使用を検討してください。
 
 
-## （仮）本番データをローカルデータに反映する
-冊子の出力などで本番データをローカルデータに反映させる必要がある場合があります。
-その際は、ここの手順を実行してください。スクリプトにより自動で反映作業が行われます。  
-※現在のローカルDBデータは削除されます（本番には影響しません）
+## プロジェクトの初期設定
+プロジェクト製作時に行う初期設定ですが、すでに行っているので基本的には必要ない工程となります。
+### GitHubのシークレット変数
+GitHubのSecrets -> Actionsにデプロイに使うシークレット変数を登録します。登録するものは以下です。
 
-```
-$ docker-compose up -d
-$ cd system/sync
-$ ./sync.sh
-$ cd ../../
-```
+* SSH_HOST_PRODUCTION（ホスト名を入れます）
+* SSH_HOST_STAGING（ホスト名を入れます）
+* SSH_KEY_PRODUCTION（秘密鍵を入れます）
+* SSH_KEY_STAGING（秘密鍵を入れます）
+* SSH_USER_PRODUCTION（ユーザー名を入れます）
+* SSH_USER_STAGING（ユーザー名を入れます）
+
+### デプロイ先サーバーでのPull用の公開鍵
+デプロイ先のサーバーからリポジトリをPullするための公開鍵を登録します。本番サーバーとステージングサーバーの2つです。鍵ファイルは別で保存してあります。
+
+## トラブルシューティング
+### サーバー接続に関するトラブル
+* GitHubとSSHが繋がらなくなった場合は、対象のサーバーにSSHで入って「ssh -vT git@github.com」にて確認。
+* 
+
 
 ## GoogleApiKey
-caresurveyjapan@gmail.comにて管理  
+以下のツールをサイトにて利用。caresurveyjapan@gmail.comにて管理しています。
 
 * Analytics
 * CAPTCHA
