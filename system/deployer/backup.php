@@ -27,6 +27,7 @@ host('production')
 task('backup', [
     'deploy:release', 
     'rsync', 
+    'deploy:symlink',
     'deploy:cleanup',
     'deploy:unlock', 
 ]);
