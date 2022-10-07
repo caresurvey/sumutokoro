@@ -43,6 +43,7 @@ jobs:
           ssh-keyscan ${{ secrets.SSH_HOST_BACKUP }} >> ~/.ssh/known_hosts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_BUCKUP }}
 
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
@@ -89,7 +90,7 @@ jobs:
         run: scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/current/backup.zip ./backup/backup.zip
 
       - name: バックアップサーバーにバックアップファイルを転送
-        run: scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro
+        run: scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_`date +%Y%m%d`.zip
 
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
