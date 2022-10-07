@@ -48,7 +48,24 @@ jobs:
       - name: バックアップ用のスクリプトファイルを作成
         run: |
           touch backup/backup.sh
-          echo 'test' > backup/backup.sh
+          echo '# バックアップ用のディレクトリを作成'
+          echo 'mkdir/backup' >> backup/backup.sh
+          echo '# バックアップ用のディレクトリに移動'
+          echo 'cd backup' >> backup/backup.sh
+          echo '# 本番用DBをdumpする'
+          echo 'mysqldump --no-tablespaces -u ${{DB_USER_NAME_PRODUCTION}} -p -h ${{DB_HOST_NAME_PRODUCTION}} ${{DB_NAME_PRODUCTION}} > backup/backup.sql' >> backup/backup.sh
+          echo '# dumpしたDBをzip圧縮'
+          echo 'zip -R dump.sql.zip dump.sql' >> backup/backup.sh
+          echo '# データディレクトリをzip圧縮'
+          echo 'zip -R datas.zip ~/www/datas' >> backup/backup.sh
+          echo '# メールBOXをzip圧縮'
+          echo 'zip -R MailBox.zip ~/MailBox' >> backup/backup.sh
+          echo '# バックアップ用のディレクトリから出る'
+          echo 'cd ../' >> backup/backup.sh
+          echo '# バックアップ用のディレクトリをまるごとzip圧縮する'
+          echo 'zip -R backup.zip backup' >> backup/backup.sh
+          echo '# バックアップディレクトリを削除する'
+          echo 'rm -R backup' >> backup/backup.sh
 
       - name: deployerのファイルを配置
         run: |
@@ -57,6 +74,12 @@ jobs:
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
 
-      - name: バックアップを行う（deployer7系／deploy.php）
-        run: ./vendor/bin/dep deploy production -vvvv
+      - name: リモートサーバーでバックアップを行う（deployer7系／deploy.php）
+        run: ./vendor/bin/dep backup production -vvvv
+
+      - name: リモートサーバーからバックアップデータをダウンロードする
+        run: |
+          scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:./backup/
+
+
 

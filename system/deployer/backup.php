@@ -12,9 +12,6 @@ require 'recipe/common.php';
 set('ssh_multiplexing', true);
 set('git_tty', true); 
 
-// リポジトリ指定（空を指定）
-set('repository', 'git@github:caresurvey/sumutokoro.git');
-
 // Host設定（バックアップ）
 host('production')
     ->setHostname('sumutokoro3.sakura.ne.jp')
@@ -22,12 +19,18 @@ host('production')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/backup/sumutokoro2022')
-    //->set('rsync_src', './backup/')
-    //->set('rsync_dest','{{release_path}}')
+    ->set('rsync_src', './backup/')
+    ->set('rsync_dest','{{release_path}}')
     ->set('keep_releases', 5);
 
 // タスク
-task('deploy', ['deploy:prepare', 'rsync', 'build', 'deploy:unlock']);
+task('backup', [
+    'deploy:release', 
+    'rsync', 
+    'build', 
+    'deploy:unlock', 
+    'cleanup'
+]);
 
 // ファイル転送タスク
 set('rsync',[
@@ -44,14 +47,12 @@ set('rsync',[
 ]);
 
 // ビルドタスク
-after('rsync', 'build');
-task('build', function () {
-    
+after('rsync', 'copy');
+task('copy', function () {
 
     // MySQLのダンプ
     cd('{{release_path}}');
     run('touch backup!');
-
 
     // backup専用のリポジトリを作る
     // MailBoxも全部バックアップとるスクリプトを書く
