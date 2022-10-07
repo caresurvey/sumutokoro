@@ -22,34 +22,39 @@ host('production')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/backup/sumutokoro2022')
-    ->set('rsync_src', './backup/')
-    ->set('rsync_dest','{{release_path}}')
+    //->set('rsync_src', './backup/')
+    //->set('rsync_dest','{{release_path}}')
     ->set('keep_releases', 5);
 
 // タスク
-task('deploy', ['deploy:prepare', 'deploy:release', 'rsync']);
+task('deploy', ['deploy:prepare', 'rsync', 'build', 'deploy:unlock']);
 
 // ファイル転送タスク
 set('rsync',[
-    'exclude'       => [''],
+    'exclude'       => [],
     'exclude-file'  => '/tmp/localdeploys/excludes_file', //Use absolute path to avoid possible rsync problems
-    'include'       => ['deploy.php'],
+    'include'       => [],
     'include-file'  => false,
     'filter'        => [],
     'filter-file'   => false,
     'filter-perdir' => false,
     'flags'         => 'rzcE', // Recursive, with compress, check based on checksum rather than time/size, preserve Executable flag
-    'options'       => ['delete', 'delete-after', 'force'], //Delete after successful transfer, delete even if deleted dir is not empty
+    'options'       => [], //Delete after successful transfer, delete even if deleted dir is not empty
     'timeout'       => 3600, //for those huge repos or crappy connection
 ]);
 
 // ビルドタスク
+after('rsync', 'build');
 task('build', function () {
     
 
     // MySQLのダンプ
-    touch('backup!');
+    cd('{{release_path}}');
+    run('touch backup!');
 
+
+    // backup専用のリポジトリを作る
+    // MailBoxも全部バックアップとるスクリプトを書く
 
     // 画像ファイルをzip化
 
