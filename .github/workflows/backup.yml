@@ -44,12 +44,12 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
-      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-        uses: mxschmitt/action-tmate@v1
-
       - name: 転送用のディレクトリを作成
         run: |
           mkdir backup
+
+      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+        uses: mxschmitt/action-tmate@v1
 
       - name: バックアップ用のスクリプトファイルを作成
         run: |
@@ -90,8 +90,5 @@ jobs:
 
       - name: バックアップサーバーにバックアップファイルを転送
         run: scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_`date +%Y%m%d`.zip
-
-      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-        uses: mxschmitt/action-tmate@v1
 
 
