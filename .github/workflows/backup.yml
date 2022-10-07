@@ -79,8 +79,8 @@ jobs:
         run: |
           cp system/deployer/backup.php ./deploy.php
 
-      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-        uses: mxschmitt/action-tmate@v1
+      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+      #  uses: mxschmitt/action-tmate@v1
 
       - name: 本番サーバーでバックアップを行う（deployer7系／deploy.php）
         run: ./vendor/bin/dep backup production -vvvv
