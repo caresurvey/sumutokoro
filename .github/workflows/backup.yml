@@ -79,7 +79,7 @@ jobs:
 
       - name: リモートサーバーからバックアップデータをダウンロードする
         run: |
-          scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/release/backup.zip ./backup/`backup+%Y%m%d`.zip
+          scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/current/backup.zip ./backup/`backup+%Y%m%d`.zip
 
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
