@@ -71,8 +71,8 @@ jobs:
         run: |
           cp system/deployer/backup.php ./deploy.php
 
-      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-        uses: mxschmitt/action-tmate@v1
+      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+      #  uses: mxschmitt/action-tmate@v1
 
       - name: リモートサーバーでバックアップを行う（deployer7系／deploy.php）
         run: ./vendor/bin/dep backup production -vvvv
@@ -81,5 +81,7 @@ jobs:
         run: |
           scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/release/backup.zip ./backup/`backup+%Y%m%d`.zip
 
+      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+        uses: mxschmitt/action-tmate@v1
 
 
