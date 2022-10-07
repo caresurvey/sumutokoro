@@ -27,9 +27,8 @@ host('production')
 task('backup', [
     'deploy:release', 
     'rsync', 
-    'build', 
+    'deploy:cleanup',
     'deploy:unlock', 
-    'cleanup'
 ]);
 
 // ファイル転送タスク
@@ -52,13 +51,11 @@ task('copy', function () {
 
     // MySQLのダンプ
     cd('{{release_path}}');
-    run('touch backup!');
 
-    // backup専用のリポジトリを作る
-    // MailBoxも全部バックアップとるスクリプトを書く
+    // バックアップスクリプトのパーミッション変更
+    run('chmod 755 backup.sh');
 
-    // 画像ファイルをzip化
-
-    // バックアップサーバーに転送
+    // バックアップスクリプトを実行
+    run('./backup.sh');
 });
 
