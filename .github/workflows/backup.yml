@@ -43,7 +43,6 @@ jobs:
           ssh-keyscan ${{ secrets.SSH_HOST_BACKUP }} >> ~/.ssh/known_hosts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_BUCKUP }}
 
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
