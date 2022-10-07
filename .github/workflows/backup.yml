@@ -36,8 +36,11 @@ jobs:
       - name: 本番サーバーにSSH接続するためのkeyとknown_hostsの設定
         run: |
           echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
+          echo "${{ secrets.SSH_KEY_BACKUP }}" > ~/.ssh/backup_secretkey
           chmod 600 ~/.ssh/secretkey
+          chmod 600 ~/.ssh/backup_secretkey
           ssh-keyscan ${{ secrets.SSH_HOST_PRODUCTION }} >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.SSH_HOST_BACKUP }} >> ~/.ssh/known_hosts
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
@@ -66,20 +69,24 @@ jobs:
           echo 'zip -r backup.zip backup' >> backup/backup.sh
           echo '# バックアップディレクトリを削除する'
           echo 'rm -R backup' >> backup/backup.sh
+          echo '# バックアップスクリプト（このファイル自身）を削除する'
+          echo 'rm backup.sh' >> backup/backup.sh
 
       - name: deployerのファイルを配置
         run: |
           cp system/deployer/backup.php ./deploy.php
 
-      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-      #  uses: mxschmitt/action-tmate@v1
+      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+        uses: mxschmitt/action-tmate@v1
 
-      - name: リモートサーバーでバックアップを行う（deployer7系／deploy.php）
+      - name: 本番サーバーでバックアップを行う（deployer7系／deploy.php）
         run: ./vendor/bin/dep backup production -vvvv
 
-      - name: リモートサーバーからバックアップデータをダウンロードする
-        run: |
-          scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/current/backup.zip ./backup/`backup+%Y%m%d`.zip
+      - name: 本番サーバーからバックアップデータをダウンロードする
+        run: scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/current/backup.zip ./backup/backup.zip
+
+      - name: バックアップサーバーにバックアップファイルを転送
+        run: scp -i ~/.ssh/./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro
 
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
