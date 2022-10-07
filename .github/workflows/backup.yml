@@ -53,7 +53,7 @@ jobs:
           echo '# バックアップ用のディレクトリに移動'
           echo 'cd backup' >> backup/backup.sh
           echo '# 本番用DBをdumpする'
-          echo 'mysqldump --no-tablespaces -u ${{DB_USER_NAME_PRODUCTION}} -p${{DB_PASSWORD_PRODUCTION}} -h ${{DB_HOST_NAME_PRODUCTION}} ${{DB_NAME_PRODUCTION}} > backup/backup.sql' >> backup/backup.sh
+          echo 'mysqldump --no-tablespaces -u ${{secrets.DB_USER_NAME_PRODUCTION}} -p${{secrets.DB_PASSWORD_PRODUCTION}} -h ${{secrets.DB_HOST_NAME_PRODUCTION}} ${{secrets.DB_NAME_PRODUCTION}} > backup/backup.sql' >> backup/backup.sh
           echo '# dumpしたDBをzip圧縮'
           echo 'zip -R dump.sql.zip dump.sql' >> backup/backup.sh
           echo '# データディレクトリをzip圧縮'
