@@ -47,8 +47,6 @@ task('deploy:done', function () {
 
     // 不要ファイルの削除
     run('rm .gitignore');
-    run('rm .env.dusk');
-    run('rm .env.testing');
     run('rm docker-compose.yml');
     run('rm phpunit.xml');
     run('rm -R system');
