@@ -64,10 +64,10 @@ class GeneralServiceProvider extends ServiceProvider
             Infrastructure\Repositories\Domain\Eloquent\EloquentSpotRepository::class
         );
 
-        //$this->app->bind(
-        //    Domain\Models\User\UserRepository::class,
-        //    Infrastructure\Repositories\Domain\Eloquent\EloquentUserRepository::class
-        //);
+        $this->app->bind(
+            Domain\Models\User\UserRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentUserRepository::class
+        );
 
         $this->app->bind(
             Domain\Models\Register\RegisterRepository::class,
