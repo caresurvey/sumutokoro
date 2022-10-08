@@ -7,7 +7,8 @@ on:
 
   schedule:
     #定期実行する時間
-    - cron: '15 11 * * *'
+    # UTC の 02:00 は JST だと 11:00
+    - cron: '30 2 * * *'
 
 jobs:
 
