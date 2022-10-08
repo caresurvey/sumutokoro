@@ -1,13 +1,13 @@
 name: 本番環境バックアップ
 
 on:
-  push:
-    branches:
-      - backup
+  #push:
+  #  branches:
+  #    - backup
 
-  #schedule:
-    # 定期実行する時間
-  #  - cron: '0 22 * * *'      
+  schedule:
+    #定期実行する時間
+    - cron: '15 11 * * *'
 
 jobs:
 
@@ -87,7 +87,7 @@ jobs:
 
       - name: バックアップサーバーにバックアップファイルを転送
         run: |
-          scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/month/backup_`date +%Y%m%d`.zip
+          scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/month/backup_`date +%m%d`.zip
           scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_`date +%Y%m`.zip
 
 
