@@ -113,7 +113,7 @@ class EloquentSpotRepository implements SpotRepository
         $runningTime = microtime(true) - $startTime;
         $usedMemory = (memory_get_peak_usage() - $initialMemory) / (1024 * 1024);
 
-        dump('running time: ' . $runningTime . ' [s]'); // or var_dump()
+        dump('running time: ' . $runningTime . ' [s]'); // or var_dump() 
         dump('used memory: ' . $usedMemory . ' [MB]'); // or var_dump()
 
         // データを返す
