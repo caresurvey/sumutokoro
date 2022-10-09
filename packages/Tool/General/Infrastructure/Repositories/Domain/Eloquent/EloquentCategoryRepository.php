@@ -3,26 +3,25 @@
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
 use Illuminate\Support\Facades\Cache;
-use Tool\General\Exceptions\GeneralNotFoundException;
-use Tool\General\Infrastructure\Eloquents\EloquentCity;
-use Tool\General\Domain\Models\City\CityRepository;
+use Tool\General\Infrastructure\Eloquents\EloquentCategory;
+use Tool\General\Domain\Models\Category\CategoryRepository;
 
-class EloquentCityRepository implements CityRepository
+class EloquentCategoryRepository implements CategoryRepository
 {
-    private EloquentCity $eloquentCity;
+    private EloquentCategory $eloquentCategory;
 
-    public function __construct(EloquentCity $eloquentCity)
+    public function __construct(EloquentCategory $eloquentCategory)
     {
         // モデル
-        $this->eloquentCity = $eloquentCity;
+        $this->eloquentCategory = $eloquentCategory;
     }
 
     public function list(): array
     {
         //キャッシュからデータを取得（なければキャッシュに保存）
-        return Cache::rememberForever("spot_detail_cities", function () {
+        return Cache::rememberForever("spot_detail_categories", function () {
             // データを取得
-            return $this->eloquentCity
+            return $this->eloquentCategory
                 ->where('display', 1)
                 ->orderBy('reorder', 'ASC')
                 ->pluck('name', 'id')

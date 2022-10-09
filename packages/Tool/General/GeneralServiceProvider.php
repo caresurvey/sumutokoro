@@ -30,6 +30,11 @@ class GeneralServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            Domain\Models\Category\CategoryRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentCategoryRepository::class
+        );
+
+        $this->app->bind(
             Domain\Models\Contact\ContactRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentContactRepository::class
         );
