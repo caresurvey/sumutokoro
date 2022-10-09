@@ -58,5 +58,8 @@ task('deploy:done', function () {
 
     // シンボリックリンク削除
     run('unlink public/storage');
+
+    // キャッシュクリア
+    run('php artisan optimize');
 });
 
