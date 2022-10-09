@@ -28,6 +28,7 @@ host('production')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/production/sumutokoro_2022')
+    ->set('branch', 'release')
     ->set('keep_releases', 5);
 
 // Host設定（ステージング）
@@ -37,6 +38,7 @@ host('staging')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/staging/sumutokoro_2022')
+    ->set('branch', 'staging')
     ->set('keep_releases', 5);
 
 // Deploy後の処理
