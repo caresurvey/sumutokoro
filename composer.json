@@ -11,6 +11,7 @@
         "barryvdh/laravel-snappy": "^1.0",
         "brian2694/laravel-toastr": "^5.57",
         "guzzlehttp/guzzle": "^7.2",
+        "htmlmin/htmlmin": "^9.0",
         "intervention/image": "^2.7",
         "josiasmontag/laravel-recaptchav3": "^1.0",
         "kyslik/column-sortable": "^6.4",

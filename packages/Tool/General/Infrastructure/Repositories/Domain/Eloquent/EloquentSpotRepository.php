@@ -2,6 +2,7 @@
 
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
+use Illuminate\Support\Facades\Cache;
 use Tool\General\Domain\Models\Spot\SpotRepository;
 use Tool\General\Domain\Models\Spot\SpotSearch;
 use Tool\General\Infrastructure\Eloquents\EloquentSpot;
@@ -24,6 +25,11 @@ class EloquentSpotRepository implements SpotRepository
 
     public function list(SpotSearch $search): array
     {
+
+        $startTime = microtime(true);
+        $initialMemory = memory_get_usage();
+
+
         // ページネートオブジェクトを作成
         $query = $this->eloquentSpot::query();
 
@@ -79,7 +85,6 @@ class EloquentSpotRepository implements SpotRepository
         $query->with(['spot_icon_statuses' => function ($query) {
             $query->where('spot_icon_genre_id', 2)->with('spot_icon_item', 'spot_icon_type');
         }]);
-        $query->with('user');
 
         // 現在のページを取得
         $current = Paginator::resolveCurrentPage();
@@ -96,6 +101,12 @@ class EloquentSpotRepository implements SpotRepository
         // ページネートを生成
         $data = new LengthAwarePaginator($list, $totalCount, $this->limit, $current, array('path' => config('myapp.app_path') . '/spot/?' . $search->getQuery()));
 
+        $runningTime =  microtime(true) - $startTime;
+        $usedMemory = (memory_get_peak_usage() - $initialMemory) / (1024 * 1024);
+
+        dump('running time: ' . $runningTime . ' [s]'); // or var_dump()
+        dump('used memory: ' . $usedMemory . ' [MB]'); // or var_dump()
+
         // データを返す
         return [
             'spots' => $data->items(),
@@ -109,24 +120,30 @@ class EloquentSpotRepository implements SpotRepository
 
     public function detail(int $id): array
     {
-        // 必要データの取得
-        $data = $this->eloquentSpot->where('id', $id)
-            ->with(
-                'category',
-                'city',
-                'company',
-                'prefecture',
-                'spot_detail',
-                'spot_main_image',
-                'spot_plan',
-                'spot_prices.price_genre',
-                'user'
-            )
-            ->withCount('spot_images')
-            ->first();
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        $data = Cache::rememberForever("spot_" . $id, function () use($id) {
+            $data = $this->eloquentSpot->where('id', $id)
+                ->with(
+                    'category',
+                    'city',
+                    'company',
+                    'prefecture',
+                    'spot_detail',
+                    'spot_main_image',
+                    'spot_plan',
+                    'spot_prices.price_genre',
+                    'user'
+                )
+                ->withCount('spot_images')
+                ->first();
 
-        // データがない場合
-        if (empty($data)) throw new GeneralNotFoundException();
+            // データがない場合例外を投げる
+            if (empty($data)) {
+                throw new GeneralNotFoundException();
+            }
+
+            return $data;
+        });
 
         // データがあれば返す
         return $data->toArray();

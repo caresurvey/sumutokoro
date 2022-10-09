@@ -3,6 +3,7 @@
 namespace Tool\General\Application\ViewComposers;
 
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Request;
 use Tool\General\Application\Requests\Search\IndexRequest;
@@ -64,9 +65,9 @@ class SearchComposer
 
         // prefixがadminじゃなければ共通検索を行う
         if(!$isAdmin) {
-            $search['categories'] = $this->eloquentCategory->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
-            $search['cities'] = $this->eloquentCity->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
-            $search['price_ranges'] = $this->eloquentPriceRange->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
+            $search['categories'] = $this->getCategories();
+            $search['cities'] = $this->getCities();
+            $search['price_ranges'] = $this->getPriceRanges();
             $search['count'] = $this->spotRepo->count();
             $search['query']['category'] = $searchObject->getCategory();
             $search['query']['city'] = $searchObject->getCity();
@@ -76,5 +77,38 @@ class SearchComposer
 
         // Viewにセット
         $view->with(compact('search'));
+    }
+
+    public function getCategories(): array
+    {
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        $data = Cache::rememberForever("search_categories", function () {
+            return $this->eloquentCategory->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
+        });
+
+        // データを返す
+        return $data->toArray();
+    }
+
+    public function getCities(): array
+    {
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        $data = Cache::rememberForever("search_cities", function () {
+            return $this->eloquentCity->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
+        });
+
+        // データを返す
+        return $data->toArray();
+    }
+
+    public function getPriceRanges(): array
+    {
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        $data = Cache::rememberForever("search_price_ranges", function () {
+            return $this->eloquentPriceRange->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
+        });
+
+        // データを返す
+        return $data->toArray();
     }
 }

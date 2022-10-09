@@ -48,7 +48,11 @@
 * docker-composeを使って開発をしますので、開発マシンに入れておいてください。
 * docker-compose.ymlはAppleのM1マシンを想定していますが、Intelベースの場合は、「system/loacl/docker/ci/x86」に入っているdocker-compose.ymlを使用してください。ちなみに、GitHubActionsでも同じこのファイルを使います。
 * PHPStormをインストールしてください
-  
+
+```  
+あ
+```
+
 ## 開発の流れ
 1. Pullする
 2. 開発単位ごとにブランチを切る
@@ -92,6 +96,11 @@ $ docker-compose exec php php artisan migrate:refresh --seed
 ## デプロイ方法
 ブランチによって自動でデプロイされます。developブランチならステージング環境へ、releaseブランチなら本番環境へそれぞれGitHubActionsによって自動でデプロイされます。デプロイツールはPHP製の「Deployer 7系」が使われます。
 
+## デプロイ前のチェック
+* composer dump-autoloadチェック
+* assetsのビルド
+
+
 ## バックアップ体制
 GitHubActionsのスケジュールにて基本・全自動で行われます。実際にはLaravelのConsoleを叩くことで実行されます。フックはGitHubActionsの「schedule」にて行います。バックアップ対象はDBと画像です。それ以外のファイルはGitHubにあるので保存しません。処理は「.github/workflows/backup.yml」と「system/loacl/docker/backup/x86/docker-compose.yml」「deploy.php」に記載してあります。バックアップファイルの保存先は「xxx」です。
 
@@ -128,6 +137,20 @@ GitHubのSecrets -> Actionsにデプロイに使うシークレット変数を�
 
 ### デプロイ先サーバーでのPull用の公開鍵
 デプロイ先のサーバーからリポジトリをPullするための公開鍵を登録します。本番サーバーとステージングサーバーの2つです。鍵ファイルは別で保存してあります。
+
+## 本番用サーバーの設定
+### さくらレンタルのphp.ini設定
+コントロールパネルのPHPiniファイル設定を以下のように変更します。
+
+```
+display_errors=off;
+output_buffering = On
+date.timezone = "Asia/Tokyo"
+post_max_size = "15M"
+upload_max_filesize = "11M"
+opcache.memory_consumption=256
+
+```
 
 ## トラブルシューティング
 ### サーバー接続に関するトラブル
