@@ -12,6 +12,16 @@ class EloquentAreaCenter extends AppEloquent
         return $this->belongsTo(EloquentArea::class);
     }
 
+    public function city()
+    {
+        return $this->belongsTo(EloquentCity::class);
+    }
+
+    public function prefecture()
+    {
+        return $this->belongsTo(EloquentPrefecture::class);
+    }
+
     public function area_section()
     {
         return $this->belongsTo(EloquentAreaSection::class);

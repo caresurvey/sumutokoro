@@ -5,6 +5,7 @@ namespace Tool\Admin\Infrastructure\Repositories\Domain\Eloquent;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
 use Tool\Admin\Domain\Models\Company\CompanyRepository;
 use Tool\Admin\Domain\Models\Company\CompanySearch;
+use Tool\Admin\Domain\Models\Company\Export;
 use Tool\Admin\Exceptions\AdminNotFoundException;
 use Tool\Admin\Exceptions\AdminLogicException;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCompany;
@@ -293,5 +294,15 @@ class EloquentCompanyRepository implements CompanyRepository
         }
 
         return $results;
+    }
+
+    public function export(): Export
+    {
+        $data = $this->eloquentCompany
+            ->where('display', 1)
+            ->with('prefecture', 'city')
+            ->orderBy('city_id', 'asc')
+            ->get();
+        return new Export($data);
     }
 }

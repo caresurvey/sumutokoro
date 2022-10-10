@@ -2,10 +2,6 @@
 
 namespace Tool\Admin\Domain\Models\Company;
 
-use Tool\Admin\Application\Requests\Company\IndexRequest;
-use Tool\Admin\Application\Requests\Company\RelationalUserRequest;
-use Tool\Admin\Application\Requests\Company\StoreRequest;
-use Tool\Admin\Application\Requests\Company\UpdateRequest;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
 
 interface CompanyRepository
@@ -27,4 +23,6 @@ interface CompanyRepository
     public function keyword(array $request): array;
 
     public function keyword_selected(array $request): array;
+
+    public function export(): Export;
 }

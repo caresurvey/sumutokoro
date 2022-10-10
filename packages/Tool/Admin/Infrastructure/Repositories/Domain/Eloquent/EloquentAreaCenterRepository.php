@@ -3,6 +3,7 @@
 namespace Tool\Admin\Infrastructure\Repositories\Domain\Eloquent;
 
 use Tool\Admin\Domain\Models\AreaCenter\AreaCenterRepository;
+use Tool\Admin\Domain\Models\AreaCenter\Export;
 use Tool\Admin\Infrastructure\Eloquents\EloquentAreaCenter;
 use Tool\Common\Domain\Models\Book\Publish\Format\Html\FormatConditions;
 use DB;
@@ -28,5 +29,16 @@ class EloquentAreaCenterRepository implements AreaCenterRepository
             ->get();
 
         return $bookSections->all();
+    }
+
+    public function export(): Export
+    {
+        $data = $this->eloquentAreaCenter
+            ->where('display', 1)
+            ->where('id', '<>', 1)
+            ->with('prefecture', 'city', 'area')
+            ->orderBy('city_id', 'asc')
+            ->get();
+        return new Export($data);
     }
 }

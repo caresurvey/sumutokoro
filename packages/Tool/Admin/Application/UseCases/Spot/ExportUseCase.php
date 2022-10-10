@@ -1,10 +1,11 @@
 <?php
 
-namespace Tool\Admin\Application\UseCases\Download;
+namespace Tool\Admin\Application\UseCases\Spot;
 
+use Tool\Admin\Domain\Models\Spot\Export\ExportGeneral;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
 
-class SpotUseCase
+class ExportUseCase
 {
     private SpotRepository $spotRepo;
 
@@ -15,9 +16,9 @@ class SpotUseCase
         $this->spotRepo = $spotRepo;
     }
 
-    public function __invoke(): array
+    public function __invoke(): ExportGeneral
     {
         // データ取得
-        return $this->spotRepo->download();
+        return $this->spotRepo->export();
     }
 }

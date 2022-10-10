@@ -19,4 +19,6 @@ interface UserRepository
     public function remove(int $id, array $auth): LogicResponse;
 
     public function count(): int;
+
+    public function export(): Export;
 }

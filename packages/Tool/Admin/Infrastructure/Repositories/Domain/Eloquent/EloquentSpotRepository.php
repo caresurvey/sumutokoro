@@ -6,6 +6,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
+use Tool\Admin\Domain\Models\Spot\Export\ExportGeneral;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
 use Tool\Admin\Domain\Models\Spot\SpotSearch;
 use Tool\Admin\Exceptions\AdminNotFoundException;
@@ -359,5 +360,15 @@ class EloquentSpotRepository implements SpotRepository
         }
 
         return $results;
+    }
+
+    public function export(): ExportGeneral
+    {
+        $data = $this->eloquentSpot
+            ->where('display', 1)
+            ->with('prefecture', 'city')
+            ->orderBy('city_id', 'asc')
+            ->get();
+        return new ExportGeneral($data);
     }
 }

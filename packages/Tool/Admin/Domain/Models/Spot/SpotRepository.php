@@ -2,9 +2,8 @@
 
 namespace Tool\Admin\Domain\Models\Spot;
 
-use Tool\Admin\Application\Requests\Spot\RelationalUserRequest;
-use Tool\Admin\Application\Requests\Spot\UpdateRequest;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
+use Tool\Admin\Domain\Models\Spot\Export\ExportGeneral;
 
 interface SpotRepository
 {
@@ -24,5 +23,5 @@ interface SpotRepository
 
     public function keyword_selected(array $request): array;
 
-    public function download();
+    public function export(): ExportGeneral;
 }

@@ -3,8 +3,8 @@
 namespace Tool\Admin\Application\Controllers;
 
 use App\Http\Controllers\Controller;
-use Tool\Admin\Application\UseCases\Download\CompanyUseCase;
-use Tool\Admin\Application\UseCases\Download\SpotUseCase;
+use Maatwebsite\Excel\Sheet;;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DownloadController extends Controller
 {
@@ -14,13 +14,9 @@ class DownloadController extends Controller
         return view('admin::download.index.contents');
     }
 
-    public function spot_csv(SpotUseCase $useCase): array
-    {
-        return $useCase();
-    }
 
-    public function company_csv(CompanyUseCase $useCase): array
+    public function area_center_xlsx(ExportAreaCenterUseCase $useCase)
     {
-        return $useCase();
+        return Excel::download($useCase(), 'area_center.xlsx');
     }
 }

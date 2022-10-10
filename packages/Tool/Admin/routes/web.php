@@ -67,8 +67,10 @@ Route::prefix('admin')
          * ダウンロード
          */
         Route::get('download', 'DownloadController@index')->middleware(['auth:admin', 'auth_admin']);
-        Route::get('download/spot/csv', 'DownloadController@spot_csv')->middleware(['auth:admin', 'auth_admin']);
-        Route::get('download/company/csv', 'DownloadController@company_csv')->middleware(['auth:admin', 'auth_admin']);
+        Route::get('spot/export/general/xlsx', 'SpotExportController@export_general_xlsx')->middleware(['auth:admin', 'auth_admin']);
+        Route::get('company/export/xlsx', 'CompanyExportController@export_xlsx')->middleware(['auth:admin', 'auth_admin']);
+        Route::get('area_center/export/xlsx', 'AreaCenterExportController@export_xlsx')->middleware(['auth:admin', 'auth_admin']);
+        Route::get('user/export/xlsx', 'UserExportController@export_xlsx')->middleware(['auth:admin', 'auth_admin']);
 
         /**
          * ユーザー管理

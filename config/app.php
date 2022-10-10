@@ -207,6 +207,7 @@ return [
         Brian2694\Toastr\ToastrServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -234,4 +235,5 @@ return [
     'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
     'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
     'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
+    'Excel'=>Maatwebsite\Excel\Facades\Excel::class,
 ];

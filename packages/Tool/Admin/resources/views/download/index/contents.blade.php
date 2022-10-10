@@ -17,24 +17,21 @@
   <section class="container mx-auto max-w-4xl px-6 sm:px-8 md:px-12">
     <div class="shadow bg-white rounded-xl px-12 py-8 mb-8 sm:py-12 sm:mb-8 md:px-14 md:py-14 md:mb-14">
       <h2 class="mb-4 text-base font-bold tracking-wider md:text-xl">
-        <i class="fa-solid fa-file-arrow-down mr-2"></i>冊子関係のデータをダウンロード
+        <i class="fa-solid fa-file-arrow-down mr-2"></i>データをダウンロード
       </h2>
       <div class="mb-10 leading-7 tracking-wider text-sm md:text-base md:leading-8">
         <ul class="text-accent">
           <li class="py-1">
-            <a href="{{asset('/')}}download/" class="hover:text-accent_light">冊子確認用CSVダウンロード</a>
+            <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/spot/export/general/xlsx" class="hover:text-accent_light">事業所データ（エクセル形式）</a>
           </li>
           <li class="py-1">
-            <a href="{{asset('/')}}download/" class="hover:text-accent_light">メール一括送信用CSVダウンロード</a>
+            <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/company/export/xlsx" class="hover:text-accent_light">法人データ（エクセル形式）</a>
           </li>
           <li class="py-1">
-            <a href="{{asset('/')}}download/" class="hover:text-accent_light">冊子すむところ地図用CSVダウンロード（旭川・道北版のみ）</a>
+            <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/area_center/export/xlsx" class="hover:text-accent_light">地域包括エリアデータ（エクセル形式）</a>
           </li>
           <li class="py-1">
-            <a href="{{asset('/')}}download/" class="hover:text-accent_light">メール一括送信用CSVダウンロード（旭川・道北版のみ）</a>
-          </li>
-          <li class="py-1">
-            <a href="{{asset('/')}}download/" class="hover:text-accent_light">メール一括送信用CSVダウンロード（札幌・小樽版のみ）</a>
+            <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/user/export/xlsx" class="hover:text-accent_light">ユーザーデータ（エクセル形式）</a>
           </li>
         </ul>
       </div>

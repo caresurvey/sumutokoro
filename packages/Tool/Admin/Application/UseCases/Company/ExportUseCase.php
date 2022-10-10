@@ -1,10 +1,11 @@
 <?php
 
-namespace Tool\Admin\Application\UseCases\Download;
+namespace Tool\Admin\Application\UseCases\Company;
 
 use Tool\Admin\Domain\Models\Company\CompanyRepository;
+use Tool\Admin\Domain\Models\Company\Export;
 
-class CompanyUseCase
+class ExportUseCase
 {
     private CompanyRepository $companyRepo;
 
@@ -15,9 +16,9 @@ class CompanyUseCase
         $this->companyRepo = $companyRepo;
     }
 
-    public function __invoke(): array
+    public function __invoke(): Export
     {
         // データ取得
-        return $this->companyRepo->download();
+        return $this->companyRepo->export();
     }
 }

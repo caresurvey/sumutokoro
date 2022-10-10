@@ -3,6 +3,7 @@
 namespace Tool\Admin\Infrastructure\Repositories\Domain\Eloquent;
 
 use Tool\Admin\Domain\Models\Common\LogicResponse;
+use Tool\Admin\Domain\Models\User\Export;
 use Tool\Admin\Domain\Models\User\UserRepository;
 use Tool\Admin\Exceptions\AdminNotFoundException;
 use Tool\Admin\Infrastructure\Eloquents\EloquentUser;
@@ -215,5 +216,12 @@ class EloquentUserRepository implements UserRepository
     public function count(): int
     {
         return $this->eloquentUser->count();
+    }
+
+    public function export(): Export
+    {
+        $data = $this->eloquentUser
+            ->get();
+        return new Export($data);
     }
 }

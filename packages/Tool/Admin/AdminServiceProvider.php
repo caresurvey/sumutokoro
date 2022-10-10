@@ -34,13 +34,6 @@ class AdminServiceProvider extends ServiceProvider
             Infrastructure\Repositories\Domain\Eloquent\EloquentPublishSpotRepository::class
         );
 
-        /*
-        $this->app->bind(
-            Domain\Models\BookSpot\BookSpotRepository::class,
-            Infrastructure\Repositories\Domain\Eloquent\EloquentBookSpotRepository::class
-        );
-        */
-
         $this->app->bind(
             Domain\Models\Company\CompanyRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentCompanyRepository::class
