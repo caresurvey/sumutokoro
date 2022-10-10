@@ -65,12 +65,10 @@ task('deploy:done', function () {
     run('rm .gitignore');
     run('rm docker-compose.yml');
     run('rm phpunit.xml');
+    run('rm bootstrap/cache/routes-v7.php');
     run('rm -R system');
 
     // シンボリックリンク追加
     run('ln -s ../storage/app/photos public/photos');
-
-    // キャッシュクリア
-    run('php artisan optimize');
 });
 
