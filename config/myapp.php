@@ -38,19 +38,9 @@ return [
   'g_tagmanage_id' => env('G_TAGMANAGE_ID', ''),
 
     /**
-     * GoogleAnalytics_VIEW_ID
+     * ANALYTICS_KEY
      */
-  'ga_view_id' => env('GA_VIEW_ID', ''),
-
-    /**
-     * NOCAPTCHA_SITEKEY
-     */
-  'nocaptcha_sitekey' => env('NOCAPTCHA_SITEKEY', ''),
-
-    /**
-     * 'NOCAPTCHA_SECRET
-     */
-  'nocaptcha_secret' => env('NOCAPTCHA_SECRET', ''),
+  'analytics_key' => env('ANALYTICS_KEY', ''),
 
     /**
      * 環境

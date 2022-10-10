@@ -205,18 +205,20 @@
           </div>
         </div>
 
+        {{--
         @production
         <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
           <div class="col-md-6">
             {!! RecaptchaV3::field('register') !!}
             @if ($errors->has('g-recaptcha-response'))
               <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
+                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+              </span>
             @endif
           </div>
         </div>
         @endproduction
+        --}}
 
         <div class="mb-4 text-center">
           <input type="submit" value="上記の内容でお問い合わせをする"

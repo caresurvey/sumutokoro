@@ -25,9 +25,6 @@ class EloquentSpotRepository implements SpotRepository
 
     public function list(SpotSearch $search): array
     {
-        $startTime = microtime(true);
-        $initialMemory = memory_get_usage();
-
         //キャッシュからデータを取得（なければキャッシュに保存）
         list($items, $current, $totalCount, $linkTag) = Cache::rememberForever("spot_" . $search->getQuery(), function () use ($search) {
             // ページネートオブジェクトを作成
@@ -108,12 +105,6 @@ class EloquentSpotRepository implements SpotRepository
                 $data->onEachSide(1)->links('vendor.pagination.default')->toHtml()
             ];
         });
-
-        $runningTime = microtime(true) - $startTime;
-        $usedMemory = (memory_get_peak_usage() - $initialMemory) / (1024 * 1024);
-
-        dump('running time: ' . $runningTime . ' [s]'); // or var_dump() 
-        dump('used memory: ' . $usedMemory . ' [MB]'); // or var_dump()
 
         // データを返す
         return [

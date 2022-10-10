@@ -23,7 +23,7 @@ class EloquentIconRepository implements IconRepository
     public function makeDetailData(int $spot_id): array
     {
         //キャッシュからデータを取得（なければキャッシュに保存）
-        $spot_icon_statuses = Cache::rememberForever("icon_make_detail_data", function () use($spot_id) {
+        $spot_icon_statuses = Cache::rememberForever("icon_make_detail_data_" . $spot_id, function () use($spot_id) {
             // データを取得
             $spot_icon_statuses = $this->eloquentSpotIconStatus
                 ->where('spot_icon_item_id', '<>', 1)

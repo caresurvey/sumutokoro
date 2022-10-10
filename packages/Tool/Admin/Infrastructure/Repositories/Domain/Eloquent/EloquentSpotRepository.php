@@ -4,6 +4,7 @@ namespace Tool\Admin\Infrastructure\Repositories\Domain\Eloquent;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Cache;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
 use Tool\Admin\Domain\Models\Spot\SpotSearch;
@@ -130,6 +131,10 @@ class EloquentSpotRepository implements SpotRepository
                 $logPost = [$post, $spotIconGenreComment->getFillData($spot->id, $post['spot']['user_id']), $spotIconStatus->getFillData($spot->id, $post['spot']['user_id']), $spotPrice->getFillData($spot->id, $post['spot']['user_id'])];
                 $log = LogHelper::makeLogData($logPost, 'admin', 'spot', 'store', $spot->id, $spot->name . 'を登録しました', $auth);
                 if (!$this->eloquentLog->fill($log)->save()) throw new AdminLogicException();
+
+                // キャッシュクリア
+                Cache::forget('spot_detail_' . $spot->id);
+                Cache::forget('icon_make_detail_data_' . $spot->id);
 
                 // レスポンスモデルを作成して返す
                 return $this->responseRepo->makeModel(true, '', $spot->name . 'を登録しました。さらに詳しい情報を入力しましょう。', ['id' => $spot->id, 'name' => $spot->name, 'backlink' => 'spot/' . $spot->id . '/edit/']);

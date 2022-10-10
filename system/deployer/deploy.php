@@ -38,7 +38,7 @@ host('staging')
     ->setPort(22)
     ->setIdentityFile('~/.ssh/secretkey')
     ->setDeployPath('~/deploy/staging/sumutokoro_2022')
-    ->set('branch', 'staging')
+    ->set('branch', 'develop')
     ->set('keep_releases', 5);
 
 task('deploy', [
