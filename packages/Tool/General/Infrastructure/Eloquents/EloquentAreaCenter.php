@@ -1,8 +1,6 @@
 <?php
 
-namespace Tool\User\Infrastructure\Eloquents;
-
-use Kyslik\ColumnSortable\Sortable;
+namespace Tool\General\Infrastructure\Eloquents;
 
 class EloquentAreaCenter extends AppEloquent
 {
@@ -11,6 +9,6 @@ class EloquentAreaCenter extends AppEloquent
 
     public function area()
     {
-        return $this->belongsTo(EloquentArea::class);
+        return $this->belongsTo(EloquentAreaCenter::class);
     }
 }

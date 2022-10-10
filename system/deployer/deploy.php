@@ -41,6 +41,16 @@ host('staging')
     ->set('branch', 'staging')
     ->set('keep_releases', 5);
 
+task('deploy', [
+    'deploy:prepare',
+    'deploy:vendors',
+    'artisan:config:cache',
+    'artisan:view:cache',
+    'artisan:event:cache',
+    'artisan:migrate',
+    'deploy:publish',
+]);
+
 // Deploy後の処理
 after('deploy', 'deploy:done');
 task('deploy:done', function () {
