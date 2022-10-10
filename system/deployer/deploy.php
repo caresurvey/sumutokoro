@@ -60,9 +60,6 @@ task('deploy:done', function () {
     // シンボリックリンク追加
     run('ln -s ../storage/app/photos public/photos');
 
-    // シンボリックリンク削除
-    run('unlink public/storage');
-
     // キャッシュクリア
     run('php artisan optimize');
 });
