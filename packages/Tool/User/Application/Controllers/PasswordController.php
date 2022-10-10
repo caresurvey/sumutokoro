@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Tool\User\Application\UseCases\Password\EditUseCase;
 use Tool\User\Application\UseCases\Password\UpdateUseCase;
-use Tool\User\Exceptions\UserRoleOutException;
 
 class PasswordController extends Controller
 {

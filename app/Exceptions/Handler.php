@@ -4,6 +4,12 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Tool\Admin\Exceptions\AdminLogicException;
+use Tool\Admin\Exceptions\AdminNotFoundException;
+use Tool\General\Exceptions\GeneralLogicException;
+use Tool\General\Exceptions\GeneralNotFoundException;
+use Tool\User\Exceptions\UserLogicException;
+use Tool\User\Exceptions\UserNotFoundException;
 
 class Handler extends ExceptionHandler
 {
@@ -45,6 +51,30 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (AdminNotFoundException $e, $request) {
+            return response()->view('admin::errors.not_found', [], 404);
+        });
+
+        $this->renderable(function (AdminLogicException $e, $request) {
+            return response()->view('admin::errors.not_found', [], 500);
+        });
+
+        $this->renderable(function (GeneralNotFoundException $e, $request) {
+            return response()->view('general::errors.not_found', [], 404);
+        });
+
+        $this->renderable(function (GeneralLogicException $e, $request) {
+            return response()->view('general::errors.not_found', [], 500);
+        });
+
+        $this->renderable(function (UserNotFoundException $e, $request) {
+            return response()->view('user::errors.not_found', [], 404);
+        });
+
+        $this->renderable(function (UserLogicException $e, $request) {
+            return response()->view('user::errors.not_found', [], 500);
         });
     }
 }
