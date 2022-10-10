@@ -46,8 +46,12 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_STAGING }}
 
-      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-      #  uses: mxschmitt/action-tmate@v1
+      - name: deployerのファイルを配置
+        run: |
+          cp system/deployer/deploy.php ./deploy.php
+
+      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+        uses: mxschmitt/action-tmate@v1
 
       # WEBアプリのユニットテストを行う
       #- name: apps Unit testing (PHPUnit)
@@ -63,9 +67,6 @@ jobs:
       #  run: |
       #    docker-compose exec -T php sh -c "composer update --no-dev"
 
-      - name: deployerのファイルを配置
-        run: |
-          cp system/deployer/deploy.php ./deploy.php
 
       - name: デプロイを行う（deployer7系／deploy.php）
         run: ./vendor/bin/dep deploy staging -vvvv
