@@ -1,8 +1,6 @@
 <?php
 
-namespace Tool\User\Infrastructure\Eloquents;
-
-use Kyslik\ColumnSortable\Sortable;
+namespace Tool\General\Infrastructure\Eloquents;
 
 class EloquentArea extends AppEloquent
 {
