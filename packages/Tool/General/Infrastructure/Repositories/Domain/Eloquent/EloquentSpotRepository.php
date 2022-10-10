@@ -25,7 +25,6 @@ class EloquentSpotRepository implements SpotRepository
 
     public function list(SpotSearch $search): array
     {
-
         $startTime = microtime(true);
         $initialMemory = memory_get_usage();
 
