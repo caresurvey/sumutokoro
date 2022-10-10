@@ -65,7 +65,6 @@ task('deploy:done', function () {
     run('rm .gitignore');
     run('rm docker-compose.yml');
     run('rm phpunit.xml');
-    run('rm bootstrap/cache/routes-v7.php');
     run('rm -R system');
 
     // シンボリックリンク追加
