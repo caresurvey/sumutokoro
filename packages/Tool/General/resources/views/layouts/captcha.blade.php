@@ -1,3 +1,3 @@
 @production
-{!! RecaptchaV3::initJs() !!}
+<?php //{!! RecaptchaV3::initJs() !!}?>
 @endproduction

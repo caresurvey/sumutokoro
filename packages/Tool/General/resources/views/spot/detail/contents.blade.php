@@ -27,7 +27,22 @@
                alt="{{$data['spot']['name']}}" class="rounded shadow">
         </div>
         <div class="w-3/5">
-          @include('general::spot.detail.icon_status', ['icons' => $data['icons']])
+          @if(!empty($data['icons']['status']))
+            <div class="grid grid-cols-3 md:grid-cols-6">
+              @foreach($data['icons']['status']['data'] as $icon)
+                <div class="flex items-center text-center mb-1 mr-1 px-1 pt-2 pb-1 bg-gray-50 rounded border border-gray-200">
+                  <div>
+                    <div class="flex justify-center mb-1 sm:mb-2">
+                      <img src="{{asset('/')}}img/general/pages/spot/icons/{{$icon['type']['serial']}}.png"
+                           alt="{{$icon['name']}}"
+                           class="w-1/3 md:w-1/3">
+                    </div>
+                    <div class="text-xs sm:text-sm">{{$icon['name']}}</div>
+                  </div>
+                </div>
+              @endforeach
+            </div>
+          @endif
           <div class="py-2 block hidden md:block">{{$data['spot']['heading']}}</div>
         </div>
       </div>
@@ -117,7 +132,29 @@
     <div class="shadow bg-white rounded p-4 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-8">
       @if($data['icons'])
         @foreach($data['icons'] as $icons)
-          @include('general::spot.detail.icon', ['icons' => $icons])
+          @if($icons['serial'] !== 'status')
+            <h3 class="text-md mb-4 text-md font-bold md:text-xl">
+              {{$icons['name']}}
+            </h3>
+            <div class="mb-5 pb-5">
+              <div class="grid grid-cols-3 md:grid-cols-5">
+                @foreach($icons['data'] as $icon)
+                  <div class="flex items-center text-center mb-1 mr-1 px-1 pt-2 pb-1 bg-gray-50 rounded border border-gray-200">
+                    <div>
+                      <div class="flex justify-center mb-1 sm:mb-2">
+                        <div class="tooltip flex justify-center" data-tip="{{$icon['type']['name']}}">
+                          <img src="{{asset('/')}}img/general/pages/spot/icons/{{$icon['type']['serial']}}.png"
+                               alt="{{$icon['name']}}"
+                               class="w-1/4 md:w-1/4">
+                        </div>
+                      </div>
+                      <div class="text-xs xl:text-md">{{$icon['name']}}</div>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          @endif
         @endforeach
       @endif
     </div>
@@ -237,15 +274,6 @@
       </table>
     </div>
 
-    <div class="shadow bg-white rounded p-4 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-8">
-      <iframe loading="lazy"
-              src="https://maps.google.co.jp/maps?z=10&output=embed&#038;q={{$data['spot']['lat']}},{{$data['spot']['lng']}}"
-              class="i-map__iframe w-full h-[400px]"></iframe>
-    </div>
   </section>
-
-
-
-
 @endsection
 

@@ -69,7 +69,7 @@
                   @foreach($search['cities'] as $city)
                     @if($city['spots_count'] > 0)
                       <option value="{{$city['id']}}"
-                              @if($city['id'] === $search['query']['city']) selected @endif>{{$city['name']}}
+                          @if($city['id'] === $search['query']['city']) selected @endif>{{$city['name']}}
                         ({{$city['spots_count']}})
                       </option>
                     @endif

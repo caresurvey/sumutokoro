@@ -3,18 +3,16 @@
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
 use Illuminate\Support\Facades\Cache;
-use Tool\General\Exceptions\GeneralNotFoundException;
 use Tool\General\Infrastructure\Eloquents\EloquentSpotIconType;
 use Tool\General\Domain\Models\SpotIconType\SpotIconTypeRepository;
 
-class EloquentSpotIconTypeRepository implements CityRepository
+class EloquentSpotIconTypeRepository implements SpotIconTypeRepository
 {
     private EloquentSpotIconType $eloquentSpotIconType;
 
     public function __construct(EloquentSpotIconType $eloquentSpotIconType)
     {
-        // モデル
-        $this->eloquentSpotIconType = $eloquentCity;
+        $this->eloquentSpotIconType = $eloquentSpotIconType;
     }
 
     public function list(): array
