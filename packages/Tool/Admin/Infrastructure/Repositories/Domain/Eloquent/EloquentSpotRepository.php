@@ -132,10 +132,6 @@ class EloquentSpotRepository implements SpotRepository
                 $log = LogHelper::makeLogData($logPost, 'admin', 'spot', 'store', $spot->id, $spot->name . 'を登録しました', $auth);
                 if (!$this->eloquentLog->fill($log)->save()) throw new AdminLogicException();
 
-                // キャッシュクリア
-                Cache::forget('spot_detail_' . $spot->id);
-                Cache::forget('icon_make_detail_data_' . $spot->id);
-
                 // レスポンスモデルを作成して返す
                 return $this->responseRepo->makeModel(true, '', $spot->name . 'を登録しました。さらに詳しい情報を入力しましょう。', ['id' => $spot->id, 'name' => $spot->name, 'backlink' => 'spot/' . $spot->id . '/edit/']);
             });
@@ -224,6 +220,10 @@ class EloquentSpotRepository implements SpotRepository
                 if (!empty($post['photo']['upload'])) $post['photo']['upload'] = '';
                 $log = LogHelper::makeLogData($post, 'admin', 'spot', 'update', $data->id, $data->name . 'を変更しました', $auth);
                 if (!$this->eloquentLog->fill($log)->save()) throw new AdminLogicException();
+
+                // キャッシュクリア
+                Cache::forget('spot_detail_' . $data->id);
+                Cache::forget('icon_make_detail_data_' . $data->id);
 
                 // レスポンスモデルを作成して返す
                 return $this->responseRepo->makeModel(true, '', $data->name . 'を変更しました');
