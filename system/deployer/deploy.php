@@ -19,7 +19,7 @@ add('shared_files', ['.env']);
 add('shared_dirs', ['vendor']);
 
 // 書き込みファイルの設定
-add('writable_dirs', ['bootstrap/cache', 'storage']);
+add('writable_dirs', []);
 
 // Host設定（本番）
 host('production')
@@ -46,6 +46,10 @@ after('deploy', 'deploy:done');
 task('deploy:done', function () {
     // 移動
     cd("{{release_path}}");
+
+    // .htaccessの置き換え
+    run('rm public/.htaccess');
+    run('cp system/production/.htaccess public/.htaccess');
 
     // 不要ファイルの削除
     run('rm .gitignore');

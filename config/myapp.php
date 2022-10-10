@@ -13,6 +13,11 @@ return [
   'app_url' => env('APP_URL', 'http://localhost:11061'),
 
     /**
+     * PATH
+     */
+  'app_path' => env('APP_PATH', ''),
+
+    /**
      * ADMINのPrefix
      */
   'app_admin_prefix' => env('APP_ADMIN_PREFIX', 'admin'),
