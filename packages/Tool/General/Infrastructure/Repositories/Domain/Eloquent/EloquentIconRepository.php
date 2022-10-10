@@ -2,6 +2,7 @@
 
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
+use Illuminate\Support\Facades\Cache;
 use Tool\General\Domain\Models\Icon\IconRepository;
 use Tool\General\Exceptions\GeneralNotFoundException;
 use Tool\General\Infrastructure\Eloquents\EloquentSpotIconStatus;
@@ -21,15 +22,21 @@ class EloquentIconRepository implements IconRepository
 
     public function makeDetailData(int $spot_id): array
     {
-        // データを取得
-        $spot_icon_statuses = $this->eloquentSpotIconStatus
-            ->where('spot_icon_item_id', '<>', 1)
-            ->where('spot_id', $spot_id)
-            ->with('spot_icon_item.spot_icon_genre.spot_icon_genre_comment', 'spot_icon_type')
-            ->get();
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        $spot_icon_statuses = Cache::rememberForever("icon_make_detail_data", function () use($spot_id) {
+            // データを取得
+            $spot_icon_statuses = $this->eloquentSpotIconStatus
+                ->where('spot_icon_item_id', '<>', 1)
+                ->where('spot_id', $spot_id)
+                ->with('spot_icon_item.spot_icon_genre.spot_icon_genre_comment', 'spot_icon_type')
+                ->get();
 
-        // データがない場合
-        if (empty($spot_icon_statuses)) throw new GeneralNotFoundException();
+            // データがない場合
+            if (empty($spot_icon_statuses)) throw new GeneralNotFoundException();
+
+            return $spot_icon_statuses;
+        });
+
 
         // データの初期化
         $results = [];

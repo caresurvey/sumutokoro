@@ -65,18 +65,23 @@ class GeneralServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
+            Domain\Models\Register\RegisterRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentRegisterRepository::class
+        );
+
+        $this->app->bind(
             Domain\Models\Spot\SpotRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentSpotRepository::class
         );
 
         $this->app->bind(
-            Domain\Models\User\UserRepository::class,
-            Infrastructure\Repositories\Domain\Eloquent\EloquentUserRepository::class
+            Domain\Models\SpotIconType\SpotIconTypeRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentSpotIconTypeRepository::class
         );
 
         $this->app->bind(
-            Domain\Models\Register\RegisterRepository::class,
-            Infrastructure\Repositories\Domain\Eloquent\EloquentRegisterRepository::class
+            Domain\Models\User\UserRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentUserRepository::class
         );
 
         $this->app->bind(
