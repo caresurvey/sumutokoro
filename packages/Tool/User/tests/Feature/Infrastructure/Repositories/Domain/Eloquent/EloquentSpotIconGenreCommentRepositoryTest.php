@@ -26,9 +26,8 @@ class EloquentSpotIconGenreCommentRepositoryTest extends TestCase
 
     /**
      * @test
-     * list
      */
-    public function list_正常系()
+    public function makeStoreData_正常系()
     {
         // テスト対象メソッドを実行
         $result = $this->spotIconGenreCommentRepo->makeStoreData();

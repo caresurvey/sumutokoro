@@ -14,5 +14,12 @@ class BookSpotTableSeeder extends Seeder
    */
   public function run()
   {
+        for ($i = 1; $i <= 100; $i++) {
+            DB::table('book_spot')->insert([
+                'id' => $i,
+                'book_id' => 2,
+                'spot_id' => $i,
+            ]);
+        }
   }
 }

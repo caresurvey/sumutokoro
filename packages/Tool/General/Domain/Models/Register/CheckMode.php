@@ -27,7 +27,6 @@ class CheckMode
 
         // なければfalse
         return false;
-
     }
 
     public function getValues(): array

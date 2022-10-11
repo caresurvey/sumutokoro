@@ -47,7 +47,7 @@ class SpotSearch
         if(empty($this->data['categories'])) return [];
 
         // 値があればそれを返す
-        return (int)$this->data['categories'];
+        return $this->data['categories'];
     }
 
     /**

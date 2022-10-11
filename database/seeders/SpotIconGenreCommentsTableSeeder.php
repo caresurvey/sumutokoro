@@ -15,7 +15,7 @@ class SpotIconGenreCommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             DB::table('spot_icon_genre_comments')->insert([
                 'display' => 1,
                 'comment' => '指定なしコメント' . $i,

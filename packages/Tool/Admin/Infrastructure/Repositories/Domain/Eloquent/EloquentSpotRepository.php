@@ -326,48 +326,11 @@ class EloquentSpotRepository implements SpotRepository
         return $data->toArray();
     }
 
-    public function download()
-    {
-        // ページネートオブジェクトを作成
-        $query = $this->eloquentSpot::query();
-
-        // 並び
-        $query->orderBy('id', 'DESC');
-
-        // リレーション
-        $query->with('category', 'city', 'prefecture', 'spot_detail');
-
-        $spots = $query->get()->toArray();
-
-        $results = [];
-
-        foreach($spots as $spot) {
-            $result['id'] = $spot['id'];
-            $result['display'] = $spot['display'];
-            $result['name'] = $spot['name'];
-            $result['email'] = $spot['spot_detail']['email'];
-            $result['zip'] = $spot['zip1'] . '-' . $spot['zip2'];
-            $result['address'] = $spot['prefecture']['name'] . $spot['city']['name'] . $spot['address'];
-            $result['tel'] = $spot['tel1'] . '-' . $spot['tel2'] . '-' . $spot['tel3'];
-            $result['fax'] = $spot['spot_detail']['fax'];
-            $result['staff'] = $spot['spot_detail']['staff'];
-            $result['company_name'] = $spot['spot_detail']['company_name'];
-            $result['company_staff'] = $spot['spot_detail']['company_staff'];
-            $result['comment'] = $spot['spot_detail']['comment'];
-            $result['comment2'] = $spot['spot_detail']['comment2'];
-            $result['category'] = $spot['category']['name'];
-            $results[] = $result;
-        }
-
-        return $results;
-    }
-
     public function export(): ExportGeneral
     {
         $data = $this->eloquentSpot
-            ->where('display', 1)
-            ->with('prefecture', 'city')
-            ->orderBy('city_id', 'asc')
+            ->with('prefecture', 'city', 'spot_detail', 'spot_plan', 'area_center', 'category')
+            ->orderBy('id', 'asc')
             ->get();
         return new ExportGeneral($data);
     }

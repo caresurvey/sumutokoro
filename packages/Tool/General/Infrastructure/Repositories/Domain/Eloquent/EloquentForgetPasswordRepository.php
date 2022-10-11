@@ -63,33 +63,5 @@ class EloquentForgetPasswordRepository implements ForgetPasswordRepository
             return $this->responseRepo->makeModel(false, 'パスワードを変更できませんでした', 'パスワードを変更できませんでした');
         }
     }
-
-    public function getUser(string $token): array
-    {
-        try {
-            // 保存（トランザクション）
-            return DB::transaction(function () use ($token) {
-
-                // リセットデータを取得
-                $reset = $this->eloquentResetPassword->where('token', $token)->first();
-
-                // データが無ければ例外を投げる
-                if (!$reset) throw new GeneralNotFoundException;
-
-                // ユーザーデータを取得
-                $user = $this->eloquentUser->where('email', $reset->email)->select('id')->first();
-
-                // データが無ければ例外を投げる
-                if (!$user) throw new GeneralNotFoundException;
-
-                // 値を返す
-                return $user->toArray();
-            });
-        } catch (GeneralNotFoundException $e) {
-            // エラー書き込み
-            Logger($e->getMessage());
-            return [];
-        }
-    }
 }
 

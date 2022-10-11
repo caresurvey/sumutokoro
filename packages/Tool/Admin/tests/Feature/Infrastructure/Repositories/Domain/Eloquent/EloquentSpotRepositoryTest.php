@@ -5,6 +5,7 @@ namespace Tool\Admin\tests\Feature\Infrastructure\Repositories\Domain\Eloquent;
 use Mockery;
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tool\Admin\Domain\Models\Spot\Export\ExportGeneral;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
 use Tool\Admin\Domain\Models\Spot\SpotSearch;
 use Tool\Admin\Infrastructure\Eloquents\EloquentLog;
@@ -202,6 +203,33 @@ class EloquentSpotRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function display_正常系()
+    {
+        // 実行前のレコード数
+        $beforeCount = $this->eloquent->count();
+        $beforeCountLog = $this->eloquentLog->count();
+
+        // テスト対象メソッドを実行
+        $result = $this->spotRepo->display(2, $this->auth);
+
+        // 最後に保存されたデータを検証用に取得
+        $check = $this->eloquent->where('id', 2)->orderBy('id', 'desc')->first();
+
+        // 実行後のレコード数
+        $afterCount = $this->eloquent->count();
+        $afterCountLog = $this->eloquentLog->count();
+
+        // 検証
+        $this->assertInstanceOf(LogicResponse::class, $result);
+        $this->assertTrue($result->getResult());
+        $this->assertSame($beforeCount, $afterCount); // レコード数が変わってないかチェック
+        $this->assertSame(2, $check->id);
+        $this->assertSame($beforeCountLog + 1, $afterCountLog);
+    }
+
+    /**
+     * @test
+     */
     public function remove_正常系()
     {
         // 実行前のレコード数
@@ -248,28 +276,13 @@ class EloquentSpotRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function display_正常系()
+    public function count_正常系()
     {
-        // 実行前のレコード数
-        $beforeCount = $this->eloquent->count();
-        $beforeCountLog = $this->eloquentLog->count();
-
         // テスト対象メソッドを実行
-        $result = $this->spotRepo->display(2, $this->auth);
-
-        // 最後に保存されたデータを検証用に取得
-        $check = $this->eloquent->where('id', 2)->orderBy('id', 'desc')->first();
-
-        // 実行後のレコード数
-        $afterCount = $this->eloquent->count();
-        $afterCountLog = $this->eloquentLog->count();
+        $result = $this->spotRepo->count();
 
         // 検証
-        $this->assertInstanceOf(LogicResponse::class, $result);
-        $this->assertTrue($result->getResult());
-        $this->assertSame($beforeCount, $afterCount); // レコード数が変わってないかチェック
-        $this->assertSame(2, $check->id);
-        $this->assertSame($beforeCountLog + 1, $afterCountLog);
+        $this->assertIsInt($result);
     }
 
     /**
@@ -282,5 +295,18 @@ class EloquentSpotRepositoryTest extends TestCase
 
         // 検証
         $this->assertIsInt($result[0]['id']);
+    }
+
+    /**
+     * @test
+     * store
+     */
+    public function export_正常系()
+    {
+        // テスト対象メソッドを実行
+        $result = $this->spotRepo->export();
+
+        // 検証
+        $this->assertInstanceOf(ExportGeneral::class, $result);
     }
 }

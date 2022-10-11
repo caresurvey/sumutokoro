@@ -43,10 +43,25 @@ class EloquentUser extends AppEloquent
         'role_id',
         'reorder'
     ];
-    
+
+    public function city()
+    {
+        return $this->belongsTo(EloquentCity::class);
+    }
+
+    public function job_type()
+    {
+        return $this->belongsTo(EloquentJobType::class);
+    }
+
     public function role()
     {
         return $this->belongsTo(EloquentRole::class);
+    }
+
+    public function prefecture()
+    {
+        return $this->belongsTo(EloquentPrefecture::class);
     }
 
     public function spots()
@@ -62,6 +77,11 @@ class EloquentUser extends AppEloquent
     public function user()
     {
         return $this->belongsTo(EloquentUser::class);
+    }
+
+    public function user_type()
+    {
+        return $this->belongsTo(EloquentUserType::class);
     }
 
     /**

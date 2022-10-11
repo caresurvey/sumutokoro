@@ -24,8 +24,6 @@ class PrintRequest extends FormRequest
     public function rules()
     {
         return [
-          //'fax_id' => 'numeric',
-          //'pro_area_id' => 'numeric',
         ];
     }
 

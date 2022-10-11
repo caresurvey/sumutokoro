@@ -15,7 +15,7 @@ class SpotPricesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i<=10; $i++) {
+        for ($i=1; $i<=100; $i++) {
             for ($i2=2; $i2<=7; $i2++) {
                 DB::table('spot_prices')->insert([
                     'name' => '内容' . $i . '_' . $i2,

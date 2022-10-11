@@ -2,7 +2,7 @@
 
 namespace Tool\General\tests\Unit\Domain\Models\Contact;
 
-use Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Tool\General\Domain\Models\Contact\CheckMode;
 
 class CheckModeTest extends TestCase

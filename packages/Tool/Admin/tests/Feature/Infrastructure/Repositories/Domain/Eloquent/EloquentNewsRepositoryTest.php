@@ -141,34 +141,6 @@ class EloquentNewsRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function remove_正常系()
-    {
-        // 実行前のレコード数
-        $beforeCount = $this->eloquent->count();
-        $beforeCountLog = $this->eloquentLog->count();
-
-        // 削除するIDを取得
-        $target = $this->eloquent->orderBy('id', 'desc')->first();
-
-        // テスト対象メソッドを実行
-        $result = $this->newsRepo->remove($target->id, $this->auth);
-
-        // 実行後のレコード数
-        $afterCount = $this->eloquent->count();
-        $afterCountLog = $this->eloquentLog->count();
-
-        // 検証
-        $this->assertInstanceOf(LogicResponse::class, $result);
-        $this->assertTrue($result->getResult());
-
-        // 処理後のレコード数をチェック
-        $this->assertSame($beforeCount - 1, $afterCount); // レコード数が減ったかチェック
-        $this->assertSame($beforeCountLog + 1, $afterCountLog);
-    }
-
-    /**
-     * @test
-     */
     public function display_正常系()
     {
         // 実行前のレコード数
@@ -194,4 +166,33 @@ class EloquentNewsRepositoryTest extends TestCase
         $this->assertSame($beforeCount, $afterCount); // レコード数が変わってないかチェック
         $this->assertSame($beforeCountLog + 1, $afterCountLog);
     }
+
+    /**
+     * @test
+     */
+    public function remove_正常系()
+    {
+        // 実行前のレコード数
+        $beforeCount = $this->eloquent->count();
+        $beforeCountLog = $this->eloquentLog->count();
+
+        // 削除するIDを取得
+        $target = $this->eloquent->orderBy('id', 'desc')->first();
+
+        // テスト対象メソッドを実行
+        $result = $this->newsRepo->remove($target->id, $this->auth);
+
+        // 実行後のレコード数
+        $afterCount = $this->eloquent->count();
+        $afterCountLog = $this->eloquentLog->count();
+
+        // 検証
+        $this->assertInstanceOf(LogicResponse::class, $result);
+        $this->assertTrue($result->getResult());
+
+        // 処理後のレコード数をチェック
+        $this->assertSame($beforeCount - 1, $afterCount); // レコード数が減ったかチェック
+        $this->assertSame($beforeCountLog + 1, $afterCountLog);
+    }
+
 }

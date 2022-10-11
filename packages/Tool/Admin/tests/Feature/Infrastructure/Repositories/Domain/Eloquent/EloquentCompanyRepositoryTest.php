@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tool\Admin\Domain\Models\Company\CompanyRepository;
 use Tool\Admin\Domain\Models\Company\CompanySearch;
+use Tool\Admin\Domain\Models\Company\Export;
 use Tool\Admin\tests\TestCase;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCompany;
@@ -148,34 +149,6 @@ class EloquentCompanyRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function remove_正常系()
-    {
-        // 実行前のレコード数
-        $beforeCount = $this->eloquent->count();
-        $beforeCountLog = $this->eloquentLog->count();
-
-        // 削除するIDを取得
-        $target = $this->eloquent->orderBy('id', 'desc')->first();
-
-        // テスト対象メソッドを実行
-        $result = $this->companyRepo->remove($target->id, $this->auth);
-
-        // 実行後のレコード数
-        $afterCount = $this->eloquent->count();
-        $afterCountLog = $this->eloquentLog->count();
-
-        // 検証
-        $this->assertInstanceOf(LogicResponse::class, $result);
-        $this->assertTrue($result->getResult());
-
-        // 処理後のレコード数をチェック
-        $this->assertSame($beforeCount - 1, $afterCount); // レコード数が減ったかチェック
-        $this->assertSame($beforeCountLog + 1, $afterCountLog);
-    }
-
-    /**
-     * @test
-     */
     public function display_正常系()
     {
         // 実行前のレコード数
@@ -205,6 +178,46 @@ class EloquentCompanyRepositoryTest extends TestCase
     /**
      * @test
      */
+    public function remove_正常系()
+    {
+        // 実行前のレコード数
+        $beforeCount = $this->eloquent->count();
+        $beforeCountLog = $this->eloquentLog->count();
+
+        // 削除するIDを取得
+        $target = $this->eloquent->orderBy('id', 'desc')->first();
+
+        // テスト対象メソッドを実行
+        $result = $this->companyRepo->remove($target->id, $this->auth);
+
+        // 実行後のレコード数
+        $afterCount = $this->eloquent->count();
+        $afterCountLog = $this->eloquentLog->count();
+
+        // 検証
+        $this->assertInstanceOf(LogicResponse::class, $result);
+        $this->assertTrue($result->getResult());
+
+        // 処理後のレコード数をチェック
+        $this->assertSame($beforeCount - 1, $afterCount); // レコード数が減ったかチェック
+        $this->assertSame($beforeCountLog + 1, $afterCountLog);
+    }
+
+    /**
+     * @test
+     */
+    public function count_正常系()
+    {
+        // テスト対象メソッドを実行
+        $result = $this->companyRepo->count();
+
+        // 検証
+        $this->assertIsInt($result);
+    }
+
+    /**
+     * @test
+     */
     public function keyword_正常系()
     {
         // テスト対象メソッドを実行
@@ -228,5 +241,18 @@ class EloquentCompanyRepositoryTest extends TestCase
         $this->assertSame(8, $result[2]['id']);
         $this->assertSame(9, $result[3]['id']);
         $this->assertSame(10, $result[4]['id']);
+    }
+
+    /**
+     * @test
+     * store
+     */
+    public function export_正常系()
+    {
+        // テスト対象メソッドを実行
+        $result = $this->companyRepo->export();
+
+        // 検証
+        $this->assertInstanceOf(Export::class, $result);
     }
 }

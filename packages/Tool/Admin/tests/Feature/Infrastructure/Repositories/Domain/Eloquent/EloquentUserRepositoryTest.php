@@ -4,6 +4,7 @@ namespace Tool\Admin\tests\Feature\Infrastructure\Repositories\Domain\Eloquent;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Tool\Admin\Domain\Models\User\Export;
 use Tool\Admin\Domain\Models\User\UserRepository;
 use Tool\Admin\tests\TestCase;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
@@ -136,6 +137,34 @@ class EloquentUserRepositoryTest extends TestCase
         $this->assertSame($beforeCountLog + 1, $afterCountLog);
     }
 
+    /**
+     * @test
+     */
+    public function enabled_正常系()
+    {
+        // 実行前のレコード数
+        $beforeCount = $this->eloquent->count();
+        $beforeCountLog = $this->eloquentLog->count();
+
+        // テスト対象メソッドを実行
+        $result = $this->userRepo->enabled(2, $this->auth);
+
+        // 最後に保存されたデータを検証用に取得
+        $check = $this->eloquent->where('id', 2)->orderBy('id', 'desc')->first();
+
+        // 実行後のレコード数
+        $afterCount = $this->eloquent->count();
+        $afterCountLog = $this->eloquentLog->count();
+
+        // 検証
+        $this->assertInstanceOf(LogicResponse::class, $result);
+        $this->assertTrue($result->getResult());
+        $this->assertSame(2, $check->id);
+
+        // 処理後のレコード数をチェック
+        $this->assertSame($beforeCount, $afterCount); // レコード数が変わってないかチェック
+        $this->assertSame($beforeCountLog + 1, $afterCountLog);
+    }
 
     /**
      * @test
@@ -168,29 +197,24 @@ class EloquentUserRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function enabled_正常系()
+    public function count_正常系()
     {
-        // 実行前のレコード数
-        $beforeCount = $this->eloquent->count();
-        $beforeCountLog = $this->eloquentLog->count();
-
         // テスト対象メソッドを実行
-        $result = $this->userRepo->enabled(2, $this->auth);
-
-        // 最後に保存されたデータを検証用に取得
-        $check = $this->eloquent->where('id', 2)->orderBy('id', 'desc')->first();
-
-        // 実行後のレコード数
-        $afterCount = $this->eloquent->count();
-        $afterCountLog = $this->eloquentLog->count();
+        $result = $this->userRepo->count();
 
         // 検証
-        $this->assertInstanceOf(LogicResponse::class, $result);
-        $this->assertTrue($result->getResult());
-        $this->assertSame(2, $check->id);
+        $this->assertIsInt($result);
+    }
 
-        // 処理後のレコード数をチェック
-        $this->assertSame($beforeCount, $afterCount); // レコード数が変わってないかチェック
-        $this->assertSame($beforeCountLog + 1, $afterCountLog);
+    /**
+     * @test
+     */
+    public function export_正常系()
+    {
+        // テスト対象メソッドを実行
+        $result = $this->userRepo->export();
+
+        // 検証
+        $this->assertInstanceOf(Export::class, $result);
     }
 }

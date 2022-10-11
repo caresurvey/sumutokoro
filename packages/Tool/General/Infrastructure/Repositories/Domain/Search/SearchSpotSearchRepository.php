@@ -1,6 +1,6 @@
 <?php
 
-namespace Tool\General\Infrastructure\Search;
+namespace Tool\General\Infrastructure\Repositories\Domain\Search;
 
 use Tool\General\Domain\Models\Spot\SpotSearch;
 use Tool\General\Domain\Models\Spot\SpotSearchRepository;

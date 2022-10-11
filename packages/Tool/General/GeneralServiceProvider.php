@@ -91,7 +91,7 @@ class GeneralServiceProvider extends ServiceProvider
 
         $this->app->bind(
             Domain\Models\Spot\SpotSearchRepository::class,
-            Infrastructure\Search\SearchSpotSearchRepository::class
+            Infrastructure\Repositories\Domain\Search\SearchSpotSearchRepository::class
         );
         $this->app->bind(
             Domain\Models\Delivery\DeliveryRepository::class,

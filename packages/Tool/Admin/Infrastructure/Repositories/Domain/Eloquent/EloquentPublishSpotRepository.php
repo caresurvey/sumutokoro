@@ -19,7 +19,7 @@ class EloquentPublishSpotRepository implements PublishSpotRepository
         $this->eloquentSpot = $eloquentSpot;
     }
 
-    public function getPublishSpots(array $area_centers, FormatConditions $conditions): ElementarySpot
+    public function getPublishSpots(array $area_centers): ElementarySpot
     {
         // 初期化
         $results = [];
@@ -50,7 +50,7 @@ class EloquentPublishSpotRepository implements PublishSpotRepository
         return new ElementarySpot($results);
     }
 
-    public function makePublishSpots(ElementarySpot $elementarySpots, FormatConditions $conditions): array
+    public function makePublishSpots(ElementarySpot $elementarySpots): array
     {
         // 初期化
         $results = [];

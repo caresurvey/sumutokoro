@@ -263,43 +263,9 @@ class EloquentCompanyRepository implements CompanyRepository
         return $data->toArray();
     }
 
-    public function download()
-    {
-        // ページネートオブジェクトを作成
-        $query = $this->eloquentCompany::query();
-
-        // 並び
-        $query->orderBy('id', 'DESC');
-
-        // リレーション
-        $query->with('city', 'prefecture');
-
-        $companies = $query->get()->toArray();
-
-        $results = [];
-        foreach($companies as $company) {
-            $result['id'] = $company['id'];
-            $result['display'] = $company['display'];
-            $result['name'] = $company['name'];
-            $result['email'] = $company['email'];
-            $result['zip'] = $company['zip1'] . '-' . $company['zip2'];
-            $result['address'] = $company['prefecture']['name'] . $company['city']['name'] . $company['address'];
-            $result['tel'] = $company['tel1'] . '-' . $company['tel2'] . '-' . $company['tel3'];
-            $result['fax'] = $company['fax'];
-            $result['msg'] = $company['msg'];
-            $result['start'] = $company['start'];
-            $result['president'] = $company['president'];
-            $result['staff'] = $company['staff'];
-            $results[] = $result;
-        }
-
-        return $results;
-    }
-
     public function export(): Export
     {
         $data = $this->eloquentCompany
-            ->where('display', 1)
             ->with('prefecture', 'city')
             ->orderBy('city_id', 'asc')
             ->get();

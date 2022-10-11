@@ -2,7 +2,6 @@
 
 namespace Tool\General\tests\Unit\Domain\Models\Contact;
 
-use Mockery;
 use Tests\TestCase;
 use Tool\General\Domain\Models\Contact\MailContactForAdmin;
 use Tool\General\Domain\Models\Contact\MailContactForCustomer;

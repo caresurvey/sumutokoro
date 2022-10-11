@@ -24,7 +24,7 @@ class EloquentUserRepository implements UserRepository
     private int $limit = 30;
 
     public function __construct(
-        EloquentLog                     $eloquentLog,
+        EloquentLog             $eloquentLog,
         EloquentUser            $eloquentUser,
         LogicResponseRepository $responseRepo
     )
@@ -221,6 +221,7 @@ class EloquentUserRepository implements UserRepository
     public function export(): Export
     {
         $data = $this->eloquentUser
+            ->with('job_type', 'role', 'user_type')
             ->get();
         return new Export($data);
     }

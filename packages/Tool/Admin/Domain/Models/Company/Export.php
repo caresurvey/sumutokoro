@@ -30,10 +30,13 @@ class Export implements FromCollection, WithHeadings, WithColumnWidths
         foreach ($data as $value) {
             $result['id'] = $value->id;
             $result['name'] = $value->name;
-            $result['zip'] = $value->zip1 . '-' . $value->zip2;
+            $result['longname'] = $value->longname;
+            $result['kana'] = $value->kana;
+            $result['email'] = $value->email;
             $result['tel'] = $value->tel1 . '-' . $value->tel2 . '-' . $value->tel3;
             $result['fax'] = $value->fax;
-            $result['email'] = $value->email;
+            $result['president'] = $value->president;
+            $result['zip'] = $value->zip1 . '-' . $value->zip2;
             $result['prefecture'] = $value->prefecture->name;
             $result['city'] = $value->city->name;
             $result['address'] = $value->prefecture->name . $value->address;
@@ -47,14 +50,17 @@ class Export implements FromCollection, WithHeadings, WithColumnWidths
     {
         return [
             'A' => 5,
-            'B' => 40,
-            'C' => 10,
-            'D' => 15,
-            'E' => 15,
-            'F' => 30,
-            'G' => 10,
-            'H' => 20,
-            'I' => 80,
+            'B' => 25,
+            'C' => 40,
+            'D' => 30,
+            'E' => 30,
+            'F' => 20,
+            'G' => 20,
+            'H' => 15,
+            'I' => 15,
+            'J' => 20,
+            'K' => 20,
+            'L' => 80,
         ];
     }
 
@@ -62,11 +68,14 @@ class Export implements FromCollection, WithHeadings, WithColumnWidths
     {
         return [
             'ID',
-            '名前',
-            '郵便番号',
+            '法人名',
+            '正式名称',
+            '法人名かな',
+            'メールアドレス',
             '電話番号',
             'FAX',
-            'メールアドレス',
+            '代表者',
+            '郵便番号',
             '都道府県',
             '市町村',
             '住所',

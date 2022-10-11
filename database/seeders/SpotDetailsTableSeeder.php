@@ -15,7 +15,7 @@ class SpotDetailsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             DB::table('spot_details')->insert([
               'id' => $i,
               'kana' => '事業所ふりがな' . $i,

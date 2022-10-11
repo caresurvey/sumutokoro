@@ -15,6 +15,13 @@ class CompanyUserTableSeeder extends Seeder
      */
     public function run()
     {
+        for ($i = 1; $i <= 100; $i++) {
+            DB::table('company_user')->insert([
+                'id' => $i,
+                'company_id' => $i,
+                'user_id' => $i,
+            ]);
+        }
     }
 }
 

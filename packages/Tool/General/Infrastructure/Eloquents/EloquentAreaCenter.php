@@ -9,6 +9,6 @@ class EloquentAreaCenter extends AppEloquent
 
     public function area()
     {
-        return $this->belongsTo(EloquentAreaCenter::class);
+        return $this->belongsTo(EloquentArea::class);
     }
 }

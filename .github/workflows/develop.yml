@@ -53,13 +53,11 @@ jobs:
       #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
       #  uses: mxschmitt/action-tmate@v1
 
-      # WEBアプリのユニットテストを行う
-      #- name: apps Unit testing (PHPUnit)
-      #  run: |
-      #    docker-compose exec -T php ./vendor/bin/phpunit
+      - name: WEBアプリのユニットテスト・結合テストを行う (PHPUnit)
+        run: |
+          docker-compose exec -T php ./vendor/bin/phpunit
 
-      # WEBアプリのE2Eテストを行う
-      #- name: apps E2E testing (Laravel Dusk)
+      #- name: WEBアプリのE2Eテストを行う (Laravel Dusk)
       #  run: |
       #     docker-compose exec -T php php artisan dusk
 

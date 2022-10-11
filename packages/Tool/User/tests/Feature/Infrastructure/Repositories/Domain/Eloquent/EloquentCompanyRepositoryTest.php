@@ -38,7 +38,7 @@ class EloquentCompanyRepositoryTest extends TestCase
         $this->testData = new TestData('test');
 
         // ユーザー情報
-        $this->auth['id'] = 3;
+        $this->auth['id'] = 2;
         $this->auth['name'] = '登録太郎';
         $this->auth['role_id'] = 3;
         $this->auth['role_name'] = '登録ユーザー';
@@ -57,9 +57,9 @@ class EloquentCompanyRepositoryTest extends TestCase
         $results = $this->companyRepo->list($this->auth);
 
         // 検証
-        $this->assertSame(10, $results['companies'][0]['id']);
+        $this->assertSame(2, $results['companies'][0]['id']);
         $this->assertSame(1, $results['current']);
-        $this->assertSame(10, $results['totalCount']);
+        $this->assertSame(1, $results['totalCount']);
         $this->assertIsInt($results['fullPage']);
         $this->assertIsInt($results['limit']);
     }
@@ -73,10 +73,10 @@ class EloquentCompanyRepositoryTest extends TestCase
         $this->auth['is_authenticated'] = 1;
 
         // テスト対象メソッドを実行
-        $result = $this->companyRepo->edit(1, $this->auth);
+        $result = $this->companyRepo->edit(2, $this->auth);
 
         // 検証
-        $this->assertSame(1, $result['id']);
+        $this->assertSame(2, $result['id']);
     }
 
     /**

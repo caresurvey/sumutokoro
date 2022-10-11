@@ -167,7 +167,7 @@ class TestData
     public function requestCompanyUpdate(): array
     {
         // 初期値を含めてデータ設定
-        $results['company']['id'] = 3;
+        $results['company']['id'] = 2;
         $results['company']['display'] = 1;
         $results['company']['preview'] = 1;
         $results['company']['name'] = '変更法人';
@@ -187,12 +187,9 @@ class TestData
         $results['company']['start'] = '';
         $results['company']['president'] = '';
         $results['company']['history'] = '';
-        $results['company']['capital'] = '';
         $results['company']['staff'] = '';
-        $results['company']['area_branch_id'] = 2;
         $results['company']['city_id'] = 2;
         $results['company']['prefecture_id'] = 2;
-        $results['company']['trade_area_id'] = 2;
 
         // データを返す
         return $results;
@@ -228,7 +225,7 @@ class TestData
         $results['spot']['room_size'] = '';
         $results['spot']['lat'] = '43.0000';
         $results['spot']['lng'] = '143.0000';
-        $results['spot']['area_branch_id'] = 2;
+        $results['spot']['area_center_id'] = 2;
         $results['spot']['category_id'] = 2;
         $results['spot']['city_id'] = 2;
         $results['spot']['prefecture_id'] =21;

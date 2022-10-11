@@ -8,9 +8,9 @@ use Tool\Common\Domain\Models\Book\Publish\Format\Html\FormatConditions;
 
 interface PublishSpotRepository
 {
-    public function getPublishSpots(array $area_centers, FormatConditions $conditions): ElementarySpot;
+    public function getPublishSpots(array $area_centers): ElementarySpot;
 
-    public function makePublishSpots(ElementarySpot $elementarySpots, FormatConditions $conditions): array;
+    public function makePublishSpots(ElementarySpot $elementarySpots): array;
 
     public function pickupPublishSpots(array $allSpots, FormatConditions $conditions): array;
 

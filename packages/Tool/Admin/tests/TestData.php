@@ -190,7 +190,7 @@ class TestData
         $results['company']['history'] = '';
         $results['company']['capital'] = '';
         $results['company']['staff'] = '';
-        $results['company']['area_branch_id'] = 1;
+        $results['company']['area_center_id'] = 1;
         $results['company']['prefecture_id'] = 1;
         $results['company']['city_id'] = 1;
         $results['company']['trade_area_id'] = 1;
@@ -225,7 +225,7 @@ class TestData
         $results['company']['history'] = '';
         $results['company']['capital'] = '';
         $results['company']['staff'] = '';
-        $results['company']['area_branch_id'] = 1;
+        $results['company']['area_center_id'] = 1;
         $results['company']['prefecture_id'] = 1;
         $results['company']['city_id'] = 1;
         $results['company']['trade_area_id'] = 1;
@@ -317,7 +317,7 @@ class TestData
         $results['spot']['room_size'] = '';
         $results['spot']['lat'] = '43.0000';
         $results['spot']['lng'] = '143.0000';
-        $results['spot']['area_branch_id'] = 1;
+        $results['spot']['area_center_id'] = 1;
         $results['spot']['category_id'] = 1;
         $results['spot']['city_id'] = 2;
         $results['spot']['prefecture_id'] = 2;

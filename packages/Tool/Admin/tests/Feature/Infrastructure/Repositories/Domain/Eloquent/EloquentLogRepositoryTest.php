@@ -48,7 +48,6 @@ class EloquentLogRepositoryTest extends TestCase
         $this->assertIsInt($results['totalCount']);
         $this->assertIsInt($results['fullPage']);
         $this->assertIsInt($results['limit']);
-        $this->assertStringContainsString('page=1', $results['linkTag']);
     }
 
     /**
@@ -61,5 +60,18 @@ class EloquentLogRepositoryTest extends TestCase
 
         // 検証
         $this->assertSame(1, $result['id']);
+    }
+
+
+    /**
+     * @test
+     */
+    public function count_正常系()
+    {
+        // テスト対象メソッドを実行
+        $result = $this->logRepo->count();
+
+        // 検証
+        $this->assertIsInt($result);
     }
 }
