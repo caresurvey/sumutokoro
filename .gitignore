@@ -27,3 +27,6 @@ composer.lock
 .env
 .env.dusk
 .env.testing
+packages/Tool/Admin/tests/.phpunit.result.cache
+packages/Tool/General/tests/.phpunit.result.cache
+packages/Tool/User/tests/.phpunit.result.cache

@@ -21,7 +21,7 @@ class ContactControllerTest extends TestCase
 
         // チェック
         $response->assertOk();
-        $this->assertStringContainsString('Contact input', $response->content());
+        $this->assertStringContainsString('Contact index', $response->content());
     }
 
     /**
