@@ -19,7 +19,7 @@
   @include('common::form.errors')
 
   <div class="flex justify-end pb-4">
-    <div class="tooltip tooltip-left link link-hover link-primary" data-tip="法人追加パネルを表示">
+    <div class="tooltip tooltip-left link link-hover link-primary" id="NewsAddBtn" data-tip="法人追加パネルを表示">
       <label for="add-modal-open" class="btn modal-button rounded-full btn-sm"><i
                 class="fa-solid fa-circle-plus mr-2"></i>追加</label>
     </div>
@@ -63,13 +63,13 @@
             <td class="py-2 px-2 text-xs">{{$value['created_at']->format("Y/m/d H:m")}}</td>
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/news/{{$value['id']}}/edit"
-                 class="tooltip link link-hover link-primary" data-tip="クリックで{{$value['name']}}のデータを編集">{{$value['name']}}</a><br>
+                 class="tooltip link link-hover link-primary" data-tip="クリックで{{$value['name']}}のデータを編集" id="NewsName{{$value['id']}}">{{$value['name']}}</a><br>
             </td>
             <td class="py-2 px-2">
               <div class="tooltip link link-hover link-primary" data-tip="公開ページを開く">
                 <a href="{{asset('/')}}news/{{$value['id']}}"
                    class="text-accent hover:text-accent_light" target="_blank"><i
-                          class="fa-solid fa-window-maximize"></i></a>
+                          class="fa-solid fa-window-maximize" id="UserMore{{$value['id']}}"></i></a>
               </div>
             </td>
           </tr>

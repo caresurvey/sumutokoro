@@ -28,12 +28,12 @@ class UpdateRequest extends FormRequest
             'spot.display' => 'required|numeric|between:0,1',
             'spot.preview' => 'required|numeric|between:0,1',
             'spot.name' => 'required|string',
-            'spot.zip1' => 'present|digits:3',
-            'spot.zip2' => 'present|digits:4',
-            'spot.address' => 'present|string',
             'spot.tel1' => 'present|digits_between:2,5',
             'spot.tel2' => 'present|digits_between:2,5',
             'spot.tel3' => 'present|digits_between:2,5',
+            'spot.zip1' => 'present|digits:3',
+            'spot.zip2' => 'present|digits:4',
+            'spot.address' => 'present|string',
             'spot.vacancy' => 'required|numeric|between:1,5',
             'spot.document' => 'required|numeric|between:1,5',
             'spot.viewing' => 'required|numeric|between:1,5',
@@ -56,9 +56,6 @@ class UpdateRequest extends FormRequest
             'spot.prefecture_id' => 'required|numeric|min:1',
             'spot.price_range_id' => 'required|numeric|min:1',
             'spot.space_id' => 'required|numeric|min:1',
-            //'spot.spot_detail.proarea' => 'present|string',
-            //'spot.spot_detail.fax' => 'present|string',
-            //'spot.spot_detail.email' => 'nullable|email',
         ];
     }
 
@@ -137,10 +134,6 @@ class UpdateRequest extends FormRequest
             'spot.prefecture_id.required' => ':attributeは必須です',
             'spot.price_range_id.required' => ':attributeは必須です',
             'spot.space_id.required' => ':attributeは必須です',
-            //'spot.spot_detail.proarea.present' => ':attributeは必須です',
-            //'spot.spot_detail.fax.present' => ':attributeは必須です',
-            //'spot.spot_detail.email.present' => ':attributeは必須です',
-            //'spot.spot_detail.email.email' => ':attributeを正しく入力して下さい',
         ];
     }
 
@@ -188,8 +181,6 @@ class UpdateRequest extends FormRequest
             'spot.space_id' => '個室内状況',
             'spot.spot_plan_id' => 'プラン',
             'spot.trade_area_id' => '商圏',
-            //'spot.spot_detail.email' => 'Eメール',
-            //'spot.spot_detail.proarea' => 'エリア名',
         ];
     }
 
@@ -238,7 +229,7 @@ class UpdateRequest extends FormRequest
     public function getSearchWords(int $city_id, array $cities): string
     {
         $result = parent::all()['spot']['name'];
-        $result .= $cities[$city_id];
+        if($city_id !== 1) $result .= $cities[$city_id];
         $result .= parent::all()['spot']['address'];
 
         return $result;

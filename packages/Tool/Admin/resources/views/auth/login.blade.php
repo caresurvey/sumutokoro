@@ -38,7 +38,7 @@
           </div>
 
           <div class="text-center mb-10">
-            <input type="submit" name="submit" value="管理画面ログイン"
+            <input type="submit" name="submit" id="LoginSubmit" value="管理画面ログイン"
                    class="btn btn-wider px-12 rounded-full btn-hover">
           </div>
 

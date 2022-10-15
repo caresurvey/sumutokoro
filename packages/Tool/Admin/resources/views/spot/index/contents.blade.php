@@ -57,7 +57,7 @@
         <input type="hidden" name="search[simple]" value="1">
       </form>
     </div>
-    <div class="tooltip tooltip-left link link-hover link-primary" data-tip="事業所追加パネルを表示">
+    <div class="tooltip tooltip-left link link-hover link-primary" id="SpotAddBtn" data-tip="事業所追加パネルを表示">
       <label for="add-modal-open" class="btn modal-button rounded-full btn-sm"><i
                 class="fa-solid fa-circle-plus mr-2"></i>追加</label>
     </div>
@@ -113,7 +113,7 @@
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/spot/{{$value['id']}}/edit"
                  class="tooltip link link-hover link-primary"
-                 data-tip="クリックで{{$value['name']}}のデータを編集">{{$value['name']}}</a><br>
+                 data-tip="クリックで{{$value['name']}}のデータを編集" id="SpotName{{$value['id']}}">{{$value['name']}}</a><br>
               <span class="text-xs">{{$data['data_prefectures'][$value['prefecture_id']]}}{{$data['data_cities'][$value['city_id']]}}{{$value['address']}}</span>
             </td>
             <td class="py-2 px-2">
@@ -129,7 +129,7 @@
               </div>
               <div class="tooltip" data-tip="公開ページへ">
                 <a href="{{asset('/')}}spot/{{$value['id']}}" class="text-accent hover:text-accent_light"
-                   target="_blank"><i
+                   target="_blank" id="SpotMore{{$value['id']}}"><i
                           class="fa-solid fa-window-maximize"></i></a>
               </div>
             </td>

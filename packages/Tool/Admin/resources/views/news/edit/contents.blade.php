@@ -5,7 +5,7 @@
   @include('admin::news.edit.breadcrumb')
   <div class="container mx-auto px-5 mb-2 py-4 sm:px-5 sm:py-5 md:mb-8">
     <h1 class="text-lg text-center leading-7 font-bold sm:text-xl md:text-2xl md:leading-10 lg:text-3xl">
-      お知らせ変更
+      お知らせ編集
     </h1>
     <div class="py-2 text-center tsm md:text-md xl:text-lg md:leading-8">
       <p>
@@ -33,7 +33,7 @@
               <input type="hidden" name="news[display]" value="0">
               <div class="form-control mr-6">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="news[display]" value="1" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="news[display]" value="1" id="NewsDisplay" class="toggle toggle-primary mr-2"
                           {{ (int)old('news.display', $data['news']['display']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">一般公開</span>
                 </label>
@@ -41,7 +41,7 @@
               <input type="hidden" name="news[preview]" value="0">
               <div class="form-control mr-4">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="news[preview]" value="1" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="news[preview]" value="1" id="NewsPreview" class="toggle toggle-primary mr-2"
                           {{ (int)old('news.preview', $data['news']['preview']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">プレビュー</span>
                 </label>
@@ -112,7 +112,7 @@
           z-200
           ">
       <input type="submit" value="お知らせを変更する"
-             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
+             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider" id="NewsSubmit">
     </div>
     <input type="hidden" id="NewsId" name="news[id]" value="{{$data['news']['id']}}">
   </form>

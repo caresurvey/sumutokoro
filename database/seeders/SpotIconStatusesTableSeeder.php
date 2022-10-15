@@ -15,7 +15,7 @@ class SpotIconStatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i<=100; $i++) {
+        for ($i=1; $i<=20; $i++) {
             $item=2;
             for ($status=1; $status<=6; $status++) {
                 DB::table('spot_icon_statuses')->insert([

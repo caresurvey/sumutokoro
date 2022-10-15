@@ -7,7 +7,7 @@
                      placeholder="「{{$model}}_{{$dataId}}」と入力して下さい"
                      class="mr-2 appearance-none border border-gray-200 w-2/4 text-ms block text-gray-700 placeholder-gray-300 rounded p-2 leading-normal focus:outline-primary focus:bg-white @if($hasError || $hasConfirmationError) bg-red-100 text-red-700 placeholder-red-300 border-red-500 @else border-gray-200 bg-gray-100 @endif">
               <button class="btn btn-sm bg-red-800 text-white border-red-800 border-none rounded px-4 py-2 cursor-pointer hover:bg-red-600"><i
-                        class="fa-solid fa-trash-can mr-2"></i>削除する
+                        class="fa-solid fa-trash-can mr-2" id="DeleteSubmit"></i>削除する
               </button>
             </div>
             @if($hasError)

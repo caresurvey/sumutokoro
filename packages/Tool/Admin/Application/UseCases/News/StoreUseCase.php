@@ -26,6 +26,6 @@ class StoreUseCase
         $this->request->session()->regenerateToken();
 
         // 保存して結果を返す
-        return $this->newsRepo->store($this->request->all(), $auth);
+        return $this->newsRepo->store($this->request->data(), $auth);
     }
 }

@@ -22,14 +22,20 @@ class EloquentUser extends AppEloquent
         'enabled',
         'name',
         'kana',
+        'zip1',
+        'zip2',
         'address',
         'tel1',
         'tel2',
         'tel3',
         'fax',
         'email',
+        'company',
         'prefecture_id',
         'city_id',
+        'job_type_id',
+        'user_type_id',
+        'msg',
         'reorder'
     ];
 

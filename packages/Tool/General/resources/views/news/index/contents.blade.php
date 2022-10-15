@@ -32,7 +32,7 @@
             </p>
           </div>
           <p class="text-center">
-            <a href="{{asset('/')}}news/{{$news['id']}}" class="btn btn-primary">この記事の続きを見る</a>
+            <a href="{{asset('/')}}news/{{$news['id']}}" class="btn btn-primary btn-more">この記事の続きを見る</a>
           </p>
         </div>
       </section>

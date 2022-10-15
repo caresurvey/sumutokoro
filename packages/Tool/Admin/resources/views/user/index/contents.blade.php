@@ -19,7 +19,7 @@
   @include('common::form.errors')
 
   <div class="flex justify-end pb-4">
-    <div class="tooltip tooltip-left link link-hover link-primary" data-tip="ユーザー追加パネルを表示">
+    <div class="tooltip tooltip-left link link-hover link-primary" id="UserAddBtn" data-tip="ユーザー追加パネルを表示">
       <label for="add-modal-open" class="btn modal-button rounded-full btn-sm"><i
                 class="fa-solid fa-circle-plus mr-2"></i>追加</label>
     </div>
@@ -68,7 +68,7 @@
             <td class="py-2 px-2">{{$value['created_at']->format("y/m/d H:m")}}</td>
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/user/{{$value['id']}}/edit"
-                 class="tooltip link link-hover link-primary" data-tip="クリックで{{$value['name']}}のデータを編集">{{$value['name']}}</a><br>
+                 class="tooltip link link-hover link-primary" data-tip="クリックで{{$value['name']}}のデータを編集" id="UserName{{$value['id']}}">{{$value['name']}}</a><br>
             </td>
             <td>
               @if($value['is_authenticated'] === 1)
@@ -80,7 +80,7 @@
             <td>
               <div class="tooltip" data-tip="公開ページへ">
                 <a href="{{asset('/')}}news/detail/{{$value['id']}}" class="text-accent hover:text-accent_light"
-                   target="_blank"><i class="fa-solid fa-window-maximize"></i></a>
+                   target="_blank" id="UserMore{{$value['id']}}"><i class="fa-solid fa-window-maximize"></i></a>
               </div>
             </td>
           </tr>

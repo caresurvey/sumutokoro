@@ -5,7 +5,7 @@
   @include('admin::company.edit.breadcrumb')
   <div class="container mx-auto px-5 mb-2 py-4 sm:px-5 sm:py-5 md:mb-8">
     <h1 class="text-lg text-center leading-7 font-bold sm:text-xl md:text-2xl md:leading-10 lg:text-3xl">
-      法人情報変更
+      法人情報編集
     </h1>
     <div class="py-2 text-center tsm md:text-md xl:text-lg md:leading-8">
       <p>
@@ -34,6 +34,7 @@
               <div class="form-control mr-6">
                 <label class="label cursor-pointer">
                   <input type="checkbox" name="company[display]" value="1" class="toggle toggle-primary mr-2"
+                  id="CompanyDisplay"
                           {{ (int)old('company.display', $data['company']['display']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">一般公開</span>
                 </label>
@@ -42,6 +43,7 @@
               <div class="form-control mr-4">
                 <label class="label cursor-pointer">
                   <input type="checkbox" name="company[preview]" value="1" class="toggle toggle-primary mr-2"
+                  id="CompanyPreview"
                           {{ (int)old('company.preview', $data['company']['preview']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">プレビュー</span>
                 </label>
@@ -191,15 +193,19 @@
               <select name="company[prefecture_id]" id="CompanyPrefecture"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-l-md rounded-r-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['prefectures'] as $key => $prefecture)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('company.prefecture_id', $data['company']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="CompanyPrefecture{{$key}}"
+                    @if($key === (int)old('company.prefecture_id', $data['company']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
                 @endforeach
               </select>
               <select name="company[city_id]" id="CompanyCity"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-r-md rounded-l-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['cities'] as $key => $city)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('company.city_id', $data['company']['city_id'])) selected @endif>{{$city}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="CompanyCity{{$key}}"
+                    @if($key === (int)old('company.city_id', $data['company']['city_id'])) selected @endif>{{$city}}</option>
                 @endforeach
               </select>
             </div>
@@ -291,7 +297,7 @@
             @include('common::form.text', [
               'name' => 'company[staff]',
               'id' => 'CompanyStaff',
-              'value' => old('company.president', $data['company']['president']),
+              'value' => old('company.president', $data['company']['staff']),
               'placeholder' => 'スタッフ数を入れてください',
               'ps' => '例：3人',
               'hasError' => $errors->has('company.staff'),
@@ -327,7 +333,7 @@
           z-40
           ">
       <input type="submit" value="法人を変更する"
-             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
+             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider" id="CompanySubmit">
     </div>
     <input type="hidden" id="CompanyId" name="company[id]" value="{{$data['company']['id']}}">
   </form>

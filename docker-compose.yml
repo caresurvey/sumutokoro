@@ -75,6 +75,7 @@ services:
     container_name: selenium
     image: seleniarm/standalone-chromium
     platform: 'linux/arm64'
+    shm_size: '2gb'
     ports:
       - 11064:4444
       - 11065:5900

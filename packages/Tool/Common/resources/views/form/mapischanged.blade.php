@@ -1,4 +1,4 @@
-<div class="mb-2">
+<div class="mb-2" id="MapChanged">
   @if(config('myapp.default_lat') !== $lat)
   <span class="badge badge-sm">地図設定済み</span>
   @else

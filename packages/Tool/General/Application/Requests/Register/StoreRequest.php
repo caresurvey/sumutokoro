@@ -36,6 +36,7 @@ class StoreRequest extends FormRequest
             'user.user_type_id' => 'required|numeric',
             'user.job_type_id' => 'required|numeric',
             'user.msg' => 'present|string',
+            'user.privacy' => 'required|numeric|between:0,1',
         ];
     }
 
@@ -58,6 +59,9 @@ class StoreRequest extends FormRequest
             'user.tel1.between' => ':attributeの桁数が合いません',
             'user.tel2.between' => ':attributeの桁数が合いません',
             'user.tel3.between' => ':attributeの桁数が合いません',
+            'user.tel1.digits_between' => ':attributeを正しく入力してください',
+            'user.tel2.digits_between' => ':attributeを正しく入力してください',
+            'user.tel3.digits_between' => ':attributeを正しく入力してください',
             'user.email.required' => ':attributeは必須です',
             'user.email.email' => ':attributeの形式がちがいます',
             'user.password.required' => ':attributeは必須です',
@@ -68,6 +72,7 @@ class StoreRequest extends FormRequest
             'user.user_type_id.required' => ':attributeは必須です',
             'user.job_type_id.required' => ':attributeは必須です',
             'user.msg.present' => ':attributeは必須です',
+            'user.privacy.required' => ':attributeの同意は必須です',
         ];
     }
 
@@ -91,6 +96,7 @@ class StoreRequest extends FormRequest
             'user.user_type_id' => 'ユーザータイプ',
             'user.job_type_id' => '職種',
             'user.msg' => '備考',
+            'user.privacy' => 'プライバシーポリシー',
         ];
     }
 

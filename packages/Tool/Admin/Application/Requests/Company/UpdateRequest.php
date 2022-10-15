@@ -135,7 +135,7 @@ class UpdateRequest extends FormRequest
     public function getSearchWords(int $city_id, array $cities): string
     {
         $result = parent::all()['company']['name'];
-        $result .= $cities[$city_id];
+        if($city_id !== 1) $result .= $cities[$city_id];
         $result .= parent::all()['company']['address'];
 
         return $result;

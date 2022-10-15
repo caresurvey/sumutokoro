@@ -59,7 +59,7 @@ class EloquentResetPasswordRepository implements ResetPasswordRepository
 
                 // リセットデータを取得
                 $reset = $this->eloquentResetPassword->where('token', $token)->first();
-
+                
                 // データが無ければ例外を投げる
                 if (!$reset) throw new GeneralNotFoundException;
 

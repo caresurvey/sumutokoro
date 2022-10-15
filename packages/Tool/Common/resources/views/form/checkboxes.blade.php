@@ -11,5 +11,6 @@
   <input type="checkbox" @if(!empty($selected[$key])) checked="checked" @endif class="checkbox checkbox-primary" id="{{$id}}{{$key}}" name="spot[books][]" value="{{$key}}">
   <label for="{{$id}}{{$key}}">{{$label}}</label>
 </div>
+
 @endforeach
 

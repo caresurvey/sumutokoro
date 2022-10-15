@@ -15,7 +15,6 @@
 <script src="{{asset('/')}}js/common/jquery-3.6.0.min.js"></script>
 <script src="{{asset('/')}}js/common/toastr.min.js"></script>
 @include('user::common.toastr.save')
-@include('user::layouts.extends_script')
 @vite('resources/js/app.js')
 <input type="hidden" name="controllerName" value="{{ $controllerName }}">
 <input type="hidden" name="actionName" value="{{ $actionName }}">

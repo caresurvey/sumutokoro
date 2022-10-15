@@ -193,7 +193,7 @@
           <div class="flex items-center justify-center mb-4">
             <input {{ old('contact.privacy') === '1' ? 'checked' : '' }} value="1" id="ContactPrivacy" type="checkbox" name="contact[privacy]"
                    class="checkbox radio-primary rounded-full checkbox-sm sm:checkbox-md @if($errors->has('contact.reply')) border-red-700 @endif">
-            <label for="ContactPrivacy" class="ml-2 text-sm sm:text-base cursor-pointer hover:text-primary">同意する</label>
+            <label for="ContactPrivacy" class="ml-2 text-sm sm:text-base cursor-pointer hover:text-primary">プライバシーポリシーに同意する</label>
             @if($errors->has('contact.privacy'))
               <div class="flex items-center justify-center text-red-700 text-sm ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
@@ -222,7 +222,7 @@
 
         <div class="mb-4 text-center">
           <input type="submit" value="上記の内容でお問い合わせをする"
-                 class="btn btn-primary rounded-full text-base px-12">
+                 class="btn btn-primary rounded-full text-base px-12" id="ContactSubmit">
         </div>
       </div>
     </section>

@@ -46,8 +46,8 @@
           ])
       </div>
       <div class="modal-action">
-        <label for="add-modal-open" class="modal-cancel-btn btn btn-sm bg-gray-200 border-gray-300 text-gray-400 rounded-full hover:text-gray-600 hover:border-gray-400 hover:bg-gray-300 hover:text-white">キャンセル</label>
-        <button class="btn btn-sm rounded-full">追加する</button>
+        <label for="add-modal-open" class="modal-cancel-btn btn btn-sm bg-gray-200 border-gray-300 text-gray-400 rounded-full hover:text-gray-600 hover:border-gray-400 hover:bg-gray-300 hover:text-white" id="AddCancelBtn">キャンセル</label>
+        <button class="btn btn-sm rounded-full" id="UserAddSubmit">追加する</button>
       </div>
     </form>
   </div>

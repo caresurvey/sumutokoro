@@ -6,8 +6,8 @@
       <ul class="grid gap-x-8 sm:gap-x-12 sm:grid-cols-2">
         @foreach($search['categories'] as $category)
           <li class="text-left tracking-wide text-sm sm:text-base">
-            <a href="{{asset('/')}}search/?category={{$category['id']}}"
-               class="link-primary w-full inline-block rounded-full hover:bg-primary hover:text-white py-1 px-4 sm:py-2">{{$category['name']}}</a>
+            <a href="{{asset('/')}}spot?search[category]={{$category['id']}}&search[simple]=1"
+               class="link-primary w-full inline-block rounded-full hover:bg-primary hover:text-white py-1 px-4 sm:py-2" id="CategoryId{{$category['id']}}">{{$category['name']}}</a>
           </li>
         @endforeach
       </ul>
@@ -15,7 +15,3 @@
 
   </div>
 </section>
-
-
-
-

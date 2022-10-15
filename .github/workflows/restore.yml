@@ -1,0 +1,61 @@
+name: 本番環境リストア（最新のバックアップを元にをデータをリストアする）
+
+on:
+  push:
+    branches:
+      - restore
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 下準備
+        run: mkdir -p ~/.ssh
+
+      - name: docker-compose準備・起動
+        run: |
+          rm docker-compose.yml
+          cp system/docker/backup/x86/docker-compose.yml ./
+          docker-compose up -d
+
+      - name: composerインストール（backup用のcomposer.jsonに切り替えて実行）
+        run: |
+          rm composer.json
+          cp system/docker/backup/composer.json ./
+          docker-compose exec -T php sh -c "composer install"
+
+      - name: 本番サーバーにSSH接続するためのkeyとknown_hostsの設定
+        run: |
+          echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
+          echo "${{ secrets.SSH_KEY_BACKUP }}" > ~/.ssh/backup_secretkey
+          chmod 600 ~/.ssh/secretkey
+          chmod 600 ~/.ssh/backup_secretkey
+          ssh-keyscan ${{ secrets.SSH_HOST_PRODUCTION }} >> ~/.ssh/known_hosts
+          ssh-keyscan ${{ secrets.SSH_HOST_BACKUP }} >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
+
+      #- name: 転送用のディレクトリを作成
+      #  run: |
+      #    mkdir backup
+
+      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+      #  uses: mxschmitt/action-tmate@v1
+
+      #- name: deployerのファイルを配置
+      #  run: |
+      #    cp system/deployer/backup.php ./deploy.php
+
+      #- name: 本番サーバーでバックアップを行う（deployer7系／deploy.php）
+      #  run: ./vendor/bin/dep backup production -vvvv
+
+      #- name: 本番サーバーからバックアップデータをダウンロードする
+      #  run: scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/current/backup.zip ./backup/backup.zip
+
+
+

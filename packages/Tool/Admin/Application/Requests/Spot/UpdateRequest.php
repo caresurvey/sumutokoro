@@ -28,12 +28,13 @@ class UpdateRequest extends FormRequest
             'spot.display' => 'required|numeric|between:0,1',
             'spot.preview' => 'required|numeric|between:0,1',
             'spot.name' => 'required|string',
-            'spot.zip1' => 'present|digits:3',
-            'spot.zip2' => 'present|digits:4',
-            'spot.address' => 'present|string',
             'spot.tel1' => 'present|digits_between:2,5',
             'spot.tel2' => 'present|digits_between:2,5',
             'spot.tel3' => 'present|digits_between:2,5',
+            'spot.fax' => 'present|string',
+            'spot.zip1' => 'present|digits:3',
+            'spot.zip2' => 'present|digits:4',
+            'spot.address' => 'present|string',
             'spot.vacancy' => 'required|numeric|between:1,5',
             'spot.document' => 'required|numeric|between:1,5',
             'spot.viewing' => 'required|numeric|between:1,5',
@@ -248,7 +249,7 @@ class UpdateRequest extends FormRequest
     public function getSearchWords(int $city_id, array $cities): string
     {
         $result = parent::all()['spot']['name'];
-        $result .= $cities[$city_id];
+        if($city_id !== 1) $result .= $cities[$city_id];
         $result .= parent::all()['spot']['address'];
 
         return $result;

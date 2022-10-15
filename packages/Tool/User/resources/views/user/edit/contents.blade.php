@@ -81,7 +81,7 @@
               ])
           </td>
         </tr>
-        <tr class="bg-gray-50 border-b">
+        <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
             編集可能な事業所
           </th>
@@ -121,7 +121,7 @@
         </tr>
         <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
-            事業所郵便番号
+            郵便番号
           </th>
           <td class="py-4 px-4 w-4/5">
             <div class="w-2/5">
@@ -143,7 +143,7 @@
             </div>
           </td>
         </tr>
-        <tr class="bg-gray-50 border-b">
+        <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
             住所
           </th>
@@ -153,15 +153,19 @@
               <select name="user[prefecture_id]" id="UserPrefecture"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-l-md rounded-r-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['prefectures'] as $key => $prefecture)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('user.prefecture_id', $data['user']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="Prefecture{{$key}}"
+                    @if($key === (int)old('user.prefecture_id', $data['user']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
                 @endforeach
               </select>
-              <select name="user[city_id]" id="UserCityId"
+              <select name="user[city_id]" id="UserCity"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-r-md rounded-l-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['cities'] as $key => $city)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('user.city_id', $data['user']['city_id'])) selected @endif>{{$city}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="City{{$key}}"
+                    @if($key === (int)old('user.city_id', $data['user']['city_id'])) selected @endif>{{$city}}</option>
                 @endforeach
               </select>
             </div>
@@ -264,11 +268,13 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             <div class="relative">
-              <select name="user[job_type_id]" id="SpotCategory"
+              <select name="user[job_type_id]" id="UserJobType"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['job_types'] as $key => $job_type)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('user.job_type_id', $data['user']['job_type_id'])) selected @endif>{{$job_type}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="UserJobType{{$key}}"
+                    @if($key === (int)old('user.job_type_id', $data['user']['job_type_id'])) selected @endif>{{$job_type}}</option>
                 @endforeach
               </select>
             </div>
@@ -280,11 +286,13 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             <div class="relative">
-              <select name="user[user_type_id]" id="SpotCategory"
+              <select name="user[user_type_id]" id="UserUserType"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['user_types'] as $key => $user_type)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('user.user_type_id', $data['user']['user_type_id'])) selected @endif>{{$user_type}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="UserUserType{{$key}}"
+                    @if($key === (int)old('user.user_type_id', $data['user']['user_type_id'])) selected @endif>{{$user_type}}</option>
                 @endforeach
               </select>
             </div>
@@ -317,7 +325,7 @@
           text-white
           z-200
           ">
-      <input type="submit" value="ユーザー情報を変更する"
+      <input type="submit" value="ユーザー情報を変更する" id="UserSubmit" 
              class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
     </div>
     <input type="hidden" id="UserId" name="user[id]" value="{{$data['user']['id']}}">

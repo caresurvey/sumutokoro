@@ -31,7 +31,7 @@
                   <div class="text-sm text-gray-600 mb-2"><i class="fa-solid fa-key mr-2"></i>新しいパスワードを入力してください</div>
                   @include('common::form.password', [
                     'name' => 'password',
-                    'id' => 'Password',
+                    'id' => 'ResetPassword',
                     'value' => old('password'),
                     'placeholder' => '新しいパスワードを入れてください',
                     'ps' => '※ 半角英数字8文字以上で入力してください',
@@ -44,7 +44,7 @@
                   <div class="text-sm text-gray-600 mb-2"><i class="fa-solid fa-key mr-2"></i>上記のパスワードを再入力してください</div>
                   @include('common::form.password', [
                     'name' => 'password_confirm',
-                    'id' => 'PasswordConfirm',
+                    'id' => 'ResetPasswordConfirm',
                     'value' => old('password_confirm'),
                     'placeholder' => '上記のパスワードを再入力してください',
                     'ps' => '上記のパスワードをコピペせずに再入力してください',
@@ -55,7 +55,7 @@
 
                 <div class="text-center mb-5">
                   <input type="submit" value="上記のパスワードでリセットする"
-                         class="btn btn-primary rounded-full text-base px-12">
+                         class="btn btn-primary rounded-full text-base px-12" id="ResetPasswordSubmit">
                 </div>
 
 
@@ -78,8 +78,8 @@
                 </div>
               @endproduction
             </div>
-            <input type="hidden" name="token" value="{{$token}}">
-            <input type="hidden" name="id" value="{{$user['id']}}">
+            <input type="hidden" name="token" value="{{$token}}" id="ResetPasswordToken">
+            <input type="hidden" name="id" value="{{$user['id']}}" id="ResetPasswordId">
           </form>
         </div>
       </div>

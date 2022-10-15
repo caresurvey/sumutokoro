@@ -45,7 +45,7 @@ class EloquentSpot extends AppEloquent
         'lat',
         'lng',
         'search_words',
-        'area_branch_id',
+        'area_center_id',
         'category_id',
         'city_id',
         'company_id',

@@ -42,7 +42,7 @@
           <div class="shadow bg-white rounded p-4 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-8">
             <h2 class="font-bold text-md w-full mb-2 sm:mb-4 sm:text-lg md:mb-6 md:text-xl lg:text-2xl">
               <a href="{{asset('/')}}spot/{{$spot['id']}}"
-                 class="link link-hover link-primary">{{$spot['name']}}</a>
+                 class="link link-hover link-primary spotName" id="SpotNameGeneral{{$spot['id']}}">{{$spot['name']}}</a>
             </h2>
 
             <!-- PC表示ここから -->
@@ -50,13 +50,13 @@
               <div class="flex border-b border-gray-200 text-sm mb-3 pb-3 sm:mb-3 sm:pb-3">
                 <div class="mr-4 w-2/5">
                   @if(!empty($spot['spot_main_image']['name']))
-                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90">
+                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90 spotPhoto">
                       <img src="{{asset('/')}}photos/spots/{{$spot['spot_main_image']['name']}}/{{$spot['spot_main_image']['name']}}_l.jpg"
-                           alt="{{$spot['name']}}" class="rounded shadow"></a>
+                           alt="{{$spot['name']}}" class="rounded shadow spotPhoto" id="SpotPhotoGeneral{{$spot['id']}}"></a>
                   @else
-                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90">
+                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90 spotPhoto">
                       <img src="{{asset('/')}}img/general/base/nophoto.jpg"
-                           alt="{{$spot['name']}}" class="rounded shadow"></a>
+                           alt="{{$spot['name']}}" class="rounded shadow spotPhoto" id="SpotPhotoGeneral{$spot['id']}}"></a>
                   @endif
                 </div>
                 <div class="w-3/5">
@@ -113,11 +113,11 @@
               <div class="flex text-sm mb-3 pb-3 sm:mb-3 sm:pb-3">
                 <div class="mr-4 w-2/5">
                   @if(!empty($spot['spot_main_image']['name']))
-                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90">
+                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90 spotPhoto" id="SpotPhotoGeneralMobile{{$spot['id']}}">
                       <img src="{{asset('/')}}photos/spots/{{$spot['spot_main_image']['name']}}/{{$spot['spot_main_image']['name']}}_l.jpg"
                            alt="{{$spot['name']}}" class="rounded shadow"></a>
                   @else
-                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90">
+                    <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90 spotPhoto" id="SpotPhotoGeneralMobile{{$spot['id']}}">
                       <img src="{{asset('/')}}img/general/base/nophoto.jpg"
                            alt="{{$spot['name']}}" class="rounded shadow"></a>
                   @endif
@@ -189,18 +189,18 @@
                 @if(!empty($spot['spot_main_image']['name']))
                   <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90">
                     <img src="{{asset('/')}}photos/spots/{{$spot['spot_main_image']['name']}}/{{$spot['spot_main_image']['name']}}_l.jpg"
-                         alt="{{$spot['name']}}" class="rounded shadow"></a>
+                         alt="{{$spot['name']}}" class="rounded shadow spotPhoto" id="SpotPhotoSimple{{$spot['id']}}"></a>
                 @else
                   <a href="{{asset('/')}}spot/{{$spot['id']}}" class="hover:opacity-90">
                     <img src="{{asset('/')}}img/general/base/nophoto.jpg"
-                         alt="{{$spot['name']}}" class="rounded shadow"></a>
+                         alt="{{$spot['name']}}" class="rounded shadow spotPhoto" id="SpotPhotoSimple{{$spot['id']}}"></a>
                 @endif      </div>
               <div class="w-4/5">
                 <div class="flex mb-2">
                   <div>
                     <h2 class="text-lg">
                       <a href="{{asset('/')}}spot/{{$spot['id']}}"
-                         class="text-accent hover:text-accent_light font-bold hover:underline">{{$spot['name']}}</a>
+                         class="text-accent hover:text-accent_light font-bold hover:underline spotName" id="SpotNameSimple{{$spot['id']}}">{{$spot['name']}}</a>
                     </h2>
                     <a href="tel:{{$spot['tel1']}}{{$spot['tel2']}}{{$spot['tel3']}}"
                        class="text-accent hover:text-accent_light hover:underline">{{$spot['tel1']}}-{{$spot['tel2']}}
@@ -223,7 +223,7 @@
           @foreach($data['spots'] as $spot)
             <div class="p-2 border-b border-gray-200">
                 <a href="{{asset('/')}}spot/{{$spot['id']}}"
-                   class="text-accent hover:text-accent_light hover:underline">{{$spot['name']}}</a> ／
+                   class="text-accent hover:text-accent_light hover:underline" id="SpotNameText{{$spot['id']}}">{{$spot['name']}}</a> ／
                 <a href="tel:{{$spot['tel1']}}{{$spot['tel2']}}{{$spot['tel3']}}"
                    class="text-accent hover:text-accent_light hover:underline">{{$spot['tel1']}}-{{$spot['tel2']}}
                   -{{$spot['tel3']}}</a> ／

@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CompanyUserTableSeeder::class);
         $this->call(SpotUserTableSeeder::class);
+        $this->call(ResetPasswordsTableSeeder::class);
         $this->call(LogsTableSeeder::class);
 
     }

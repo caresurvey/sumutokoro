@@ -34,6 +34,7 @@
               <div class="form-control mr-6">
                 <label class="label cursor-pointer">
                   <input type="checkbox" name="company[display]" value="1" class="toggle toggle-primary mr-2"
+                  id="CompanyDisplay"
                           {{ (int)old('company.display', $data['company']['display']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">一般公開</span>
                 </label>
@@ -42,6 +43,7 @@
               <div class="form-control mr-4">
                 <label class="label cursor-pointer">
                   <input type="checkbox" name="company[preview]" value="1" class="toggle toggle-primary mr-2"
+                  id="CompanyPreview"
                           {{ (int)old('company.preview', $data['company']['preview']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">プレビュー</span>
                 </label>
@@ -160,6 +162,30 @@
         </tr>
         <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
+            法人郵便番号
+          </th>
+          <td class="py-4 px-4 w-4/5">
+            <div class="w-2/5">
+              @include('common::form.zip2', [
+                'name1' => 'company[zip1]',
+                'id1' => 'CompanyZip1',
+                'value1' => old('company.zip1', $data['company']['zip1']),
+                'placeholder1' => '番号1',
+                'name2' => 'company[zip2]',
+                'id2' => 'CompanyZip2',
+                'value2' => old('company.zip2', $data['company']['zip2']),
+                'placeholder2' => '番号2',
+                'ps' => '例:070-1111',
+                'hasError1' => $errors->has('company.zip1'),
+                'errors1' => $errors->get('company.zip1'),
+                'hasError2' => $errors->has('company.zip2'),
+                'errors2' => $errors->get('company.zip2'),
+                ])
+            </div>
+          </td>
+        </tr>
+        <tr class="bg-white border-b">
+          <th class="py-4 px-4 w-1/5">
             法人住所
           </th>
           <td class="py-4 px-4 w-4/5">
@@ -167,15 +193,19 @@
               <select name="company[prefecture_id]" id="CompanyPrefecture"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-l-md rounded-r-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['prefectures'] as $key => $prefecture)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('company.prefecture_id', $data['company']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="CompanyPrefecture{{$key}}"
+                    @if($key === (int)old('company.prefecture_id', $data['company']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
                 @endforeach
               </select>
               <select name="company[city_id]" id="CompanyCity"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-r-md rounded-l-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['cities'] as $key => $city)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('company.city_id', $data['company']['city_id'])) selected @endif>{{$city}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="CompanyCity{{$key}}"
+                    @if($key === (int)old('company.city_id', $data['company']['city_id'])) selected @endif>{{$city}}</option>
                 @endforeach
               </select>
             </div>
@@ -267,7 +297,7 @@
             @include('common::form.text', [
               'name' => 'company[staff]',
               'id' => 'CompanyStaff',
-              'value' => old('company.president', $data['company']['president']),
+              'value' => old('company.president', $data['company']['staff']),
               'placeholder' => 'スタッフ数を入れてください',
               'ps' => '例：3人',
               'hasError' => $errors->has('company.staff'),
@@ -303,7 +333,7 @@
           z-40
           ">
       <input type="submit" value="法人を変更する"
-             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
+             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider" id="CompanySubmit">
     </div>
     <input type="hidden" id="CompanyId" name="company[id]" value="{{$data['company']['id']}}">
   </form>

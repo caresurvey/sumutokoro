@@ -66,19 +66,19 @@
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}user/spot/{{$value['id']}}/edit"
                  class="tooltip link link-hover link-primary"
+                 id="SpotName{{$value['id']}}"
                  data-tip="クリックで{{$value['name']}}のデータを編集">{{$value['name']}}</a><br>
               <span class="text-xs">{{$data['prefectures'][$value['prefecture_id']]}}{{$value['address']}}</span>
             </td>
             <td class="py-2 px-2">
-              @include('admin::common.list.image', ['spot_id' => $value['id'], 'name' => $value['spot_main_image']['name']])
+              @include('user::common.list.image', ['spot_id' => $value['id'], 'name' => $value['spot_main_image']['name']])
             </td>
-            <td class="py-2 px-2">
-              <div class="tooltip" data-tip="冊子確認">
-                <a href="{{asset('/')}}user/spot/{{$value['id']}}/edit" class="text-accent hover:text-accent_light mr-1"><i
-                          class="fa-solid fa-book"></i></a>
-              </div>
+            <td class="py-2 px-2 text-center">
               <div class="tooltip" data-tip="公開ページへ">
-                <a href="{{asset('/')}}spot/{{$value['id']}}" class="text-accent hover:text-accent_light" target="_blank"><i
+                <a href="{{asset('/')}}spot/{{$value['id']}}" 
+                class="text-accent hover:text-accent_light" 
+                id="SpotForDetail{{$value['id']}}" 
+                target="_blank"><i
                           class="fa-solid fa-window-maximize"></i></a>
               </div>
             </td>

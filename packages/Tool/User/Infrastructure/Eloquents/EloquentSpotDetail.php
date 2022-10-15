@@ -22,6 +22,7 @@ class EloquentSpotDetail extends AppEloquent
         'build_start',
         'open_start',
         'website',
+        'introducer',
         'feature',
         'phone',
         'reserved_phone',

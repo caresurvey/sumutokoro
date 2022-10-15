@@ -36,7 +36,7 @@ class SendUseCase
         if($checkModel->checkTestMode()) {
             // 完了画面のデータ作成
             $data['title'] = 'テストモード完了';
-            $data['message'] = 'テストモードでの処理を行いました。<br>フォームは無事に作動しています。<br>（保存もメール送信もされません）';
+            $data['message'] = 'テストモードでの処理を行いました。フォームは無事に作動しています。<br>（保存もメール送信もされません）';
 
             // Responseを返す
             return $this->responseRepo->makeModel(true, $data['title'], $data['message'], $data);
@@ -50,7 +50,7 @@ class SendUseCase
 
         // 完了画面のデータ作成
         $data['title'] = 'お問い合わせ完了';
-        $data['message'] = 'ありがとうございました、お問い合わせが完了致しました。<br>ご返答いたしますので、少々お待ちくださいませ。';
+        $data['message'] = 'ありがとうございました、お問い合わせが完了致しました。ご返答いたしますので、少々お待ちくださいませ。';
 
         // 管理者用へメール送信
         $mailContactForAdmin = $this->contactRepo->makeMailContactForAdmin($this->request->all()['contact']);

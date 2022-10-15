@@ -37,13 +37,13 @@
 
           <div class="text-center mb-10">
             <input type="submit" name="submit" value="ユーザーページログイン"
-                   class="btn btn-wider px-12 rounded-full btn-hover">
+                   class="btn btn-wider px-12 rounded-full btn-hover" id="LoginSubmit">
           </div>
 
           <p class="text-center text-sm text-gray-600">
-            <a href="{{asset('/')}}register" class="text-accent hover:text-accent_light cursor-pointer">ユーザー登録</a>
+            <a href="{{asset('/')}}register" class="text-accent hover:text-accent_light cursor-pointer" id="RegisterLink">ユーザー登録</a>
             ｜
-            <a href="{{asset('/')}}password/email" class="text-accent hover:text-accent_light cursor-pointer">パスワードを忘れた方はこちら</a>
+            <a href="{{asset('/')}}password/email" class="text-accent hover:text-accent_light cursor-pointer" id="ForgetPasswordLink">パスワードを忘れた方はこちら</a>
           </p>
         </div>
         <div class="text-center">

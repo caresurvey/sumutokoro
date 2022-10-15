@@ -15,14 +15,14 @@ class SpotDetailsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             DB::table('spot_details')->insert([
               'id' => $i,
               'kana' => '事業所ふりがな' . $i,
               'subname' => '事業所サブ名' . $i,
               'email' => 'test' . $i . '@test.co.jp',
               'feature' => '特徴' . $i,
-              'rooms' => $i .'畳',
+              'rooms' => $i .'室',
               'staff' => 'スタッフ' . $i,
               'staffs' => 'スタッフ' . $i,
               'staff_age' => '平均' . $i .'歳',

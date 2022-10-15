@@ -55,12 +55,15 @@
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}user/company/{{$value['id']}}/edit"
                  class="tooltip link link-hover link-primary"
+                 id="CompanyName{{$value['id']}}"
                  data-tip="クリックで{{$value['name']}}のデータを編集">{{$value['name']}}</a>
             </td>
             <td class="py-2 px-2">
               <div class="tooltip sortable-link" data-tip="公開ページを開く">
                 <a href="{{asset('/')}}company/{{$value['id']}}"
-                   class="text-accent hover:text-accent_light" target="_blank"><i
+                   class="text-accent hover:text-accent_light"
+                   id="CompanyForDetail{{$value['id']}}" 
+                   target="_blank"><i
                           class="fa-solid fa-window-maximize"></i></a>
               </div>
             </td>

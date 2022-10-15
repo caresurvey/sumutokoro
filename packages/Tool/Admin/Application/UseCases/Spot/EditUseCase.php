@@ -74,7 +74,7 @@ class EditUseCase
         $data['trade_areas'] = $this->eloquentTradeArea->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['icons'] = $this->iconRepo->makeEditData($id, $data['spot']['spot_icon_genre_comments']);
         $data['associatedCompany'] = ['id' => $data['spot']['company']['id'], 'name' => $data['spot']['company']['name']];
-        $data['area_centers'] = $this->eloquentAreaCenter->where('city_id', $data['spot']['city_id'])->pluck('label', 'id')->toArray();
+        $data['area_centers'] = $this->eloquentAreaCenter->pluck('label', 'id')->toArray();
         (!empty($data['spot']['spot_main_image'])) ? $data['spotMainImage'] = $data['spot']['spot_main_image'] : $data['spotMainImage'] = [];
         $data['isSpotEdit'] = true;
 

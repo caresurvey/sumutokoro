@@ -61,7 +61,7 @@
           <td class="py-4 px-4 w-4/5">
             @include('common::form.text', [
               'name' => 'fax[staff]',
-              'id' => 'FaxStafff',
+              'id' => 'FaxStaff',
               'value' => '',
               'placeholder' => '先方の担当者の名前を入れてください',
               'ps' => '例：担当太郎様',
@@ -191,7 +191,7 @@
           z-40
           ">
         <input type="submit" value="FAX印刷画面を表示する"
-               class="btn btn-wider px-12 text-lg rounded-full btn-hover">
+               class="btn btn-wider px-12 text-lg rounded-full btn-hover" id="FaxSubmit">
       </div>
     </div>
   </form>

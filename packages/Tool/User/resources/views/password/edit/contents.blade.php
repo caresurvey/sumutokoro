@@ -69,7 +69,7 @@
           z-200
           ">
       <input type="submit" value="パスワードを変更する"
-             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
+             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider" id="UserSubmit">
     </div>
     <input type="hidden" id="UserId" name="user[id]" value="{{$data['user']['id']}}">
   </form>

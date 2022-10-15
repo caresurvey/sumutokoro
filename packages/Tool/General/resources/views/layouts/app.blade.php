@@ -13,18 +13,17 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', '{{config('myapp.analytics_key')}}');
   </script>
   @endproduction
   {{-- GoogleAnalyticsタグここまで --}}
-
+  <?php if ($_SERVER['HTTP_HOST'] === 'sumutokoro.com'): ?>
+  <?php endif;?>
   {{-- GoogleCAPTCHAタグここから --}}
   @production
   {!! RecaptchaV3::initJs() !!}
   @endproduction
   {{-- GoogleCAPTCHAタグここまで --}}
-
 
   <!-- fB-OG -->
   <meta property="og:type" content="website">
@@ -34,6 +33,52 @@
   <meta property="og:url" content="https://sumutokoro.com/">
   <meta property="og:image" content="https://sumutokoro.com/img/og.png">
   <meta property="fb:app_id" content="">
+
+  <!-- favicon -->
+  <meta name="msapplication-square70x70logo" content="{{asset('/')}}site-tile-70x70.png">
+  <meta name="msapplication-square150x150logo" content="{{asset('/')}}site-tile-150x150.png">
+  <meta name="msapplication-wide310x150logo" content="{{asset('/')}}site-tile-310x150.png">
+  <meta name="msapplication-square310x310logo" content="{{asset('/')}}site-tile-310x310.png">
+  <meta name="msapplication-TileColor" content="#0078d7">
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{asset('/')}}img/favicon/favicon.ico">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="{{asset('/')}}img/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="{{asset('/')}}img/favicon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{asset('/')}}img/favicon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{asset('/')}}img/favicon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('/')}}img/favicon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{asset('/')}}img/favicon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{asset('/')}}img/favicon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{asset('/')}}img/favicon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{asset('/')}}img/favicon/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{asset('/')}}img/favicon/apple-touch-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="36x36" href="{{asset('/')}}img/favicon/android-chrome-36x36.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{asset('/')}}img/favicon/android-chrome-48x48.png">
+  <link rel="icon" type="image/png" sizes="72x72" href="{{asset('/')}}img/favicon/android-chrome-72x72.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{asset('/')}}img/favicon/android-chrome-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="{{asset('/')}}img/favicon/android-chrome-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="{{asset('/')}}img/favicon/android-chrome-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="{{asset('/')}}img/favicon/android-chrome-152x152.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{asset('/')}}img/favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="{{asset('/')}}img/favicon/android-chrome-256x256.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="{{asset('/')}}img/favicon/android-chrome-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="{{asset('/')}}img/favicon/android-chrome-512x512.png">
+  <link rel="icon" type="image/png" sizes="36x36" href="{{asset('/')}}img/favicon/icon-36x36.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{asset('/')}}img/favicon/icon-48x48.png">
+  <link rel="icon" type="image/png" sizes="72x72" href="{{asset('/')}}img/favicon/icon-72x72.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{asset('/')}}img/favicon/icon-96x96.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="{{asset('/')}}img/favicon/icon-128x128.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="{{asset('/')}}img/favicon/icon-144x144.png">
+  <link rel="icon" type="image/png" sizes="152x152" href="{{asset('/')}}img/favicon/icon-152x152.png">
+  <link rel="icon" type="image/png" sizes="160x160" href="{{asset('/')}}img/favicon/icon-160x160.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{asset('/')}}img/favicon/icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="196x196" href="{{asset('/')}}img/favicon/icon-196x196.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="{{asset('/')}}img/favicon/icon-256x256.png">
+  <link rel="icon" type="image/png" sizes="384x384" href="{{asset('/')}}img/favicon/icon-384x384.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="{{asset('/')}}img/favicon/icon-512x512.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{asset('/')}}img/favicon/icon-16x16.png">
+  <link rel="icon" type="image/png" sizes="24x24" href="{{asset('/')}}img/favicon/icon-24x24.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('/')}}img/favicon/icon-32x32.png">
+  <link rel="manifest" href="{{asset('/')}}img/favicon/manifest.json">
 
   <script src="https://kit.fontawesome.com/8742cb18fb.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{asset('/')}}css/toastr.min.css">
@@ -66,7 +111,7 @@
               <div class="dropdown text-sm space-x-1">
                 <ul class="menu menu-horizontal p-0 text-xs md:text-sm">
                   <li tabindex="0" class="hidden lg:block">
-                    <a href="{{asset('/')}}search" class="font-bold">
+                    <a href="{{asset('/')}}img/search" class="font-bold">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                            stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -76,7 +121,7 @@
                     </a>
                   </li>
                   <li tabindex="1" class="hidden lg:block">
-                    <a href="{{asset('/')}}spot" class="font-bold">
+                    <a href="{{asset('/')}}img/spot" class="font-bold">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                            stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -94,16 +139,16 @@
                       </svg>
                     </a>
                     <ul class="p-2 bg-white shadow z-30">
-                      <li><a href="{{asset('/')}}">ホーム</a></li>
-                      <li><a href="{{asset('/')}}search">条件でさがす</a></li>
-                      <li><a href="{{asset('/')}}spot">一覧を見る</a></li>
-                      <li><a href="{{asset('/')}}news">お知らせ</a></li>
-                      <li><a href="{{asset('/')}}service">サービス案内</a></li>
-                      <li><a href="{{asset('/')}}qa">よくある質問</a></li>
-                      <li><a href="{{asset('/')}}contact">お問い合わせ</a></li>
-                      <li><a href="{{asset('/')}}company">運営会社</a></li>
-                      <li><a href="{{asset('/')}}privacy">プライバシーポリシー</a></li>
-                      <li><a href="{{asset('/')}}sitemap">サイトマップ</a></li>
+                      <li><a href="{{asset('/')}}img/" id="HeaderMenuHome">ホーム</a></li>
+                      <li><a href="{{asset('/')}}img/search" id="HeaderMenuSearch">条件でさがす</a></li>
+                      <li><a href="{{asset('/')}}img/spot" id="HeaderMenuSpot">一覧を見る</a></li>
+                      <li><a href="{{asset('/')}}img/news" id="HeaderMenuNews">お知らせ</a></li>
+                      <li><a href="{{asset('/')}}img/service" id="HeaderMenuService">サービス案内</a></li>
+                      <li><a href="{{asset('/')}}img/qa" id="HeaderMenuQa">よくある質問</a></li>
+                      <li><a href="{{asset('/')}}img/contact" id="HeaderMenuContact">お問い合わせ</a></li>
+                      <li><a href="{{asset('/')}}img/company" id="HeaderMenuCompany">運営会社</a></li>
+                      <li><a href="{{asset('/')}}img/privacy" id="HeaderMenuPrivacy">プライバシーポリシー</a></li>
+                      <li><a href="{{asset('/')}}img/sitemap" id="HeaderMenuSitemap">サイトマップ</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -114,10 +159,10 @@
                   <div class="flex">
                     <select name="search[city]" id="HeaderSearchCity"
                             class="-mr-1 select select-bordered rounded-r-lg rounded-full select-sm text-xs lg:text-md lg:select-md">
-                      <option value="1">地域を選択</option>
+                      <option value="1" id="HeaderSearchCityEmpty">地域を選択</option>
                       @foreach($search['cities'] as $city)
                         @if($city['spots_count'] > 0)
-                          <option value="{{$city['id']}}"
+                          <option value="{{$city['id']}}" id="HeaderSearchCity{{$city['id']}}" 
                               @if($city['id'] === $search['query']['city']) selected @endif>{{$city['name']}}
                             ({{$city['spots_count']}})
                           </option>
@@ -128,7 +173,7 @@
                            value="{{$search['query']['keyword']}}"
                            placeholder="キーワードを入力"
                            class="-mr-1 input rounded-none input-bordered input-sm lg:input-md">
-                    <div class="tooltip tooltip-bottom" data-tip="事業所を検索する">
+                    <div class="tooltip tooltip-bottom" id="HeaderSearchSubmit" data-tip="事業所を検索する">
                       <button class="btn rounded-l-lg rounded-full btn-sm lg:btn-md">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
@@ -157,9 +202,9 @@
                       @endif
                       <ul tabindex="0"
                           class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a href="{{asset('/')}}user/profile/">{{Auth::guard('user')->user()->name}}さん</a></li>
-                        <li><a href="{{asset('/')}}user/">マイページ</a></li>
-                        <li><a href="{{asset('/')}}user/logout" class="logoutBtn">ログアウト</a></li>
+                        <li><a href="{{asset('/')}}img/user/profile/">{{Auth::guard('user')->user()->name}}さん</a></li>
+                        <li><a href="{{asset('/')}}img/user/" id="HeaderMenuMypage">マイページ</a></li>
+                        <li><a href="{{asset('/')}}img/user/logout" class="logoutBtn" id="HeaderMenuLogout">ログアウト</a></li>
                       </ul>
                     </div>
                   </div>
@@ -212,7 +257,7 @@
       <div class="mx-auto container">
         <div class="mb-10 justify-center lg:flex lg:justify-between">
           <div class="w-full text-center w-1/3 mb-10 lg:justify-start lg:w-1/5">
-            <a href="{{asset('/')}}" class="text-center">
+            <a href="{{asset('/')}}img/" class="text-center" id="FooterMenuLogo">
               <img src="{{asset('/')}}img/general/base/footer_logo.png" class="" alt="すむところ.com｜老人ホーム・介護施設をさがすなら">
             </a>
           </div>
@@ -232,14 +277,14 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}search" class="hover:underline">条件でさがす</a>
+                  <a href="{{asset('/')}}img/search" class="hover:underline" id="FooterMenuSearch">条件でさがす</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}spot" class="hover:underline">一覧を見る</a>
+                  <a href="{{asset('/')}}img/spot" class="hover:underline" id="FooterMenuSpot">一覧を見る</a>
                 </li>
               </ul>
             </div>
@@ -258,14 +303,14 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}user/login" class="hover:underline">ユーザーログイン</a>
+                  <a href="{{asset('/')}}img/user/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}user/regist" class="hover:underline">ユーザー登録する</a>
+                  <a href="{{asset('/')}}img/user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
                 </li>
               </ul>
             </div>
@@ -284,49 +329,49 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}" class="hover:underline ">ホーム</a>
+                  <a href="{{asset('/')}}img/" class="hover:underline" id="FooterMenuHome">ホーム</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}service" class="hover:underline ">サービス案内</a>
+                  <a href="{{asset('/')}}img/service" class="hover:underline" id="FooterMenuService">サービス案内</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}qa" class="hover:underline ">よくある質問</a>
+                  <a href="{{asset('/')}}img/qa" class="hover:underline" id="FooterMenuQa">よくある質問</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}contact" class="hover:underline ">お問い合わせ</a>
+                  <a href="{{asset('/')}}img/contact" class="hover:underline" id="FooterMenuContact">お問い合わせ</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}company" class="hover:underline ">運営会社</a>
+                  <a href="{{asset('/')}}img/company" class="hover:underline" id="FooterMenuCompany">運営会社</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}privacy" class="link link-hover">プライバシーポリシー</a>
+                  <a href="{{asset('/')}}img/privacy" class="link link-hover" id="FooterMenuPrivacy">プライバシーポリシー</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}sitemap" class="hover:underline ">サイトマップ</a>
+                  <a href="{{asset('/')}}img/sitemap" class="hover:underline" id="FooterMenuSitemap">サイトマップ</a>
                 </li>
               </ul>
             </div>
@@ -343,7 +388,6 @@
   </div>
   @include('general::layouts.drawer')
 </div>
-
 
 <script src="{{asset('/')}}js/common/jquery-3.6.0.min.js"></script>
 <script src="{{asset('/')}}js/common/common.js"></script>

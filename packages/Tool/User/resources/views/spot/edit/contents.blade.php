@@ -27,8 +27,10 @@
               <select name="spot[area_center_id]" id="SpotAreaCenter"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['area_centers'] as $key => $area_center)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('spot.category_id', $data['spot']['area_center_id'])) selected @endif>{{$area_center}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="SpotAreaCenter{{$key}}"
+                    @if($key === (int)old('spot.category_id', $data['spot']['area_center_id'])) selected @endif>{{$area_center}}</option>
                 @endforeach
               </select>
             </div>
@@ -44,8 +46,10 @@
               <select name="spot[category_id]" id="SpotCategory"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['categories'] as $key => $category)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('spot.category_id', $data['spot']['category_id'])) selected @endif>{{$category}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="SpotCategory{{$key}}"
+                    @if($key === (int)old('spot.category_id', $data['spot']['category_id'])) selected @endif>{{$category}}</option>
                 @endforeach
               </select>
             </div>
@@ -62,7 +66,7 @@
               'id' => 'SpotName',
               'value' => old('spot.name', $data['spot']['name']),
               'placeholder' => '事業所名を入れてください',
-              'ps' => '例：住宅型有料老人ホーム すむところ<br>※「住宅型有料老人ホーム」などの事業所タイプと「事業所名」との間は「半角スペースを1つ」あけて下さい。',
+              'ps' => '例：住宅型有料老人ホーム すむところ' . "\n" . '※「住宅型有料老人ホーム」などの事業所タイプと「事業所名」との間は「半角スペースを1つ」あけて下さい。',
               'rows' => 5,
               'hasError' => $errors->has('spot.name'),
               'errors' => $errors->get('spot.name'),
@@ -103,15 +107,19 @@
               <select name="spot[prefecture_id]" id="SpotPrefecture"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-l-md rounded-r-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['prefectures'] as $key => $prefecture)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('spot.prefecture_id', $data['spot']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="SpotPrefecture{{$key}}" 
+                    @if($key === (int)old('spot.prefecture_id', $data['spot']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
                 @endforeach
               </select>
               <select name="spot[city_id]" id="SpotCity"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-r-md rounded-l-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['cities'] as $key => $city)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('spot.city_id', $data['spot']['city_id'])) selected @endif>{{$city}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="SpotCity{{$key}}" 
+                    @if($key === (int)old('spot.city_id', $data['spot']['city_id'])) selected @endif>{{$city}}</option>
                 @endforeach
               </select>
             </div>
@@ -199,7 +207,7 @@
               'id' => 'SpotDetailStaff',
               'value' => old('spot.spot_detail.staff', $data['spot']['spot_detail']['staff']),
               'placeholder' => '施設担当者のお名前を入れてください',
-              'ps' => '例：担当 太郎<br>※ 冊子担当が別にいる場合は、下にある「メモ1」の欄にお書き下さい。',
+              'ps' => '例：担当 太郎' . "\n" . '※ 冊子担当が別にいる場合は、下にある「メモ1」の欄にお書き下さい。',
               'hasError' => $errors->has('spot.spot_detail.staff'),
               'errors' => $errors->get('spot.spot_detail.staff'),
               ])
@@ -215,7 +223,7 @@
               'id' => 'SpotDetailCompanyName',
               'value' => old('spot.spot_detail.company_name', $data['spot']['spot_detail']['company_name']),
               'placeholder' => '事業所名を入れてください',
-              'ps' => '※「株式会社・有限会社・社会福祉法人」などの会社タイプと「社名」との間は「半角スペースを1つ」あけて下さい。<br>例：介護福祉サーベイジャパン 株式会社',
+              'ps' => '※「株式会社・有限会社・社会福祉法人」などの会社タイプと「社名」との間は「半角スペースを1つ」あけて下さい。' . "\n" . '例：介護福祉サーベイジャパン 株式会社',
               'rows' => 5,
               'hasError' => $errors->has('spot.spot_detail.company_name'),
               'errors' => $errors->get('spot.spot_detail.company_name'),
@@ -232,7 +240,7 @@
               'id' => 'SpotDetailCompanyStaff',
               'value' => old('spot.spot_detail.company_staff', $data['spot']['spot_detail']['company_staff']),
               'placeholder' => '法人担当者のお名前を入れてください',
-              'ps' => '例：法人 太郎<br>※ 冊子担当が別にいる場合は、下にある「メモ1」の欄にお書き下さい',
+              'ps' => '例：法人 太郎' . "\n" . '※ 冊子担当が別にいる場合は、下にある「メモ1」の欄にお書き下さい',
               'hasError' => $errors->has('spot.spot_detail.company_staff'),
               'errors' => $errors->get('spot.spot_detail.company_staff'),
               ])
@@ -281,7 +289,7 @@
               <div class="flex items-center">
                 <input type="hidden" name="spot[is_selfpay]" value="0">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="spot[is_selfpay]" value="1" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="spot[is_selfpay]" value="1" class="toggle toggle-primary mr-2" id="SpotIsSelfPay"
                           {{ (int)old('spot.is_selfpay', $data['spot']['is_selfpay']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">介護保険自己負担を月額費用に含む</span>
                 </label>
@@ -292,11 +300,13 @@
                 検索項目に使用する金額幅の指定
               </div>
               <div>
-                <select name="spot[price_range_id]" id="SpotSpace"
+                <select name="spot[price_range_id]" id="SpotPriceRange"
                         class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                   @foreach($data['price_ranges'] as $key => $price_range)
-                    <option value="{{$key}}"
-                            @if($key === (int)old('spot.price_range_id', $data['spot']['price_range_id'])) selected @endif>{{$price_range}}</option>
+                    <option
+                      value="{{$key}}"
+                      id="SpotPriceRange{{$key}}"
+                      @if($key === (int)old('spot.price_range_id', $data['spot']['price_range_id'])) selected @endif>{{$price_range}}</option>
                   @endforeach
                 </select>
               </div>
@@ -340,7 +350,7 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             <div class="grid grid-cols-3 gap-4">
-              @include('user::spot.edit.prices', ['prices' => $data['spot']['spot_prices']])
+              @include('common::spot.edit.prices', ['prices' => $data['spot']['spot_prices']])
             </div>
           </td>
         </tr>
@@ -366,8 +376,10 @@
               <select name="spot[space_id]" id="SpotSpace"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['spaces'] as $key => $space)
-                  <option value="{{$key}}"
-                          @if($key === (int)old('spot.space_id', $data['spot']['space_id'])) selected @endif>{{$space}}</option>
+                  <option
+                    value="{{$key}}"
+                    id="SpotSpace{{$key}}"
+                    @if($key === (int)old('spot.space_id', $data['spot']['space_id'])) selected @endif>{{$space}}</option>
                 @endforeach
               </select>
             </div>
@@ -423,7 +435,7 @@
               'id' => 'SpotDetailNurseTime',
               'value' => old('spot.spot_detail.nurse_time',$data['spot']['spot_detail']['nurse_time']),
               'placeholder' => '看護師在勤時間を入れてください',
-              'ps' => '例：月〜金／9:00～18:00 オンコール対応<br>※在勤している曜日と時間をご記入下さい。',
+              'ps' => '例：月〜金／9:00～18:00 オンコール対応' . "\n" . '※在勤している曜日と時間をご記入下さい。',
               'hasError' => $errors->has('spot.spot_detail.nurse_time'),
               'errors' => $errors->get('spot.spot_detail.nurse_time'),
               ])
@@ -520,7 +532,7 @@
               'id' => 'SpotDetailIntroducer',
               'value' => old('spot.spot_detail.introducer', $data['spot']['spot_detail']['introducer']),
               'placeholder' => '事業所名を入れてください',
-              'ps' => 'この「すむところ登録ページ」をどなたからお聞きになりましたか？<br>↑上記の欄に紹介された方のお名前をご記入ください。<br>例：株式会社介護の山田さん',
+              'ps' => 'この「すむところ登録ページ」をどなたからお聞きになりましたか？' . "\n" . '↑上記の欄に紹介された方のお名前をご記入ください。' . "\n" . '例：株式会社介護の山田さん',
               'rows' => 5,
               'hasError' => $errors->has('spot.spot_detail.introducer'),
               'errors' => $errors->get('spot.spot_detail.introducer'),
@@ -560,7 +572,7 @@
               <div>
                 <input type="hidden" name="spot[display]" value="0">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="spot[display]" value="1" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="spot[display]" value="1" class="toggle toggle-primary mr-2" id="SpotDisplay"
                           {{ (int)old('spot.display', $data['spot']['display']) === 1 ? 'checked' : '' }}>
                   <span class="ml-1 text-sm text-gray-600">一般公開</span>
                 </label>
@@ -568,7 +580,7 @@
               <div>
                 <input type="hidden" name="spot[preview]" value="0">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="spot[preview]" value="1" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="spot[preview]" value="1" class="toggle toggle-primary mr-2" id="SpotPreview"
                           {{ (int)old('spot.preview', $data['spot']['preview']) === 1 ? 'checked' : '' }}>
                   <span class="ml-1 text-sm text-gray-600">プレビュー</span>
                 </label>
@@ -576,7 +588,7 @@
               <div>
                 <input type="hidden" name="spot[is_book]" value="0">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="spot[is_book]" value="1" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="spot[is_book]" value="1" class="toggle toggle-primary mr-2" id="SpotIsBook"
                           {{ (int)old('spot.is_book', $data['spot']['is_book']) === 1 ? 'checked' : '' }} />
                   <span class="ml-1 text-sm text-gray-600">冊子に掲載する</span>
                 </label>
@@ -739,7 +751,8 @@
           z-40
           ">
       <input type="submit" value="事業所内容を変更する"
-             class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
+        id="SpotSubmit"
+        class="btn btn-wider px-12 text-lg rounded-full btn-hover tracking-wider">
     </div>
     <input type="hidden" id="SpotId" name="spot[id]" value="{{$data['spot']['id']}}">
   </form>

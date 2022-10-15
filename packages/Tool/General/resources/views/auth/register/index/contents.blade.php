@@ -233,24 +233,37 @@
                   @include('common::form.privacy_text')
                 </div>
 
-                <div class="flex justify-center py-4">
-                  <input type="hidden" name="user[privacy]" value="0">
-                  <label class="label cursor-pointer">
-                    <input type="checkbox" name="user[privacy]" value="1" class="toggle toggle-primary mr-2"
-                            {{ (int)old('user.privacy') === 1 ? 'checked' : '' }} />
-                    <span class="ml-1 text-sm text-gray-600">プライバシーポリシーに同意する</span>
-                  </label>
+                <div class="flex justify-center py-2">
+                  <input {{ old('user.privacy') === '1' ? 'checked' : '' }} value="1" id="UserPrivacy" type="checkbox" name="user[privacy]"
+                         class="checkbox radio-primary rounded-full checkbox-sm sm:checkbox-md @if($errors->has('user.reply')) border-red-700 @endif">
+                  <label for="UserPrivacy" class="ml-2 text-sm sm:text-base cursor-pointer hover:text-primary">プライバシーポリシーに同意する</label>
+                  </div>
+                  @if($errors->has('user.privacy'))
+                  <div class="flex items-center justify-center text-red-700 text-sm ml-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                    {{ $errors->first('user.privacy') }}
+                  </div>
+                  @endif
                 </div>
-              </div>
 
               <div class="w-full py-4 border-white bg-black bg-opacity-70
                   fixed left-0 bottom-0
                   flex justify-center items-center
                   text-white
                   z-200
-                  ">
+                  hidden
+                  text-center
+                  md:block
+                  " id="RegisterSubmitBtn">
                 <input type="submit" value="アカウント登録をする"
-                       class="font-bold px-10 py-3 text-normal rounded-full bg-accent hover:bg-accent_light cursor-pointer tracking-wider">
+                       id="UserSubmit" class="font-bold px-10 py-3 text-normal rounded-full bg-accent hover:bg-accent_light cursor-pointer tracking-wider">
+              </div>
+
+              <div class="text-center md:hidden">
+                <input type="submit" id="RegisterSubmitBtnMobile" value="アカウント登録をする"
+                  id="UserSubmitMobile" class="btn btn-wide rounded-full btn-md btn-primary tracking-wider">
               </div>
 
 

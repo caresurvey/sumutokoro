@@ -33,7 +33,7 @@
                 <div class="mb-10">
                   @include('common::form.email', [
                     'name' => 'email',
-                    'id' => 'Email',
+                    'id' => 'ForgetPasswordEmail',
                     'value' => old('email'),
                     'placeholder' => 'メールアドレスを入れてください',
                     'ps' => '※ 半角英数字で入力してください',
@@ -44,7 +44,7 @@
 
                 <div class="text-center mb-5">
                   <input type="submit" value="パスワードリセットを申請する"
-                         class="btn btn-primary rounded-full text-base px-12">
+                         class="btn btn-primary rounded-full text-base px-12" id="ForgetPasswordSubmit">
                 </div>
 
               </div>

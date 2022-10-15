@@ -7,10 +7,12 @@ if($spot_icon_genre_id===2) $grid = 'grid-cols-6 gap-x-2';
     <div class="flex items-end border-gray-200 p-2">
       <div class="w-full">
         <label class="block mb-1 text-xs text-gray-600 text-center">{{$icon['name']}}</label>
-        <select name="spot[spot_icon_item][{{$icon['id']}}][spot_icon_type_id]" class="block p-2 pr-9 w-full text-lg text-gray-600 font-bold bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
+        <select id="SpotIconItem_{{$icon['serial']}}" name="spot[spot_icon_item][{{$icon['id']}}][spot_icon_type_id]" class="block p-2 pr-9 w-full text-lg text-gray-600 font-bold bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
           @foreach($types as $type)
-            <option value="{{$type['id']}}"
-                    {{(int)old('spot.spot_icon_item.' . $icon['id'] . '.spot_icon_type_id', $icon['value']) === $type['id'] ? ' selected ' : ''}}>{{$type['icon']}}</option>
+            <option
+              value="{{$type['id']}}"
+              id="SpotIconItem_{{$icon['serial']}}_{{$type['id']}}"
+              {{(int)old('spot.spot_icon_item.' . $icon['id'] . '.spot_icon_type_id', $icon['value']) === $type['id'] ? ' selected ' : ''}}>{{$type['icon']}}</option>
           @endforeach
         </select>
         <input type="hidden" name="spot[spot_icon_item][{{$icon['id']}}][spot_icon_genre_id]" value="{{$spot_icon_genre_id}}">

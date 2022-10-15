@@ -16,7 +16,7 @@ abstract class DuskTestCase extends BaseTestCase
      * 初期設定
      *
      */
-    public function setUp()
+    public function setUp(): void
         {
         parent::setUp();
 
@@ -32,7 +32,7 @@ abstract class DuskTestCase extends BaseTestCase
         }
     }
     
-    protected function baseUrl()
+    protected function baseUrl(): string
     {
         return 'http://web';
     }
@@ -43,7 +43,7 @@ abstract class DuskTestCase extends BaseTestCase
      * @beforeClass
      * @return void
      */
-    public static function prepare()
+    public static function prepare(): void
     {
         //static::startChromeDriver();
     }
@@ -53,7 +53,7 @@ abstract class DuskTestCase extends BaseTestCase
      *
      * @return \Facebook\WebDriver\Remote\RemoteWebDriver
      */
-    protected function driver()
+    protected function driver(): \Facebook\WebDriver\Remote\RemoteWebDriver
     {
         // ノーオプションでOK
         $options = (new ChromeOptions)->addArguments([
@@ -63,7 +63,7 @@ abstract class DuskTestCase extends BaseTestCase
             //'--headless',
             //'--no-sandbox',
             //'--lang=ja_JP',
-            '--no-pings',
+            //'--no-pings',
             //'--enable-features=NetworkService,NetworkServiceInProcess',
             //'--window-size=1600,4000',
         ]);

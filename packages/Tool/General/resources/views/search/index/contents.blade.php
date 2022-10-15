@@ -71,9 +71,9 @@
                   @foreach($search['price_ranges'] as $price_range)
                     <li>
                       <div class="flex items-center mb-4">
-                        <input id="PriceRangeId{{$price_range['id']}}" type="radio" name="search[price_ranges][]"
-                               class="radio radio-primary radio-sm sm:radio-md">
-                        <label for="PriceRangeId{{$price_range['id']}}"
+                        <input id="PriceRangeId{{$price_range['id']}}" type="radio" name="search[price_range]"
+                               class="radio radio-primary radio-sm sm:radio-md" value="{{$price_range['id']}}">
+                        <label for="PriceRangeId{{$price_range['id']}}" id="PriceRangeIdLabel{{$price_range['id']}}"
                                class="ml-2 text-sm sm:text-base">{{$price_range['name']}}</label>
                       </div>
                     </li>
@@ -82,9 +82,14 @@
               </div>
             @endif
 
-            <div class="w-full py-4 border-white bg-black bg-opacity-70 fixed left-0 bottom-0 flex justify-center items-center text-white z-40">
+            <div class="w-full py-4 border-white bg-black bg-opacity-70 fixed left-0 bottom-0 flex text-center justify-center items-center text-white z-40 hidden md:block">
               <input type="submit" id="SearchSubmitBtn" value="上記の条件で検索する"
                      class="btn btn-wide rounded-full btn-md btn-primary tracking-wider">
+            </div>
+
+            <div class="text-center md:hidden">
+              <input type="submit" id="SearchSubmitBtnMobile" value="上記の条件で検索する"
+                class="btn btn-wide rounded-full btn-md btn-primary tracking-wider">
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ class SpotImagesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             DB::table('spot_images')->insert([
               'id' => $i,
               'display' => 1,

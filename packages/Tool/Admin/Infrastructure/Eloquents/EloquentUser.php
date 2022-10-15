@@ -40,7 +40,10 @@ class EloquentUser extends AppEloquent
         'company',
         'prefecture_id',
         'city_id',
+        'job_type_id',
         'role_id',
+        'user_type_id',
+        'msg',
         'reorder'
     ];
 
