@@ -7,6 +7,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
 use Tool\Admin\Domain\Models\Spot\Export\ExportGeneral;
+use Tool\Admin\Domain\Models\Spot\RelationsData;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
 use Tool\Admin\Domain\Models\Spot\SpotSearch;
 use Tool\Admin\Exceptions\AdminNotFoundException;

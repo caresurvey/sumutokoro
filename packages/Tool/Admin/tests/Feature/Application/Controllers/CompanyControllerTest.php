@@ -96,7 +96,7 @@ class CompanyControllerTest extends TestCase
         // アクセスする
         $response = $this->actingAs($this->user, 'admin')
             ->followingRedirects()
-            ->delete(config('myapp.app_admin_prefix') . '/company/3');
+            ->delete(config('myapp.app_admin_prefix') . '/company/91');
 
         // チェック
         $response->assertOk();

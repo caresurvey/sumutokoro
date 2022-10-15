@@ -82,7 +82,7 @@ class EloquentCompany extends AppEloquent
 
     public function spots()
     {
-        return $this->hasMany(EloquentSpot::class, 'spot_id')->orderBy('id', 'ASC');
+        return $this->hasMany(EloquentSpot::class, 'company_id')->orderBy('id', 'ASC');
     }
 
     public function trade_area()

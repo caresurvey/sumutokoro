@@ -19,6 +19,9 @@ class NewsControllerTest extends TestCase
         // アクセス
         $response = $this->get('/news');
 
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // チェック
         $response->assertOk();
         $this->assertStringContainsString('News index', $response->content());

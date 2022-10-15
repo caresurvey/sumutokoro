@@ -33,6 +33,9 @@ class ResetPasswordControllerTest extends TestCase
      */
     public function index()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // テストデータセット
         $email = 'user@hoge.co.jp';
         $token = $this->resetPasswordRepo->makeToken($email);
@@ -57,6 +60,9 @@ class ResetPasswordControllerTest extends TestCase
      */
     public function send()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // テストデータセット
         $email = 'user@hoge.co.jp';
         $token = $this->resetPasswordRepo->makeToken($email);

@@ -16,6 +16,9 @@ class RegisterControllerTest extends TestCase
      */
     public function index()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // アクセス
         $response = $this->get('/register');
 
@@ -29,6 +32,9 @@ class RegisterControllerTest extends TestCase
      */
     public function send()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // テストデータ
         $post['user'] = [
             'name' => '登録太郎',
@@ -53,7 +59,8 @@ class RegisterControllerTest extends TestCase
             'role_id' => '3',
             'trade_area_id' => '2',
             'company' => '所属事業所',
-            'msg' => '備考'
+            'msg' => '備考',
+            'privacy' => '1'
         ];
 
         // アクセス

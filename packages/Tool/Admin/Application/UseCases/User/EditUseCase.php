@@ -39,6 +39,7 @@ class EditUseCase
     {
         // データを取得する
         $data['user'] = $this->userRepo->edit($id, $auth);
+        $data['decisionDelete'] = $this->userRepo->makeDecisionDelete($data);
         $data['cities'] = $this->eloquentCity->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['prefectures'] = $this->eloquentPrefecture->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['job_types'] = $this->eloquentJobType->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();

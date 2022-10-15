@@ -19,6 +19,9 @@ class SpotControllerTest extends TestCase
         // アクセス
         $response = $this->get('/spot');
 
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // チェック
         $response->assertOk();
         $this->assertStringContainsString('Spot index', $response->content());

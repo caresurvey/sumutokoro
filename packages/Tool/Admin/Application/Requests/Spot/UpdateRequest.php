@@ -31,7 +31,6 @@ class UpdateRequest extends FormRequest
             'spot.tel1' => 'present|digits_between:2,5',
             'spot.tel2' => 'present|digits_between:2,5',
             'spot.tel3' => 'present|digits_between:2,5',
-            'spot.fax' => 'present|string',
             'spot.zip1' => 'present|digits:3',
             'spot.zip2' => 'present|digits:4',
             'spot.address' => 'present|string',

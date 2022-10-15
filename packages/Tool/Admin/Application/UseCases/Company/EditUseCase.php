@@ -27,6 +27,7 @@ class EditUseCase
     {
         // データを取得する
         $data['company'] = $this->companyRepo->edit($id, $auth);
+        $data['decisionDelete'] = $this->companyRepo->makeDecisionDelete($data);
         $data['cities'] = $this->eloquentCity->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['prefectures'] = $this->eloquentPrefecture->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
         $data['isCompanyEdit'] = true;

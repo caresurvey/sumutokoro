@@ -57,6 +57,11 @@ class EloquentUser extends AppEloquent
         return $this->belongsTo(EloquentJobType::class);
     }
 
+    public function news()
+    {
+        return $this->hasMany(EloquentNews::class, 'user_id');
+    }
+
     public function role()
     {
         return $this->belongsTo(EloquentRole::class);

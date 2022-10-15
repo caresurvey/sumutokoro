@@ -16,6 +16,9 @@ class ContactControllerTest extends TestCase
      */
     public function index()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // アクセス
         $response = $this->get('/contact');
 
@@ -29,6 +32,9 @@ class ContactControllerTest extends TestCase
      */
     public function send()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         $post['contact'] = [
             'name' => '質問太郎',
             'kana' => 'しつもんたろう',

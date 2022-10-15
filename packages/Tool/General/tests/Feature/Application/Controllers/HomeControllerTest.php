@@ -19,6 +19,9 @@ class HomeControllerTest extends TestCase
         // アクセス
         $response = $this->get('/');
 
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // チェック
         $response->assertOk();
         $this->assertStringContainsString('Home index', $response->content());

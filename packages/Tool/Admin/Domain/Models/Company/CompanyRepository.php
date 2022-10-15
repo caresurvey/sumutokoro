@@ -25,4 +25,6 @@ interface CompanyRepository
     public function keyword_selected(array $request): array;
 
     public function export(): Export;
+
+    public function makeDecisionDelete(array $company): DecisionDelete;
 }

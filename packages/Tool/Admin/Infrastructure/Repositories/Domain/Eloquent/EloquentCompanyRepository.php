@@ -5,6 +5,7 @@ namespace Tool\Admin\Infrastructure\Repositories\Domain\Eloquent;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
 use Tool\Admin\Domain\Models\Company\CompanyRepository;
 use Tool\Admin\Domain\Models\Company\CompanySearch;
+use Tool\Admin\Domain\Models\Company\DecisionDelete;
 use Tool\Admin\Domain\Models\Company\Export;
 use Tool\Admin\Exceptions\AdminNotFoundException;
 use Tool\Admin\Exceptions\AdminLogicException;
@@ -117,8 +118,12 @@ class EloquentCompanyRepository implements CompanyRepository
         $data = $this->eloquentCompany
             ->where('id', $id)
             ->with(
+                'company',
+                'spots',
+                'users',
                 'user'
             )
+            ->withCount('spots')
             ->first();
 
         // データがない場合
@@ -270,5 +275,10 @@ class EloquentCompanyRepository implements CompanyRepository
             ->orderBy('city_id', 'asc')
             ->get();
         return new Export($data);
+    }
+
+    public function makeDecisionDelete(array $company): DecisionDelete
+    {
+        return new DecisionDelete($company);
     }
 }

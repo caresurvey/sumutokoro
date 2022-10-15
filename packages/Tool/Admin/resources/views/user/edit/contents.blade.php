@@ -40,7 +40,8 @@
             <div class="flex">
               <input type="hidden" name="user[enabled]" value="0">
               <label class="label cursor-pointer">
-                <input type="checkbox" name="user[enabled]" value="1" id="UserEnabled" class="toggle toggle-primary mr-2"
+                <input type="checkbox" name="user[enabled]" value="1" id="UserEnabled"
+                       class="toggle toggle-primary mr-2"
                         {{ (int)old('user.enabled', $data['user']['enabled']) === 1 ? 'checked' : '' }}>
                 <span class="label-text">このユーザーを有効にする</span>
               </label>
@@ -99,8 +100,8 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @if($data['user']['role_id'] < 4)
-            <user-associate-companies data='@json($data["associatedCompanies"])'
-                                      :user_id='{{$data["user"]["id"]}}'></user-associate-companies>
+              <user-associate-companies data='@json($data["associatedCompanies"])'
+                                        :user_id='{{$data["user"]["id"]}}'></user-associate-companies>
             @else
               この権限では法人との関連付けができません
             @endif
@@ -141,18 +142,18 @@
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-l-md rounded-r-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['prefectures'] as $key => $prefecture)
                   <option
-                    value="{{$key}}"
-                    id="Prefecture{{$key}}"
-                    @if($key === (int)old('user.prefecture_id', $data['user']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
+                          value="{{$key}}"
+                          id="Prefecture{{$key}}"
+                          @if($key === (int)old('user.prefecture_id', $data['user']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
                 @endforeach
               </select>
               <select name="user[city_id]" id="UserCity"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-r-md rounded-l-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['cities'] as $key => $city)
                   <option
-                    value="{{$key}}"
-                    id="City{{$key}}"
-                    @if($key === (int)old('user.city_id', $data['user']['city_id'])) selected @endif>{{$city}}</option>
+                          value="{{$key}}"
+                          id="City{{$key}}"
+                          @if($key === (int)old('user.city_id', $data['user']['city_id'])) selected @endif>{{$city}}</option>
                 @endforeach
               </select>
             </div>
@@ -257,7 +258,8 @@
               <div class="flex mb-4">
                 <input type="hidden" name="user[is_authenticated]" value="0">
                 <label class="label cursor-pointer">
-                  <input type="checkbox" name="user[is_authenticated]" value="1" id="UserIsAuthenticated" class="toggle toggle-primary mr-2"
+                  <input type="checkbox" name="user[is_authenticated]" value="1" id="UserIsAuthenticated"
+                         class="toggle toggle-primary mr-2"
                           {{ (int)old('user.is_authenticated', $data['user']['is_authenticated']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">ユーザー確認済み</span>
                 </label>
@@ -290,9 +292,9 @@
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['roles'] as $key => $role)
                   <option
-                    value="{{$key}}"
-                    id="UserRole{{$key}}"
-                    {{ (int)old('user.role_id', $data['user']['role_id']) === $key ? 'selected' : '' }} >{{$role}}</option>
+                          value="{{$key}}"
+                          id="UserRole{{$key}}"
+                          {{ (int)old('user.role_id', $data['user']['role_id']) === $key ? 'selected' : '' }} >{{$role}}</option>
                 @endforeach
               </select>
             </div>
@@ -308,9 +310,9 @@
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['job_types'] as $key => $job_type)
                   <option
-                    value="{{$key}}"
-                    id="UserJobType{{$key}}"
-                    @if($key === (int)old('user.job_type_id', $data['user']['job_type_id'])) selected @endif>{{$job_type}}</option>
+                          value="{{$key}}"
+                          id="UserJobType{{$key}}"
+                          @if($key === (int)old('user.job_type_id', $data['user']['job_type_id'])) selected @endif>{{$job_type}}</option>
                 @endforeach
               </select>
             </div>
@@ -326,9 +328,9 @@
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['user_types'] as $key => $user_type)
                   <option
-                    value="{{$key}}"
-                    id="UserUserType{{$key}}"
-                    @if($key === (int)old('user.user_type_id', $data['user']['user_type_id'])) selected @endif>{{$user_type}}</option>
+                          value="{{$key}}"
+                          id="UserUserType{{$key}}"
+                          @if($key === (int)old('user.user_type_id', $data['user']['user_type_id'])) selected @endif>{{$user_type}}</option>
                 @endforeach
               </select>
             </div>
@@ -398,18 +400,32 @@
             ユーザーの削除
           </th>
           <td class="py-4 px-4 w-4/5">
-            @include('common::form.delete', [
-              'name' => 'ユーザー',
-              'model' => 'user',
-              'id' => 'UserDelete',
-              'dataId' => $data['user']['id'],
-              'value' => old('user_delete.code'),
-              'ps' => '※半角英数字で入力してください',
-              'hasError' => $errors->has('user_delete.code'),
-              'errors' => $errors->get('user_delete.code'),
-              'hasConfirmationError' => $errors->has('user_delete.confirmation'),
-              'confirmationErrors' => $errors->get('user_delete.confirmation'),
-              ])
+            @if($data['decisionDelete']->canDelete())
+              @include('common::form.delete', [
+                'name' => 'ユーザー',
+                'model' => 'user',
+                'id' => 'UserDelete',
+                'dataId' => $data['user']['id'],
+                'value' => old('user_delete.code'),
+                'ps' => '※半角英数字で入力してください',
+                'hasError' => $errors->has('user_delete.code'),
+                'errors' => $errors->get('user_delete.code'),
+                'hasConfirmationError' => $errors->has('user_delete.confirmation'),
+                'confirmationErrors' => $errors->get('user_delete.confirmation'),
+                ])
+            @else
+              @if($data['decisionDelete']->isRootUser())
+                <p class="mb-2">管理者権限のユーザーは削除できません</p>
+              @else
+                <p class="mb-2">関連するデータが残っているため、削除ができません。<br>以下のデータとの関連付けを外してから削除してください。</p>
+                <ul>
+                  @foreach($data['decisionDelete']->getLinkDatas() as $linkData)
+                    <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/{{$linkData['link']}}/edit"
+                           class="hover:underline text-primary">{{$linkData['name']}}</a></li>
+                  @endforeach
+                </ul>
+              @endif
+            @endif
           </td>
         </tr>
         </tbody>

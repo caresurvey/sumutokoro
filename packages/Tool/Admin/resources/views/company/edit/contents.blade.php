@@ -34,7 +34,7 @@
               <div class="form-control mr-6">
                 <label class="label cursor-pointer">
                   <input type="checkbox" name="company[display]" value="1" class="toggle toggle-primary mr-2"
-                  id="CompanyDisplay"
+                         id="CompanyDisplay"
                           {{ (int)old('company.display', $data['company']['display']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">一般公開</span>
                 </label>
@@ -43,7 +43,7 @@
               <div class="form-control mr-4">
                 <label class="label cursor-pointer">
                   <input type="checkbox" name="company[preview]" value="1" class="toggle toggle-primary mr-2"
-                  id="CompanyPreview"
+                         id="CompanyPreview"
                           {{ (int)old('company.preview', $data['company']['preview']) === 1 ? 'checked' : '' }}>
                   <span class="label-text">プレビュー</span>
                 </label>
@@ -194,18 +194,18 @@
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-l-md rounded-r-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['prefectures'] as $key => $prefecture)
                   <option
-                    value="{{$key}}"
-                    id="CompanyPrefecture{{$key}}"
-                    @if($key === (int)old('company.prefecture_id', $data['company']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
+                          value="{{$key}}"
+                          id="CompanyPrefecture{{$key}}"
+                          @if($key === (int)old('company.prefecture_id', $data['company']['prefecture_id'])) selected @endif>{{$prefecture}}</option>
                 @endforeach
               </select>
               <select name="company[city_id]" id="CompanyCity"
                       class="-mr-1 select select-bordered border-gray-200 bg-gray-100 rounded-r-md rounded-l-none select-sm text-xs lg:text-md lg:select-md">
                 @foreach($data['cities'] as $key => $city)
                   <option
-                    value="{{$key}}"
-                    id="CompanyCity{{$key}}"
-                    @if($key === (int)old('company.city_id', $data['company']['city_id'])) selected @endif>{{$city}}</option>
+                          value="{{$key}}"
+                          id="CompanyCity{{$key}}"
+                          @if($key === (int)old('company.city_id', $data['company']['city_id'])) selected @endif>{{$city}}</option>
                 @endforeach
               </select>
             </div>
@@ -369,18 +369,28 @@
             法人の削除
           </th>
           <td class="py-4 px-4 w-4/5">
-            @include('common::form.delete', [
-              'name' => '法人',
-              'model' => 'company',
-              'id' => 'CompanyDelete',
-              'dataId' => $data['company']['id'],
-              'value' => old('company_delete.code'),
-              'ps' => '※半角英数字で入力してください',
-              'hasError' => $errors->has('company_delete.code'),
-              'errors' => $errors->get('company_delete.code'),
-              'hasConfirmationError' => $errors->has('company_delete.confirmation'),
-              'confirmationErrors' => $errors->get('company_delete.confirmation'),
-              ])
+            @if(!$data['decisionDelete']->canDelete())
+              @include('common::form.delete', [
+                'name' => '法人',
+                'model' => 'company',
+                'id' => 'CompanyDelete',
+                'dataId' => $data['company']['id'],
+                'value' => old('company_delete.code'),
+                'ps' => '※半角英数字で入力してください',
+                'hasError' => $errors->has('company_delete.code'),
+                'errors' => $errors->get('company_delete.code'),
+                'hasConfirmationError' => $errors->has('company_delete.confirmation'),
+                'confirmationErrors' => $errors->get('company_delete.confirmation'),
+                ])
+            @else
+              <p class="mb-2">関連するデータが残っているため、削除ができません。<br>以下のデータとの関連付けを外してから削除してください。</p>
+              <ul>
+                @foreach($data['decisionDelete']->getLinkDatas() as $linkData)
+                  <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/{{$linkData['link']}}/edit"
+                         class="hover:underline text-primary">{{$linkData['name']}}</a></li>
+                @endforeach
+              </ul>
+            @endif
           </td>
         </tr>
         </tbody>

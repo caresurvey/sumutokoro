@@ -21,4 +21,6 @@ interface UserRepository
     public function count(): int;
 
     public function export(): Export;
+
+    public function makeDecisionDelete(array $data): DecisionDelete;
 }

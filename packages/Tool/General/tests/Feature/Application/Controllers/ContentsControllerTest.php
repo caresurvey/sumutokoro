@@ -19,6 +19,9 @@ class ContentsControllerTest extends TestCase
         // アクセス
         $response = $this->get('/service');
 
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // チェック
         $response->assertOk();
         $this->assertStringContainsString('Contents service', $response->content());

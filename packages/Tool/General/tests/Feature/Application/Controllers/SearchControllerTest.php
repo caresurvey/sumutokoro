@@ -19,6 +19,9 @@ class SearchControllerTest extends TestCase
         // アクセス
         $response = $this->get('/search');
 
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // チェック
         $response->assertOk();
         $this->assertStringContainsString('Search index', $response->content());

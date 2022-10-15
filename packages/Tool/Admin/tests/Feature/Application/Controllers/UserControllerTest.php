@@ -93,7 +93,7 @@ class UserControllerTest extends TestCase
         // アクセスする
         $response = $this->actingAs($this->user, 'admin')
             ->followingRedirects()
-            ->delete(config('myapp.app_admin_prefix') . '/user/3');
+            ->delete(config('myapp.app_admin_prefix') . '/user/90');
 
         // チェック
         $response->assertOk();

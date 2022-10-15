@@ -33,6 +33,9 @@ class TestData
 
         // 正式ディレクトリの場所
         $this->filePath = storage_path('app') . '/' . $this->dir;
+
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
     }
 
     /**
@@ -190,10 +193,10 @@ class TestData
         $results['company']['history'] = '';
         $results['company']['capital'] = '';
         $results['company']['staff'] = '';
-        $results['company']['area_center_id'] = 1;
-        $results['company']['prefecture_id'] = 1;
-        $results['company']['city_id'] = 1;
-        $results['company']['trade_area_id'] = 1;
+        $results['company']['area_center_id'] = 2;
+        $results['company']['prefecture_id'] = 2;
+        $results['company']['city_id'] = 2;
+        $results['company']['trade_area_id'] = 2;
 
         // データを返す
         return $results;
@@ -225,10 +228,10 @@ class TestData
         $results['company']['history'] = '';
         $results['company']['capital'] = '';
         $results['company']['staff'] = '';
-        $results['company']['area_center_id'] = 1;
-        $results['company']['prefecture_id'] = 1;
-        $results['company']['city_id'] = 1;
-        $results['company']['trade_area_id'] = 1;
+        $results['company']['area_center_id'] = 2;
+        $results['company']['prefecture_id'] = 2;
+        $results['company']['city_id'] = 2;
+        $results['company']['trade_area_id'] = 2;
 
         // データを返す
         return $results;

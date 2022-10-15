@@ -33,6 +33,9 @@ class TestData
 
         // 正式ディレクトリの場所
         $this->filePath = storage_path('app') . '/' . $this->dir;
+
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
     }
 
     /**

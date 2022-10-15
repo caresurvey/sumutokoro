@@ -3,9 +3,11 @@
 namespace Tool\Admin\Infrastructure\Repositories\Domain\Eloquent;
 
 use Tool\Admin\Domain\Models\Common\LogicResponse;
+use Tool\Admin\Domain\Models\User\DecisionDelete;
 use Tool\Admin\Domain\Models\User\Export;
 use Tool\Admin\Domain\Models\User\UserRepository;
 use Tool\Admin\Exceptions\AdminNotFoundException;
+use Tool\Admin\Infrastructure\Eloquents\EloquentNews;
 use Tool\Admin\Infrastructure\Eloquents\EloquentUser;
 use Tool\Admin\Infrastructure\Eloquents\EloquentUserRegister;
 use Tool\Admin\Infrastructure\Repositories\Domain\Logic\LogicResponseRepository;
@@ -19,17 +21,20 @@ use DB;
 class EloquentUserRepository implements UserRepository
 {
     private EloquentLog $eloquentLog;
+    private EloquentNews $eloquentNews;
     private EloquentUser $eloquentUser;
     private LogicResponseRepository $responseRepo;
     private int $limit = 30;
 
     public function __construct(
         EloquentLog             $eloquentLog,
+        EloquentNews             $eloquentNews,
         EloquentUser            $eloquentUser,
         LogicResponseRepository $responseRepo
     )
     {
         $this->eloquentLog = $eloquentLog;
+        $this->eloquentNews = $eloquentNews;
         $this->eloquentUser = $eloquentUser;
         $this->responseRepo = $responseRepo;
     }
@@ -44,7 +49,6 @@ class EloquentUserRepository implements UserRepository
 
         // ベースの並び
         $query->orderBy('id', 'DESC');
-        //$query->orderBy('role_id', 'ASC');
 
         // リレーション
         $query->with('role', 'user');
@@ -109,7 +113,8 @@ class EloquentUserRepository implements UserRepository
         // 必要データの取得
         $data = $this->eloquentUser
             ->where('id', $id)
-            ->with('companies', 'spots', 'user')
+            ->with('companies', 'spots', 'news', 'user')
+            ->withCount('companies', 'spots', 'news')
             ->first();
 
         // データがない場合
@@ -194,8 +199,21 @@ class EloquentUserRepository implements UserRepository
         try {
             // 保存（トランザクション）
             return DB::transaction(function () use ($id, $auth) {
+
+                // 削除する予定のuserと関連づいたデータが有れば、書き換えておく
+                $this->changeForeignIds($id);
+
+                // データ数取得
+                $count = $this->eloquentUser->count();
+
                 // データ取得
                 $data = $this->eloquentUser->where('id', $id)->first();
+
+                // データが残り1つなら処理をしない
+                if($count <= 1) throw new AdminLogicException();
+
+                // システム管理者権限の場合は削除を許可しない
+                if($data->role_id === 1) throw new AdminLogicException();
 
                 // 削除するデータを取得して削除し、結果を返す
                 if (!$data->delete()) throw new AdminLogicException();
@@ -224,5 +242,31 @@ class EloquentUserRepository implements UserRepository
             ->with('job_type', 'role', 'user_type')
             ->get();
         return new Export($data);
+    }
+
+    public function makeDecisionDelete(array $data): DecisionDelete
+    {
+        return new DecisionDelete($data);
+    }
+
+    /**
+     * Newsのuser_idがあったら置き換え
+     * @param int $id
+     * @return bool
+     */
+    public function changeForeignIds(int $user_id): bool
+    {
+        try {
+            // 置き換えデータをひとつ取得
+            $data = $this->eloquentNews->where('user_id', $user_id)->pluck('id');
+            // 子テーブルのデータを置き換える
+            $this->eloquentNews->where('id', $data)->update(['user_id' => 1]);
+            // 問題なければtrue
+            return true;
+        } catch (\Exception $e) {
+            // 問題あればログに書き込んでfalse
+            logger($e->getMessage());
+            return false;
+        }
     }
 }

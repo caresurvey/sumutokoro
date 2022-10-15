@@ -16,6 +16,9 @@ class ForgetPasswordControllerTest extends TestCase
      */
     public function index()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // アクセス
         $response = $this->get('/password/email');
 
@@ -29,6 +32,10 @@ class ForgetPasswordControllerTest extends TestCase
      */
     public function send()
     {
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
+        // テストデータ
         $post['email'] = 'user@hoge.co.jp';
 
         // アクセス

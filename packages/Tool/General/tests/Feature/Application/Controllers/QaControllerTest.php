@@ -19,6 +19,9 @@ class QaControllerTest extends TestCase
         // アクセス
         $response = $this->get('/qa');
 
+        // テストホスト
+        $_SERVER['HTTP_HOST'] = 'localhost';
+
         // チェック
         $response->assertOk();
         $this->assertStringContainsString('Qa index', $response->content());

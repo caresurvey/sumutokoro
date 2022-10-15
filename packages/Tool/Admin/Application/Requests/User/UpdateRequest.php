@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             'user.id' => 'required|numeric|min:1',
             'user.enabled' => 'required|numeric|between:0,1',
             'user.name' => 'required|string',
-            'user.kana' => 'required|string',
+            'user.kana' => 'present|string',
             'user.zip1' => 'present|digits:3',
             'user.zip2' => 'present|digits:4',
             'user.address' => 'present|string',
