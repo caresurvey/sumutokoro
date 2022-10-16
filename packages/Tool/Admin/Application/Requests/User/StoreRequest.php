@@ -90,7 +90,7 @@ class StoreRequest extends FormRequest
         $results['user']['reorder'] = 1;
         $results['user']['prefectuire_id'] = 1;
         $results['user']['city_id'] = 1;
-        $results['user']['role_id'] = 1;
+        $results['user']['role_id'] = 3;
         $results['user']['trade_area_id'] = 1;
         $results['user']['user_type_id'] = 1;
 

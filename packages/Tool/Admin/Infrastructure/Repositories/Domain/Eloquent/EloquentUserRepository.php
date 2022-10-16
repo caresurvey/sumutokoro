@@ -201,7 +201,7 @@ class EloquentUserRepository implements UserRepository
             return DB::transaction(function () use ($id, $auth) {
 
                 // 削除する予定のuserと関連づいたデータが有れば、書き換えておく
-                $this->changeForeignIds($id);
+                if(!$this->changeForeignIds($id)) throw new AdminLogicException();
 
                 // データ数取得
                 $count = $this->eloquentUser->count();
@@ -257,10 +257,8 @@ class EloquentUserRepository implements UserRepository
     public function changeForeignIds(int $user_id): bool
     {
         try {
-            // 置き換えデータをひとつ取得
-            $data = $this->eloquentNews->where('user_id', $user_id)->pluck('id');
             // 子テーブルのデータを置き換える
-            $this->eloquentNews->where('id', $data)->update(['user_id' => 1]);
+            $this->eloquentNews->where('user_id', $user_id)->update(['user_id' => 1]);
             // 問題なければtrue
             return true;
         } catch (\Exception $e) {
