@@ -2,7 +2,7 @@
 
 namespace Tool\Admin\Domain\Models\Company;
 
-class IsCanBe
+class DecisionDelete
 {
     private array $data;
 

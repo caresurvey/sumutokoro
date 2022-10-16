@@ -7,6 +7,11 @@ class EloquentArea extends AppEloquent
     // DBのテーブル指定
     protected $table = 'areas';
 
+    public function area_center()
+    {
+        return $this->hasOne(EloquentAreaCenter::class, 'area_id');
+    }
+
     public function area_label()
     {
         return $this->belongsTo(EloquentAreaLabel::class);

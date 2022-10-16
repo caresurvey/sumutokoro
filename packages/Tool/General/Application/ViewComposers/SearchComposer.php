@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Request;
 use Tool\General\Infrastructure\Eloquents\EloquentArea;
+use Tool\General\Infrastructure\Eloquents\EloquentAreaCenter;
 use Tool\General\Application\Requests\Search\IndexRequest;
 use Tool\General\Domain\Models\Spot\SpotRepository;
 use Tool\General\Domain\Models\Spot\SpotSearchRepository;
@@ -16,6 +17,7 @@ use Tool\General\Infrastructure\Eloquents\EloquentPriceRange;
 class SearchComposer
 {
     private EloquentArea $eloquentArea;
+    private EloquentAreaCenter $eloquentAreaCenter;
     private EloquentCategory $eloquentCategory;
     private EloquentCity $eloquentCity;
     private EloquentPriceRange $eloquentPriceRange;
@@ -25,6 +27,7 @@ class SearchComposer
 
     public function __construct(
         EloquentArea         $eloquentArea,
+        EloquentAreaCenter   $eloquentAreaCenter,
         EloquentCategory     $eloquentCategory,
         EloquentCity         $eloquentCity,
         EloquentPriceRange   $eloquentPriceRange,
@@ -34,6 +37,7 @@ class SearchComposer
     )
     {
         $this->eloquentArea = $eloquentArea;
+        $this->eloquentAreaCenter = $eloquentAreaCenter;
         $this->eloquentCategory = $eloquentCategory;
         $this->eloquentCity = $eloquentCity;
         $this->eloquentPriceRange = $eloquentPriceRange;
@@ -88,19 +92,51 @@ class SearchComposer
         //キャッシュからデータを取得（なければキャッシュに保存）
         $results = Cache::rememberForever("search_areas", function () {
             $results = [];
-            $areas = $this->eloquentArea->where('display', 1)->with('area_label', 'area_section')->get()->toArray();
-            foreach ($areas as $area) {
-                if ($area['id'] !== 1) {
-                    $result['id'] = $area['id'];
-                    $result['name'] = $area['name'];
-                    $result['area_label_id'] = $area['area_label_id'];
-                    $result['area_section_id'] = $area['area_section_id'];
-                    $results[$area['area_section']['name']][] = $result;
+            $area_centers = $this->eloquentAreaCenter
+                ->where('display', 1)
+                ->where('id', '<>', 1)
+                ->select('id', 'label', 'area_id', 'area_section_id', 'city_id')
+                ->with('area:id,label,area_label_id', 'area.area_label:id,label', 'city:id,name,label', 'area_section:id,name,reorder')
+                ->withCount('spots')
+                ->orderBy('reorder')
+                ->get()
+                ->toArray();
+            foreach ($area_centers as $area_center) {
+                if ($area_center['city_id'] === 2 || $area_center['city_id'] === 5) {
+                    if (empty($results[$area_center['city']['name']]['data'][$area_center['area']['id']])) {
+                        $results[$area_center['city']['name']]['data'][$area_center['area']['id']] = [
+                            'id' => $area_center['area']['id'],
+                            'name' => $area_center['area']['label'],
+                            'spots_count' => 0,
+                        ];
+                    }
+                    if (empty($results[$area_center['city']['name']]['spots_count'])) {
+                        $results[$area_center['city']['name']]['spots_count'] = 0;
+                        $results[$area_center['city']['name']]['type'] = 'area';
+                    }
+                    $results[$area_center['city']['name']]['data'][$area_center['area']['id']]['spots_count'] += $area_center['spots_count'];
+                    $results[$area_center['city']['name']]['spots_count'] += $area_center['spots_count'];
+                } else {
+                    if ($area_center['area']['area_label']['label'] !== '') {
+                        if (empty($results[$area_center['area']['area_label']['label']]['data'][$area_center['city_id']])) {
+                            $results[$area_center['area']['area_label']['label']]['data'][$area_center['city_id']] = [
+                                'id' => $area_center['city_id'],
+                                'name' => $area_center['city']['label'],
+                                'spots_count' => 0,
+                            ];
+                        }
+                        if (empty($results[$area_center['area']['area_label']['label']]['spots_count'])) {
+                            $results[$area_center['area']['area_label']['label']]['spots_count'] = 0;
+                            $results[$area_center['area']['area_label']['label']]['type'] = 'city';
+                        }
+                        $results[$area_center['area']['area_label']['label']]['data'][$area_center['city_id']]['spots_count'] += $area_center['spots_count'];
+                        $results[$area_center['area']['area_label']['label']]['spots_count'] += $area_center['spots_count'];
+                    }
                 }
             }
-
             return $results;
         });
+        //dd($results);
 
         // データを返す
         return $results;

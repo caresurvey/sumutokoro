@@ -39,7 +39,7 @@ class SpotSearch
 
     /**
      * 受け取った複数カテゴリパラメーターを返す
-     * @return string
+     * @return array
      */
     public function getCategories(): array
     {
@@ -51,8 +51,24 @@ class SpotSearch
     }
 
     /**
+     * 受け取ったエリアパラメーターを返す
+     * @return int
+     */
+    public function getArea(): int
+    {
+        // 何もなければ1を返す
+        if(empty($this->data['area'])) return 1;
+
+        // 数字以外なら1を返す
+        if (!preg_match('/^[0-9]+$/', $this->data['area'])) return 1;
+
+        // 値があればそれを返す
+        return (int)$this->data['area'];
+    }
+
+    /**
      * 受け取った市町村パラメーターを返す
-     * @return string
+     * @return int
      */
     public function getCity(): int
     {
@@ -163,12 +179,21 @@ class SpotSearch
     }
 
     /**
+     * エリアデータが存在しているかどうか
+     * @return bool
+     */
+    public function existsArea(): bool
+    {
+        return ($this->getArea() !== 1);
+    }
+
+    /**
      * 複数カテゴリデータが存在しているかどうか
      * @return bool
      */
     public function existsCategories(): bool
     {
-        return ($this->getCategories() !== 1);
+        return (count($this->getCategories()) > 0);
     }
 
     /**
@@ -186,7 +211,7 @@ class SpotSearch
      */
     public function existsCities(): bool
     {
-        return ($this->getCities() !== 1);
+        return (count($this->getCities()) > 0);
     }
 
     /**
@@ -195,7 +220,7 @@ class SpotSearch
      */
     public function existsKeyword(): bool
     {
-        return ($this->getCity() !== '');
+        return ($this->getKeyword() !== '');
     }
 
     /**

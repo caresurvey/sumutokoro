@@ -5,6 +5,7 @@ namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 use Illuminate\Support\Facades\Cache;
 use Tool\General\Domain\Models\Spot\SpotRepository;
 use Tool\General\Domain\Models\Spot\SpotSearch;
+use Tool\General\Infrastructure\Eloquents\EloquentArea;
 use Tool\General\Infrastructure\Eloquents\EloquentSpot;
 use Tool\General\Exceptions\GeneralNotFoundException;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -13,13 +14,16 @@ use DB;
 
 class EloquentSpotRepository implements SpotRepository
 {
+    private EloquentArea $eloquentArea;
     private EloquentSpot $eloquentSpot;
     private int $limit = 30;
 
     public function __construct(
+        EloquentArea $eloquentArea,
         EloquentSpot $eloquentSpot
     )
     {
+        $this->eloquentArea = $eloquentArea;
         $this->eloquentSpot = $eloquentSpot;
     }
 
@@ -33,6 +37,14 @@ class EloquentSpotRepository implements SpotRepository
 
         // 条件検索ページ以外からの検索の場合の処理
         if ($search->isSimple()) {
+            if ($search->existsArea()) {
+                $area = $this->eloquentArea->where('id', $search->getArea())->with('area_center.spots:id,area_center_id')->first();
+                $spotIds = [];
+                foreach($area['area_center']['spots'] as $spots) {
+                    $spotIds[] = $spots['id'];
+                }
+                $query->whereIn('id', $spotIds);
+            }
             if ($search->existsCity()) $query->orWhere('city_id', $search->getCity());
             if ($search->existsCategory()) $query->orWhere('category_id', $search->getCategory());
             if ($search->existsPriceRange()) $query->orWhere('price_range_id', $search->getPriceRange());

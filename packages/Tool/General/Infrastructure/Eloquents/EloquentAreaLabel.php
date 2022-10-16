@@ -9,6 +9,6 @@ class EloquentAreaLabel extends AppEloquent
 
     public function area()
     {
-        return $this->hasOne(EloquentAreaLabel::class);
+        return $this->hasOne(EloquentArea::class);
     }
 }

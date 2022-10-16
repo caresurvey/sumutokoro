@@ -139,16 +139,16 @@
                       </svg>
                     </a>
                     <ul class="p-2 bg-white shadow z-30">
-                      <li><a href="{{asset('/')}}img/" id="HeaderMenuHome">ホーム</a></li>
-                      <li><a href="{{asset('/')}}img/search" id="HeaderMenuSearch">条件でさがす</a></li>
-                      <li><a href="{{asset('/')}}img/spot" id="HeaderMenuSpot">一覧を見る</a></li>
-                      <li><a href="{{asset('/')}}img/news" id="HeaderMenuNews">お知らせ</a></li>
-                      <li><a href="{{asset('/')}}img/service" id="HeaderMenuService">サービス案内</a></li>
-                      <li><a href="{{asset('/')}}img/qa" id="HeaderMenuQa">よくある質問</a></li>
-                      <li><a href="{{asset('/')}}img/contact" id="HeaderMenuContact">お問い合わせ</a></li>
-                      <li><a href="{{asset('/')}}img/company" id="HeaderMenuCompany">運営会社</a></li>
-                      <li><a href="{{asset('/')}}img/privacy" id="HeaderMenuPrivacy">プライバシーポリシー</a></li>
-                      <li><a href="{{asset('/')}}img/sitemap" id="HeaderMenuSitemap">サイトマップ</a></li>
+                      <li><a href="{{asset('/')}}" id="HeaderMenuHome">ホーム</a></li>
+                      <li><a href="{{asset('/')}}search" id="HeaderMenuSearch">条件でさがす</a></li>
+                      <li><a href="{{asset('/')}}spot" id="HeaderMenuSpot">一覧を見る</a></li>
+                      <li><a href="{{asset('/')}}news" id="HeaderMenuNews">お知らせ</a></li>
+                      <li><a href="{{asset('/')}}service" id="HeaderMenuService">サービス案内</a></li>
+                      <li><a href="{{asset('/')}}qa" id="HeaderMenuQa">よくある質問</a></li>
+                      <li><a href="{{asset('/')}}contact" id="HeaderMenuContact">お問い合わせ</a></li>
+                      <li><a href="{{asset('/')}}company" id="HeaderMenuCompany">運営会社</a></li>
+                      <li><a href="{{asset('/')}}privacy" id="HeaderMenuPrivacy">プライバシーポリシー</a></li>
+                      <li><a href="{{asset('/')}}sitemap" id="HeaderMenuSitemap">サイトマップ</a></li>
                     </ul>
                   </li>
                 </ul>

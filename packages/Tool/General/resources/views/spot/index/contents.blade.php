@@ -171,7 +171,7 @@
 
 
             <div class="text-gray-400 text-xs sm:text-sm">
-              {{$data['cities'][$spot['city_id']]}}{{$spot['address']}} ｜ {{$spot['company']['name']}}
+              @if($spot['city_id'] > 1){{$data['cities'][$spot['city_id']]}}@endif{{$spot['address']}} ｜ {{$spot['company']['name']}}
             </div>
           </div>
         @endforeach
@@ -205,7 +205,7 @@
                     <a href="tel:{{$spot['tel1']}}{{$spot['tel2']}}{{$spot['tel3']}}"
                        class="text-accent hover:text-accent_light hover:underline">{{$spot['tel1']}}-{{$spot['tel2']}}
                       -{{$spot['tel3']}}</a><br>
-                    {{$data['cities'][$spot['city_id']]}}{{$spot['address']}} ｜ {{$spot['company']['name']}}
+                    @if($spot['city_id'] > 1) {{$data['cities'][$spot['city_id']]}} @endif {{$spot['address']}} ｜ {{$spot['company']['name']}}
                   </div>
                 </div>
               </div>
@@ -227,7 +227,7 @@
                 <a href="tel:{{$spot['tel1']}}{{$spot['tel2']}}{{$spot['tel3']}}"
                    class="text-accent hover:text-accent_light hover:underline">{{$spot['tel1']}}-{{$spot['tel2']}}
                   -{{$spot['tel3']}}</a> ／
-              {{$data['cities'][$spot['city_id']]}}{{$spot['address']}}
+              @if($spot['city_id'] > 1) {{$data['cities'][$spot['city_id']]}} @endif {{$spot['address']}} ｜ {{$spot['company']['name']}}
             </div>
           @endforeach
         </div>
