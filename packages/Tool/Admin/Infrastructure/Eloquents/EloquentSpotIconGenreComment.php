@@ -15,4 +15,9 @@ class EloquentSpotIconGenreComment extends AppEloquent
         'spot_id',
         'user_id',
     ];
+
+    public function spot_icon_genre()
+    {
+        return $this->belongsTo(EloquentSpotIconGenre::class);
+    }
 }

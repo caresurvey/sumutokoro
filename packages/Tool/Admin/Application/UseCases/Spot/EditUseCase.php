@@ -4,6 +4,7 @@ namespace Tool\Admin\Application\UseCases\Spot;
 
 use Tool\Admin\Domain\Models\Icon\IconRepository;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
+use Tool\Admin\Domain\Models\SpotIconGenreComment\SpotIconGenreCommentRepository;
 use Tool\Admin\Infrastructure\Eloquents\EloquentAreaCenter;
 use Tool\Admin\Infrastructure\Eloquents\EloquentBook;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCategory;
@@ -28,6 +29,7 @@ class EditUseCase
     private EloquentSpace $eloquentSpace;
     private EloquentTradeArea $eloquentTradeArea;
     private IconRepository $iconRepo;
+    private SpotIconGenreCommentRepository $iconGenreCommentRepo;
     private SpotRepository $spotRepo;
 
     public function __construct(
@@ -42,6 +44,7 @@ class EditUseCase
         EloquentSpace $eloquentSpace,
         EloquentTradeArea $eloquentTradeArea,
         IconRepository $iconRepo,
+        SpotIconGenreCommentRepository $iconGenreCommentRepo,
         SpotRepository $spotRepo
     )
     {
@@ -56,6 +59,7 @@ class EditUseCase
         $this->eloquentSpotPlan = $eloquentSpotPlan;
         $this->eloquentTradeArea = $eloquentTradeArea;
         $this->iconRepo = $iconRepo;
+        $this->iconGenreCommentRepo = $iconGenreCommentRepo;
         $this->spotRepo = $spotRepo;
     }
 
@@ -72,6 +76,7 @@ class EditUseCase
         $data['spot'] = $this->spotRepo->edit($id, $auth);
         $data['spot_icon_types'] = $this->eloquentSpotIconType->get()->toArray();
         $data['trade_areas'] = $this->eloquentTradeArea->orderBy('reorder', 'asc')->pluck('name', 'id')->toArray();
+        $data['icons_genre_comments'] = $this->iconGenreCommentRepo->makeEditData($id, $data['spot']['spot_icon_genre_comments']);
         $data['icons'] = $this->iconRepo->makeEditData($id, $data['spot']['spot_icon_genre_comments']);
         $data['associatedCompany'] = ['id' => $data['spot']['company']['id'], 'name' => $data['spot']['company']['name']];
         $data['area_centers'] = $this->eloquentAreaCenter->pluck('label', 'id')->toArray();

@@ -413,6 +413,17 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @include('admin::spot.edit.icons', ['spot_icon_genre_serial' => 'privatespace', 'spot_icon_genre_id' => 5, 'icons' => $data['icons']['privatespace']['data'], 'types' => $data['spot_icon_types']])
+            <br>
+            @include('common::form.textarea', [
+              'name' => 'spot[spot_icon_genre_comment]['.$data['icons_genre_comments']->getId('privatespace').']',
+              'id' => 'SpotIconGenreCommentPrivatespace',
+              'value' => old('spot.spot_icon_genre_comment', $data['icons_genre_comments']->getComment('privatespace')),
+              'placeholder' => 'コメントを入れてください',
+              'ps' => '',
+              'rows' => 3,
+              'hasError' => $errors->has('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('privatespace')),
+              'errors' => $errors->get('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('privatespace')),
+              ])
           </td>
         </tr>
         <tr class="bg-white border-b">
@@ -453,6 +464,18 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @include('admin::spot.edit.icons', ['spot_icon_genre_serial' => 'nurse', 'spot_icon_genre_id' => 3, 'icons' => $data['icons']['nursing']['data'], 'types' => $data['spot_icon_types']])
+            <br>
+            <br>
+            @include('common::form.textarea', [
+              'name' => 'spot[spot_icon_genre_comment]['.$data['icons_genre_comments']->getId('nursing').']',
+              'id' => 'SpotIconGenreCommentNursing',
+              'value' => old('spot.spot_icon_genre_comment', $data['icons_genre_comments']->getComment('nursing')),
+              'placeholder' => 'コメントを入れてください',
+              'ps' => '',
+              'rows' => 3,
+              'hasError' => $errors->has('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('nursing')),
+              'errors' => $errors->get('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('nursing')),
+              ])
           </td>
         </tr>
         <tr class="bg-white border-b">
@@ -461,6 +484,18 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @include('admin::spot.edit.icons', ['spot_icon_genre_serial' => 'care', 'spot_icon_genre_id' => 4, 'icons' => $data['icons']['care']['data'], 'types' => $data['spot_icon_types']])
+            <br>
+            @include('common::form.textarea', [
+              'name' => 'spot[spot_icon_genre_comment]['.$data['icons_genre_comments']->getId('care').']',
+              'id' => 'SpotIconGenreCommentCare',
+              'value' => old('spot.spot_icon_genre_comment', $data['icons_genre_comments']->getComment('care')),
+              'placeholder' => 'コメントを入れてください',
+              'ps' => '',
+              'rows' => 3,
+              'hasError' => $errors->has('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('care')),
+              'errors' => $errors->get('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('care')),
+              ])
+
           </td>
         </tr>
         <tr class="bg-white border-b">
@@ -469,6 +504,17 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @include('admin::spot.edit.icons', ['spot_icon_genre_serial' => 'other', 'spot_icon_genre_id' => 10, 'icons' => $data['icons']['other']['data'], 'types' => $data['spot_icon_types']])
+            <br>
+            @include('common::form.textarea', [
+              'name' => 'spot[spot_icon_genre_comment]['.$data['icons_genre_comments']->getId('other').']',
+              'id' => 'SpotIconGenreCommentOther',
+              'value' => old('spot.spot_icon_genre_comment', $data['icons_genre_comments']->getComment('other')),
+              'placeholder' => 'コメントを入れてください',
+              'ps' => '',
+              'rows' => 3,
+              'hasError' => $errors->has('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('other')),
+              'errors' => $errors->get('spot.spot_icon_genre_comment.' . $data['icons_genre_comments']->getId('other')),
+              ])
           </td>
         </tr>
         <tr class="bg-white border-b">

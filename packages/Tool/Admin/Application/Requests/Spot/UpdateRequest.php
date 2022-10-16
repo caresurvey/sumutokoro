@@ -222,6 +222,24 @@ class UpdateRequest extends FormRequest
         return $results;
     }
 
+    public function getSpotIconGenreComments(): array
+    {
+        // データを取得
+        $comments = parent::all(null)['spot']['spot_icon_genre_comment'];
+
+        // 変数初期化
+        $results = [];
+
+        foreach ($comments as $id => $comment) {
+            $result['id'] = $id;
+            $result['comment'] = $comment;
+            $results[] = $result;
+        }
+
+        // データを返す
+        return $results;
+    }
+
     public function getSpotPrices(): array
     {
         // データを取得

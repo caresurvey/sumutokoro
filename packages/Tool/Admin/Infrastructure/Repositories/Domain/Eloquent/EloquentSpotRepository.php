@@ -14,6 +14,8 @@ use Tool\Admin\Exceptions\AdminNotFoundException;
 use Tool\Admin\Exceptions\AdminLogicException;
 use Tool\Admin\Infrastructure\Eloquents\EloquentSpot;
 use Tool\Admin\Infrastructure\Eloquents\EloquentSpotDetail;
+use Tool\Admin\Infrastructure\Eloquents\EloquentSpotIconGenreComment;
+use Tool\Admin\Infrastructure\Eloquents\EloquentSpotIconGenreCommentForUpdate;
 use Tool\Admin\Infrastructure\Eloquents\EloquentSpotIconStatusForUpdate;
 use Tool\Admin\Infrastructure\Eloquents\EloquentSpotPriceForUpdate;
 use Tool\Admin\Infrastructure\Repositories\Domain\Logic\LogicResponseRepository;
@@ -26,6 +28,7 @@ class EloquentSpotRepository implements SpotRepository
     private EloquentLog $eloquentLog;
     private EloquentSpotPriceForUpdate $eloquentSpotPriceForUpdate;
     private EloquentSpotIconStatusForUpdate $eloquentSpotIconStatusForUpdate;
+    private EloquentSpotIconGenreCommentForUpdate $eloquentSpotIconGenreCommentForUpdate;
     private EloquentSpot $eloquentSpot;
     private EloquentSpotImageRepository $spotImageRepo;
     private LogicResponseRepository $responseRepo;
@@ -34,6 +37,7 @@ class EloquentSpotRepository implements SpotRepository
     public function __construct(
         EloquentLog                     $eloquentLog,
         EloquentSpotPriceForUpdate      $eloquentSpotPriceForUpdate,
+        EloquentSpotIconGenreCommentForUpdate $eloquentSpotIconGenreCommentForUpdate,
         EloquentSpotIconStatusForUpdate $eloquentSpotIconStatusForUpdate,
         EloquentSpot                    $eloquentSpot,
         EloquentSpotImageRepository     $spotImageRepo,
@@ -42,6 +46,7 @@ class EloquentSpotRepository implements SpotRepository
     {
         $this->eloquentLog = $eloquentLog;
         $this->eloquentSpotPriceForUpdate = $eloquentSpotPriceForUpdate;
+        $this->eloquentSpotIconGenreCommentForUpdate = $eloquentSpotIconGenreCommentForUpdate;
         $this->eloquentSpotIconStatusForUpdate = $eloquentSpotIconStatusForUpdate;
         $this->eloquentSpot = $eloquentSpot;
         $this->responseRepo = $responseRepo;
@@ -157,7 +162,7 @@ class EloquentSpotRepository implements SpotRepository
                 'prefecture',
                 'spot_detail',
                 'spot_main_image',
-                'spot_icon_genre_comments',
+                'spot_icon_genre_comments.spot_icon_genre:id,serial,name',
                 'spot_plan',
                 'spot_prices.price_genre',
                 'space',
@@ -198,6 +203,14 @@ class EloquentSpotRepository implements SpotRepository
                     $spotIconStatusData->spot_icon_genre_id = $icon['spot_icon_genre_id'];
                     $spotIconStatusData->user_id = $post['spot']['user_id'];
                     if (!$spotIconStatusData->save()) throw new AdminLogicException();
+                }
+
+                // spot_icon_genre_comments更新
+                foreach ($post['comments'] as $comment) {
+                    $spotIconGenreCommentData = $this->eloquentSpotIconGenreCommentForUpdate->where('id', $comment['id'])->where('spot_id', $data->id)->first();
+                    $spotIconGenreCommentData->comment = $comment['comment'];
+                    $spotIconGenreCommentData->user_id = $post['spot']['user_id'];
+                    if (!$spotIconGenreCommentData->save()) throw new AdminLogicException();
                 }
 
                 // spot_prices更新
