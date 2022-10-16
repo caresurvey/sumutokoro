@@ -1,0 +1,13 @@
+{
+    "type": "project",
+    "description": "backup",
+    "keywords": [],
+    "license": "MIT",
+    "require": {
+        "php": "^8.0.2"
+    },
+    "require-dev": {
+        "deployer/deployer": "^7.0",
+        "deployer/recipes": "^6.2"
+    }
+}

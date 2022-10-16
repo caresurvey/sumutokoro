@@ -20,10 +20,10 @@ jobs:
       - name: docker-compose準備・起動
         run: |
           rm docker-compose.yml
-          cp system/docker/backup/x86/docker-compose.yml ./
+          cp system/docker/restore/x86/docker-compose.yml ./
           docker-compose up -d
 
-      - name: composerインストール（backup用のcomposer.jsonに切り替えて実行）
+      - name: composerインストール（restore用のcomposer.jsonに切り替えて実行）
         run: |
           rm composer.json
           cp system/docker/backup/composer.json ./
@@ -41,11 +41,11 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
       #- name: 転送用のディレクトリを作成
-      #  run: |
-      #    mkdir backup
+        run: |
+          mkdir restore
 
-      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-      #  uses: mxschmitt/action-tmate@v1
+      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+        uses: mxschmitt/action-tmate@v1
 
       #- name: deployerのファイルを配置
       #  run: |

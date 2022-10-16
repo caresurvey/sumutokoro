@@ -90,7 +90,8 @@ jobs:
 
       - name: バックアップサーバーにバックアップファイルを転送
         run: |
-          scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/month/backup_`date +%d`.zip
           scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_`date +%Y%m`.zip
+          scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_latest.zip
+          scp -i ~/.ssh/backup_secretkey ./backup/backup.zip ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/month/backup_`date +%d`.zip
 
 
