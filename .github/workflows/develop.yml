@@ -62,9 +62,11 @@ jobs:
           docker-compose exec -T php ./vendor/bin/phpunit -c packages/Tool/General/tests/
           docker-compose exec -T php ./vendor/bin/phpunit -c packages/Tool/User/tests/
 
-      #- name: WEBアプリのE2Eテストを行う (Laravel Dusk)
-      #  run: |
-      #     docker-compose exec -T php php artisan dusk
+      - name: WEBアプリのE2Eテストを行う (Laravel Dusk)
+        run: |
+           docker-compose exec -T php php artisan dusk packages/Tool/Admin/tests/
+           docker-compose exec -T php php artisan dusk packages/Tool/General/tests/
+           docker-compose exec -T php php artisan dusk packages/Tool/User/tests/
 
       #- name: デプロイ用のcomposerに切り替えて、composerをセットし直す（#環境をproductionにする必要があるので、.envを差し替え）
       #  run: |

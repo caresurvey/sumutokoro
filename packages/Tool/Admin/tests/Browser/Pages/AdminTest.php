@@ -6,7 +6,7 @@ use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class AdminFaxTest extends DuskTestCase
+class AdminTest extends DuskTestCase
 {
     /**
      * @test
