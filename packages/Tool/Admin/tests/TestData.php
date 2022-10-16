@@ -334,12 +334,15 @@ class TestData
         $results['spot']['spot_detail']['id'] = 1;
         $results['spot']['spot_detail']['email'] = '';
         $results['spot']['spot_detail']['proarea'] = '';
+        $results['spot']['spot_icon_genre_comment'] = [];
         $results['icons'][0]['id'] = 1;
         $results['icons'][0]['name'] = 'name';
         $results['icons'][0]['spot_icon_type_id'] = 1;
         $results['icons'][0]['spot_icon_genre_id'] = 1;
         $results['prices'][0]['id'] = 1;
         $results['prices'][0]['name'] = 'name';
+        $results['comments'][0]['id'] = 1;
+        $results['comments'][0]['comment'] = 'name';
         $results['search_words'] = '';
 
         // データを返す
