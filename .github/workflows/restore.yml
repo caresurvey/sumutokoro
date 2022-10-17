@@ -1,4 +1,4 @@
-name: 本番環境リストア（最新のバックアップを元にをデータをリストアする）
+name: 本番環境リストア（最新のリストアを元にをデータをリストアする）
 
 on:
   push:
@@ -26,15 +26,15 @@ jobs:
       - name: composerインストール（restore用のcomposer.jsonに切り替えて実行）
         run: |
           rm composer.json
-          cp system/docker/backup/composer.json ./
+          cp system/docker/restore/composer.json ./
           docker-compose exec -T php sh -c "composer install"
 
       - name: 本番サーバーにSSH接続するためのkeyとknown_hostsの設定
         run: |
           echo "${{ secrets.SSH_KEY_PRODUCTION }}" > ~/.ssh/secretkey
-          echo "${{ secrets.SSH_KEY_BACKUP }}" > ~/.ssh/backup_secretkey
+          echo "${{ secrets.SSH_KEY_BACKUP }}" > ~/.ssh/restore_secretkey
           chmod 600 ~/.ssh/secretkey
-          chmod 600 ~/.ssh/backup_secretkey
+          chmod 600 ~/.ssh/restore_secretkey
           ssh-keyscan ${{ secrets.SSH_HOST_PRODUCTION }} >> ~/.ssh/known_hosts
           ssh-keyscan ${{ secrets.SSH_HOST_BACKUP }} >> ~/.ssh/known_hosts
         env:
@@ -44,18 +44,40 @@ jobs:
         run: |
           mkdir restore
 
+      - name: リストア用のスクリプトファイルを作成
+        run: |
+          echo '#!/bin/sh'
+          echo '# リストア用のディレクトリを作成'
+          echo 'mkdir restore' >> restore/restore.sh
+          echo '# リストア用のディレクトリに移動'
+          echo 'cd restore' >> restore/restore.sh
+          echo '# 転送したDBを解凍'
+          echo 'unzip restore.zip' >> restore/restore.sh
+          echo '# 本番用DBをdumpする'
+          echo '#mysqldump --no-tablespaces -u ${{secrets.DB_USER_NAME_PRODUCTION}} -p${{secrets.DB_PASSWORD_PRODUCTION}} -h ${{secrets.DB_HOST_NAME_PRODUCTION}} ${{secrets.DB_NAME_PRODUCTION}} > dump.sql' >> restore/restore.sh
+          echo '# データディレクトリがなければ展開して配置'
+          echo '#zip -r datas.zip ~/www/datas' >> restore/restore.sh
+          echo '# メールBOXがなければ展開して配置'
+          echo '#zip -r MailBox.zip ~/MailBox' >> restore/restore.sh
+          echo '# リストア用のディレクトリから出る'
+          echo '#cd ../' >> restore/restore.sh
+          echo '# リストアzipを削除する'
+          echo '#rm restore.zip' >> restore/restore.sh
+          echo '# リストアスクリプト（このファイル自身）を削除する'
+          echo '#rm restore.sh' >> restore/restore.sh
+
+      - name: deployerのファイルを配置
+        run: |
+          cp system/deployer/restore.php ./restore.php
+
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
 
-      #- name: deployerのファイルを配置
-      #  run: |
-      #    cp system/deployer/backup.php ./deploy.php
+      - name: バックアップサーバーから最新のバックアップをCI内にダウンロードする
+        run: scp -i ~/.ssh/restore_secretkey -r ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_latest.zip ./restore/restore.zip
 
-      #- name: 本番サーバーでバックアップを行う（deployer7系／deploy.php）
-      #  run: ./vendor/bin/dep backup production -vvvv
-
-      #- name: 本番サーバーからバックアップデータをダウンロードする
-      #  run: scp -i ~/.ssh/secretkey -r ${{ secrets.SSH_USER_PRODUCTION }}@${{ secrets.SSH_HOST_PRODUCTION }}:~/deploy/backup/sumutokoro2022/current/backup.zip ./backup/backup.zip
+      - name: 本番サーバーでリストアを行う（deployer7系／deploy.php）
+        run: ./vendor/bin/dep restore production -vvvv
 
 
 
