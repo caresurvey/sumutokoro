@@ -47,7 +47,7 @@ set('rsync',[
 ]);
 
 // Deploy後の処理
-after('deploy', 'deploy:done');
+after('backup', 'deploy:done');
 task('deploy:done', function () {
 
     // 移動
