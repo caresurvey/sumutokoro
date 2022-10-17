@@ -72,8 +72,8 @@ jobs:
         run: |
           cp system/deployer/restore.php ./deploy.php
 
-      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-        uses: mxschmitt/action-tmate@v1
+      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+      #  uses: mxschmitt/action-tmate@v1
 
       - name: バックアップサーバーから最新のバックアップをCI内にダウンロードする
         run: scp -i ~/.ssh/restore_secretkey -r ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_latest.zip ./restore/restore.zip
