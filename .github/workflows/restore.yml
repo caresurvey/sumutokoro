@@ -47,28 +47,30 @@ jobs:
       - name: リストア用のスクリプトファイルを作成
         run: |
           echo '#!/bin/sh'
-          echo '# リストア用のディレクトリを作成'
-          echo 'mkdir restore' >> restore/restore.sh
-          echo '# リストア用のディレクトリに移動'
-          echo 'cd restore' >> restore/restore.sh
           echo '# 転送したDBを解凍'
           echo 'unzip restore.zip' >> restore/restore.sh
-          echo '# 本番用DBをdumpする'
-          echo '#mysqldump --no-tablespaces -u ${{secrets.DB_USER_NAME_PRODUCTION}} -p${{secrets.DB_PASSWORD_PRODUCTION}} -h ${{secrets.DB_HOST_NAME_PRODUCTION}} ${{secrets.DB_NAME_PRODUCTION}} > dump.sql' >> restore/restore.sh
-          echo '# データディレクトリがなければ展開して配置'
-          echo '#zip -r datas.zip ~/www/datas' >> restore/restore.sh
-          echo '# メールBOXがなければ展開して配置'
-          echo '#zip -r MailBox.zip ~/MailBox' >> restore/restore.sh
-          echo '# リストア用のディレクトリから出る'
-          echo '#cd ../' >> restore/restore.sh
+          echo '# 解凍したときにできたbackupディレクトリに移動'
+          echo 'cd backup' >> restore/restore.sh
+          echo '# 本番用DBにバックアップSQLを反映させる'
+          echo 'mysql -u ${{secrets.DB_USER_NAME_PRODUCTION}} -p${{secrets.DB_PASSWORD_PRODUCTION}} -h ${{secrets.DB_HOST_NAME_PRODUCTION}} ${{secrets.DB_NAME_PRODUCTION}} > dump.sql' >> restore/restore.sh
+          echo '# Zipを展開'
+          echo 'unzip datas.zip' >> restore/restore.sh
+          echo '# 公開フォルダにデータディレクトリがなければ展開したZipディレクトリを移動'
+          echo 'test -f ~/www/datas;mv datas ~/www/' >> restore/restore.sh
+          echo '# 公開フォルダにシステムへのシンボリックリンクがなければ貼る'
+          echo 'test -f ~/www/test;ln -s ~/deploy/production/sumutokoro_2022/current/public ~/www/test' >> restore/restore.sh
+          echo '# backupディレクトリから出る'
+          echo 'cd ../' >> restore/restore.sh
+          echo '# backupディレクトリを削除する'
+          echo 'rm -R backup' >> restore/restore.sh
           echo '# リストアzipを削除する'
-          echo '#rm restore.zip' >> restore/restore.sh
+          echo 'rm restore.zip' >> restore/restore.sh
           echo '# リストアスクリプト（このファイル自身）を削除する'
-          echo '#rm restore.sh' >> restore/restore.sh
+          echo 'rm restore.sh' >> restore/restore.sh
 
       - name: deployerのファイルを配置
         run: |
-          cp system/deployer/restore.php ./restore.php
+          cp system/deployer/restore.php ./deploy.php
 
       - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
         uses: mxschmitt/action-tmate@v1
@@ -77,7 +79,7 @@ jobs:
         run: scp -i ~/.ssh/restore_secretkey -r ${{ secrets.SSH_USER_BACKUP }}@${{ secrets.SSH_HOST_BACKUP }}:~/backup/sumutokoro/backup_latest.zip ./restore/restore.zip
 
       - name: 本番サーバーでリストアを行う（deployer7系／deploy.php）
-        run: ./vendor/bin/dep restore production -vvvv
+        run: ./vendor/bin/dep deploy production -vvvv
 
 
 

@@ -34,16 +34,15 @@ host('production')
     ->set('branch', 'release')
     ->set('keep_releases', 5);
 
-task('restore', [
+task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
     'artisan:config:cache',
     'artisan:view:cache',
     'artisan:event:cache',
     'artisan:migrate',
+    'deploy:publish'
     'rsync', 
-    'deploy:publish',
-    'deploy:done',
 ]);
 
 // ファイル転送タスク
@@ -60,21 +59,8 @@ set('rsync',[
     'timeout'       => 3600, //for those huge repos or crappy connection
 ]);
 
-// ビルドタスク
-after('rsync', 'restore');
-task('restore', function () {
-
-    // MySQLのダンプ
-    cd('{{release_path}}');
-
-    // リストアスクリプトのパーミッション変更
-    run('chmod 755 restore.sh');
-
-    // リストアスクリプトを実行
-    run('./restore.sh');
-});
-
 // Deploy後の処理
+after('deploy', 'deploy:done');
 task('deploy:done', function () {
     // 移動
     cd("{{release_path}}");
@@ -91,6 +77,15 @@ task('deploy:done', function () {
 
     // シンボリックリンク追加
     run('ln -s ../storage/app/photos public/photos');
+
+    // MySQLのダンプ
+    cd('{{release_path}}');
+
+    // リストアスクリプトのパーミッション変更
+    run('chmod 755 restore.sh');
+
+    // リストアスクリプトを実行
+    run('./restore.sh');
 });
 
 
