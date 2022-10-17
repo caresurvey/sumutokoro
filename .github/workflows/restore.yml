@@ -40,7 +40,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY_PRODUCTION }}
 
-      #- name: 転送用のディレクトリを作成
+      - name: 転送用のディレクトリを作成
         run: |
           mkdir restore
 
