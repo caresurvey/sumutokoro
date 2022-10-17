@@ -61,7 +61,8 @@ set('rsync',[
 
 // Deploy後の処理
 after('deploy', 'deploy:done');
-task('deploy:done', function () {
+task('deploy:done', function (){
+
     // 移動
     cd("{{release_path}}");
 

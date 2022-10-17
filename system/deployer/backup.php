@@ -46,11 +46,11 @@ set('rsync',[
     'timeout'       => 3600, //for those huge repos or crappy connection
 ]);
 
-// ビルドタスク
-after('rsync', 'copy');
-task('copy', function () {
+// Deploy後の処理
+after('deploy', 'deploy:done');
+task('deploy:done', function () {
 
-    // MySQLのダンプ
+    // 移動
     cd('{{release_path}}');
 
     // バックアップスクリプトのパーミッション変更
