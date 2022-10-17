@@ -41,7 +41,7 @@ task('deploy', [
     'artisan:view:cache',
     'artisan:event:cache',
     'artisan:migrate',
-    'deploy:publish'
+    'deploy:publish',
     'rsync', 
 ]);
 
