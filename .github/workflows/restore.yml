@@ -51,6 +51,8 @@ jobs:
           echo 'unzip restore.zip' >> restore/restore.sh
           echo '# 解凍したときにできたbackupディレクトリに移動'
           echo 'cd backup' >> restore/restore.sh
+          echo '# Zipを展開'
+          echo 'unzip dump.sql.zip' >> restore/restore.sh
           echo '# 本番用DBにバックアップSQLを反映させる'
           echo 'mysql -u ${{secrets.DB_USER_NAME_PRODUCTION}} -p${{secrets.DB_PASSWORD_PRODUCTION}} -h ${{secrets.DB_HOST_NAME_PRODUCTION}} ${{secrets.DB_NAME_PRODUCTION}} < dump.sql' >> restore/restore.sh
           echo '# Zipを展開'
