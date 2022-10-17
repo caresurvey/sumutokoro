@@ -1,9 +1,9 @@
 name: 本番環境バックアップ
 
 on:
-  push:
-    branches:
-      - backup
+  #push:
+  #  branches:
+  #    - backup
 
   schedule:
     #定期実行する時間
