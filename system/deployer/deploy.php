@@ -44,9 +44,9 @@ host('staging')
 task('deploy', [
     'deploy:prepare',
     'deploy:vendors',
-    'artisan:config:cache',
-    'artisan:view:cache',
-    'artisan:event:cache',
+    //'artisan:config:cache',
+    //'artisan:view:cache',
+    //'artisan:event:cache',
     'artisan:migrate',
     'deploy:publish',
 ]);

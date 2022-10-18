@@ -17,7 +17,7 @@ class IndexUseCase
 
     public function __invoke(): array
     {
-        $data['news'] = $this->eloquentNews->where('display', true)->limit(3)->get();
+        $data['news'] = $this->eloquentNews->where('display', true)->orderBy('created_at', 'desc')->limit(3)->get();
 
         return $data;
     }
