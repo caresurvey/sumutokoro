@@ -17,7 +17,7 @@ jobs:
       - name: 下準備
         run: |
           mkdir -p ~/.ssh
-          cp system/ci/spots storage/app/photos/spots
+          cp -R system/ci/spots storage/app/photos/spots
           ln -s storage/app/photos public/photos
 
       - name: docker-compose準備・起動
