@@ -53,8 +53,8 @@ jobs:
         run: |
           cp system/deployer/deploy.php ./deploy.php
 
-      #- name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-      #  uses: mxschmitt/action-tmate@v1
+      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
+        uses: mxschmitt/action-tmate@v1
 
       - name: WEBアプリのユニットテスト・結合テストを行う (PHPUnit)
         run: |
