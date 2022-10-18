@@ -88,7 +88,7 @@
           <td class="p-4 w-3/4">
             {{number_format($data['spot']['monthly_price_min'])}}円
             @if($data['spot']['for_check_monthly'])〜@endif
-            @if($data['spot']['monthly_price_max'] >= 0){{number_format($data['spot']['monthly_price_max'])}}
+            @if($data['spot']['monthly_price_max'] > 0){{number_format($data['spot']['monthly_price_max'])}}
             円@endif
           </td>
         </tr>
@@ -99,7 +99,7 @@
           <td class="p-4 w-3/4">
             {{number_format($data['spot']['movein_price_min'])}}円
             @if($data['spot']['for_check_movein'])〜@endif
-            @if($data['spot']['movein_price_max'] >= 0){{number_format($data['spot']['movein_price_max'])}}円@endif
+            @if($data['spot']['movein_price_max'] > 0){{number_format($data['spot']['movein_price_max'])}}円@endif
           </td>
         </tr>
         <tr class="border">
@@ -116,7 +116,9 @@
             所在地
           </th>
           <td class="p-4 w-3/4">
+            @if($data['spot']['zip1'] !=='' && $data['spot']['zip2']!=='')
             〒{{$data['spot']['zip1']}}-{{$data['spot']['zip2']}}<br>
+            @endif
             {{$data['cities'][$data['spot']['city_id']]}}{{$data['spot']['address']}} <a href="#SpotMap" class="text-accent hover:text-accent_light cursor-pointer"><i
                       class="fa-solid fa-location-dot"></i></a>
           </td>
@@ -200,7 +202,7 @@
             運営会社
           </th>
           <td class="p-4 w-3/4">
-            {{$data['spot']['company']['name']}}
+            {{$data['spot']['spot_detail']['company_name']}}
           </td>
         </tr>
         <tr class="border">

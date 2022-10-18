@@ -14,7 +14,8 @@
       <p>
         <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/book/preview/{{$data['spot']['id']}}/@include('common::spot.make_token', ['id' =>$data['spot']['id'], 'name' => $data['spot']['name']])"
            class="text-accent hover:text-accent_light mr-1 hover:underline" target="_blank"><i
-                  class="fa-solid fa-book"></i> 冊子確認をする</a>
+                  class="fa-solid fa-book"></i> 冊子確認をする</a>｜
+        <a href="{{asset('/')}}spot/{{$data['spot']['id']}}/" class="text-accent hover:text-accent_light mr-1 hover:underline" target="_blank">公開ページを見る</a>
       </p>
     </div>
   </div>

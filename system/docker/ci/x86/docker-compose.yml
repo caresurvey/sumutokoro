@@ -70,7 +70,7 @@ services:
 
   selenium:
     container_name: selenium
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome:latest
     shm_size: '2gb'
     ports:
       - 11064:4444
