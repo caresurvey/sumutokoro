@@ -38,7 +38,7 @@ abstract class DuskTestCase extends BaseTestCase
             '--disable-gpu',
             //'--privileged',
             //'--disable-setuid-sandbox',
-            //'--headless',
+            '--headless',
             //'--no-sandbox',
             '--lang=ja_JP',
             '--enable-features=NetworkService,NetworkServiceInProcess',
