@@ -108,7 +108,13 @@ $ docker-compose exec php php artisan migrate:refresh --seed
 
 
 ## バックアップ体制
-GitHubActionsのスケジュールにて基本・全自動で行われます。実際にはLaravelのConsoleを叩くことで実行されます。フックはGitHubActionsの「schedule」にて行います。バックアップ対象はDBと画像です。それ以外のファイルはGitHubにあるので保存しません。処理は「.github/workflows/backup.yml」と「system/loacl/docker/backup/x86/docker-compose.yml」「deploy.php」に記載してあります。バックアップファイルの保存先は「xxx」です。
+GitHubActionsのスケジュールとさくらレンタルサーバーのバックアップサーバー「SnapUp」の２つにてバックアップ体制を作っています。
+
+にて走るCIスクリプトで
+どちらも基本・全自動で行われます。
+
+実際にはLaravelのConsoleを叩くことで実行されます。フックはGitHubActionsの「schedule」にて行います。バックアップ対象はDBと画像です。それ以外のファイルはGitHubにあるので保存しません。処理は「.github/workflows/backup.yml」と「system/loacl/docker/backup/x86/docker-compose.yml」「deploy.php」に記載してあります。バックアップファイルの保存先は「xxx」です。
+
 
 
 ## 開発時のチェック
