@@ -68,11 +68,6 @@ jobs:
            docker-compose exec -T php php artisan dusk packages/Tool/General/tests/
            docker-compose exec -T php php artisan dusk packages/Tool/User/tests/
 
-      #- name: デプロイ用のcomposerに切り替えて、composerをセットし直す（#環境をproductionにする必要があるので、.envを差し替え）
-      #  run: |
-      #    docker-compose exec -T php sh -c "composer update --no-dev"
-
-
       - name: デプロイを行う（deployer7系／deploy.php）
         run: ./vendor/bin/dep deploy staging -vvvv
 
