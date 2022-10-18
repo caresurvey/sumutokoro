@@ -84,6 +84,9 @@ class EloquentSpotRepository implements SpotRepository
             $query->whereIn('id', $spotIds);
         }
 
+        // 共通の条件
+        $query->where('display', 1);
+
         // ベースの並び
         $query->orderBy('created_at', 'DESC');
         $query->orderBy('id', 'DESC');

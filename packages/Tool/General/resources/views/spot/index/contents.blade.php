@@ -1,5 +1,5 @@
 @extends('general::layouts.app')
-@section('title', '事業所一覧 - ' . config('myapp.site_name'))
+@section('title', '事業所一覧｜' . config('myapp.site_name'))
 @section('description', '条件を指定して各事業所を検索することができます。')
 
 @section('content')

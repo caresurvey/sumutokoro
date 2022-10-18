@@ -227,6 +227,7 @@ return [
          * 自作ヘルパー
          */
         'LogHelper' => Tool\Common\Helpers\LogHelper::class,
+        'GeneralTextHelper' => Tool\General\Helpers\GeneralTextHelper::class,
 
     ])->toArray(),
 

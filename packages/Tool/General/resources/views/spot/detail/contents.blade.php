@@ -17,7 +17,7 @@
   </div>
 
   <section class="container mx-auto max-w-6xl px-4 sm:px-8 md:px-12">
-    <div class="shadow bg-white rounded p-4 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-8">
+    <div class="shadow bg-white rounded p-6 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-14">
       <h2 class="mb-4 text-md ms:text-lg font-bold">
         <span class="text-xl font-bold border-l-4 pl-3 md:text-2xl">事業所概要</span>
       </h2>
@@ -105,8 +105,7 @@
           </th>
           <td class="p-4 w-3/4">
             <div><a href="tel:{{$data['spot']['tel1']}}{{$data['spot']['tel2']}}{{$data['spot']['tel3']}}"
-                    class="text-accent hover:text-accent_light hover:underline">{{$data['spot']['tel1']}}
-                -{{$data['spot']['tel2']}}-{{$data['spot']['tel3']}}</a></div>
+                    class="text-accent hover:text-accent_light hover:underline">{{$data['spot']['tel1']}}-{{$data['spot']['tel2']}}-{{$data['spot']['tel3']}}</a></div>
           </td>
         </tr>
         <tr class="border">
@@ -115,7 +114,8 @@
           </th>
           <td class="p-4 w-3/4">
             〒{{$data['spot']['zip1']}}-{{$data['spot']['zip2']}}<br>
-            {{$data['cities'][$data['spot']['city_id']]}}{{$data['spot']['address']}}
+            {{$data['cities'][$data['spot']['city_id']]}}{{$data['spot']['address']}} <a href="#SpotMap" class="text-accent hover:text-accent_light cursor-pointer"><i
+                      class="fa-solid fa-location-dot"></i></a>
           </td>
         </tr>
         <tr class="border">
@@ -129,7 +129,7 @@
       </table>
     </div>
 
-    <div class="shadow bg-white rounded p-4 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-8">
+    <div class="shadow bg-white rounded p-6 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-14">
       @if($data['icons'])
         @foreach($data['icons'] as $icons)
           @if($icons['serial'] !== 'status')
@@ -159,7 +159,7 @@
       @endif
     </div>
 
-    <div class="shadow bg-white rounded p-4 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-8">
+    <div class="shadow bg-white rounded p-6 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-14">
       <h3 class="text-lg mb-4 text-md font-bold">
         基本情報
       </h3>
@@ -261,7 +261,7 @@
             Webサイト
           </th>
           <td class="p-4 w-3/4">
-            {{$data['spot']['spot_detail']['website']}}
+            {!! GeneralTextHelper::makeLink($data['spot']['spot_detail']['website']) !!}
           </td>
         </tr>
         <tr class="border">
@@ -272,6 +272,10 @@
           </td>
         </tr>
       </table>
+    </div>
+
+    <div class="shadow bg-white rounded p-6 mb-4 sm:rounded-xl sm:p-6 sm:mb-8 md:px-14 md:py-14" id="SpotMap">
+      <iframe class="w-full h-96" src="https://maps.google.co.jp/maps?&output=embed&q={{$data['spot']['lat']}},{{$data['spot']['lng']}}"></iframe>
     </div>
 
   </section>

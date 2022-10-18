@@ -310,7 +310,7 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
+                  <a href="{{asset('/')}}register" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
                 </li>
               </ul>
             </div>

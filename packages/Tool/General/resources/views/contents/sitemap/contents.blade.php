@@ -50,6 +50,14 @@
           <a href="{{asset('/')}}news"class="link link-hover link-accent"><i
                     class="fa-solid fa-circle-arrow-right mr-2"></i>お知らせ</a>
         </li>
+        <li>
+          <a href="{{asset('/')}}user/login"class="link link-hover link-accent"><i
+                    class="fa-solid fa-circle-arrow-right mr-2"></i>ユーザーログイン</a>
+        </li>
+        <li>
+          <a href="{{asset('/')}}register"class="link link-hover link-accent"><i
+                    class="fa-solid fa-circle-arrow-right mr-2"></i>ユーザー登録する</a>
+        </li>
       </ul>
     </div>
   </section>
