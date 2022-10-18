@@ -3,6 +3,7 @@
 namespace Tool\Admin\tests\Browser\Pages;
 
 use Tests\DuskTestCase;
+use Laravel\Dusk\Browser;
 
 class AdminSpotTest extends DuskTestCase
 {

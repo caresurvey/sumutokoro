@@ -65,6 +65,7 @@ jobs:
 
       - name: WEBアプリのE2Eテストを行う (Laravel Dusk)
         run: |
+           docker-compose exec -T php php artisan dusk packages/Tool/Admin/tests/
            docker-compose exec -T php php artisan dusk packages/Tool/General/tests/
            docker-compose exec -T php php artisan dusk packages/Tool/User/tests/
 
