@@ -99,7 +99,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="mb-2">
+                  <div class="mb-2 text-md">
                     {{$spot['heading']}}
                   </div>
                 </div>
@@ -171,7 +171,8 @@
 
 
             <div class="text-gray-400 text-xs sm:text-sm">
-              @if($spot['city_id'] > 1){{$data['cities'][$spot['city_id']]}}@endif{{$spot['address']}} ｜ {{$spot['company']['name']}}
+              @if($spot['city_id'] > 1){{$data['cities'][$spot['city_id']]}}@endif{{$spot['address']}} <a href="{{asset('/')}}spot/{{$spot['id']}}/#SpotMap" class="text-accent hover:text-accent_light cursor-pointer"><i
+                      class="fa-solid fa-location-dot"></i></a> ｜ {{$spot['company']['name']}}
             </div>
           </div>
         @endforeach

@@ -5,6 +5,7 @@ namespace Tool\Admin\Application\UseCases\Spot;
 use Tool\Admin\Application\Requests\Spot\IndexRequest;
 use Tool\Admin\Domain\Models\Spot\SpotRepository;
 use Tool\Admin\Domain\Models\Spot\SpotSearchRepository;
+use Tool\Admin\Infrastructure\Eloquents\EloquentAreaCenter;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCategory;
 use Tool\Admin\Infrastructure\Eloquents\EloquentCity;
 use Tool\Admin\Infrastructure\Eloquents\EloquentPrefecture;
@@ -12,6 +13,7 @@ use Tool\Admin\Infrastructure\Eloquents\EloquentPriceRange;
 
 class IndexUseCase
 {
+    private EloquentAreaCenter $eloquentAreaCenter;
     private EloquentCategory $eloquentCategory;
     private EloquentCity $eloquentCity;
     private EloquentPrefecture $eloquentPrefecture;
@@ -21,6 +23,7 @@ class IndexUseCase
     private SpotSearchRepository $spotSearchRepo;
 
     public function __construct(
+        EloquentAreaCenter $eloquentAreaCenter,
         EloquentCategory $eloquentCategory,
         EloquentCity $eloquentCity,
         EloquentPrefecture $eloquentPrefecture,
@@ -30,6 +33,7 @@ class IndexUseCase
         SpotSearchRepository $spotSearchRepo
     )
     {
+        $this->eloquentAreaCenter = $eloquentAreaCenter;
         $this->eloquentCategory = $eloquentCategory;
         $this->eloquentCity = $eloquentCity;
         $this->eloquentPrefecture = $eloquentPrefecture;
@@ -46,8 +50,11 @@ class IndexUseCase
         !empty($this->request->getQueryString()) ? $query = $this->request->getQueryString() : $query = '';
         $search = $this->spotSearchRepo->makeSearch($this->request->all(), $query);
         $data = $this->spotRepo->list($search, $auth);
+        $data['area_centers'] = $this->eloquentAreaCenter->where('display', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
         $data['categories'] = $this->eloquentCategory->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
         $data['cities'] = $this->eloquentCity->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();
+        $data['data_area_centers'] = $this->eloquentAreaCenter->pluck('label', 'id');
+        $data['data_categories'] = $this->eloquentCategory->pluck('name', 'id');
         $data['data_cities'] = $this->eloquentCity->pluck('name', 'id');
         $data['data_prefectures'] = $this->eloquentPrefecture->pluck('name', 'id');
         $data['price_ranges'] = $this->eloquentPriceRange->where('display', 1)->where('public', 1)->withCount('spots')->orderBy('reorder', 'asc')->get();

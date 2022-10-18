@@ -33,9 +33,11 @@
                 <div class="flex items-center text-center mb-1 mr-1 px-1 pt-2 pb-1 bg-gray-50 rounded border border-gray-200">
                   <div>
                     <div class="flex justify-center mb-1 sm:mb-2">
+                      <div class="tooltip flex justify-center" data-tip="{{$icon['type']['name']}}">
                       <img src="{{asset('/')}}img/general/pages/spot/icons/{{$icon['type']['serial']}}.png"
                            alt="{{$icon['name']}}"
                            class="w-1/3 md:w-1/3">
+                      </div>
                     </div>
                     <div class="text-xs sm:text-sm">{{$icon['name']}}</div>
                   </div>
@@ -43,7 +45,8 @@
               @endforeach
             </div>
           @endif
-          <div class="py-2 block hidden md:block">{{$data['spot']['heading']}}</div>
+          <div class="pt-2 pb-1 text-lg block hidden font-bold md:block">{{$data['spot']['heading']}}</div>
+          <div class="block hidden md:block">{{$data['spot']['message']}}</div>
         </div>
       </div>
 
@@ -123,7 +126,7 @@
             施設種別
           </th>
           <td class="p-4 w-3/4">
-            {{$data['categories'][$data['spot']['category_id']]}}
+            <a href="{{asset('/')}}spot/?search[category]={{$data['spot']['category_id']}}&search[simple]=1" class="text-accent hover:text-accent_light hover:underline">{{$data['categories'][$data['spot']['category_id']]}}</a>
           </td>
         </tr>
       </table>

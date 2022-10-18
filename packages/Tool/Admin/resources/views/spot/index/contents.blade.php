@@ -79,16 +79,21 @@
             </div>
           </th>
           <th class="py-2 px-2 w-1/12">
-            <div class="tooltip sortable-link" data-tip="投稿日を基準に並び替えます">
-              @sortablelink('created_at','投稿日')
+            <div class="tooltip sortable-link" data-tip="市町村を基準に並び替えます">
+              @sortablelink('city_id','市町村')
             </div>
           </th>
           <th class="py-2 px-2 w-1/12">
-            <div class="tooltip sortable-link" data-tip="市町村を基準に並び替えます">
-              @sortablelink('display','市町村')
+            <div class="tooltip sortable-link" data-tip="地域包括支援センターを基準に並び替えます">
+              @sortablelink('area_center_id','地域包括')
             </div>
           </th>
-          <th class="py-2 px-2 w-6/12">
+          <th class="py-2 px-2 w-1/12">
+            <div class="tooltip sortable-link" data-tip="種別を基準に並び替えます">
+              @sortablelink('category_id','種別')
+            </div>
+          </th>
+          <th class="py-2 px-2 w-5/12">
             <div class="tooltip sortable-link" data-tip="事業所名を基準に並び替えます">
               @sortablelink('name','事業所名')
             </div>
@@ -98,7 +103,7 @@
               @sortablelink('spot_main_image_count','写真')
             </div>
           </th>
-          <th class="py-2 px-2 w-1/12">確認</th>
+          <th class="py-2 px-2 w-1/12 text-center">確認</th>
         </tr>
         </thead>
         <tbody>
@@ -108,8 +113,9 @@
             <td class="py-2 px-2">
               @include('admin::common.list.display', ['model' => 'spot', 'id' => $value['id'], 'display' => $value['display']])
             </td>
-            <td class="py-2 px-2">{{$value['created_at']->format("y/m/d")}}</td>
-            <td class="py-2 px-2">{{$data['data_cities'][$value['city_id']]}}</td>
+            <td class="py-2 px-2 text-xs">{{$data['data_cities'][$value['city_id']]}}</td>
+            <td class="py-2 px-2 text-xs">{{$data['data_area_centers'][$value['area_center_id']]}}</td>
+            <td class="py-2 px-2 text-xs">{{$data['data_categories'][$value['category_id']]}}</td>
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/spot/{{$value['id']}}/edit"
                  class="tooltip link link-hover link-primary"
@@ -121,7 +127,7 @@
                 @include('admin::common.list.image', ['spot_id' => $value['id'], 'name' => $value['spot_main_image']['name']])
               @endif
             </td>
-            <td class="py-2 px-2">
+            <td class="py-2 px-2 text-center">
               <div class="tooltip" data-tip="冊子確認">
                 <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/book/preview/{{$value['id']}}/@include('common::spot.make_token', ['id' =>$value['id'], 'name' => $value['name']])"
                    class="text-accent hover:text-accent_light mr-1" target="_blank"><i
