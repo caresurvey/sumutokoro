@@ -42,7 +42,7 @@ class EloquentIconRepositoryTest extends TestCase
         $this->assertSame('介護体制', $results['care']['name']);
         $this->assertSame(10, count($results['care']['data']));
         $this->assertSame('個室内状況', $results['privatespace']['name']);
-        $this->assertSame(7, count($results['privatespace']['data']));
+        $this->assertSame(5, count($results['privatespace']['data']));
         $this->assertSame('食事体制', $results['eating']['name']);
         $this->assertSame(5, count($results['eating']['data']));
         $this->assertSame('健康管理サービス', $results['health']['name']);
