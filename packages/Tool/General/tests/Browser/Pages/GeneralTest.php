@@ -55,8 +55,7 @@ class GeneralTest extends DuskTestCase
             // 事業所検索
             $browser->visit('/search');
             $browser->pause(1000);
-            $browser->assertSee('サービス案内');
-            $browser->scrollIntoView('#CityId2')->click('#CityId2');
+            $browser->assertSee('事業所の検索');
             $browser->scrollIntoView('#CategoryId2')->click('#CategoryId2');
             $browser->scrollIntoView('#PriceRangeId2')->radio('#PriceRangeId2', "2");
             $browser->scrollIntoView('#SearchSubmitBtn')->click('#SearchSubmitBtn');
