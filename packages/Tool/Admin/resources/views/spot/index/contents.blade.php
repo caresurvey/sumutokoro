@@ -118,8 +118,7 @@
             <td class="py-2 px-2 text-xs">{{$data['data_categories'][$value['category_id']]}}</td>
             <td class="w-4/12 py-4 px-2">
               <a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/spot/{{$value['id']}}/edit"
-                 class="tooltip link link-hover link-primary"
-                 data-tip="クリックで{{$value['name']}}のデータを編集" id="SpotName{{$value['id']}}">{{$value['name']}}</a><br>
+                 class="link link-hover link-primary" id="SpotName{{$value['id']}}">{{$value['name']}}</a><br>
               <span class="text-xs">{{$data['data_prefectures'][$value['prefecture_id']]}}{{$data['data_cities'][$value['city_id']]}}{{$value['address']}}</span>
             </td>
             <td class="py-2 px-2">

@@ -22,7 +22,6 @@ class EloquentAreaCenter extends AppEloquent
         return $this->belongsTo(EloquentCity::class);
     }
 
-
     public function spots()
     {
         return $this->hasMany(EloquentSpot::class, 'area_center_id')->orderBy('id', 'ASC');

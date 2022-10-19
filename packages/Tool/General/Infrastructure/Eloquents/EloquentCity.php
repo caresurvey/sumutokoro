@@ -7,6 +7,11 @@ class EloquentCity extends AppEloquent
     // DBのテーブル指定
     protected $table = 'cities';
 
+    public function areas()
+    {
+        return $this->hasMany(EloquentArea::class, 'city_id')->orderBy('id', 'ASC');
+    }
+
     public function area_branch()
     {
         return $this->belongsTo(EloquentAreaBranch::class);

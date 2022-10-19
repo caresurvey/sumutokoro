@@ -30,8 +30,9 @@ class ClearApcuCommand extends Command
     {
         // キャッシュクリア
         Cache::flush();
+        apcu_clear_cache();
 
-        dump('すべてのAPCuキャッシュをクリアしました');
+        dump('すべてのAPCuキャッシュをクリアしました!');
 
         return Command::SUCCESS;
     }
