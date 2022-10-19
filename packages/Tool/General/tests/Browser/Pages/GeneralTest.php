@@ -60,14 +60,14 @@ class GeneralTest extends DuskTestCase
             $browser->scrollIntoView('#PriceRangeId2')->radio('#PriceRangeId2', "2");
             $browser->scrollIntoView('#SearchSubmitBtn')->click('#SearchSubmitBtn');
             $browser->pause(1000);
-            $browser->assertSee('10件が見つかりました');
+            $browser->assertSee('件が見つかりました');
 
             // ヘッダー検索（市町村）
             $browser->scrollIntoView('#HeaderSearchCity')->select('#HeaderSearchCity', '2');
             $browser->scrollIntoView('#HeaderSearchKeyword')->type('#HeaderSearchKeyword', '');
             $browser->scrollIntoView('#HeaderSearchSubmit')->click('#HeaderSearchSubmit');
             $browser->pause(1000);
-            $browser->assertSee('10件が見つかりました');
+            $browser->assertSee('件が見つかりました');
 
             // ヘッダー検索（キーワード）
             $browser->pause(1000);
@@ -75,7 +75,7 @@ class GeneralTest extends DuskTestCase
             $browser->scrollIntoView('#HeaderSearchKeyword')->type('#HeaderSearchKeyword', '事業所');
             $browser->scrollIntoView('#HeaderSearchSubmit')->click('#HeaderSearchSubmit');
             $browser->pause(1000);
-            $browser->assertSee('20件が見つかりました');
+            $browser->assertSee('件が見つかりました');
         });
     }
 
