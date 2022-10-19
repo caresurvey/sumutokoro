@@ -87,7 +87,7 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @if($data['user']['role_id'] < 4)
-              <user-associate-spots data='@json($data["associatedSpots"])'
+              <user-associate-spots path='{{asset('/')}}' data='@json($data["associatedSpots"])'
                                     :user_id='{{$data["user"]["id"]}}'></user-associate-spots>
             @else
               この権限では事業所との関連付けができません
@@ -100,7 +100,7 @@
           </th>
           <td class="py-4 px-4 w-4/5">
             @if($data['user']['role_id'] < 4)
-              <user-associate-companies data='@json($data["associatedCompanies"])'
+              <user-associate-companies path='{{asset('/')}}' data='@json($data["associatedCompanies"])'
                                         :user_id='{{$data["user"]["id"]}}'></user-associate-companies>
             @else
               この権限では法人との関連付けができません

@@ -10,26 +10,10 @@ module.exports = {
     "./resources/views/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.css",
-    "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    /*
-    extend: {
-      colors: {
-        base: '#f0f0f0',
-        base_dark: '#ebebeb',
-        side_color: '#313131',
-        side_border: '#444',
-        accent: '#00891c',
-        accent_light: '#17a93b',
-        accent_dark: '#005b06',
-        brown: '#4d3c31',
-      },
-    },
-    */
   },
   plugins: [
-      //require('flowbite/plugin'),
       require('daisyui')
   ],
   daisyui: {

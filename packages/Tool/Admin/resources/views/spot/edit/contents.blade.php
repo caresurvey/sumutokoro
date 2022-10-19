@@ -674,7 +674,7 @@
             法人との関連付け
           </th>
           <td class="py-4 px-4 w-4/5">
-            <spot-associate-company data='@json($data['associatedCompany'])'></spot-associate-company>
+            <spot-associate-company path='{{asset('/')}}' data='@json($data['associatedCompany'])'></spot-associate-company>
           </td>
         </tr>
         </tbody>

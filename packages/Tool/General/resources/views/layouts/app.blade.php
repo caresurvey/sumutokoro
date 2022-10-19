@@ -174,7 +174,7 @@
                            placeholder="キーワードを入力"
                            class="-mr-1 input rounded-none input-bordered input-sm lg:input-md">
                     <div class="tooltip tooltip-bottom" id="HeaderSearchSubmit" data-tip="事業所を検索する">
-                      <button class="btn rounded-l-lg rounded-full btn-sm lg:btn-md">
+                      <button class="btn rounded-l-lg rounded-full btn-sm lg:input-md">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                              stroke="currentColor" class="w-5 h-5">
                           <path stroke-linecap="round" stroke-linejoin="round"

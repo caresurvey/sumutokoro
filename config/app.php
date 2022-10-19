@@ -231,10 +231,8 @@ return [
 
     ])->toArray(),
 
-
     'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
     'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
     'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
-    //'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
     'Excel'=>Maatwebsite\Excel\Facades\Excel::class,
 ];

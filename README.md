@@ -167,6 +167,20 @@ opcache.memory_consumption=256
 ### キャッシュについて
 laravel標準のキャッシュ機能を利用している他、さくらレンタルに標準でついているAPCuをSQLクエリのキャッシュに利用しています。キャッシュの有効期限なしなので、apsuキャッシュをクリアにする場合は明示的に行う。
 
+## Laravel追加機能
+### Console（オリジナル）
+* app/Console/Commands/ClearApcuCommand.php（APCuキャッシュをクリアする）
+
+### Helper（オリジナル）
+* packages/Tool/Common/Helpers/LogHelper.php（ログテーブルに行動を書き込む）
+* packages/Tool/General/Helpers/GeneralTextHelper.php（テキスト表示）
+
+### Helper（既存）
+* Toastr（Flashメッセージを出す）
+* PDF（PDF出力する）
+* SnappyImage（PDF出力する）
+* Excel（Excel形式ファイルをエクスポートする）
+
 
 ## トラブルシューティング
 ### サーバー接続に関するトラブル

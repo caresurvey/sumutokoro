@@ -27,6 +27,8 @@ class EloquentIconRepository implements IconRepository
             // データを取得
             $spot_icon_statuses = $this->eloquentSpotIconStatus
                 ->where('spot_icon_item_id', '<>', 1)
+                ->where('spot_icon_item_id', '<>', 38)
+                ->where('spot_icon_item_id', '<>', 39)
                 ->where('spot_id', $spot_id)
                 ->with('spot_icon_item.spot_icon_genre.spot_icon_genre_comment', 'spot_icon_type')
                 ->get();

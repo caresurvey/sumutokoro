@@ -70,6 +70,10 @@ import {ref, reactive, watch} from 'vue'
 
 export default {
   props: {
+    path: {
+      type: String,
+      require: true
+    },
     data: {
       type: String,
       require: true
@@ -104,7 +108,7 @@ export default {
 
     // データをAPIから取得
     const getSearchData = async () => {
-      const url = '/admin/company/keyword/?keyword=' + keyword.value
+      const url = props.path + '/admin/company/keyword/?keyword=' + keyword.value
       const result = await axios.get(url)
       searchedLists.length = 0
       if (result.data.length > 0) {
