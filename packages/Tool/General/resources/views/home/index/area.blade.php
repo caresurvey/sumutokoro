@@ -17,7 +17,7 @@
         @foreach($area['data'] as $data)
         @if($data['spots_count']> 0)
         <li class="p-1">
-          <a href="{{asset('/')}}spot/?" class="link-primary w-full inline-block rounded-full hover:bg-primary hover:text-white text-md py-1 px-4">{{$data['name']}}（{{$data['spots_count']}}）</a>
+          <a href="{{asset('/')}}spot/?search[{{$area['model']}}]={{$data['id']}}&search[simple]=1" class="link-primary w-full inline-block rounded-full hover:bg-primary hover:text-white text-md py-1 px-4">{{$data['label']}}（{{$data['spots_count']}}）</a>
         </li>
         @endif
         @endforeach

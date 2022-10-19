@@ -173,7 +173,7 @@
 
             <div class="text-gray-400 text-xs sm:text-sm">
               @if($spot['city_id'] > 1)<a href="{{asset('/')}}spot?search[city]={{$spot['city_id']}}&search[simple]=1" class="link link-hover link-primary">{{$data['cities'][$spot['city_id']]}}</a>@endif{{$spot['address']}} <a href="{{asset('/')}}spot/{{$spot['id']}}/#SpotMap" class="text-accent hover:text-accent_light cursor-pointer"><i
-                      class="fa-solid fa-location-dot"></i></a> ｜ 運営法人：{{$spot['spot_detail']['company_name']}} ｜ <a href="{{asset('/')}}spot?search[category]={{$spot['category_id']}}&search[simple]=1" class="link link-hover link-primary">{{$search['categories'][$spot['category_id']]['name']}}</a>
+                      class="fa-solid fa-location-dot"></i></a> ｜ 運営法人：{{$spot['spot_detail']['company_name']}} ｜ <a href="{{asset('/')}}spot/?search[category]={{$spot['category_id']}}&search[simple]=1" class="link link-hover link-primary">{{$search['categories'][$spot['category_id']]['name']}}</a>
             </div>
           </div>
         @endforeach

@@ -67,6 +67,19 @@ class SpotSearch
     }
 
     /**
+     * 受け取った複数エリアパラメーターを返す
+     * @return string
+     */
+    public function getAreas(): array
+    {
+        // 何もなければ空配列を返す
+        if(empty($this->data['areas'])) return [];
+
+        // 値があればそれを返す
+        return $this->data['areas'];
+    }
+
+    /**
      * 受け取った市町村パラメーターを返す
      * @return int
      */
@@ -185,6 +198,15 @@ class SpotSearch
     public function existsArea(): bool
     {
         return ($this->getArea() !== 1);
+    }
+
+    /**
+     * 複数エリアデータが存在しているかどうか
+     * @return bool
+     */
+    public function existsAreas(): bool
+    {
+        return (count($this->getAreas()) > 0);
     }
 
     /**

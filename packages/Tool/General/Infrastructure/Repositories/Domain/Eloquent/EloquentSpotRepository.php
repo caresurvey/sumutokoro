@@ -35,25 +35,56 @@ class EloquentSpotRepository implements SpotRepository
         // ソート機能追加
         $query->sortable();
 
+        // 共通の条件
+        $query->where('display', 1);
+
         // 条件検索ページ以外からの検索の場合の処理
         if ($search->isSimple()) {
+            $preSpotIds = [];
             if ($search->existsArea()) {
                 $area = $this->eloquentArea->where('id', $search->getArea())->with('area_center.spots:id,area_center_id')->first();
-                $spotIds = [];
                 foreach($area['area_center']['spots'] as $spots) {
-                    $spotIds[] = $spots['id'];
+                    $preSpotIds[] = $spots['id'];
                 }
+                $query->whereIn('id', $preSpotIds);
+            }
+            if ($search->existsCity()) {
+                $cityIds = $this->eloquentSpot->where('city_id', $search->getCity())->pluck('id')->toArray();
+                $preSpotIds = array_merge($preSpotIds, $cityIds);
+
+            }
+            if ($search->existsCategory()) {
+                $categoryIds = $this->eloquentSpot->where('category_id', $search->getCategory())->pluck('id')->toArray();
+                $preSpotIds = array_merge($preSpotIds, $categoryIds);
+            }
+            if ($search->existsPriceRange()) {
+                $priceRangeIds = $this->eloquentSpot->where('price_range_id', $search->getPriceRange())->pluck('id')->toArray();
+                $preSpotIds = array_merge($preSpotIds, $priceRangeIds);
+            }
+            if ($search->existsKeyword()) {
+                $keywordIds = $this->eloquentSpot->where('name', 'like', '%' . $search->getKeyword() . '%')->toArray();
+                $preSpotIds = array_merge($preSpotIds, $keywordIds);
+            }
+
+            if(count($preSpotIds) > 0) {
+                // 重複キーを排除
+                $spotIds = array_unique($preSpotIds);
+                // クエリに追加
                 $query->whereIn('id', $spotIds);
             }
-            if ($search->existsCity()) $query->orWhere('city_id', $search->getCity());
-            if ($search->existsCategory()) $query->orWhere('category_id', $search->getCategory());
-            if ($search->existsPriceRange()) $query->orWhere('price_range_id', $search->getPriceRange());
-            if ($search->existsKeyword()) $query->where('name', 'like', '%' . $search->getKeyword() . '%');
         }
 
         // 条件検索ページからの検索の場合の処理
         if ($search->isMultiple()) {
             $preSpotIds = [];
+            // area_idに一致するスポットIDを取得
+            if ($search->existsAreas()) {
+                $area = $this->eloquentArea->whereIn('id', $search->getAreas())->with('area_center.spots:id,area_center_id')->first();
+                foreach($area['area_center']['spots'] as $spots) {
+                    $preSpotIds[] = $spots['id'];
+                }
+            }
+
             // city_idに一致するスポットIDを取得
             if ($search->existsCities()) {
                 $citySpots = $this->eloquentSpot->whereIn('city_id', $search->getCities())->pluck('id');
@@ -61,6 +92,7 @@ class EloquentSpotRepository implements SpotRepository
                     $preSpotIds = array_merge($preSpotIds, $citySpots->toArray());
                 }
             }
+
             // category_idに一致するスポットIDを取得
             if ($search->existsCategories()) {
                 $categorySpots = $this->eloquentSpot->whereIn('category_id', $search->getCategories())->pluck('id');
@@ -83,9 +115,6 @@ class EloquentSpotRepository implements SpotRepository
             // クエリに追加
             $query->whereIn('id', $spotIds);
         }
-
-        // 共通の条件
-        $query->where('display', 1);
 
         // ベースの並び
         $query->orderBy('created_at', 'DESC');
