@@ -54,17 +54,20 @@
               </div>
 
               @production
+                @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
+                <?php
                 <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                   <div class="col-md-6">
                     {!! RecaptchaV3::field('register') !!}
                     @if ($errors->has('g-recaptcha-response'))
-                      <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
+                      <span class="help-block"><strong>{{ $errors->first('g-recaptcha-response') }}</strong></span>
                     @endif
                   </div>
                 </div>
-              @endproduction            </div>
+                ?>
+                @endif
+              @endproduction
+            </div>
           </form>
         </div>
       </div>

@@ -4,23 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title')</title>
+
   {{-- GoogleAnalyticsタグここから --}}
   @production
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{config('myapp.analytics_key')}}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{config('myapp.analytics_key')}}');
-  </script>
+    @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{config('myapp.analytics_key')}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{config('myapp.analytics_key')}}');
+    </script>
+    @endif
   @endproduction
   {{-- GoogleAnalyticsタグここまで --}}
-  <?php if ($_SERVER['HTTP_HOST'] === 'sumutokoro.com'): ?>
-  <?php endif;?>
+
   {{-- GoogleCAPTCHAタグここから --}}
   @production
-  {!! RecaptchaV3::initJs() !!}
+    @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
+    {!! RecaptchaV3::initJs() !!}
+    @endif
   @endproduction
   {{-- GoogleCAPTCHAタグここまで --}}
 
