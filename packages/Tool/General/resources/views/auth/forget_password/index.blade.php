@@ -55,7 +55,6 @@
 
               @production
                 @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
-                <?php
                 <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                   <div class="col-md-6">
                     {!! RecaptchaV3::field('register') !!}
@@ -64,7 +63,6 @@
                     @endif
                   </div>
                 </div>
-                ?>
                 @endif
               @endproduction
             </div>
