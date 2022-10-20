@@ -62,7 +62,7 @@ class EloquentSpotRepository implements SpotRepository
                 $preSpotIds = array_merge($preSpotIds, $priceRangeIds);
             }
             if ($search->existsKeyword()) {
-                $keywordIds = $this->eloquentSpot->where('name', 'like', '%' . $search->getKeyword() . '%')->toArray();
+                $keywordIds = $this->eloquentSpot->where('name', 'like', '%' . $search->getKeyword() . '%')->pluck('id')->toArray();
                 $preSpotIds = array_merge($preSpotIds, $keywordIds);
             }
 

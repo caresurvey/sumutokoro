@@ -146,7 +146,7 @@
                   </div>
               </div>
               @else
-                <a href="{{asset('/')}}img/user/login" class="font-bold">ログイン</a>
+                <a href="{{asset('/')}}user/login" class="font-bold">ログイン</a>
               @endif
             </div>
           </div>
@@ -232,14 +232,14 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/search" class="hover:underline" id="FooterMenuSearch">条件でさがす</a>
+                  <a href="{{asset('/')}}search" class="hover:underline" id="FooterMenuSearch">条件でさがす</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/spot" class="hover:underline" id="FooterMenuSpot">一覧を見る</a>
+                  <a href="{{asset('/')}}spot" class="hover:underline" id="FooterMenuSpot">一覧を見る</a>
                 </li>
               </ul>
             </div>
@@ -258,14 +258,14 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/user/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
+                  <a href="{{asset('/')}}user/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
+                  <a href="{{asset('/')}}user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
                 </li>
               </ul>
             </div>
