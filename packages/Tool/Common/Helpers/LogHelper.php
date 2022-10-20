@@ -65,8 +65,6 @@ class LogHelper
      */
     public static function makeLogDataForAuthenticate(array $post, string $prefix, string $page, string $action, int $id, string $value): array
     {
-        dd($post);
-
         // POSTが配列ならserializeする
         if(is_array($post)) $post2 = serialize($post);
 

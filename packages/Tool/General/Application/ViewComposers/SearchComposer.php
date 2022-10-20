@@ -89,7 +89,7 @@ class SearchComposer
 
     public function getAreas(): array
     {
-        //$results['area_sapporo'] = $this->getAreaSapporo();
+        $results['area_sapporo'] = $this->getAreaSapporo();
         $results['area_asahikawa'] = $this->getAreaAsahikawa();
         $results['area_douo'] = $this->getAreaDouo();
         $results['area_dohoku'] = $this->getAreaDohoku();

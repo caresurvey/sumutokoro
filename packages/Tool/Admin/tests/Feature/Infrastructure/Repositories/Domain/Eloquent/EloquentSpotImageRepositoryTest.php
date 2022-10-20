@@ -69,7 +69,7 @@ class EloquentSpotImageRepositoryTest extends TestCase
 
         // 検証
         $this->assertTrue($result);
-        $this->assertSame('1_test', $check['name']);
+        $this->assertStringContainsString('1_', $check['name'],);
 
         // 処理後のレコード数をチェック
         $this->assertSame($beforeCount + 1, $afterCount); // レコードが増えたかチェック
