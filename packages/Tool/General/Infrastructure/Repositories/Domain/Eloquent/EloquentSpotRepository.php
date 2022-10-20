@@ -38,39 +38,26 @@ class EloquentSpotRepository implements SpotRepository
         // 共通の条件
         $query->where('display', 1);
 
-        // 条件検索ページ以外からの検索の場合の処理
-        if ($search->isSimple()) {
-            $preSpotIds = [];
-            if ($search->existsArea()) {
-                $area = $this->eloquentArea->where('id', $search->getArea())->with('area_center.spots:id,area_center_id')->first();
-                foreach($area['area_center']['spots'] as $spots) {
-                    $preSpotIds[] = $spots['id'];
-                }
-                $query->whereIn('id', $preSpotIds);
-            }
+        // ヘッダー検索の場合の処理
+        if ($search->isHeader()) {
             if ($search->existsCity()) {
-                $cityIds = $this->eloquentSpot->where('city_id', $search->getCity())->pluck('id')->toArray();
-                $preSpotIds = array_merge($preSpotIds, $cityIds);
-
-            }
-            if ($search->existsCategory()) {
-                $categoryIds = $this->eloquentSpot->where('category_id', $search->getCategory())->pluck('id')->toArray();
-                $preSpotIds = array_merge($preSpotIds, $categoryIds);
-            }
-            if ($search->existsPriceRange()) {
-                $priceRangeIds = $this->eloquentSpot->where('price_range_id', $search->getPriceRange())->pluck('id')->toArray();
-                $preSpotIds = array_merge($preSpotIds, $priceRangeIds);
+                $query->where('city_id', $search->getCity());
             }
             if ($search->existsKeyword()) {
-                $keywordIds = $this->eloquentSpot->where('name', 'like', '%' . $search->getKeyword() . '%')->pluck('id')->toArray();
-                $preSpotIds = array_merge($preSpotIds, $keywordIds);
+                $query->where('search_words', 'like', '%' . $search->getKeyword() . '%');
             }
+        }
 
-            if(count($preSpotIds) > 0) {
-                // 重複キーを排除
-                $spotIds = array_unique($preSpotIds);
-                // クエリに追加
-                $query->whereIn('id', $spotIds);
+        // 条件検索ページ以外からの検索の場合の処理
+        if ($search->isSimple()) {
+            if ($search->existsCity()) {
+                $query->where('city_id', $search->getCity());
+            }
+            if ($search->existsCategory()) {
+                $query->where('category_id', $search->getCategory());
+            }
+            if ($search->existsPriceRange()) {
+                $query->where('price_range_id', $search->getPriceRange());
             }
         }
 

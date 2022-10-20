@@ -183,6 +183,22 @@ class SpotSearch
     }
 
     /**
+     * ヘッダー検索かどうか
+     * @return string
+     */
+    public function isHeader(): bool
+    {
+        // 存在してなければfalse
+        if(empty($this->data['header'])) return false;
+
+        // 存在してて、1ならtrue
+        if($this->data['header'] === '1') return true;
+
+        // それ以外なら無しとみなしてfalseを返す
+        return false;
+    }
+
+    /**
      * カテゴリデータが存在しているかどうか
      * @return bool
      */

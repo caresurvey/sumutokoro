@@ -186,7 +186,7 @@
                       </button>
                     </div>
                   </div>
-                  <input type="hidden" name="search[simple]" value="1">
+                  <input type="hidden" name="search[header]" value="1">
                 </form>
               </div>
               @endif

@@ -54,6 +54,9 @@
             <p class="text-xs text-gray-500">画像は「PNG」か「JPG」のみで、サイズは「1200x800ピクセル」を推奨します)</p>
           </div>
           <input id="Upload" type="file" class="hidden" @change="upload">
+          <input name="photo[delete][on]" type="hidden" class="border" value="1"><!-- 過去のファイルを削除するフラグ -->
+          <input name="photo[delete][id]" type="hidden" class="border" :value="registeredData.id"><!-- 削除する過去ファイルのid -->
+          <input name="photo[delete][name]" type="hidden" class="border" :value="registeredData.name">
         </label>
       </div>
     </div>

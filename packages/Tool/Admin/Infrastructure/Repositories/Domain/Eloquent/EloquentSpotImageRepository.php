@@ -34,7 +34,7 @@ class EloquentSpotImageRepository implements SpotImageRepository
 
         // 画像データ更新
         $post['photo']['display'] = 1;
-        $post['photo']['name'] = $id . '_test';
+        $post['photo']['name'] = $id . '_' . date("Ymdhis");
         $post['photo']['tag'] = 'main';
         $post['photo']['msg'] = '';
         $post['photo']['reorder'] = 1;
@@ -54,7 +54,7 @@ class EloquentSpotImageRepository implements SpotImageRepository
                 if (!$this->uploadSpotImage->upload($post['photo'])) throw new AdminLogicException();
 
                 // ログの保存
-                $log = LogHelper::makeLogData($post, 'admin', 'spot_image', 'save', $data->id, $data->name . 'を変更しました', $auth);
+                $log = LogHelper::makeLogDataForImage($post['photo'], 'admin', 'spot_image', 'save', $data->id, $data->name . 'を変更しました', $auth);
                 if (!$this->eloquentLog->fill($log)->save()) throw new AdminLogicException();
 
                 // 成功したらtrueを返す
@@ -89,7 +89,7 @@ class EloquentSpotImageRepository implements SpotImageRepository
                 if (!$this->uploadSpotImage->remove($post['photo']['delete']['name'])) throw new AdminLogicException();
 
                 // ログの保存
-                $log = LogHelper::makeLogData($post, 'admin', 'spot_image', 'remove', $data->id, $data->name . 'を変更しました', $auth);
+                $log = LogHelper::makeLogDataForImage($post['photo'], 'admin', 'spot_image', 'remove', $data->id, $data->name . 'を変更しました', $auth);
                 if (!$this->eloquentLog->fill($log)->save()) throw new AdminLogicException();
 
                 // 成功したらtrueを返す
