@@ -17,9 +17,22 @@ class Css
         margin:0;
         padding: 0;
       }
+      @font-face {
+        font-family: "genjyu-normal";
+        src: url("'. storage_path('fonts').'/GenJyuuGothicX-Normal.ttf");
+        font-weight: normal;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: "genjyu-bold";
+        src: url("'. storage_path('fonts').'/GenJyuuGothicX-Medium.ttf");
+        font-weight: bold;
+        font-style: normal;
+      }
       html {
         width: 100%;
         height: 100%;
+        font-family: "genjyu-normal";
       }
       .b-wrapper {
         /* 595px × 842px */

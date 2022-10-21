@@ -3,8 +3,7 @@
     <ul class="text-xs sm:text-sm">
       <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}">ホーム</a></li>
       <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}">管理画面トップ</a></li>
-      <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/company">法人管理</a></li>
-      <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/company/{{$data['company']['id']}}">法人編集</a></li>
+      <li><a href="{{asset('/')}}{{config('myapp.app_admin_prefix')}}/company">冊子出力</a></li>
     </ul>
   </div>
 </div>

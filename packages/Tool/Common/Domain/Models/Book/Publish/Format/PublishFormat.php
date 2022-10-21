@@ -247,6 +247,8 @@ class PublishFormat extends PublishFormatBase
         try {
             // PDFファイルのデータを作成
             $pdf = $this->makePdf($html);
+            // エンコード指定
+            $pdf->setOption('encoding', 'utf-8')->inline();
             // PDFデータをファイルに出力
             File::put($this->makeFilePath(), $pdf->output());
             // trueを返す

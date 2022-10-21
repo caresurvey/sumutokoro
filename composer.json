@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.0.2",
         "barryvdh/laravel-debugbar": "^3.7",
-        "barryvdh/laravel-dompdf": "^2.0",
         "barryvdh/laravel-snappy": "^1.0",
         "brian2694/laravel-toastr": "^5.57",
         "guzzlehttp/guzzle": "^7.2",
@@ -19,7 +18,6 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1",
-        "mikehaertl/phpwkhtmltopdf": "^2.5",
         "psr/simple-cache": "^2.0"
     },
     "require-dev": {

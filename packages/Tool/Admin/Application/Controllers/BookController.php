@@ -34,7 +34,7 @@ class BookController extends Controller
         return $useCase($id, $token);
     }
 
-    public function input(InputUseCase $useCase)
+    public function form(InputUseCase $useCase)
     {
         // データを取得
         $data = $useCase();

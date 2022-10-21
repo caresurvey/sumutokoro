@@ -17,7 +17,7 @@
   </div>
 
   <section class="container mx-auto max-w-6xl px-6 sm:px-8 md:px-12">
-    <div class="mb-5 text-sm font-medium text-center text-gray-500 border-b border-gray-200">
+    <div class="flex justify-between mb-5 text-sm font-medium text-center text-gray-500 border-b border-gray-200">
       <ul class="flex flex-wrap -mb-px">
         <li class="mr-2">
           <a href="#" id="ListTypeGeneralBtn"
@@ -30,6 +30,10 @@
           <a href="#" id="ListTypeTextBtn" class="list-type-buttons inline-block p-4">テキスト表示</a>
         </li>
       </ul>
+      <ul class="flex flex-wrap -mb-px">
+        <li class="mr-2">
+          @sortablelink('area_center_id','登録順￥')
+        </li>
     </div>
   </section>
 

@@ -20,7 +20,7 @@ services:
 
   php:
     container_name: php
-    build: ./system/local/docker/php
+    build: ./system/docker/ci/x86
     volumes:
       - ./:/var/www/html/
     networks:

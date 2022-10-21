@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Tool\Admin\Infrastructure\Eloquents\EloquentSpot;
 
-class DataSpotZipCommand extends Command
+class MakeCacheCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'data:spot_zip';
+    protected $signature = 'data:make_cache';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = '事業所のZIP自動設定';
+    protected $description = 'アクセスをしてキャッシュを作成する';
 
     /**
      * Execute the console command.

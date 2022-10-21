@@ -16,7 +16,6 @@ class FormatHtml extends FormatHtmlBase
     /**
      * フォーマット1件分のHtmlタグを作成
      * @param array spots フォーマット用に加工されたspotデータ1件分
-     * @param string fontPath フォントttfファイルがおいてある場所
      * @return string
      */
     public function makeFormatTag(array $spot): string

@@ -2,6 +2,7 @@
 @section('title', '冊子出力 - ' . config('myapp.site_name'))
 
 @section('content')
+  @include('admin::book.input.breadcrumb')
   <div class="container mx-auto px-5 mb-2 py-4 sm:px-5 sm:py-5 md:mb-8">
     <h1 class="text-lg text-center leading-7 font-bold sm:text-xl md:text-2xl md:leading-10 lg:text-3xl">
       冊子出力
@@ -18,7 +19,7 @@
           onsubmit="return confirm('冊子データを出力してもよろしいですか？')" method="get" accept-charset="UTF-8" id="PublishForm">
 
       <div class="pb-4 w-full flex">
-        <div class="pr-4">
+        <div class="mr-6">
           <div class="label">出力対象</div>
           <div class="relative">
             <select name="area_section_id" id="AreaSectionId"
@@ -38,9 +39,9 @@
                  min="1"
                  max="400"
                  placeholder="開始"
-                 class="mb-2 w-[100px] appearance-none border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
+                 class="mb-2 border text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100">
         </div>
-        <div class="flex items-end justify-center pb-5 px-3">
+        <div class="flex items-end justify-center pb-5 pl-3 pr-4">
           〜
         </div>
         <div>
@@ -52,7 +53,7 @@
                  min="1"
                  max="400"
                  placeholder="終了"
-                 class="mb-2 w-[100px] appearance-none border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100 text-xs lg:text-md lg:select-md">
+                 class="mb-2 border w-full text-base block text-gray-700 rounded-lg placeholder-gray-300 px-4 py-3 leading-normal focus:outline-primary focus:bg-white border-gray-200 bg-gray-100">
         </div>
       </div>
       <div class=" w-full flex">

@@ -131,7 +131,7 @@
             </div>
           </td>
         </tr>
-        <tr class="bg-gray-50 border-b">
+        <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
             住所
           </th>

@@ -145,7 +145,7 @@
         </tr>
         <tr class="bg-white border-b">
           <th class="py-4 px-4 w-1/5">
-            住所
+            住所2
           </th>
           <td class="py-4 px-4 w-4/5">
 

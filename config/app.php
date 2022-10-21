@@ -206,7 +206,6 @@ return [
          */
         Brian2694\Toastr\ToastrServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
-        //HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
