@@ -36,8 +36,8 @@ class SpotSearchTest extends TestCase
     {
         // テストデータ
         $data = [
-            'categories' => [1,2,3],
-            'cities' => [1,2,3],
+            'categories' => [1, 2, 3],
+            'cities' => [1, 2, 3],
             'multiple' => '1',
         ];
         // テストするクラスを読み込み
@@ -48,4 +48,22 @@ class SpotSearchTest extends TestCase
         $this->assertSame(1, $result->getCategories()[0]);
         $this->assertSame(1, $result->getCities()[0]);
     }
+
+    /**
+     * @test
+     */
+    public function 正常系_価格帯データが存在しているかどうか／存在している()
+    {
+        // テストデータ
+        $data = [
+            'price_range' => '1',
+            'simple' => '1',
+        ];
+
+        // テストするクラスを読み込み
+        $result = new SpotSearch($data);
+
+        $this->assertTrue($result->isMultiple());
+    }
+
 }

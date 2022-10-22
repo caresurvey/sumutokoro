@@ -112,6 +112,30 @@ class EloquentSpot extends AppEloquent
     }
 
     /**
+     * areaCenterIdでソート
+     */
+    public function areaCenterIdSortable($query, $direction)
+    {
+        return $query->orderBy('area_center_id', $direction);
+    }
+
+    /**
+     * categoryIdでソート
+     */
+    public function categoryIdSortable($query, $direction)
+    {
+        return $query->orderBy('category_id', $direction);
+    }
+
+    /**
+     * cityIdでソート
+     */
+    public function cityIdSortable($query, $direction)
+    {
+        return $query->orderBy('city_id', $direction);
+    }
+
+    /**
      * created_atでソート
      */
     public function createdAtSortable($query, $direction)

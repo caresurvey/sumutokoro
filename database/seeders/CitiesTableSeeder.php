@@ -95,8 +95,9 @@ class CitiesTableSeeder extends Seeder
             'code' => '206', 
             'name' => '釧路市',
             'label' => '釧路市',
-            'book_reorder' => 21,
             'reorder' => 7,
+            'book_reorder' => 21,
+            'area_branch_id' => 10,
         ]);
         DB::table('cities')->insert([
             'id' => 8,
@@ -1259,7 +1260,7 @@ class CitiesTableSeeder extends Seeder
             'name' => '中川郡中川町',
             'label' => '中川町',
             'reorder' => 104,
-            'book_reorder' => 1,
+            'book_reorder' => 5,
             'area_branch_id' => 7,
         ]);
         DB::table('cities')->insert([
@@ -1379,7 +1380,7 @@ class CitiesTableSeeder extends Seeder
             'name' => '枝幸郡浜頓別町',
             'label' => '浜頓別町',
             'reorder' => 114,
-            'book_reorder' => 3,
+            'book_reorder' => 4,
             'area_branch_id' => 9,
         ]);
         DB::table('cities')->insert([

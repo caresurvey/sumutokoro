@@ -16,7 +16,7 @@ class EloquentSpotRepository implements SpotRepository
 {
     private EloquentArea $eloquentArea;
     private EloquentSpot $eloquentSpot;
-    private int $limit = 30;
+    private int $limit = 3;
 
     public function __construct(
         EloquentArea $eloquentArea,

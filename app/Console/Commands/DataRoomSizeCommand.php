@@ -28,15 +28,39 @@ class DataRoomSizeCommand extends Command
      */
     public function handle()
     {
+
+        dump('料金幅変更前'); exit;
+
+        // 波の置き換え
         $eloquentSpot = new EloquentSpot();
         $spots = $eloquentSpot
-            ->where('zip1', '')
-            ->where('zip2', '')
-            ->pluck('id');
+            ->where('room_size', 'LIKE', '%' . '～' . '%')
+            ->pluck('room_size', 'id');
+        $results = [];
+        foreach($spots as $id => $room_size) {
+            $eloquentSpot = new EloquentSpot();
+            $save = $eloquentSpot->where('id', $id)->update([
+                'id' => $id,
+                'room_size' => str_replace('～', '〜', $room_size),
+            ]);
+        }
 
-        //$eloquentSpot->whereIn('id', $spots)->update(['for_check_movein' => 1]);
+        // 複数部屋の指定
+        $eloquentSpot = new EloquentSpot();
+        $spots = $eloquentSpot
+            ->where('room_size', 'LIKE', '%' . '〜' . '%')
+            ->pluck('room_size', 'id');
 
-        var_dump($spots);
+        $results = [];
+        foreach($spots as $id => $room_size) {
+            $eloquentSpot = new EloquentSpot();
+            $save = $eloquentSpot->where('id', $id)->update([
+                'id' => $id,
+                'space_id' => 3,
+            ]);
+        }
+
+        // 10畳以上
 
         dump('変更済み');
         return Command::SUCCESS;

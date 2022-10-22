@@ -30,9 +30,15 @@
           <a href="#" id="ListTypeTextBtn" class="list-type-buttons inline-block p-4">テキスト表示</a>
         </li>
       </ul>
-      <ul class="flex flex-wrap -mb-px">
-        <li class="mr-2">
-          @sortablelink('area_center_id','登録順￥')
+      <ul class="flex flex-wrap -mb-px space-x-4 items-end">
+        <li class="link link-hover link-primary px-2 py-4">
+          @sortablelink('category_id','カテゴリ順')
+        </li>
+        <li class="link link-hover link-primary px-2 py-4">
+          @sortablelink('area_center_id','地域包括順')
+        </li>
+        <li class="link link-hover link-primary px-2 py-4">
+          @sortablelink('id','登録順')
         </li>
     </div>
   </section>

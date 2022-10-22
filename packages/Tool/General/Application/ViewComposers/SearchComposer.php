@@ -27,7 +27,7 @@ class SearchComposer
 
     public function __construct(
         EloquentArea         $eloquentArea,
-        EloquentAreaSection   $eloquentAreaSection,
+        EloquentAreaSection  $eloquentAreaSection,
         EloquentCategory     $eloquentCategory,
         EloquentCity         $eloquentCity,
         EloquentPriceRange   $eloquentPriceRange,
@@ -101,153 +101,150 @@ class SearchComposer
 
     public function getAreaSapporo(): array
     {
-        // 初期化
-        $results['count'] = 0;
-        $results['data'] = [];
-        $results['model'] = 'area';
-        $results['models'] = 'areas';
-        $results['name'] = '札幌エリア';
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        return Cache::rememberForever("search_area_sapporo", function () {
+            // 初期化
+            $results['count'] = 0;
+            $results['data'] = [];
+            $results['model'] = 'area';
+            $results['models'] = 'areas';
+            $results['name'] = '札幌エリア';
 
-        // データ取得
-        $areas = $this->eloquentArea
-            ->where('display', 1)
-            ->where('area_section_id', 4)
-            ->select('id','name', 'label',  'display', 'area_section_id', 'city_id', 'prefecture_id')
-            ->with([
-                'area_center' => function($query){
-                    $query->select('id', 'label','area_id', 'area_section_id', 'city_id');
-                    $query->withCount(['spots' => function($query){
-                        $query->where('display', 1);
-                    }]);
+            // データ取得
+            $areas = $this->eloquentArea
+                ->where('display', 1)
+                ->where('area_section_id', 4)
+                ->select('id', 'name', 'label', 'display', 'area_section_id', 'prefecture_id')
+                ->with([
+                    'area_center' => function ($query) {
+                        $query->select('id', 'label', 'area_id', 'area_section_id', 'city_id');
+                        $query->withCount(['spots' => function ($query) {
+                            $query->where('display', 1);
+                        }]);
+                    }
+                ])
+                ->get();
+
+            // データ整形
+            foreach ($areas as $area) {
+                $data = $area->toArray();
+                $data['spots_count'] = 0;
+                if (!empty($area['area_center']['spots_count'])) {
+                    $results['count'] += $area['area_center']['spots_count'];
+                    $data['spots_count'] = $data['area_center']['spots_count'];
                 }
-            ])
-            ->get();
-
-        // データ整形
-        foreach($areas as $area) {
-            $data = $area->toArray();
-            $data['spots_count'] = 0;
-            if(!empty($area['area_center']['spots_count'])) {
-                $results['count'] += $area['area_center']['spots_count'];
-                $data['spots_count'] = $data['area_center']['spots_count'];
+                $results['data'][] = $data;
             }
-            $results['data'][] = $data;
-        }
 
-        return $results;
+            return $results;
+        });
     }
 
     public function getAreaAsahikawa(): array
     {
-        // 初期化
-        $results['count'] = 0;
-        $results['data'] = [];
-        $results['model'] = 'area';
-        $results['models'] = 'areas';
-        $results['name'] = '旭川エリア';
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        return Cache::rememberForever("search_area_asahikawa", function () {
+            // 初期化
+            $results['count'] = 0;
+            $results['data'] = [];
+            $results['model'] = 'area';
+            $results['models'] = 'areas';
+            $results['name'] = '旭川エリア';
 
-        // データ取得
-        $areas = $this->eloquentArea
-            ->where('display', 1)
-            ->where('area_section_id', 2)
-            ->select('id','name', 'label',  'display', 'area_section_id', 'city_id', 'prefecture_id')
-            ->with([
-                'area_center' => function($query){
-                    $query->select('id', 'label','area_id', 'area_section_id', 'city_id');
-                    $query->withCount(['spots' => function($query){
-                        $query->where('display', 1);
-                    }]);
+            // データ取得
+            $areas = $this->eloquentArea
+                ->where('display', 1)
+                ->where('area_section_id', 2)
+                ->select('id', 'name', 'label', 'display', 'area_section_id', 'prefecture_id')
+                ->with([
+                    'area_center' => function ($query) {
+                        $query->select('id', 'label', 'area_id', 'area_section_id', 'city_id');
+                        $query->withCount(['spots' => function ($query) {
+                            $query->where('display', 1);
+                        }]);
+                    }
+                ])
+                ->get();
+
+            // データ整形
+            foreach ($areas as $area) {
+                $data = $area->toArray();
+                $data['spots_count'] = 0;
+                if (!empty($area['area_center']['spots_count'])) {
+                    $results['count'] += $area['area_center']['spots_count'];
+                    $data['spots_count'] = $data['area_center']['spots_count'];
                 }
-            ])
-            ->get();
-
-        // データ整形
-        foreach($areas as $area) {
-            $data = $area->toArray();
-            $data['spots_count'] = 0;
-            if(!empty($area['area_center']['spots_count'])) {
-                $results['count'] += $area['area_center']['spots_count'];
-                $data['spots_count'] = $data['area_center']['spots_count'];
+                $results['data'][] = $data;
             }
-            $results['data'][] = $data;
-        }
 
-        return $results;
+            return $results;
+        });
     }
 
     public function getAreaDouo(): array
     {
-        // 初期化
-        $results['name'] = '道央エリア';
-        $results['model'] = 'city';
-        $results['models'] = 'cities';
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        return Cache::rememberForever("search_area_douo", function () {
+            // 初期化
+            $results['name'] = '道央エリア';
+            $results['model'] = 'city';
+            $results['models'] = 'cities';
 
-        // area_sectionから、city_idを取得する
-        $cityIds = $this->getAreaSectionCityIds(5);
+            // area_sectionから、city_idを取得する
+            $cityIds = $this->getAreaSectionCityIds(5);
+            // 上記で取得したcity_idを元に市町村とspots_countを取得
+            $results['data'] = $this->getCitiesAndSpotsCountByCityIds($cityIds);
+            // 取得したspots_countをカウントする
+            $results['count'] = $this->getCount($results['data']);
 
-        $results['data'] = $this->eloquentCity
-            ->whereIn('id', $cityIds)
-            ->where('display', 1)
-                ->withCount(['spots' => function($query){
-                    $query->where('display', 1);
-                }])
-            ->get()->toArray();
-
-        $results['count'] = $this->getCount($results['data']);
-
-        return $results;
+            return $results;
+        });
     }
 
     public function getAreaDohoku(): array
     {
-        // 初期化
-        $results['name'] = '道北エリア';
-        $results['model'] = 'city';
-        $results['models'] = 'cities';
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        return Cache::rememberForever("search_area_dohoku", function () {
+            // 初期化
+            $results['name'] = '道北エリア';
+            $results['model'] = 'city';
+            $results['models'] = 'cities';
 
-        // area_sectionから、city_idを取得する
-        $cityIds = $this->getAreaSectionCityIds(3);
+            // area_sectionから、city_idを取得する
+            $cityIds = $this->getAreaSectionCityIds(3);
+            // 上記で取得したcity_idを元に市町村とspots_countを取得
+            $results['data'] = $this->getCitiesAndSpotsCountByCityIds($cityIds);
+            // 取得したspots_countをカウントする
+            $results['count'] = $this->getCount($results['data']);
 
-        $results['data'] = $this->eloquentCity
-            ->whereIn('id', $cityIds)
-            ->where('display', 1)
-                ->withCount(['spots' => function($query){
-                    $query->where('display', 1);
-                }])
-            ->get()->toArray();
-
-        $results['count'] = $this->getCount($results['data']);
-
-        return $results;
+            return $results;
+        });
     }
 
     public function getAreaDoto(): array
     {
-        // 初期化
-        $results['name'] = '道東エリア';
-        $results['model'] = 'city';
-        $results['models'] = 'cities';
+        //キャッシュからデータを取得（なければキャッシュに保存）
+        return Cache::rememberForever("search_area_doto", function () {
+            // 初期化
+            $results['name'] = '道東エリア';
+            $results['model'] = 'city';
+            $results['models'] = 'cities';
 
-        // area_sectionから、city_idを取得する
-        $cityIds = $this->getAreaSectionCityIds(6);
+            // area_sectionから、city_idを取得する
+            $cityIds = $this->getAreaSectionCityIds(6);
+            // 上記で取得したcity_idを元に市町村とspots_countを取得
+            $results['data'] = $this->getCitiesAndSpotsCountByCityIds($cityIds);
+            // 取得したspots_countをカウントする
+            $results['count'] = $this->getCount($results['data']);
 
-        $results['data'] = $this->eloquentCity
-            ->whereIn('id', $cityIds)
-            ->where('display', 1)
-                ->withCount(['spots' => function($query){
-                    $query->where('display', 1);
-                }])
-            ->get()->toArray();
-
-        $results['count'] = $this->getCount($results['data']);
-
-        return $results;
+            return $results;
+        });
     }
 
     public function getAreaDonan(): array
     {
         //キャッシュからデータを取得（なければキャッシュに保存）
-        //$results = Cache::rememberForever("search_areas", function () {
+        return Cache::rememberForever("search_area_donan", function () {
             // 初期化
             $results['name'] = '道南エリア';
             $results['model'] = 'city';
@@ -255,23 +252,32 @@ class SearchComposer
 
             // area_sectionから、city_idを取得する
             $cityIds = $this->getAreaSectionCityIds(7);
-
-            $results['data'] = $this->eloquentCity
-                ->whereIn('id', $cityIds)
-                ->where('display', 1)
-                ->withCount(['spots' => function($query){
-                    $query->where('display', 1);
-                }])
-                ->get()->toArray();
-
+            // 上記で取得したcity_idを元に市町村とspots_countを取得
+            $results['data'] = $this->getCitiesAndSpotsCountByCityIds($cityIds);
+            // 取得したspots_countをカウントする
             $results['count'] = $this->getCount($results['data']);
 
+            return $results;
+        });
+    }
 
-          //  return $results;
-        //});
-
-        // データを返す
-        return $results;
+    /**
+     * getAreaSectionCityIdsで取得したIDを元に市町村と登録スポットを取得
+     * 主に旭川・札幌エリア以外で使用する
+     * @param array $cityIds
+     * @return array
+     */
+    public function getCitiesAndSpotsCountByCityIds(array $cityIds): array
+    {
+        return $this->eloquentCity
+            ->whereIn('id', $cityIds)
+            ->where('display', 1)
+            ->orderBy('book_reorder', 'asc')
+            ->withCount(['spots' => function ($query) {
+                $query->where('display', 1);
+            }])
+            ->having('spots_count', '>', 0)
+            ->get()->toArray();
     }
 
     /**
@@ -285,15 +291,17 @@ class SearchComposer
         $area_sections = $this->eloquentAreaSection
             ->where('id', $section_id)
             ->where('display', 1)
+            ->orderBy('reorder', 'asc')
             ->with('area_centers')
             ->get()->toArray();
 
         $pre_cities = [];
-        foreach($area_sections as $area_section) {
-            foreach($area_section['area_centers'] as $area_center) {
+        foreach ($area_sections as $area_section) {
+            foreach ($area_section['area_centers'] as $area_center) {
                 $pre_cities[] = $area_center['city_id'];
             }
         }
+
         // 配列の重複を排除する
         return array_unique($pre_cities, true);
     }
@@ -301,7 +309,7 @@ class SearchComposer
     public function getCount(array $datas): int
     {
         $count = 0;
-        foreach($datas as $data) {
+        foreach ($datas as $data) {
             $count += $data['spots_count'];
         }
 
@@ -315,7 +323,7 @@ class SearchComposer
             return $this->eloquentCategory
                 ->where('display', 1)
                 ->where('public', 1)
-                ->withCount(['spots' => function($query){
+                ->withCount(['spots' => function ($query) {
                     $query->where('display', 1);
                 }])
                 ->orderBy('reorder', 'asc')
@@ -333,7 +341,7 @@ class SearchComposer
             return $this->eloquentCity
                 ->where('display', 1)
                 ->where('public', 1)
-                ->withCount(['spots' => function($query){
+                ->withCount(['spots' => function ($query) {
                     $query->where('display', 1);
                 }])
                 ->orderBy('reorder', 'asc')
@@ -351,7 +359,7 @@ class SearchComposer
             return $this->eloquentPriceRange
                 ->where('display', 1)
                 ->where('public', 1)
-                ->withCount(['spots' => function($query){
+                ->withCount(['spots' => function ($query) {
                     $query->where('display', 1);
                 }])
                 ->orderBy('reorder', 'asc')

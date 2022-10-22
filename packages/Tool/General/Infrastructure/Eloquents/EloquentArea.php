@@ -12,6 +12,13 @@ class EloquentArea extends AppEloquent
         return $this->hasOne(EloquentAreaCenter::class, 'area_id');
     }
 
+    /*
+    public function area_centers()
+    {
+        return $this->hasMany(EloquentAreaCenter::class, 'area_id')->orderBy('id', 'ASC');
+    }
+    */
+
     public function area_label()
     {
         return $this->belongsTo(EloquentAreaLabel::class);
@@ -22,10 +29,12 @@ class EloquentArea extends AppEloquent
         return $this->belongsTo(EloquentAreaSection::class);
     }
 
+    /*
     public function city()
     {
         return $this->belongsTo(EloquentCity::class);
     }
+    */
 
     public function prefecture()
     {

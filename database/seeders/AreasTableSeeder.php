@@ -26,7 +26,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 1,
             'area_label_id' => 1,
             'area_section_id' => 1,
-            'city_id' => 1,
             'prefecture_id' => 1,
             'user_id' =>  1,
         ]);
@@ -41,7 +40,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 1,
             'area_label_id' => 2,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' =>  1,
         ]);
@@ -56,7 +54,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 2,
             'area_label_id' => 3,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -71,7 +68,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 3,
             'area_label_id' => 4,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -86,7 +82,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 4,
             'area_label_id' => 5,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -101,7 +96,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 5,
             'area_label_id' => 6,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -116,7 +110,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 6,
             'area_label_id' => 7,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -131,7 +124,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 7,
             'area_label_id' => 8,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -146,7 +138,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 8,
             'area_label_id' => 9,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -161,7 +152,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 9,
             'area_label_id' => 10,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -175,7 +165,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 10,
             'area_label_id' => 11,
             'area_section_id' => 2,
-            'city_id' => 5,
             'reorder' => 11,
             'prefecture_id' => 2,
             'user_id' => 1,
@@ -191,7 +180,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 11,
             'area_label_id' => 12,
             'area_section_id' => 2,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -206,7 +194,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 1,
             'area_label_id' => 13,
             'area_section_id' => 3,
-            'city_id' => 5,
             'prefecture_id' => 2,
             'user_id' =>  1,
         ]);
@@ -216,12 +203,11 @@ class AreasTableSeeder extends Seeder
             'name' => '中央区',
             'label' => '中央区',
             'book_label' => '中央区',
-            'serial' => 'chuo',
+            'serial' => 'chuo_district',
             'reorder' => 13,
             'book_reorder' => 1,
             'area_label_id' => 14,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -231,12 +217,11 @@ class AreasTableSeeder extends Seeder
             'name' => '北区',
             'label' => '北区',
             'book_label' => '北区',
-            'serial' => 'kita',
+            'serial' => 'kita_district',
             'reorder' => 14,
             'book_reorder' => 2,
             'area_label_id' => 15,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -246,12 +231,11 @@ class AreasTableSeeder extends Seeder
             'name' => '東区',
             'label' => '東区',
             'book_label' => '東区',
-            'serial' => 'higashi',
+            'serial' => 'higashi_district',
             'reorder' => 15,
             'book_reorder' => 3,
             'area_label_id' => 16,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -261,12 +245,11 @@ class AreasTableSeeder extends Seeder
             'name' => '白石区',
             'label' => '白石区',
             'book_label' => '白石区',
-            'serial' => 'shiroishi',
+            'serial' => 'shiroishi_district',
             'reorder' => 1,
             'book_reorder' => 4,
             'area_label_id' => 17,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -276,12 +259,11 @@ class AreasTableSeeder extends Seeder
             'name' => '厚別区',
             'label' => '厚別区',
             'book_label' => '厚別区',
-            'serial' => 'atsubetsu',
+            'serial' => 'atsubetsu_district',
             'reorder' => 1,
             'book_reorder' => 5,
             'area_label_id' => 18,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -291,12 +273,11 @@ class AreasTableSeeder extends Seeder
             'name' => '豊平区',
             'label' => '豊平区',
             'book_label' => '豊平区',
-            'serial' => 'toyohira',
+            'serial' => 'toyohira_district',
             'reorder' => 1,
             'book_reorder' => 6,
             'area_label_id' => 19,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -306,12 +287,11 @@ class AreasTableSeeder extends Seeder
             'name' => '清田区',
             'label' => '清田区',
             'book_label' => '清田区',
-            'serial' => 'kiyota',
+            'serial' => 'kiyota_district',
             'reorder' => 1,
             'book_reorder' => 7,
             'area_label_id' => 20,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -321,12 +301,11 @@ class AreasTableSeeder extends Seeder
             'name' => '南区',
             'label' => '南区',
             'book_label' => '南区',
-            'serial' => 'minami',
+            'serial' => 'minami_district',
             'reorder' => 1,
             'book_reorder' => 8,
             'area_label_id' => 21,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -336,12 +315,11 @@ class AreasTableSeeder extends Seeder
             'name' => '西区',
             'label' => '西区',
             'book_label' => '西区',
-            'serial' => 'nishi',
+            'serial' => 'nish_district',
             'reorder' => 1,
             'book_reorder' => 9,
             'area_label_id' => 22,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -351,12 +329,11 @@ class AreasTableSeeder extends Seeder
             'name' => '手稲区',
             'label' => '手稲区',
             'book_label' => '手稲区',
-            'serial' => 'teine',
+            'serial' => 'teine_district',
             'reorder' => 1,
             'book_reorder' => 10,
             'area_label_id' => 23,
             'area_section_id' => 4,
-            'city_id' => 2,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -371,7 +348,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 1,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -386,7 +362,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 2,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -401,7 +376,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 3,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -416,7 +390,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 4,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -431,7 +404,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 5,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -446,7 +418,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 6,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -461,7 +432,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 7,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -472,11 +442,12 @@ class AreasTableSeeder extends Seeder
             'label' => '南空知エリア',
             'book_label' => '南空知エリア',
             'serial' => 'minamisorachi_area',
-            'area_label_id' => 24,
-            'area_section_id' => 5,
             'reorder' => 1,
             'book_reorder' => 8,
-            'city_id' => 3,
+            'area_label_id' => 24,
+            'area_section_id' => 5,
+            'prefecture_id' => 2,
+            'user_id' => 1,
         ]);
         DB::table('areas')->insert([
             'id' => 32,
@@ -489,7 +460,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 9,
             'area_label_id' => 24,
             'area_section_id' => 5,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -504,7 +474,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 1,
             'area_label_id' => 25,
             'area_section_id' => 6,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -519,7 +488,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 2,
             'area_label_id' => 26,
             'area_section_id' => 6,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -534,7 +502,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 3,
             'area_label_id' => 27,
             'area_section_id' => 6,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -549,7 +516,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 1,
             'area_label_id' => 28,
             'area_section_id' => 7,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -564,7 +530,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 2,
             'area_label_id' => 29,
             'area_section_id' => 7,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
@@ -579,7 +544,6 @@ class AreasTableSeeder extends Seeder
             'book_reorder' => 3,
             'area_label_id' => 30,
             'area_section_id' => 7,
-            'city_id' => 3,
             'prefecture_id' => 2,
             'user_id' => 1,
         ]);
