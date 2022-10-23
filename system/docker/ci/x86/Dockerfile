@@ -2,7 +2,7 @@ FROM php:8.0-fpm
 COPY php.ini /usr/local/etc/php/
 
 RUN apt-get update \
-  && apt-get install -y libzip-dev libfreetype6-dev mariadb-client vim \
+  && apt-get install -y libzip-dev libjpeg62-turbo-dev libfreetype6-dev zlib1g-dev libpng-dev mariadb-client vim \
   && docker-php-ext-install zip pdo_mysql
 
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
