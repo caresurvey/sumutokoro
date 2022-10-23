@@ -39,9 +39,6 @@ jobs:
           cp system/ci/env.dusk ./.env.dusk
           cp system/ci/env.testing ./.env.testing
 
-      - name: デバッグ時にCI内にSSH接続する（通常は使用しないのでコメントアウトすること）
-        uses: mxschmitt/action-tmate@v1
-
       - name: composerインストール
         run: docker-compose exec -T php sh -c "composer install"
 
