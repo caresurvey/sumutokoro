@@ -5,6 +5,9 @@ RUN apt-get update \
   && apt-get install -y libzip-dev libfreetype6-dev mariadb-client vim \
   && docker-php-ext-install zip pdo_mysql
 
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install -j$(nproc) gd
+
 #Composer install
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php
