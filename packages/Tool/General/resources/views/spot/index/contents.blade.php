@@ -21,25 +21,26 @@
       <ul class="flex flex-wrap -mb-px">
         <li class="mr-2">
           <a href="#" id="ListTypeGeneralBtn"
-             class="list-type-buttons inline-block p-4 border-b-2 border-primary text-primary">通常表示</a>
+             class="list-type-buttons inline-block p-4 border-b-2 border-primary link link-primary link-hover">通常表示</a>
         </li>
         <li class="mr-2">
-          <a href="#" id="ListTypeSimpleBtn" class="list-type-buttons inline-block p-4">シンプル表示</a>
+          <a href="#" id="ListTypeSimpleBtn" class="list-type-buttons inline-block p-4 link link-hover">シンプル表示</a>
         </li>
         <li class="mr-2">
-          <a href="#" id="ListTypeTextBtn" class="list-type-buttons inline-block p-4">テキスト表示</a>
+          <a href="#" id="ListTypeTextBtn" class="list-type-buttons inline-block p-4 link link-hover">テキスト表示</a>
         </li>
       </ul>
       <ul class="flex flex-wrap -mb-px space-x-4 items-end">
-        <li class="link link-hover link-primary px-2 py-4">
+        <li class="@if($data['search']->existsCategorySort())font-bold link-primary @endif link link-hover px-2 py-4">
           @sortablelink('category_id','カテゴリ順')
         </li>
-        <li class="link link-hover link-primary px-2 py-4">
+        <li class="@if($data['search']->existsAreaCenterSort())font-bold link-primary @endif link link-hover px-2 py-4">
           @sortablelink('area_center_id','地域包括順')
         </li>
-        <li class="link link-hover link-primary px-2 py-4">
+        <li class="@if($data['search']->existsIdSort())font-bold link-primary @endif link link-hover px-2 py-4">
           @sortablelink('id','登録順')
         </li>
+      </ul>
     </div>
   </section>
 

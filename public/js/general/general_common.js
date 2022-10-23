@@ -7,7 +7,7 @@ $(function(){
     $("#ListTypeGeneral").removeClass('hidden');
     $("#ListTypeGeneralBtn").addClass('border-b-2');
     $("#ListTypeGeneralBtn").addClass('border-primary');
-    $("#ListTypeGeneralBtn").addClass('text-primary');
+    $("#ListTypeGeneralBtn").addClass('link-primary');
   });
 
   $("#ListTypeSimpleBtn").on('click', function(){
@@ -15,7 +15,7 @@ $(function(){
     $("#ListTypeSimple").removeClass('hidden');
     $("#ListTypeSimpleBtn").addClass('border-b-2');
     $("#ListTypeSimpleBtn").addClass('border-primary');
-    $("#ListTypeSimpleBtn").addClass('text-primary');
+    $("#ListTypeSimpleBtn").addClass('link-primary');
   });
 
   $("#ListTypeTextBtn").on('click', function(){
@@ -23,7 +23,7 @@ $(function(){
     $("#ListTypeText").removeClass('hidden');
     $("#ListTypeTextBtn").addClass('border-b-2');
     $("#ListTypeTextBtn").addClass('border-primary');
-    $("#ListTypeTextBtn").addClass('text-primary');
+    $("#ListTypeTextBtn").addClass('link-primary');
   });
 
 });
@@ -34,4 +34,5 @@ function hideTabs()
   $(".list-type-buttons").removeClass('border-b-2')
   $("#ListTypeGeneralBtn").addClass('border-primary');
   $(".list-type-buttons").removeClass('text-accent')
+  $(".list-type-buttons").removeClass('link-primary')
 }

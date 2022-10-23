@@ -11,6 +11,7 @@ class SearchSpotSearchRepository implements SpotSearchRepository
     {
         // 初期化
         $data = ['query' => $query];
+        $sort = '';
 
         // 受け取ったパラメーターがあれば格納
         if(!empty($request['search'])) {
@@ -19,7 +20,9 @@ class SearchSpotSearchRepository implements SpotSearchRepository
             }
         }
 
+        if(!empty($request['sort'])) $sort = $request['sort'];
+
         // データをドメインオブジェクトにして返す
-        return new SpotSearch($data);
+        return new SpotSearch($data, $sort);
     }
 }

@@ -44,6 +44,7 @@ class IndexUseCase
         !empty($this->request->getQueryString()) ? $query = $this->request->getQueryString() : $query = '';
         $search = $this->spotSearchRepo->makeSearch($this->request->all(), $query);
         $data = $this->spotRepo->list($search);
+        $data['search'] = $search;
         $data['area_centers'] = $this->areaCenterRepo->list();
         $data['categories'] = $this->categoryRepo->list();
         $data['cities'] = $this->cityRepo->list();

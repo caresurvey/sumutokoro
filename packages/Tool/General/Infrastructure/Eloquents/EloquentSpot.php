@@ -4,10 +4,6 @@ namespace Tool\General\Infrastructure\Eloquents;
 
 use Kyslik\ColumnSortable\Sortable;
 use Tool\Admin\Infrastructure\Eloquents\EloquentSpace;
-use Tool\General\Infrastructure\Eloquents\EloquentSpotDetail;
-use Tool\General\Infrastructure\Eloquents\EloquentSpotImage;
-use Tool\General\Infrastructure\Eloquents\EloquentSpotPrice;
-use Tool\General\Infrastructure\Eloquents\EloquentCompany;
 
 class EloquentSpot extends AppEloquent
 {

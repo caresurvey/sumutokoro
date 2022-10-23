@@ -5,10 +5,12 @@ namespace Tool\General\Domain\Models\Spot;
 class SpotSearch
 {
     private array $data;
+    private string $sort;
 
-    public function __construct(array $data)
+    public function __construct(array $data, string $sort)
     {
         $this->data = $data;
+        $this->sort = $sort;
     }
 
     /**
@@ -151,6 +153,16 @@ class SpotSearch
     }
 
     /**
+     * ソートを返す
+     * @return string
+     */
+    public function getSort(): string
+    {
+        // 値を返す
+        return $this->sort;
+    }
+
+    /**
      * 複合検索かどうか
      * @return string
      */
@@ -254,4 +266,45 @@ class SpotSearch
         return ($this->getPriceRange() !== 1);
     }
 
+    /**
+     * ソートが存在しているかどうか
+     * @return bool
+     */
+    public function existsSort(): bool
+    {
+        return ($this->getSort() !== '');
+    }
+
+    /**
+     * カテゴリソートが存在しているかどうか
+     * @return bool
+     */
+    public function existsCategorySort(): bool
+    {
+        if($this->getSort() === 'category_id') return true;
+
+        return false;
+    }
+
+    /**
+     * 地域包括ソートが存在しているかどうか
+     * @return bool
+     */
+    public function existsAreaCenterSort(): bool
+    {
+        if($this->getSort() === 'area_center_id') return true;
+
+        return false;
+    }
+
+    /**
+     * 登録順ソートが存在しているかどうか
+     * @return bool
+     */
+    public function existsIdSort(): bool
+    {
+        if($this->getSort() === 'id') return true;
+
+        return false;
+    }
 }

@@ -18,7 +18,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame('test', $result->getData()['query']);
@@ -35,7 +35,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame(2, $result->getCategory());
@@ -52,7 +52,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getCategory());
     }
@@ -68,7 +68,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getCategory());
     }
@@ -83,7 +83,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getCategory());
     }
@@ -99,7 +99,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame(2, $result->getCategories()[0]);
@@ -117,7 +117,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame([], $result->getCategories());
     }
@@ -132,7 +132,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame([], $result->getCategories());
     }
@@ -148,7 +148,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame(2, $result->getArea());
@@ -165,7 +165,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getArea());
     }
@@ -181,7 +181,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getArea());
     }
@@ -196,7 +196,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getArea());
     }
@@ -212,7 +212,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame(2, $result->getAreas()[0]);
@@ -230,7 +230,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame([], $result->getAreas());
     }
@@ -245,7 +245,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame([], $result->getAreas());
     }
@@ -261,7 +261,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame(2, $result->getCity());
@@ -278,7 +278,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getCity());
     }
@@ -294,7 +294,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getCity());
     }
@@ -309,7 +309,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getCity());
     }
@@ -325,7 +325,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         // 評価
         $this->assertSame(2, $result->getCities()[0]);
@@ -343,7 +343,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame([], $result->getCities());
     }
@@ -358,7 +358,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame([], $result->getCities());
     }
@@ -374,7 +374,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame('事業所', $result->getKeyword());
     }
@@ -390,7 +390,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame('', $result->getKeyword());
     }
@@ -405,7 +405,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame('', $result->getKeyword());
     }
@@ -421,7 +421,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(3, $result->getPriceRange());
     }
@@ -437,7 +437,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getPriceRange());
     }
@@ -452,7 +452,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getPriceRange());
     }
@@ -468,7 +468,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame(1, $result->getPriceRange());
     }
@@ -484,7 +484,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame('test', $result->getQuery());
     }
@@ -500,7 +500,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame('', $result->getQuery());
     }
@@ -515,7 +515,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertSame('', $result->getQuery());
     }
@@ -531,7 +531,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->isMultiple());
     }
@@ -547,7 +547,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->isMultiple());
     }
@@ -562,7 +562,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->isMultiple());
     }
@@ -578,7 +578,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->isSimple());
     }
@@ -594,7 +594,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->isSimple());
     }
@@ -609,7 +609,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->isSimple());
     }
@@ -626,7 +626,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsCategory());
     }
@@ -643,7 +643,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCategory());
     }
@@ -659,7 +659,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCategory());
     }
@@ -676,7 +676,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsCategories());
     }
@@ -693,7 +693,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCategories());
     }
@@ -709,7 +709,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCategories());
     }
@@ -726,7 +726,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsArea());
     }
@@ -743,7 +743,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsArea());
     }
@@ -759,7 +759,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsArea());
     }
@@ -776,7 +776,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsAreas());
     }
@@ -793,7 +793,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsAreas());
     }
@@ -809,7 +809,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsAreas());
     }
@@ -826,7 +826,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsCity());
     }
@@ -843,7 +843,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCity());
     }
@@ -859,7 +859,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCity());
     }
@@ -876,7 +876,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsCities());
     }
@@ -893,7 +893,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCities());
     }
@@ -909,7 +909,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsCities());
     }
@@ -926,7 +926,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsKeyword());
     }
@@ -943,7 +943,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsKeyword());
     }
@@ -960,7 +960,7 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertTrue($result->existsPriceRange());
     }
@@ -977,8 +977,96 @@ class SpotSearchTest extends TestCase
         ];
 
         // テストするクラスを読み込み
-        $result = new SpotSearch($data);
+        $result = new SpotSearch($data, '');
 
         $this->assertFalse($result->existsPriceRange());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_ソートが存在しているか／存在している()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], 'id');
+
+        $this->assertTrue($result->existsSort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_ソートが存在しているか／存在していない()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], '');
+
+        $this->assertFalse($result->existsSort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_カテゴリソートが存在しているか／存在している()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], 'category_id');
+
+        $this->assertTrue($result->existsCategorySort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_カテゴリソートが存在しているか／存在していない()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], '');
+
+        $this->assertFalse($result->existsCategorySort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_地域包括ソートが存在しているか／存在している()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], 'area_center_id');
+
+        $this->assertTrue($result->existsAreaCenterSort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_地域包括ソートが存在しているか／存在していない()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], '');
+
+        $this->assertFalse($result->existsAreaCenterSort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_登録順ソートが存在しているか／存在している()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], 'id');
+
+        $this->assertTrue($result->existsIdSort());
+    }
+
+    /**
+     * @test
+     */
+    public function 正常系_登録順ソートが存在しているか／存在していない()
+    {
+        // テストするクラスを読み込み
+        $result = new SpotSearch([], '');
+
+        $this->assertFalse($result->existsIdSort());
     }
 }
