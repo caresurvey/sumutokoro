@@ -38,7 +38,7 @@ class EloquentSpotRepositoryTest extends TestCase
     public function list_正常系()
     {
         // 検索オブジェクトを作成
-        $search = new SpotSearch([]);
+        $search = new SpotSearch([], '');
 
         // テスト対象メソッドを実行
         $results = $this->spotRepo->list($search);
