@@ -22,6 +22,11 @@ class EloquentSpot extends AppEloquent
         'updated_at',
     ];
 
+    public function area_center()
+    {
+        return $this->belongsTo(EloquentAreaCenter::class);
+    }
+
     public function category()
     {
         return $this->belongsTo(EloquentCategory::class);

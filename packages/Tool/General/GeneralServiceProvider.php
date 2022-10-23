@@ -25,6 +25,11 @@ class GeneralServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(
+            Domain\Models\AreaCenter\AreaCenterRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentAreaCenterRepository::class
+        );
+
+        $this->app->bind(
             Domain\Models\City\CityRepository::class,
             Infrastructure\Repositories\Domain\Eloquent\EloquentCityRepository::class
         );

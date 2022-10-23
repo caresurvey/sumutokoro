@@ -16,7 +16,7 @@ class EloquentSpotRepository implements SpotRepository
 {
     private EloquentArea $eloquentArea;
     private EloquentSpot $eloquentSpot;
-    private int $limit = 3;
+    private int $limit = 30;
 
     public function __construct(
         EloquentArea $eloquentArea,
@@ -38,18 +38,13 @@ class EloquentSpotRepository implements SpotRepository
         // 共通の条件
         $query->where('display', 1);
 
-        // ヘッダー検索の場合の処理
-        if ($search->isHeader()) {
-            if ($search->existsCity()) {
-                $query->where('city_id', $search->getCity());
-            }
-            if ($search->existsKeyword()) {
-                $query->where('search_words', 'like', '%' . $search->getKeyword() . '%');
-            }
-        }
-
-        // 条件検索ページ以外からの検索の場合の処理
+        // 条件でさがすページ以外からの検索の場合の処理
         if ($search->isSimple()) {
+            if ($search->existsArea()) {
+                $query->whereHas('area_center', function($query) use ($search) {
+                    $query->where('area_id', $search->getArea());
+                });
+            }
             if ($search->existsCity()) {
                 $query->where('city_id', $search->getCity());
             }
@@ -58,6 +53,9 @@ class EloquentSpotRepository implements SpotRepository
             }
             if ($search->existsPriceRange()) {
                 $query->where('price_range_id', $search->getPriceRange());
+            }
+            if ($search->existsKeyword()) {
+                $query->where('search_words', 'like', '%' . $search->getKeyword() . '%');
             }
         }
 

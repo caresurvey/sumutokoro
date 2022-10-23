@@ -2,6 +2,7 @@
 
 namespace Tool\General\Application\UseCases\Spot;
 
+use Tool\General\Domain\Models\AreaCenter\AreaCenterRepository;
 use Tool\General\Domain\Models\Category\CategoryRepository;
 use Tool\General\Domain\Models\City\CityRepository;
 use Tool\General\Domain\Models\Prefecture\PrefectureRepository;
@@ -12,6 +13,7 @@ use Tool\General\Domain\Models\Spot\SpotRepository;
 class IndexUseCase
 {
     private IndexRequest $request;
+    private AreaCenterRepository $areaCenterRepo;
     private CategoryRepository $categoryRepo;
     private CityRepository $cityRepo;
     private PrefectureRepository $prefectureRepo;
@@ -20,6 +22,7 @@ class IndexUseCase
 
     public function __construct(
         IndexRequest $request,
+        AreaCenterRepository $areaCenterRepo,
         CategoryRepository $categoryRepo,
         CityRepository $cityRepo,
         PrefectureRepository $prefectureRepo,
@@ -28,6 +31,7 @@ class IndexUseCase
     )
     {
         $this->request = $request;
+        $this->areaCenterRepo = $areaCenterRepo;
         $this->categoryRepo = $categoryRepo;
         $this->cityRepo = $cityRepo;
         $this->prefectureRepo = $prefectureRepo;
@@ -40,6 +44,7 @@ class IndexUseCase
         !empty($this->request->getQueryString()) ? $query = $this->request->getQueryString() : $query = '';
         $search = $this->spotSearchRepo->makeSearch($this->request->all(), $query);
         $data = $this->spotRepo->list($search);
+        $data['area_centers'] = $this->areaCenterRepo->list();
         $data['categories'] = $this->categoryRepo->list();
         $data['cities'] = $this->cityRepo->list();
         $data['prefectures'] = $this->prefectureRepo->list();

@@ -183,31 +183,6 @@ class SpotSearch
     }
 
     /**
-     * ヘッダー検索かどうか
-     * @return string
-     */
-    public function isHeader(): bool
-    {
-        // 存在してなければfalse
-        if(empty($this->data['header'])) return false;
-
-        // 存在してて、1ならtrue
-        if($this->data['header'] === '1') return true;
-
-        // それ以外なら無しとみなしてfalseを返す
-        return false;
-    }
-
-    /**
-     * カテゴリデータが存在しているかどうか
-     * @return bool
-     */
-    public function existsCategory(): bool
-    {
-        return ($this->getCategory() !== 1);
-    }
-
-    /**
      * エリアデータが存在しているかどうか
      * @return bool
      */
@@ -223,6 +198,15 @@ class SpotSearch
     public function existsAreas(): bool
     {
         return (count($this->getAreas()) > 0);
+    }
+
+    /**
+     * カテゴリデータが存在しているかどうか
+     * @return bool
+     */
+    public function existsCategory(): bool
+    {
+        return ($this->getCategory() !== 1);
     }
 
     /**

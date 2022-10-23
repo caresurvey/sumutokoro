@@ -181,9 +181,11 @@
             </div>
             <!-- Mobile表示ここまで -->
 
-            <div class="text-gray-400 text-xs sm:text-sm">
-              @if($spot['city_id'] > 1)<a href="{{asset('/')}}spot?search[city]={{$spot['city_id']}}&search[simple]=1" class="link link-hover link-primary">{{$data['cities'][$spot['city_id']]}}</a>@endif{{$spot['address']}} <a href="{{asset('/')}}spot/{{$spot['id']}}/#SpotMap" class="text-accent hover:text-accent_light cursor-pointer"><i
-                      class="fa-solid fa-location-dot"></i></a> ｜ 運営法人：{{$spot['spot_detail']['company_name']}} ｜ <a href="{{asset('/')}}spot/?search[category]={{$spot['category_id']}}&search[simple]=1" class="link link-hover link-primary">{{$search['categories'][$spot['category_id']]['name']}}</a>
+            <div class="flex items-center text-gray-400 text-xs sm:text-sm">
+              @if($spot['city_id'] > 1)<div class="tooltip tooltip-top" data-tip="{{$data['cities'][$spot['city_id']]}}だけのデータを表示します。"><a href="{{asset('/')}}spot?search[city]={{$spot['city_id']}}&search[simple]=1" class="link link-hover link-primary">{{$data['cities'][$spot['city_id']]}}</a></div>@endif<span class="mr-1">{{$spot['address']}} </span><div class="tooltip tooltip-top" data-tip="この事業所の地図に移動します"><a href="{{asset('/')}}spot/{{$spot['id']}}/#SpotMap" class="text-accent hover:text-accent_light cursor-pointer"><i
+                            class="fa-solid fa-location-dot"></i></a></div> ｜ 運営法人：<div class="tooltip tooltip-top" data-tip="この事業所の運営法人です">{{$spot['spot_detail']['company_name']}}</div> ｜ <div class="tooltip tooltip-top" data-tip="事業所種別です。{{$search['categories'][$spot['category_id']]['name']}}だけのデータを表示します。"><a href="{{asset('/')}}spot/?search[category]={{$spot['category_id']}}&search[simple]=1" class="link link-hover link-primary">{{$search['categories'][$spot['category_id']]['name']}}</a></div>
+                @if($spot['area_center_id'] !== 1) ｜ <div class="tooltip tooltip-top" data-tip="所属する地域包括支援センターです">
+                {{$data['area_centers'][$spot['area_center_id']]}}</div> @endif
             </div>
           </div>
         @endforeach
