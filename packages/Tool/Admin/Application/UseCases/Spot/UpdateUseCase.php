@@ -37,7 +37,7 @@ class UpdateUseCase
         $request['icons'] = $this->request->getSpotIconStatuses();
         $request['prices'] = $this->request->getSpotPrices();
         $request['comments'] = $this->request->getSpotIconGenreComments();
-        $request['search_words'] = $this->request->getSearchWords($request['spot']['city_id'], $cities);
+        $request['spot']['search_words'] = $this->request->getSearchWords($request['spot']['city_id'], $cities);
 
         // 保存して結果を返す
         return $this->spotRepo->update($request, $auth);

@@ -102,7 +102,7 @@
             <div class="dropdown text-sm space-x-1">
               <ul class="menu menu-horizontal p-0 text-xs md:text-sm">
                 <li tabindex="0" class="hidden lg:block">
-                  <a href="{{asset('/')}}img/search" class="font-bold">
+                  <a href="{{asset('/')}}/search" class="font-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -112,7 +112,7 @@
                   </a>
                 </li>
                 <li tabindex="1" class="hidden lg:block">
-                  <a href="{{asset('/')}}img/spot" class="font-bold">
+                  <a href="{{asset('/')}}/spot" class="font-bold">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-5 h-5">
                       <path stroke-linecap="round" stroke-linejoin="round"
@@ -130,16 +130,16 @@
                     </svg>
                   </a>
                   <ul class="p-2 bg-white shadow z-30">
-                    <li><a href="{{asset('/')}}img/" id="HeaderMenuHome">ホーム</a></li>
-                    <li><a href="{{asset('/')}}img/search" id="HeaderMenuSearch">条件でさがす</a></li>
-                    <li><a href="{{asset('/')}}img/spot" id="HeaderMenuSpot">一覧を見る</a></li>
-                    <li><a href="{{asset('/')}}img/news" id="HeaderMenuNews">お知らせ</a></li>
-                    <li><a href="{{asset('/')}}img/service" id="HeaderMenuService">サービス案内</a></li>
-                    <li><a href="{{asset('/')}}img/qa" id="HeaderMenuQa">よくある質問</a></li>
-                    <li><a href="{{asset('/')}}img/contact" id="HeaderMenuContact">お問い合わせ</a></li>
-                    <li><a href="{{asset('/')}}img/company" id="HeaderMenuCompany">運営会社</a></li>
-                    <li><a href="{{asset('/')}}img/privacy" id="HeaderMenuPrivacy">プライバシーポリシー</a></li>
-                    <li><a href="{{asset('/')}}img/sitemap" id="HeaderMenuSitemap">サイトマップ</a></li>
+                    <li><a href="{{asset('/')}}/" id="HeaderMenuHome">ホーム</a></li>
+                    <li><a href="{{asset('/')}}/search" id="HeaderMenuSearch">条件でさがす</a></li>
+                    <li><a href="{{asset('/')}}/spot" id="HeaderMenuSpot">一覧を見る</a></li>
+                    <li><a href="{{asset('/')}}/news" id="HeaderMenuNews">お知らせ</a></li>
+                    <li><a href="{{asset('/')}}/service" id="HeaderMenuService">サービス案内</a></li>
+                    <li><a href="{{asset('/')}}/qa" id="HeaderMenuQa">よくある質問</a></li>
+                    <li><a href="{{asset('/')}}/contact" id="HeaderMenuContact">お問い合わせ</a></li>
+                    <li><a href="{{asset('/')}}/company" id="HeaderMenuCompany">運営会社</a></li>
+                    <li><a href="{{asset('/')}}/privacy" id="HeaderMenuPrivacy">プライバシーポリシー</a></li>
+                    <li><a href="{{asset('/')}}/sitemap" id="HeaderMenuSitemap">サイトマップ</a></li>
                   </ul>
                 </li>
               </ul>
@@ -193,15 +193,15 @@
                     @endif
                     <ul tabindex="0"
                         class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                      <li><a href="{{asset('/')}}img/user/profile/">{{Auth::guard('user')->user()->name}}さん</a></li>
-                      <li><a href="{{asset('/')}}img/user/" id="HeaderMenuMypage">マイページ</a></li>
-                      <li><a href="{{asset('/')}}img/user/logout" class="logoutBtn" id="HeaderMenuLogout">ログアウト</a></li>
+                      <li><a href="{{asset('/')}}/user/profile/">{{Auth::guard('user')->user()->name}}さん</a></li>
+                      <li><a href="{{asset('/')}}/user/" id="HeaderMenuMypage">マイページ</a></li>
+                      <li><a href="{{asset('/')}}/user/logout" class="logoutBtn" id="HeaderMenuLogout">ログアウト</a></li>
                     </ul>
                   </div>
                 </div>
             </div>
             @else
-              <a href="{{asset('/')}}img/user/login" class="font-bold">ログイン</a>
+              <a href="{{asset('/')}}/user/login" class="font-bold">ログイン</a>
             @endif
           </div>
         </div>
@@ -285,14 +285,14 @@
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/search" class="hover:underline" id="FooterMenuSearch">条件でさがす</a>
+                <a href="{{asset('/')}}/search" class="hover:underline" id="FooterMenuSearch">条件でさがす</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/spot" class="hover:underline" id="FooterMenuSpot">一覧を見る</a>
+                <a href="{{asset('/')}}/spot" class="hover:underline" id="FooterMenuSpot">一覧を見る</a>
               </li>
             </ul>
           </div>
@@ -311,14 +311,14 @@
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/user/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
+                <a href="{{asset('/')}}/user/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
+                <a href="{{asset('/')}}/user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
               </li>
             </ul>
           </div>
@@ -337,49 +337,49 @@
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/" class="hover:underline" id="FooterMenuHome">ホーム</a>
+                <a href="{{asset('/')}}/" class="hover:underline" id="FooterMenuHome">ホーム</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/service" class="hover:underline" id="FooterMenuService">サービス案内</a>
+                <a href="{{asset('/')}}/service" class="hover:underline" id="FooterMenuService">サービス案内</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/qa" class="hover:underline" id="FooterMenuQa">よくある質問</a>
+                <a href="{{asset('/')}}/qa" class="hover:underline" id="FooterMenuQa">よくある質問</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/contact" class="hover:underline" id="FooterMenuContact">お問い合わせ</a>
+                <a href="{{asset('/')}}/contact" class="hover:underline" id="FooterMenuContact">お問い合わせ</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/company" class="hover:underline" id="FooterMenuCompany">運営会社</a>
+                <a href="{{asset('/')}}/company" class="hover:underline" id="FooterMenuCompany">運営会社</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/privacy" class="link link-hover" id="FooterMenuPrivacy">プライバシーポリシー</a>
+                <a href="{{asset('/')}}/privacy" class="link link-hover" id="FooterMenuPrivacy">プライバシーポリシー</a>
               </li>
               <li class="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                 </svg>
-                <a href="{{asset('/')}}img/sitemap" class="hover:underline" id="FooterMenuSitemap">サイトマップ</a>
+                <a href="{{asset('/')}}/sitemap" class="hover:underline" id="FooterMenuSitemap">サイトマップ</a>
               </li>
             </ul>
           </div>

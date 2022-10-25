@@ -51,7 +51,6 @@ class EloquentCompanyRepository implements CompanyRepository
         }
 
         // ベースの並び
-        $query->orderBy('created_at', 'DESC');
         $query->orderBy('id', 'DESC');
 
         // リレーション

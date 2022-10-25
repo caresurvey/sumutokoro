@@ -142,15 +142,15 @@
                       </label>
                       <ul tabindex="0"
                           class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                        <li><a href="{{asset('/')}}img/user/profile/">{{Auth::guard('admin')->user()->name}}さん</a></li>
-                        <li><a href="{{asset('/')}}img/user/" id="HeaderMenuMypage">マイページ</a></li>
-                        <li><a href="{{asset('/')}}img/user/logout" class="logoutBtn" id="HeaderMenuLogout">ログアウト</a></li>
+                        <li><a href="{{asset('/')}}/admin/profile/">{{Auth::guard('admin')->user()->name}}さん</a></li>
+                        <li><a href="{{asset('/')}}/admin/" id="HeaderMenuMypage">マイページ</a></li>
+                        <li><a href="{{asset('/')}}/admin/logout" class="logoutBtn" id="HeaderMenuLogout">ログアウト</a></li>
                       </ul>
                     </div>
                   </div>
               </div>
               @else
-                <a href="{{asset('/')}}user/login" class="font-bold">ログイン</a>
+                <a href="{{asset('/')}}admin/login" class="font-bold">ログイン</a>
               @endif
             </div>
           </div>
@@ -262,14 +262,14 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}user/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
+                  <a href="{{asset('/')}}admin/login" class="hover:underline" id="FooterMenuUserLogin">ユーザーログイン</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}user/regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
+                  <a href="{{asset('/')}}regist" class="hover:underline" id="FooterMenuRegister">ユーザー登録する</a>
                 </li>
               </ul>
             </div>
@@ -288,49 +288,49 @@
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/" class="hover:underline" id="FooterMenuHome">ホーム</a>
+                  <a href="{{asset('/')}}/" class="hover:underline" id="FooterMenuHome">ホーム</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/service" class="hover:underline" id="FooterMenuService">サービス案内</a>
+                  <a href="{{asset('/')}}/service" class="hover:underline" id="FooterMenuService">サービス案内</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/qa" class="hover:underline" id="FooterMenuQa">よくある質問</a>
+                  <a href="{{asset('/')}}/qa" class="hover:underline" id="FooterMenuQa">よくある質問</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/contact" class="hover:underline" id="FooterMenuContact">お問い合わせ</a>
+                  <a href="{{asset('/')}}/contact" class="hover:underline" id="FooterMenuContact">お問い合わせ</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/company" class="hover:underline" id="FooterMenuCompany">運営会社</a>
+                  <a href="{{asset('/')}}/company" class="hover:underline" id="FooterMenuCompany">運営会社</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/privacy" class="link link-hover" id="FooterMenuPrivacy">プライバシーポリシー</a>
+                  <a href="{{asset('/')}}/privacy" class="link link-hover" id="FooterMenuPrivacy">プライバシーポリシー</a>
                 </li>
                 <li class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                        stroke="currentColor" class="text-gray-400 w-4 h-4 mr-1">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
                   </svg>
-                  <a href="{{asset('/')}}img/sitemap" class="hover:underline" id="FooterMenuSitemap">サイトマップ</a>
+                  <a href="{{asset('/')}}sitemap" class="hover:underline" id="FooterMenuSitemap">サイトマップ</a>
                 </li>
               </ul>
             </div>

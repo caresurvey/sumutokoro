@@ -15,7 +15,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (!$request->expectsJson()) {
-            $URI = explode("/", $request->getRequestUri());
+            $URI = explode("/test/", $request->getRequestUri());
+            //$URI = explode("/", $request->getRequestUri());
             switch ($URI[1]){
                 // 運営管理画面
                 case 'admin':

@@ -27,7 +27,7 @@ class StoreUseCase
 
         // リクエスト形成
         $request = $this->request->data();
-        $request['search_words'] = $this->request->getSearchWords();
+        $request['company']['search_words'] = $this->request->getSearchWords();
 
         // 保存して結果を返す
         return $this->companyRepo->store($request, $auth);

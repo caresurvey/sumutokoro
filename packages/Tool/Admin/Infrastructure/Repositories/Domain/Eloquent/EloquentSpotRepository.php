@@ -182,7 +182,6 @@ class EloquentSpotRepository implements SpotRepository
     {
         // POSTデータを取得
         $post = $request;
-        $post['spot']['search_words'] = $request['search_words'];
         $post['spot']['user_id'] = $auth['id'];
 
         try {

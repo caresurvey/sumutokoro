@@ -34,7 +34,7 @@ class UpdateUseCase
 
         // リクエスト形成
         $request = $this->request->all();
-        $request['search_words'] = $this->request->getSearchWords($request['company']['city_id'], $cities);
+        $request['company']['search_words'] = $this->request->getSearchWords($request['company']['city_id'], $cities);
 
         // 保存して結果を返す
         return $this->companyRepo->update($request, $auth);

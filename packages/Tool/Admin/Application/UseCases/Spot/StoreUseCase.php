@@ -48,7 +48,7 @@ class StoreUseCase
 
         // リクエスト形成
         $request = $this->request->data();
-        $request['search_words'] = $this->request->getSearchWords();
+        $request['spot']['search_words'] = $this->request->getSearchWords();
 
         // 保存して結果を返す
         return $this->spotRepo->store($request, $emptyData, $auth);
