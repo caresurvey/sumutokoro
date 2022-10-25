@@ -24,7 +24,7 @@
             @if(!empty($search['areas']))
               <div class="rounded shadow bg-white mb-7 tracking-wider p-4 sm:p-10">
                 <h2 class="font-bold text-md mb-4 border-l-4 pl-3 sm:text-lg md:text-xl md:mb-8">エリアで検索</h2>
-                @foreach($search['areas'] as $area)
+                @foreach($search['areas'] as $key => $area)
                 @if($area['count'] > 0)
                 <h3 class="flex items-center font-bold text-sm mb-2 md:text-base">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -40,10 +40,10 @@
                     @if($data['spots_count']> 0)
                     <li class="w-1/3">
                       <div class="flex items-center py-2">
-                        <input id="CityId{{$data['id']}}" type="checkbox" name="search[{{$area['models']}}][]"
+                        <input id="{{$key}}Id{{$data['id']}}" type="checkbox" name="search[{{$area['models']}}][]"
                                value="{{$data['id']}}"
                                class="checkbox radio-primary rounded-full checkbox-sm sm:checkbox-md">
-                        <label for="CityId{{$data['id']}}"
+                        <label for="{{$key}}Id{{$data['id']}}"
                                class="ml-2 text-md sm:text-base">{{$data['label']}}（{{$data['spots_count']}}）</label>
                       </div>
                     </li>
