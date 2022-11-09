@@ -192,7 +192,7 @@
 
           <div class="flex items-center justify-center mb-4">
             <input {{ old('contact.privacy') === '1' ? 'checked' : '' }} value="1" id="ContactPrivacy" type="checkbox" name="contact[privacy]"
-                   class="checkbox radio-primary rounded-full checkbox-sm sm:checkbox-md @if($errors->has('contact.reply')) border-red-700 @endif">
+                   class="checkbox radio-primary rounded-full checkbox-sm sm:checkbox-md @if($errors->has('contact.privcy')) border-red-700 @endif">
             <label for="ContactPrivacy" class="ml-2 text-sm sm:text-base cursor-pointer hover:text-primary">プライバシーポリシーに同意する</label>
             @if($errors->has('contact.privacy'))
               <div class="flex items-center justify-center text-red-700 text-sm ml-2">

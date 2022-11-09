@@ -41,6 +41,8 @@ services:
       - ./system/local/db/mysql_data:/var/lib/mysql
       # 設定ファイル
       - ./system/local/db/conf.d:/etc/mysql/conf.d
+    ports:
+      - 11062:3306
     environment:
       MYSQL_DATABASE: primary
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
@@ -63,6 +65,8 @@ services:
       - ./system/local/db/test_mysql_data:/var/lib/mysql
       # 設定ファイル
       - ./system/local/db/test_conf.d:/etc/mysql/conf.d
+    ports:
+      - 11063:3306
     environment:
       MYSQL_DATABASE: test_primary
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
