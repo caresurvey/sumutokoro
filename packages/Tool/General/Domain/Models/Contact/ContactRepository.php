@@ -12,20 +12,16 @@ interface ContactRepository
 
     /**
      * @param array $data
-     * @return MailContactForAdmin
+     * @param bool $isAdmin
+     * @return Contact
      */
-    public function makeMailContactForAdmin(array $data): MailContactForAdmin;
+    public function makeContact(array $data, bool $isAdmin): Contact;
 
     /**
-     * @param array $data
-     * @return MailContactForCustomer
+     * @param Contact $contact
+     * @return SendGridContact
      */
-    public function makeMailContactForCustomer(array $data): MailContactForCustomer;
-
-    /**
-     * @return SendContact
-     */
-    public function makeSendContact(): SendContact;
+    public function makeSendGridContact(Contact $contact): SendGridContact;
 
     /**
      * @param array $request

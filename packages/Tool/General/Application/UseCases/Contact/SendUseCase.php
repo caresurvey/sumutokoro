@@ -6,6 +6,7 @@ use Tool\General\Application\Requests\Contact\SendRequest;
 use Tool\General\Domain\Models\Common\ResponseRepository;
 use Tool\General\Domain\Models\Contact\ContactRepository;
 use Tool\General\Domain\Models\Common\LogicResponse;
+use Tool\General\Exceptions\GeneralLogicException;
 
 class SendUseCase
 {
@@ -14,7 +15,7 @@ class SendUseCase
     private ResponseRepository $responseRepo;
 
     public function __construct(
-        SendRequest $request,
+        SendRequest        $request,
         ContactRepository  $contactRepo,
         ResponseRepository $responseRepo
     )
@@ -29,38 +30,45 @@ class SendUseCase
      */
     public function __invoke(): LogicResponse
     {
+        // 二重送信防止
+        $this->request->session()->regenerateToken();
+
         // テストモードかを判別するモードチェックオブジェクトを生成
         $checkModel = $this->contactRepo->makeCheckMode($this->request->all());
 
         // テストモードだったら何もせずに完了画面だけを表示させる
-        if($checkModel->checkTestMode()) {
-            // 完了画面のデータ作成
-            $data['title'] = 'テストモード完了';
-            $data['message'] = 'テストモードでの処理を行いました。フォームは無事に作動しています。<br>（保存もメール送信もされません）';
-
-            // Responseを返す
-            return $this->responseRepo->makeModel(true, $data['title'], $data['message'], $data);
+        if ($checkModel->checkTestMode()) {
+            return $this->responseRepo->makeModel(true, $checkModel->getTitle(), $checkModel->getMessage());
         }
 
-        // データを保存
-        $this->contactRepo->store($this->request->all());
+        try {
+            // データを保存して、失敗したら例外を投げる
+            if(!$this->contactRepo->store($this->request->all())) throw new GeneralLogicException();
 
-        // 送信用メールオブジェクトを作成
-        $sendContact = $this->contactRepo->makeSendContact();
+            // 管理者用メールオブジェクトを作成
+            $contactForAdmin = $this->contactRepo->makeContact($this->request->all(), true);
+            $sendContactForAdmin = $this->contactRepo->makeSendGridContact($contactForAdmin);
 
-        // 完了画面のデータ作成
-        $data['title'] = 'お問い合わせ完了';
-        $data['message'] = 'ありがとうございました、お問い合わせが完了致しました。ご返答いたしますので、少々お待ちくださいませ。';
+            // メールを送信してエラーなら例外を投げる
+            if(!$sendContactForAdmin->sendMail()) throw new GeneralLogicException();
 
-        // 管理者用へメール送信
-        $mailContactForAdmin = $this->contactRepo->makeMailContactForAdmin($this->request->all()['contact']);
-        $sendContact->sendMailForAdmin($mailContactForAdmin);
+            // 送信者用メールオブジェクトを作成してメールを送信
+            $contactForCustomer = $this->contactRepo->makeContact($this->request->all(), false);
+            $sendContactForCustomer = $this->contactRepo->makeSendGridContact($contactForCustomer);
 
-        // ユーザーへメール送信
-        $mailContactForCustomer = $this->contactRepo->makeMailContactForCustomer($this->request->all()['contact']);
-        $sendContact->sendMailForCustomer($mailContactForCustomer);
+            // メールを送信してエラーなら例外を投げる
+            if(!$sendContactForCustomer->sendMail()) throw new GeneralLogicException();
 
-        // Responseを返す
-        return $this->responseRepo->makeModel(true, $data['title'], $data['message']);
+            // Responseを返す
+            return $this->responseRepo->makeModel(true, $contactForAdmin->getSuccessTitle(), $contactForAdmin->getSuccessMessage());
+
+        } catch(GeneralLogicException $e) {
+
+            // エラーを書き込む
+            Logger($e->getMessage());
+
+            // Responseを返す
+            return $this->responseRepo->makeModel(true, $contactForAdmin->getFailedTitle(), $contactForAdmin->getFailedMessage());
+        }
     }
 }

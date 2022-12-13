@@ -6,11 +6,22 @@ interface RegisterRepository
 {
     public function store(array $request): bool;
 
-    public function makeMailRegisterForAdmin(array $data): MailRegisterForAdmin;
+    /**
+     * @param array $data
+     * @param bool $isAdmin
+     * @return Register
+     */
+    public function makeRegister(array $data, bool $isAdmin): Register;
 
-    public function makeMailRegisterForCustomer(array $data): MailRegisterForCustomer;
+    /**
+     * @param Register $register
+     * @return SendGridRegister
+     */
+    public function makeSendGridRegister(Register $register): SendGridRegister;
 
-    public function makeSendRegister(): SendRegister;
-
+    /**
+     * @param array $request
+     * @return CheckMode
+     */
     public function makeCheckMode(array $request): CheckMode;
 }

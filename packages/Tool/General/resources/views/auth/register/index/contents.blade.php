@@ -200,7 +200,7 @@
                   <tr class="bg-white border-b">
                     <th class="py-4 px-4 w-2/6">
                       <span class="bg-red-700 inline-block text-xs text-white px-2 py-1 rounded">必須</span><br>
-                      所属事務所
+                      所属事業所
                     </th>
                     <td class="py-4 px-4 w-4/6">
                       @include('common::form.text', [

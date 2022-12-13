@@ -14,8 +14,8 @@ class ContactController extends Controller
     }
 
     public function send(SendUseCase $useCase)
-    {
-        // データを新規保存後、保存したidを取得
+    {        
+        // データを新規保存後、メールを送信
         $response = $useCase();
 
         // 完了画面へ移動

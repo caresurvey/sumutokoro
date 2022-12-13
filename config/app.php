@@ -207,6 +207,8 @@ return [
         Brian2694\Toastr\ToastrServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
+
     ],
 
     /*
@@ -221,7 +223,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'ExampleClass' => App\Example\ExamspleClass::class,
         /*
          * 自作ヘルパー
          */

@@ -18,11 +18,7 @@
   {{-- GoogleAnalyticsタグここまで --}}
   <?php if ($_SERVER['HTTP_HOST'] === 'sumutokoro.com'): ?>
   <?php endif;?>
-  {{-- GoogleCAPTCHAタグここから --}}
-  @production
-  {!! RecaptchaV3::initJs() !!}
-  @endproduction
-  {{-- GoogleCAPTCHAタグここまで --}}
+
 
   <!-- favicon -->
   <meta name="msapplication-square70x70logo" content="{{asset('/')}}site-tile-70x70.png">

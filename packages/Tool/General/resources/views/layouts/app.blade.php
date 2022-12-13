@@ -3,32 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title')</title>
 
-  {{-- GoogleAnalyticsタグここから --}}
-  @production
-    @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
+{{-- GoogleAnalyticsタグここから --}}
+@production
+  @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{config('myapp.analytics_key')}}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{config('myapp.analytics_key')}}');
-    </script>
-    @endif
-  @endproduction
-  {{-- GoogleAnalyticsタグここまで --}}
+      <script async src="https://www.googletagmanager.com/gtag/js?id={{config('myapp.analytics_key')}}"></script>
+      <script>
+          window.dataLayer = window.dataLayer || [];
 
-  {{-- GoogleCAPTCHAタグここから --}}
-  @production
-    @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
-    {!! RecaptchaV3::initJs() !!}
-    @endif
-  @endproduction
-  {{-- GoogleCAPTCHAタグここまで --}}
+          function gtag() {
+              dataLayer.push(arguments);
+          }
 
-  <!-- fB-OG -->
+          gtag('js', new Date());
+          gtag('config', '{{config('myapp.analytics_key')}}');
+      </script>
+  @endif
+@endproduction
+{{-- GoogleAnalyticsタグここまで --}}
+
+<!-- fB-OG -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="@yield('title')">
   <meta property="og:description" content="@yield('description')">
@@ -102,7 +99,8 @@
             <label for="menu-drawer" class="block mr-4 cursor-pointer hover:text-primary active:text-primary lg:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                    class="inline-block w-8 h-8 stroke-current">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </label>
             <a href="{{asset('/')}}" class="hover:opacity-70">
@@ -157,38 +155,38 @@
                 </ul>
               </div>
               @if(!empty($search['cities']))
-              <div class="form-control">
-                <form action="{{asset('/')}}spot" method="get">
-                  <div class="flex">
-                    <select name="search[city]" id="HeaderSearchCity"
-                            class="-mr-1 select select-bordered rounded-r-lg rounded-full select-sm text-xs lg:text-md lg:select-md">
-                      <option value="1" id="HeaderSearchCityEmpty">地域を選択</option>
-                      @foreach($search['cities'] as $city)
-                        @if($city['spots_count'] > 0)
-                          <option value="{{$city['id']}}" id="HeaderSearchCity{{$city['id']}}" 
-                              @if($city['id'] === $search['query']['city']) selected @endif>{{$city['name']}}
-                            ({{$city['spots_count']}})
-                          </option>
-                        @endif
-                      @endforeach
-                    </select>
-                    <input type="text" id="HeaderSearchKeyword" name="search[keyword]"
-                           value="{{$search['query']['keyword']}}"
-                           placeholder="キーワードを入力"
-                           class="-mr-1 input rounded-none input-bordered input-sm lg:input-md">
-                    <div class="tooltip tooltip-bottom" id="HeaderSearchSubmit" data-tip="事業所を検索する">
-                      <button class="btn rounded-l-lg rounded-full btn-sm lg:input-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                             stroke="currentColor" class="w-5 h-5">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
-                        </svg>
-                      </button>
+                <div class="form-control">
+                  <form action="{{asset('/')}}spot" method="get">
+                    <div class="flex">
+                      <select name="search[city]" id="HeaderSearchCity"
+                              class="-mr-1 select select-bordered rounded-r-lg rounded-full select-sm text-xs lg:text-md lg:select-md">
+                        <option value="1" id="HeaderSearchCityEmpty">地域を選択</option>
+                        @foreach($search['cities'] as $city)
+                          @if($city['spots_count'] > 0)
+                            <option value="{{$city['id']}}" id="HeaderSearchCity{{$city['id']}}"
+                                    @if($city['id'] === $search['query']['city']) selected @endif>{{$city['name']}}
+                              ({{$city['spots_count']}})
+                            </option>
+                          @endif
+                        @endforeach
+                      </select>
+                      <input type="text" id="HeaderSearchKeyword" name="search[keyword]"
+                             value="{{$search['query']['keyword']}}"
+                             placeholder="キーワードを入力"
+                             class="-mr-1 input rounded-none input-bordered input-sm lg:input-md">
+                      <div class="tooltip tooltip-bottom" id="HeaderSearchSubmit" data-tip="事業所を検索する">
+                        <button class="btn rounded-l-lg rounded-full btn-sm lg:input-md">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                               stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                          </svg>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                  <input type="hidden" name="search[simple]" value="1">
-                </form>
-              </div>
+                    <input type="hidden" name="search[simple]" value="1">
+                  </form>
+                </div>
               @endif
               <div class="px-2 text-sm">
                 @if(Auth::guard('user')->check())
@@ -196,12 +194,14 @@
                     <div class="dropdown dropdown-end">
                       @if(Auth::guard('user')->user()->is_authenticated === 1)
                         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                        <img src="{{asset('/')}}img/general/base/icon_profile_authenticated.png" class="w-11/12" alt="{{Auth::guard('user')->user()->name}}さん（認証済み）">
-                      </label>
+                          <img src="{{asset('/')}}img/general/base/icon_profile_authenticated.png" class="w-11/12"
+                               alt="{{Auth::guard('user')->user()->name}}さん（認証済み）">
+                        </label>
                       @else
-                      <label tabindex="0" class="btn btn-ghost btn-circle">
-                        <img src="{{asset('/')}}img/general/base/icon_profile.png" class="w-11/12" alt="{{Auth::guard('user')->user()->name}}さん">
-                      </label>
+                        <label tabindex="0" class="btn btn-ghost btn-circle">
+                          <img src="{{asset('/')}}img/general/base/icon_profile.png" class="w-11/12"
+                               alt="{{Auth::guard('user')->user()->name}}さん">
+                        </label>
                       @endif
                       <ul tabindex="0"
                           class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
@@ -248,8 +248,10 @@
         <span class="btm-nav-label">さがす</span>
       </a>
       <a>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"/>
         </svg>
         <span class="btm-nav-label">一覧</span>
       </a>
@@ -396,5 +398,30 @@
 <script src="{{asset('/')}}js/common/common.js"></script>
 <script src="{{asset('/')}}js/general/general_common.js"></script>
 @vite('resources/js/app.js')
+
+{{-- GoogleCAPTCHAタグここから --}}
+@production
+  <?php //@if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')?>
+  {!! no_captcha()->script() !!}
+  {!! no_captcha()->getApiScript() !!}
+  <script>
+      $(document).ready(function () {
+          $("#ContactForm").submit(function (event) {
+              if (!confirm('この内容でお問い合わせをしてもよろしいですか？')) return false;
+              event.preventDefault();
+              grecaptcha.ready(function () {
+                  grecaptcha.execute('{{config('no-captcha.sitekey')}}', {action: 'submit'}).then(function (token) {
+                      $('#ContactForm').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+                      $('#ContactForm').unbind('submit').submit();
+                  });
+              });
+          });
+      });
+  </script>
+<?php //@endif?>
+@endproduction
+{{-- GoogleCAPTCHAタグここまで --}}
+
+
 </body>
 </html>

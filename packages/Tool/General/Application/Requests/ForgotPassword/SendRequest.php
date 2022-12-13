@@ -4,7 +4,7 @@ namespace Tool\General\Application\Requests\ForgotPassword;
 
 use Tool\Common\Application\Requests\CommonRequest;
 
-class ForgotPasswordRequest extends CommonRequest
+class SendRequest extends CommonRequest
 {
     /**
      * Determine if the user is authorized to make this request.

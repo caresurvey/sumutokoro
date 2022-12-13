@@ -55,7 +55,6 @@ class UpdateRequest extends FormRequest
             'spot.city_id' => 'required|numeric|min:1',
             'spot.prefecture_id' => 'required|numeric|min:1',
             'spot.price_range_id' => 'required|numeric|min:1',
-            'spot.space_id' => 'required|numeric|min:1',
         ];
     }
 
@@ -133,7 +132,6 @@ class UpdateRequest extends FormRequest
             'spot.city_id.required' => ':attributeは必須です',
             'spot.prefecture_id.required' => ':attributeは必須です',
             'spot.price_range_id.required' => ':attributeは必須です',
-            'spot.space_id.required' => ':attributeは必須です',
         ];
     }
 
@@ -178,7 +176,6 @@ class UpdateRequest extends FormRequest
             'spot.city_id' => '市町村',
             'spot.prefecture_id' => '都道府県',
             'spot.price_range_id' => '価格帯',
-            'spot.space_id' => '個室内状況',
             'spot.spot_plan_id' => 'プラン',
             'spot.trade_area_id' => '商圏',
         ];

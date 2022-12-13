@@ -52,7 +52,6 @@ class EloquentSpot extends AppEloquent
         'prefecture_id',
         'price_range_id',
         'spot_plan_id',
-        'space_id',
         'trade_area_id',
         'user_id',
     ];

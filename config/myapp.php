@@ -70,7 +70,6 @@ return [
   'default_lng' => env('DEFAULT_LNG', '142.35817790725756'),
 
 
-
   // -----------------------
   // 送り先メールアドレス
   // -----------------------
@@ -88,7 +87,6 @@ return [
      * テスト用メールアドレス
      */
   'mail_test' => env('MAIL_TEST', 'hoge@hoge.co.jp'),
-
 
 
   // -----------------------
@@ -121,5 +119,19 @@ return [
     'h1', 'h2', 'h3', 'h4', 'h5',
     'b', 'a', 'img', 'u', 'br', 'figure', 'p',
     'table', 'tr', 'th', 'td', 'tbody', 'thead', 'strong',
-  ]
+  ],
+
+
+  // -----------------------
+  // GoogleAnalytics設定
+  // -----------------------
+  'analytics_key' => env('ANALYTICS_KEY', 'XXXXXX'),  
+
+
+  // -----------------------
+  // GoogleCaptchaV3設定
+  // -----------------------
+  'recaptcha_sitekey' => env('RECAPTCHA_SITE_KEY', 'XXXXXX'),
+  'recaptcha_secret' => env('RECAPTCHA_SECRET', 'XXXXXX'),
+
 ];

@@ -30,26 +30,20 @@ class EloquentResetPasswordRepository implements ResetPasswordRepository
         $this->responseRepo = $responseRepo;
     }
 
-    public function store(string $email, string $token): LogicResponse
+    /**
+     * @param string $email
+     * @return string
+     */
+    /*
+    public function makeToken(string $email): string
     {
-        try {
-            // 保存（トランザクション）
-            return DB::transaction(function () use ($email, $token) {
-                // 書き込み
-                if (!$this->eloquentResetPassword->fill(['email' => $email, 'token' => $token])->save()) {
-                    // エラーなら例外を投げる
-                    throw new GeneralLogicException();
-                }
-                // レスポンスモデルを作成して返す
-                return $this->responseRepo->makeModel(true, 'パスワードリセット申請完了', 'パスワードリセットの申請を完了しました。');
-            });
-        } catch (GeneralLogicException $e) {
-            // エラー書き込み
-            Logger($e->getMessage());
-            // レスポンスモデルを作成して返す
-            return $this->responseRepo->makeModel(false, 'パスワードリセットの申請がきませんでした', 'パスワードリセットの申請ができませんでした');
-        }
+        // データを取得
+        $this->eloquentUser->where('email', $email)->first();
+
+        // トークンに変換して返す
+        return Hash::make($email . date("Ymd"));
     }
+    */
 
     public function getUser(string $token): array
     {
@@ -58,13 +52,13 @@ class EloquentResetPasswordRepository implements ResetPasswordRepository
             return DB::transaction(function () use ($token) {
 
                 // リセットデータを取得
-                $reset = $this->eloquentResetPassword->where('token', $token)->first();
-                
+                $forgot = $this->eloquentResetPassword->where('token', $token)->first();
+
                 // データが無ければ例外を投げる
-                if (!$reset) throw new GeneralNotFoundException;
+                if (!$forgot) throw new GeneralNotFoundException;
 
                 // ユーザーデータを取得
-                $user = $this->eloquentUser->where('email', $reset->email)->select('id')->first();
+                $user = $this->eloquentUser->where('email', $forgot->email)->select('id')->first();
 
                 // データが無ければ例外を投げる
                 if (!$user) throw new GeneralNotFoundException;
@@ -79,13 +73,30 @@ class EloquentResetPasswordRepository implements ResetPasswordRepository
         }
     }
 
-    public function makeToken(string $email): string
+    /**
+     * @param string $email
+     * @param string $token
+     * @return LogicResponse
+     */
+    public function store(string $email, string $token): LogicResponse
     {
-        // データを取得
-        $this->eloquentUser->where('email', $email)->first();
-
-        // トークンに変換して返す
-        return Hash::make($email . date("Ymd"));
+        try {
+            // 保存（トランザクション）
+            return DB::transaction(function () use ($email, $token) {
+                // 書き込み
+                if (!$this->eloquentResetPassword->fill(['email' => $email, 'token' => $token])->save()) {
+                    // エラーなら例外を投げる
+                    throw new GeneralLogicException();
+                }
+                // レスポンスモデルを作成して返す
+                return $this->responseRepo->makeModel(true, 'パスワード変更完了', 'パスワードを変更しました。');
+            });
+        } catch (GeneralLogicException $e) {
+            // エラー書き込み
+            Logger($e->getMessage());
+            // レスポンスモデルを作成して返す
+            return $this->responseRepo->makeModel(false, 'パスワードを変更できませんでした', 'パスワードを変更できませんでした');
+        }
     }
 }
 

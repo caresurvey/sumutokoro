@@ -12,8 +12,8 @@
 
   <section class="container mx-auto max-w-4xl px-6 sm:px-8 md:px-12">
     <div class="shadow bg-white rounded-xl px-12 py-8 mb-8 sm:py-12 sm:mb-8 md:px-14 md:py-14 md:mb-14">
-      <div class="mb-10 leading-7 tracking-wider text-sm md:text-base md:leading-8 text-center">
-        <p>
+      <div class="mb-10 leading-7 tracking-wider text-sm md:text-base md:leading-8 text-center w-full">
+        <p class="text-center">
           {!! nl2br(e(session('message'))) !!}
         </p>
       </div>

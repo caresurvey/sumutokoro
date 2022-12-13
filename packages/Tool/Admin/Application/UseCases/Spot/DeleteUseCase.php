@@ -1,27 +1,27 @@
 <?php
 
-namespace Tool\Admin\Application\UseCases\Spot;
+namespace Tool\Admin\Application\UseCases\Tag;
 
-use Tool\Admin\Application\Requests\Spot\DestroyRequest;
+use Tool\Admin\Application\Requests\Tag\DestroyRequest;
 use Tool\Admin\Domain\Models\Common\LogicResponse;
-use Tool\Admin\Domain\Models\Spot\SpotRepository;
+use Tool\Admin\Domain\Models\Tag\TagRepository;
 
 class DeleteUseCase
 {
     private DestroyRequest $request;
-    private SpotRepository $spotRepo;
+    private TagRepository $tagRepo;
 
     public function __construct(
         destroyRequest $request,
-        SpotRepository $spotRepo
+        TagRepository $tagRepo
     )
     {
-        $this->spotRepo = $spotRepo;
+        $this->tagRepo = $tagRepo;
     }
 
     public function __invoke(int $id, array $auth): LogicResponse
     {
         // 保存して結果を返す
-        return $this->spotRepo->remove($id, $auth);
+        return $this->tagRepo->remove($id, $auth);
     }
 }

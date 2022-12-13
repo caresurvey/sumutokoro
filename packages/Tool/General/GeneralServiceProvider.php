@@ -45,8 +45,8 @@ class GeneralServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            Domain\Models\ForgetPassword\ForgetPasswordRepository::class,
-            Infrastructure\Repositories\Domain\Eloquent\EloquentForgetPasswordRepository::class
+            Domain\Models\ForgotPassword\ForgotPasswordRepository::class,
+            Infrastructure\Repositories\Domain\Eloquent\EloquentForgotPasswordRepository::class
         );
 
         $this->app->bind(

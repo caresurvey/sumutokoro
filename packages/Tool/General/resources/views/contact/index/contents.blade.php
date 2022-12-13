@@ -16,7 +16,6 @@
     </div>
   </div>
 
-
   <section class="container mx-auto max-w-4xl px-6 sm:px-8 md:px-12">
     @include('common::form.errors')
 
@@ -35,10 +34,7 @@
     </div>
   </section>
 
-
-  <form action="{{asset('/')}}contact/"
-        onsubmit="return confirm('この内容でお問い合わせをしてもよろしいですか？')" method="post" accept-charset="UTF-8"
-        id="ContactForm">
+  <form action="{{asset('/')}}contact" name="form" method="POST" accept-charset="UTF-8" id="ContactForm">
     @csrf
 
     <section class="container mx-auto max-w-4xl px-6 sm:px-8 md:px-12">
@@ -118,28 +114,32 @@
             <td class="pt-4 pr-4 pl-4 pb-2 w-3/4 border-t bg-gray-50">
               <ul>
                 <li class="flex items-center mb-4">
-                  <input {{ old('contact.reply') === 'メールでのご返答' ? 'checked' : '' }} id="ContactReply1" value="メールでのご返答" type="radio" name="contact[reply]"
+                  <input {{ old('contact.reply') === 'メールでのご返答' ? 'checked' : '' }} id="ContactReply1" value="メールでのご返答"
+                         type="radio" name="contact[reply]"
                          class="radio radio-primary radio-sm @if($errors->has('contact.reply')) border-red-700 @endif">
                   <label for="ContactReply1"
                          class="ml-2 text-sm text-gray-600 cursor-pointer">メールでのご返答</label>
                 </li>
 
                 <li class="flex items-center mb-4">
-                  <input {{ old('contact.reply') === '電話でのご返答' ? 'checked' : '' }} id="ContactReply2" value="電話でのご返答" type="radio" name="contact[reply]"
+                  <input {{ old('contact.reply') === '電話でのご返答' ? 'checked' : '' }} id="ContactReply2" value="電話でのご返答"
+                         type="radio" name="contact[reply]"
                          class="radio radio-primary radio-sm @if($errors->has('contact.reply')) border-red-700 @endif">
                   <label for="ContactReply2"
                          class="ml-2 text-sm text-gray-600 cursor-pointer">電話でのご返答</label>
                 </li>
 
                 <li class="flex items-center mb-4">
-                  <input {{ old('contact.reply') === '上記以外でのご返答' ? 'checked' : '' }} id="ContactReply3" value="上記以外でのご返答" type="radio" name="contact[reply]"
+                  <input {{ old('contact.reply') === '上記以外でのご返答' ? 'checked' : '' }} id="ContactReply3"
+                         value="上記以外でのご返答" type="radio" name="contact[reply]"
                          class="radio radio-primary radio-sm @if($errors->has('contact.reply')) border-red-700 @endif">
                   <label for="ContactReply3"
                          class="ml-2 text-sm text-gray-600 cursor-pointer">上記以外でのご返答</label>
                 </li>
 
                 <li class="flex items-center mb-4">
-                  <input {{ old('contact.reply') === '返答を希望しない' ? 'checked' : '' }} id="ContactReply4" value="返答を希望しない" type="radio" name="contact[reply]"
+                  <input {{ old('contact.reply') === '返答を希望しない' ? 'checked' : '' }} id="ContactReply4" value="返答を希望しない"
+                         type="radio" name="contact[reply]"
                          class="radio radio-primary radio-sm @if($errors->has('contact.reply')) border-red-700 @endif">
                   <label for="ContactReply4"
                          class="ml-2 text-sm text-gray-600 cursor-pointer">返答を希望しない</label>
@@ -147,8 +147,10 @@
               </ul>
               @if($errors->has('contact.reply'))
                 <div class="flex text-red-700 text-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                       stroke="currentColor" class="w-6 h-6 mr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
                   </svg>
                   {{ $errors->first('contact.reply') }}
                 </div>
@@ -191,13 +193,16 @@
         <div class="mb-10">
 
           <div class="flex items-center justify-center mb-4">
-            <input {{ old('contact.privacy') === '1' ? 'checked' : '' }} value="1" id="ContactPrivacy" type="checkbox" name="contact[privacy]"
+            <input {{ old('contact.privacy') === '1' ? 'checked' : '' }} value="1" id="ContactPrivacy" type="checkbox"
+                   name="contact[privacy]"
                    class="checkbox radio-primary rounded-full checkbox-sm sm:checkbox-md @if($errors->has('contact.privcy')) border-red-700 @endif">
             <label for="ContactPrivacy" class="ml-2 text-sm sm:text-base cursor-pointer hover:text-primary">プライバシーポリシーに同意する</label>
             @if($errors->has('contact.privacy'))
               <div class="flex items-center justify-center text-red-700 text-sm ml-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-1">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-6 h-6 mr-1">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
                 </svg>
                 {{ $errors->first('contact.privacy') }}
               </div>
@@ -205,28 +210,21 @@
           </div>
         </div>
 
-        {{--
-        @production
-        <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
-          <div class="col-md-6">
-            {!! RecaptchaV3::field('register') !!}
-            @if ($errors->has('g-recaptcha-response'))
-              <span class="help-block">
-                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-              </span>
-            @endif
-          </div>
-        </div>
-        @endproduction
-        --}}
-
         <div class="mb-4 text-center">
-          <input type="submit" value="上記の内容でお問い合わせをする"
-                 class="btn btn-primary rounded-full text-base px-12" id="ContactSubmit">
+          <input type="submit"
+                 data-sitekey="{{config('myapp.recaptcha_sitekey')}}"
+                 data-callback="onsubmit"
+                 data-action="submit"
+                 value="上記の内容でお問い合わせをする"
+                 class="btn btn-primary rounded-full text-base px-12"
+                 id="ContactSubmit">
         </div>
+
       </div>
     </section>
   </form>
+
+
 
 @endsection
 

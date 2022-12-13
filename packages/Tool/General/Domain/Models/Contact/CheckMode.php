@@ -4,8 +4,8 @@ namespace Tool\General\Domain\Models\Contact;
 
 class CheckMode
 {
-    private $data;
-    private $testWord;
+    private array $data;
+    private string $testWord;
 
     public function __construct(
         array $data
@@ -23,7 +23,7 @@ class CheckMode
     public function checkTestMode(): bool
     {
         // テストワードがあればtrue
-        if(strpos($this->getValuesText(), $this->testWord) !== false) return true;
+        if(str_contains($this->getValuesText(), $this->testWord) !== false) return true;
 
         // なければfalse
         return false;
@@ -47,5 +47,15 @@ class CheckMode
     public function getValuesText(): string
     {
         return implode($this->getValues());
+    }
+
+    public function getTitle(): string
+    {
+        return 'テストモード完了';
+    }
+
+    public function getMessage(): string
+    {
+        return 'テストモードでの処理を行いました。フォームは無事に作動しています。<br>（保存もメール送信もされません）';
     }
 }

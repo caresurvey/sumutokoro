@@ -22,7 +22,7 @@ class PriceRangesTableSeeder extends Seeder
             'name' => '指定なし',
             'min' => 0,
             'max' => 0,
-            'reorder' =>  1,
+            'reorder' => 1,
         ]);
         DB::table('price_ranges')->insert([
             'id' => 2,
@@ -31,34 +31,43 @@ class PriceRangesTableSeeder extends Seeder
             'name' => '〜5万円',
             'min' => 0,
             'max' => 50000,
-            'reorder' =>  2,
+            'reorder' => 2,
         ]);
         DB::table('price_ranges')->insert([
             'id' => 3,
             'display' => 1,
             'public' => 1,
-            'name' => '5〜10万円',
-            'min' => 50000,
+            'name' => '〜10万円',
+            'min' => 0,
             'max' => 100000,
-            'reorder' =>  3,
+            'reorder' => 3,
         ]);
         DB::table('price_ranges')->insert([
             'id' => 4,
             'display' => 1,
             'public' => 1,
-            'name' => '10〜15万円',
-            'min' => 100000,
+            'name' => '〜15万円',
+            'min' => 0,
             'max' => 150000,
-            'reorder' =>  4,
+            'reorder' => 4,
         ]);
         DB::table('price_ranges')->insert([
             'id' => 5,
             'display' => 1,
             'public' => 1,
-            'name' => '20万円〜',
-            'min' => 150000,
+            'name' => '〜20万円',
+            'min' => 0,
             'max' => 200000,
-            'reorder' =>  5,
+            'reorder' => 5,
+        ]);
+        DB::table('price_ranges')->insert([
+            'id' => 6,
+            'display' => 1,
+            'public' => 1,
+            'name' => '20万円〜',
+            'min' => 200000,
+            'max' => 0,
+            'reorder' => 6,
         ]);
     }
 }

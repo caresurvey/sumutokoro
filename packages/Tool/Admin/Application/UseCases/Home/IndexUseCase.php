@@ -29,10 +29,10 @@ class IndexUseCase
 
     public function __invoke(array $auth): array
     {
-        $data['company'] = $this->eloquentCompany->count();
-        $data['news'] = $this->eloquentNews->count();
-        $data['spot'] = $this->eloquentSpot->count();
-        $data['user'] = $this->eloquentUser->count();
+        $data['company'] = $this->eloquentCompany->where('display', true)->count();
+        $data['news'] = $this->eloquentNews->where('display', true)->count();
+        $data['spot'] = $this->eloquentSpot->where('display', true)->count();
+        $data['user'] = $this->eloquentUser->where('enabled', true)->count();
 
         return $data;
     }

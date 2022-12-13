@@ -369,20 +369,6 @@
               'errors' => $errors->get('spot.room_size'),
               ])
 
-            <div class="flex items-center pt-3">
-              <div class="mr-4">
-                選択してください
-              </div>
-              <select name="spot[space_id]" id="SpotSpace"
-                      class="-mr-1 select select-bordered border-gray-200 bg-gray-100 select-sm text-xs lg:text-md lg:select-md">
-                @foreach($data['spaces'] as $key => $space)
-                  <option
-                    value="{{$key}}"
-                    id="SpotSpace{{$key}}"
-                    @if($key === (int)old('spot.space_id', $data['spot']['space_id'])) selected @endif>{{$space}}</option>
-                @endforeach
-              </select>
-            </div>
           </td>
         </tr>
         <tr class="bg-white border-b">

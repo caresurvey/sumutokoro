@@ -42,53 +42,49 @@ class StoreUseCase
         $checkModel = $this->registerRepo->makeCheckMode($this->request->all());
 
         // テストモードだったら何もせずに完了画面だけを表示させる
-        if($checkModel->checkTestMode()) {
-            // 完了画面のデータ作成
-            $data['title'] = 'テストモード完了';
-            $data['message'] = 'テストモードでの処理を行いました。<br>フォームは無事に作動しています。<br>（保存もメール送信もされません）';
-
-            // Responseを返す
-            return $this->responseRepo->makeModel(true, $data['title'], $data['message']);
+        if ($checkModel->checkTestMode()) {
+            return $this->responseRepo->makeModel(true, $checkModel->getTitle(), $checkModel->getMessage());
         }
 
         try {
-            // データを保存
-            if(!$this->registerRepo->store($this->request->data())) throw new GeneralLogicException();
-
             // 職種リスト取得
             $job_types = $this->eloquentJobType->where('display', 1)->pluck('name', 'id')->toArray();
 
             // ユーザータイプリスト取得
             $user_types = $this->eloquentUserType->where('display', 1)->pluck('name', 'id')->toArray();
 
-            // 送信用メールオブジェクトを作成
-            $sendRegister = $this->registerRepo->makeSendRegister();
-
             // データ整形
             $user = $this->request->all()['user'];
             $user['job_types'] = $job_types;
             $user['user_types'] = $user_types;
 
-            // 完了画面のデータ作成
-            $data['title'] = 'ユーザー登録完了';
-            $data['message'] = 'ありがとうございました、ユーザー登録が完了致しました。<br>この後運営が承認許可作業を行います。<br>管理できる事業所との紐付けなどを行いますので、<br>少々お待ちくださいませ。';
+            // データを保存して、失敗したら例外を投げる
+            if(!$this->registerRepo->store($this->request->data())) throw new GeneralLogicException();
 
-            // 管理者用へメール送信
-            $mailRegisterForAdmin = $this->registerRepo->makeMailRegisterForAdmin($user);
-            if(!$sendRegister->sendMailForAdmin($mailRegisterForAdmin)) throw new GeneralLogicException();
+            // 管理者用メールオブジェクトを作成
+            $registerForAdmin = $this->registerRepo->makeRegister($user, true);
+            $sendRegisterForAdmin = $this->registerRepo->makeSendGridRegister($registerForAdmin);
 
-            // ユーザーへメール送信
-            $mailRegisterForCustomer = $this->registerRepo->makeMailRegisterForCustomer($user);
-            if(!$sendRegister->sendMailForCustomer($mailRegisterForCustomer)) throw new GeneralLogicException();
+            // メールを送信してエラーなら例外を投げる
+            if(!$sendRegisterForAdmin->sendMail()) throw new GeneralLogicException();
+
+            // 送信者用メールオブジェクトを作成してメールを送信
+            $registerForCustomer = $this->registerRepo->makeRegister($user, false);
+            $sendRegisterForCustomer = $this->registerRepo->makeSendGridRegister($registerForCustomer);
+
+            // メールを送信してエラーなら例外を投げる
+            if(!$sendRegisterForCustomer->sendMail()) throw new GeneralLogicException();
 
             // Responseを返す
-            return $this->responseRepo->makeModel(true, $data['title'], $data['message']);
+            return $this->responseRepo->makeModel(true, $registerForAdmin->getSuccessTitle(), $registerForAdmin->getSuccessMessage());
 
         } catch(GeneralLogicException $e){
-            // エラー書き込み
+
+            // エラーを書き込む
             Logger($e->getMessage());
+
             // Responseを返す
-            return $this->responseRepo->makeModel(true, '登録ができませんでした', 'ユーザー登録ができませんでした、大変申し訳ありませんがもう一度やり直してください');
+            return $this->responseRepo->makeModel(true, $registerForAdmin->getFailedTitle(), $registerForAdmin->getFailedMessage());
         }
     }
 }

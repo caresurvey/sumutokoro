@@ -1,11 +1,11 @@
 <?php
 
-namespace Tool\General\Domain\Models\Register;
+namespace Tool\General\Domain\Models\ForgotPassword;
 
 class CheckMode
 {
-    private $data;
-    private $testWord;
+    private array $data;
+    private string $testWord;
 
     public function __construct(
         array $data
@@ -23,16 +23,17 @@ class CheckMode
     public function checkTestMode(): bool
     {
         // テストワードがあればtrue
-        if(strpos($this->getValuesText(), $this->testWord) !== false) return true;
+        if(str_contains($this->getValuesText(), $this->testWord) !== false) return true;
 
         // なければfalse
         return false;
+
     }
 
     public function getValues(): array
     {
         $results = [];
-        foreach($this->data['user'] as $data) {
+        foreach($this->data as $data) {
             if(is_array($data)) {
                 $results[] = implode($data);
             } else {
@@ -58,4 +59,3 @@ class CheckMode
         return 'テストモードでの処理を行いました。フォームは無事に作動しています。<br>（保存もメール送信もされません）';
     }
 }
-

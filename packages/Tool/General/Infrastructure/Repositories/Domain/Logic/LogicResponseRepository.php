@@ -7,7 +7,13 @@ use Tool\General\Domain\Models\Common\ResponseRepository;
 
 class LogicResponseRepository implements ResponseRepository
 {
-    public function makeModel(bool $result, string $title, string $message = ''): LogicResponse
+    /**
+     * @param bool $result
+     * @param string $title
+     * @param string $message
+     * @return LogicResponse
+     */
+    public function makeModel(bool $result, string $title, string $message): LogicResponse
     {
         // データをドメインオブジェクトにして返す
         return new LogicResponse(

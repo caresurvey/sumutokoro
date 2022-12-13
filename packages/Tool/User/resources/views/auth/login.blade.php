@@ -25,13 +25,13 @@
             <div class="text-sm text-gray-600 mb-2"><i class="fa-solid fa-envelope mr-2"></i>メールアドレス</div>
             <input type="email" name="email" id="LoginEmail"
                    class="mb-4 w-full border border-gray-300 bg-gray-100 bg-gray-200 px-5 py-4 rounded focus:outline-primary focus:bg-white"
-                   value="{{old('email', 'user@hoge.co.jp')}}" placeholder="メールアドレスを入れてください">
+                   value="{{old('email', '')}}" placeholder="メールアドレスを入れてください">
           </div>
 
           <div class="mb-3">
             <div class="text-sm text-gray-600 mb-2"><i class="fa-solid fa-key mr-2"></i>パスワード</div>
             <input type="password" name="password" id="LoginPassword"
-                   class="mb-4 bg-gray-100 bg-gray-200 border border-gray-300 px-5 py-4 w-full rounded focus:outline-primary focus:bg-white" value="{{old('password', 'password')}}"
+                   class="mb-4 bg-gray-100 bg-gray-200 border border-gray-300 px-5 py-4 w-full rounded focus:outline-primary focus:bg-white" value="{{old('password', '')}}"
                    placeholder="パスワードを入れてください">
           </div>
 

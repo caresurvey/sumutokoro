@@ -6,7 +6,16 @@ use Tool\General\Domain\Models\Common\LogicResponse;
 
 interface ResetPasswordRepository
 {
-    public function store(string $email, string $token): LogicResponse;
-
+    /**
+     * @param string $token
+     * @return array
+     */
     public function getUser(string $token): array;
+
+    /**
+     * @param string $email
+     * @param string $token
+     * @return LogicResponse
+     */
+    public function store(string $email, string $token): LogicResponse;
 }

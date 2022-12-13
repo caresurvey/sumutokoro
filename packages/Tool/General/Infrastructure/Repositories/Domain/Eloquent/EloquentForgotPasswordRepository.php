@@ -3,37 +3,30 @@
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
 use Illuminate\Support\Facades\Hash;
-use Tool\General\Domain\Models\Common\LogicResponse;
-use Tool\General\Domain\Models\Common\ResponseRepository;
-use Tool\General\Domain\Models\ForgetPassword\ForgetPasswordRepository;
+use Tool\General\Domain\Models\ForgotPassword\CheckMode;
+use Tool\General\Domain\Models\ForgotPassword\ForgotPassword;
+use Tool\General\Domain\Models\ForgotPassword\ForgotPasswordRepository;
+use Tool\General\Domain\Models\ForgotPassword\SendGridForgotPassword;
 use Tool\General\Exceptions\GeneralLogicException;
-use Tool\General\Exceptions\GeneralNotFoundException;
 use Tool\General\Infrastructure\Eloquents\EloquentResetPassword;
 use Tool\General\Infrastructure\Eloquents\EloquentUser;
 use DB;
 
-class EloquentForgetPasswordRepository implements ForgetPasswordRepository
+class EloquentForgotPasswordRepository implements ForgotPasswordRepository
 {
     private EloquentResetPassword $eloquentResetPassword;
     private EloquentUser $eloquentUser;
-    private ResponseRepository $responseRepo;
 
     public function __construct(
         EloquentResetPassword $eloquentResetPassword,
-        EloquentUser          $eloquentUser,
-        ResponseRepository    $responseRepo
+        EloquentUser          $eloquentUser
     )
     {
         // モデル
         $this->eloquentResetPassword = $eloquentResetPassword;
         $this->eloquentUser = $eloquentUser;
-        $this->responseRepo = $responseRepo;
     }
 
-    /**
-     * @param string $token
-     * @return bool
-     */
     public function makeToken(string $email): string
     {
         // データを取得
@@ -43,7 +36,7 @@ class EloquentForgetPasswordRepository implements ForgetPasswordRepository
         return Hash::make($email . date("Ymd"));
     }
 
-    public function store(string $email, string $token): LogicResponse
+    public function store(string $email, string $token): bool
     {
         try {
             // 保存（トランザクション）
@@ -53,15 +46,40 @@ class EloquentForgetPasswordRepository implements ForgetPasswordRepository
                     // エラーなら例外を投げる
                     throw new GeneralLogicException();
                 }
-                // レスポンスモデルを作成して返す
-                return $this->responseRepo->makeModel(true, 'パスワード変更完了', 'パスワードを変更しました。');
+                return true;
             });
         } catch (GeneralLogicException $e) {
             // エラー書き込み
             Logger($e->getMessage());
-            // レスポンスモデルを作成して返す
-            return $this->responseRepo->makeModel(false, 'パスワードを変更できませんでした', 'パスワードを変更できませんでした');
+            return false;
         }
+    }
+
+
+
+    /**
+     * @return ForgotPassword
+     */
+    public function makeForgotPassword(string $email, string $token): ForgotPassword
+    {
+        return new ForgotPassword($email, $token);
+    }
+
+    /**
+     * @return SendGridForgotPassword
+     */
+    public function makeSendGridForgotPassword(ForgotPassword $forgotPassword): SendGridForgotPassword
+    {
+        return new SendGridForgotPassword($forgotPassword);
+    }
+
+    /**
+     * @param array $request
+     * @return CheckMode
+     */
+    public function makeCheckMode(array $request): CheckMode
+    {
+        return new CheckMode($request);
     }
 }
 

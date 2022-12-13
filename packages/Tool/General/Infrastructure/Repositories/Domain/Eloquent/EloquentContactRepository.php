@@ -3,10 +3,9 @@
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
 use Tool\General\Domain\Models\Contact\CheckMode;
+use Tool\General\Domain\Models\Contact\Contact;
 use Tool\General\Domain\Models\Contact\ContactRepository;
-use Tool\General\Domain\Models\Contact\MailContactForAdmin;
-use Tool\General\Domain\Models\Contact\MailContactForCustomer;
-use Tool\General\Domain\Models\Contact\SendContact;
+use Tool\General\Domain\Models\Contact\SendGridContact;
 use Tool\General\Exceptions\GeneralLogicException;
 use Tool\General\Infrastructure\Eloquents\EloquentContact;
 use \DB;
@@ -43,29 +42,19 @@ class EloquentContactRepository implements ContactRepository
     }
 
     /**
-     * @param array $data
-     * @return MailContactForAdmin
+     * @return Contact
      */
-    public function makeMailContactForAdmin(array $data): MailContactForAdmin
+    public function makeContact(array $data, bool $isAdmin): Contact
     {
-        return new MailContactForAdmin($data);
+        return new Contact($data, $isAdmin);
     }
 
     /**
-     * @param array $data
-     * @return MailContactForCustomer
+     * @return SendGridContact
      */
-    public function makeMailContactForCustomer(array $data): MailContactForCustomer
+    public function makeSendGridContact(Contact $contact): SendGridContact
     {
-        return new MailContactForCustomer($data);
-    }
-
-    /**
-     * @return SendContact
-     */
-    public function makeSendContact(): SendContact
-    {
-        return new SendContact();
+        return new SendGridContact($contact);
     }
 
     /**

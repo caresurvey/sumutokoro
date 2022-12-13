@@ -9,16 +9,14 @@
         <div class="w-full mx-auto">
 
           <h2 class="text-lg mb-16 text-3xl text-gray-800 font-bold text-center">
-            パスワードリセット申請完了
+            {{ session('title') }}
           </h2>
 
           <div class="rounded-md bg-white px-20 pt-20 py-16 shadow w-full mb-10">
 
             <div class="mb-10 leading-7">
               <p>
-                パスワードリセット申請を完了しました。<br>
-                入力したメールアドレスにリセット画面のURLをお送りしておりますので、<br>
-                メールボックスをご確認ください。
+                {!! nl2br(e(session('message'))) !!}
               </p>
             </div>
 

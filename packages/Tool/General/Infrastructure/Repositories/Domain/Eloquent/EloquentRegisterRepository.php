@@ -3,9 +3,8 @@
 namespace Tool\General\Infrastructure\Repositories\Domain\Eloquent;
 
 use Tool\General\Domain\Models\Register\CheckMode;
-use Tool\General\Domain\Models\Register\MailRegisterForAdmin;
-use Tool\General\Domain\Models\Register\MailRegisterForCustomer;
-use Tool\General\Domain\Models\Register\SendRegister;
+use Tool\General\Domain\Models\Register\Register;
+use Tool\General\Domain\Models\Register\SendGridRegister;
 use Tool\General\Exceptions\GeneralLogicException;
 use Tool\General\Domain\Models\Register\RegisterRepository;
 use Tool\General\Infrastructure\Eloquents\EloquentUserRegister;
@@ -37,21 +36,29 @@ class EloquentRegisterRepository implements RegisterRepository
         }
     }
 
-    public function makeMailRegisterForAdmin(array $data): MailRegisterForAdmin
+    /**
+     * @param array $data
+     * @param bool $isAdmin
+     * @return Register
+     */
+    public function makeRegister(array $data, bool $isAdmin): Register
     {
-        return new MailRegisterForAdmin($data);
+        return new Register($data, $isAdmin);
     }
 
-    public function makeMailRegisterForCustomer(array $data): MailRegisterForCustomer
+    /**
+     * @param Register $register
+     * @return SendGridRegister
+     */
+    public function makeSendGridRegister(Register $register): SendGridRegister
     {
-        return new MailRegisterForCustomer($data);
+        return new SendGridRegister($register);
     }
 
-    public function makeSendRegister(): SendRegister
-    {
-        return new SendRegister();
-    }
-
+    /**
+     * @param array $request
+     * @return CheckMode
+     */
     public function makeCheckMode(array $request): CheckMode
     {
         return new CheckMode($request);

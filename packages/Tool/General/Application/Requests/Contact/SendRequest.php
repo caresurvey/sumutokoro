@@ -50,6 +50,8 @@ class SendRequest extends FormRequest
             'contact.reply.required' => ':attributeは必須です',
             'contact.msg.required' => ':attributeは必須です',
             'contact.privacy.required' => ':attributeの同意は必須です',
+            'g-recaptcha-response.required' => '処理ができませんでした',
+            'g-recaptcha-response.recaptcha' => '処理ができませんでした.',
         ];
     }
 
@@ -81,7 +83,7 @@ class SendRequest extends FormRequest
 
             $this->merge([
                 'recaptcha_success' => $response->isSuccess(),
-                'recaptcha_score'   => $response->getScore()
+                'recaptcha_score' => $response->getScore()
             ]);
         }
     }

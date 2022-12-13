@@ -20,13 +20,6 @@
   @endproduction
   {{-- GoogleAnalyticsタグここまで --}}
 
-  {{-- GoogleCAPTCHAタグここから --}}
-  @production
-    @if($_SERVER['HTTP_HOST'] === 'sumutokoro.com')
-    {!! RecaptchaV3::initJs() !!}
-    @endif
-  @endproduction
-  {{-- GoogleCAPTCHAタグここまで --}}
 
   <!-- favicon -->
   <meta name="msapplication-square70x70logo" content="{{asset('/')}}site-tile-70x70.png">
